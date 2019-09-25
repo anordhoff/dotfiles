@@ -1,0 +1,6 @@
+[user]
+	signingkey = 427B8729DA8F6F14
+	email = aaron.nordhoff.cof@gmail.com
+	name = Aaron Nordhoff
+[credential]
+	helper = cache --timeout=3600
