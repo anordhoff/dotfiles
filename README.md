@@ -1,4 +1,4 @@
 # dotfiles
 
-.dotfiles/ for Ubuntu 19.04
+`~/.dotfiles/` directory for Ubuntu 19.04
 
