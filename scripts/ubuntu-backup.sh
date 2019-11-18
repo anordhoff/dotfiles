@@ -1,9 +1,17 @@
+#!/bin/bash
+
+# verify script is being run as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
 # backup root directory
 date=`date +"%m%d%Y-%H%M%S"`
 cd /
 tar -cvpzf backup-${date}.tar.gz \
 --exclude=/backup-*-*.tar.gz \
---exclude=/backup-*-*.tar.gz.gpg \
+--exclude=/backup-*-*.tar.gz.cpt \
 --exclude=/proc \
 --exclude=/tmp \
 --exclude=/mnt \
@@ -19,3 +27,5 @@ tar -cvpzf backup-${date}.tar.gz \
 --exclude=/home/*/.local/share/Trash \
 /
 
+# encrypt backup
+ccrypt backup-${date}.tar.gz
