@@ -1,4 +1,0 @@
-# kubectl/kubectx/kubens
-alias k='kubectl'
-alias kctx='kubectx'
-alias kns='kubens'
