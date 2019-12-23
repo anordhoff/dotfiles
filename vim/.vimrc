@@ -21,7 +21,8 @@ map <Space> <Leader>
 " map jk to escape insert mode
 inoremap kj <Esc>
 
-" enable line numbers
+" enable relative line numbers
+set rnu
 set number
 
 " tab/indent settings
@@ -29,6 +30,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+
+" whitepace preferences
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 " copy to clipboard
 set clipboard=unnamedplus
@@ -50,6 +54,7 @@ nnoremap <C-l> <C-w>l
 syntax on
 set termguicolors
 colorscheme onedark
+highlight Normal guibg=#1c1c1c
 
 " this is only necessary if you use 'set termguicolors' (tmux)
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -59,6 +64,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set laststatus=2
 set noshowmode
 let g:lightline = {'colorscheme': 'onedark'}
+
+" transparent lightline status bar
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
 
 " nerdtree ignores
 let NERDTreeIgnore=['\~$', '\.pyc', '\.swp$', '\.git', '\.hg', '\.svn',
