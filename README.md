@@ -1,25 +1,72 @@
 # dotfiles
 
-`~/.dotfiles/` directory for Ubuntu 19.04
+`~/.dotfiles/` directory for Ubuntu 19.10
 
-## shell
+To begin, clone the repository to `~/.dotfiles/`
 
-Source `.profile` at end of default shell config file
 ```
-source ~/.dotfiles/shell/.profile
+git clone https://github.com/anordhoff/dotfiles.git ~/.dotfiles/
 ```
 
-## tmux
+### bash
+
+Source `.bashrc` at end of `~/.bashrc`
+
+```
+echo "source ~/.dotfiles/bash/.bashrc" >> ~/.bashrc
+```
+
+### compton
+
+```
+ln -s $HOME/.dotfiles/compton/compton.conf $HOME/.config/compton.conf
+```
+
+### dunst
+
+```
+ln -s $HOME/.dotfiles/dunst/dunstrc $HOME/.config/dunst/dunstrc
+```
+
+### git
+
+```
+ln -s $HOME/.dotfiles/git/.gitconfig $HOME/.gitconfig
+ln -s $HOME/.dotfiles/git/.gitignore $HOME/.gitignore
+```
+
+### i3
+
+```
+ln -s $HOME/.dotfiles/i3/config $HOME/.config/i3/config
+ln -s $HOME/.dotfiles/i3/i3status.conf $HOME/.config/i3status/config
+ln -s $HOME/.dotfiles/i3/fonts/icomoon/ $HOME/.fonts/icomoon
+fc-cache -fv
+```
+
+### tmux
 
 Add to beginning of default shell config file
+
 ```
 # start tmux on shell login
 [[ -z "$TMUX" ]] && exec tmux
 ```
 
-## vim
+Then, create a symlink
+
+```
+ln -s $HOME/.dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
+```
+
+### vim
+
+```
+ln -s $HOME/.dotfiles/vim/.vimrc $HOME/.vimrc
+```
 
 See installation steps at https://github.com/junegunn/vim-plug
+
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -27,5 +74,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 vim ~/.dotfiles/vim/.vimrc
 :PlugInstall
 :GoInstallBinaries
+```
+
+### xorg
+
+```
+ln -s $HOME/.dotfiles/xorg/.Xresources $HOME/.Xresources
+ln -s $HOME/.dotfiles/xorg/.xsettingsd $HOME/.xsettingsd
 ```
 
