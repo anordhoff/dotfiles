@@ -2,11 +2,19 @@
 
 `~/.dotfiles/` directory for Ubuntu 19.10
 
-To begin, clone the repository to `~/.dotfiles/`
+To begin, clone the repository to `~/.dotfiles/`, and install necessary packages
 
 ```
 git clone https://github.com/anordhoff/dotfiles.git ~/.dotfiles/
+sudo apt-get update
+sudo apt-get install i3
+sudo apt-get install i3-wm dunst i3lock i3status suckless-tools
+sudo apt-get install compton rxvt-unicode xsel rofi fonts-noto xsettingsd lxappearance scrot feh amixer playerctl xclip
 ```
+
+Also install the binary for light: [https://github.com/haikarainen/light]
+
+Finally, create symlinks for each tool used
 
 ### bash
 
