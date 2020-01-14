@@ -1,0 +1,49 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: SF Pro Display;
+    font-size: 15px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #000000;
+    color: #cfd6e6;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0px 0px 0px 6px;
+    color: #5c6370;
+}
+
+#workspaces button.focused {
+    color: #cfd6e6;
+}
+
+#workspaces button:hover {
+    background: #000000;
+}
+
+#network, #pulseaudio, #backlight.on {
+    margin: 0px 12px;
+}
+
+#backlight.off {
+    margin: 0px 0px;
+    font-size: 0px;
+}
+
+#battery {
+    margin: 0px 8px 0px 12px;
+}
+
+#battery.critical {
+    color: #e06c75;
+}
+
+#tray {
+    margin: 0px 8px 0px 16px;
+}

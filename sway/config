@@ -1,0 +1,256 @@
+#################### Variables ####################
+# use alt as mod key
+set $mod Mod1
+
+# home row direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+# preferred terminal emulator
+set $term termite
+
+# preferred application launcher
+set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
+
+#################### Basic configuration ####################
+# set font (font pango: Noto Sans 8)
+font San Francisco Display Medium 9
+
+# disable focus wrapping
+focus_wrapping no
+
+# disable mouse focus
+focus_follows_mouse no
+
+# remove title bars
+default_border pixel
+
+# notification daemon
+exec mako -c ~/.dotfiles/mako/config
+
+# redshift-wlr-gamma-control
+exec redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
+
+#################### Output configuration ####################
+output eDP-1 {
+    # position 0 1080
+    position 0 1600
+    resolution 1920x1080
+    background ~/Downloads/space-shuttle.jpg fill
+}
+
+output DP-1 {
+    position 0 0
+    resolution 3840x1600
+    background ~/Downloads/space-shuttle.jpg fill
+}
+
+output DP-3 {
+    position 0 0
+    resolution 1920x1080
+    background ~/Downloads/space-shuttle.jpg fill
+}
+
+# clamshell mode
+bindswitch --reload lid:on output eDP-1 disable
+bindswitch --reload lid:off output eDP-1 enable 
+
+#################### Idle configuration ####################
+# idle configuration
+exec swayidle -w \
+    timeout 600 'swaylock -f -i /home/anordhoff/Downloads/space-shuttle.jpg' \
+    timeout 1800 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -i /home/anordhoff/Downloads/space-shuttle.jpg'
+
+#################### Input configuration ####################
+input 1:1:AT_Translated_Set_2_keyboard {
+    repeat_delay 200
+    repeat_rate 35
+    xkb_options ctrl:nocaps
+}
+
+input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
+    # tap enabled
+    click_method clickfinger
+    dwt enabled
+    natural_scroll enabled
+}
+
+input 1133:45086:MX_Master_Mouse {
+    accel_profile flat
+}
+
+input 76:620:Magic_Keyboard_with_Numeric_Keypad {
+    repeat_delay 200
+    repeat_rate 35
+    xkb_options altwin:swap_lalt_lwin,ctrl:nocaps
+}
+
+# home mouse
+input 5426:22:Razer_Razer_DeathAdder {
+    accel_profile flat
+}
+
+# home keyboard
+input 9494:26:CM_Storm_Keyboard_--_QuickFire_XT {
+    repeat_delay 200
+    repeat_rate 35
+    xkb_options ctrl:nocaps
+}
+
+# volume keys
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
+
+# media player keys
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+
+# backlight keys
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
+# capture all screens to clipboard
+bindsym Print exec grim - | wl-copy
+
+# capture the focused monitor to clipboard
+bindsym Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+
+# capture the specified area to clipboard
+bindsym Control+Shift+Print exec grim -g "$(slurp)" - | wl-copy
+
+#################### Key bindings ####################
+# start terminal
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start launcher
+bindsym $mod+d exec $menu
+
+# drag/resize floating windows using the mouse
+floating_modifier $mod normal
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# lock computer
+bindsym $mod+semicolon exec 'swaylock -f -i /home/anordhoff/Downloads/space-shuttle.jpg'
+
+# exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# define names for the default workspaces
+set $ws1  '1'
+set $ws2  '2'
+set $ws3  '3'
+set $ws4  '4'
+set $ws5  '5'
+set $ws6  '6'
+set $ws7  '7'
+set $ws8  '8'
+set $ws9  '9'
+set $ws10 '10'
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# split in horizontal orientation
+bindsym $mod+s splith
+
+# split in vertical orientation
+bindsym $mod+v splitv
+
+# change container layout
+bindsym $mod+q layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# cycle through scratchpad windows
+bindsym $mod+minus scratchpad show
+
+# resize window
+mode 'resize' {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # return to default mode
+    bindsym Return mode 'default'
+    bindsym Escape mode 'default'
+    bindsym $mod+r mode 'default'
+}
+bindsym $mod+r mode 'resize'
+
+#################### Status bar ####################
+# waybar is running as a systemd process
+# bar {
+#     position top
+#     swaybar_command waybar
+# }
+
+#################### Style ####################
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #cfd6e6 #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #cfd6e6 #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #cfd6e6 #900000   #900000
+client.placeholder      #000000 #0c0c0c #cfd6e6 #000000   #0c0c0c
+client.background       #000000
+
+include /etc/sway/config.d/*
