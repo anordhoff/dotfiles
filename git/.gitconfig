@@ -1,12 +1,19 @@
 [user]
-	signingkey = 427B8729DA8F6F14
+	signingkey = E3EE3624543FA445
 	email = aaron.nordhoff.cof@gmail.com
 	name = Aaron Nordhoff
 [credential]
 	helper = cache --timeout=3600
 [core]
+	pager = less -FRX
 	excludesfile = ~/.gitignore
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [commit]
 	gpgsign = true
+[merge]
+    tool = vimdiff3
+[mergetool]
+	keepBackup = false
+[mergetool "vimdiff3"]
+    cmd = nvim -d $LOCAL $MERGED $REMOTE
