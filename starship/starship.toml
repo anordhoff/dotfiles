@@ -1,0 +1,140 @@
+add_newline = false
+
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "hg_branch",
+    "kubernetes",
+    "package",
+    "dotnet",
+    "elixir",
+    "elm",
+    "golang",
+    "haskell",
+    "java",
+    "nodejs",
+    "php",
+    "python",
+    "ruby",
+    "rust",
+    "terraform",
+    "nix_shell",
+    "conda",
+    "memory_usage",
+    "aws",
+    "env_var",
+    "crystal",
+    "cmd_duration",
+    "line_break",
+    "jobs",
+    "battery",
+    "time",
+    "character",
+]
+
+[aws]
+symbol = "  "
+disabled = true
+
+[battery]
+full_symbol = "  "
+charging_symbol = "  "
+discharging_symbol = "  "
+unknown_symbol = "  "
+empty_symbol = "  "
+disabled = false
+
+[character]
+symbol = "❯"
+error_symbol = "❯"
+vicmd_symbol = "❮"
+
+[cmd_duration]
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[directory]
+
+[dotnet]
+symbol = ".NET"
+
+[elm]
+symbol = "ELM"
+
+[env_var]
+
+[git_branch]
+symbol = " "
+
+[git_commit]
+disabled = true
+
+[git_state]
+
+[git_status]
+
+[golang]
+symbol = "GO "
+
+[haskell]
+symbol = "λ "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+
+[jobs]
+symbol = " "
+
+[java]
+symbol = "☕"
+
+[kubernetes]
+symbol = " "
+style = "bold blue"
+disabled = false
+
+[line_break]
+disabled = false
+
+[memory_usage]
+symbol = " "
+disabled = true
+
+[nix_shell]
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[php]
+symbol = "php "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[terraform]
+symbol = " "
+
+[time]
+disabled = false
+
+[username]
