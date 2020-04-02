@@ -27,8 +27,13 @@ window#waybar {
     background: #000000;
 }
 
-#network, #pulseaudio, #backlight.on {
+#tray, #custom-spotify, #custom-vpn, #network, #pulseaudio, #backlight.on, #battery {
     margin: 0px 12px;
+}
+
+#custom-vpn.disconnected {
+    margin: 0px 0px;
+    font-size: 0px
 }
 
 #backlight.off {
@@ -36,14 +41,11 @@ window#waybar {
     font-size: 0px;
 }
 
-#battery {
-    margin: 0px 8px 0px 12px;
-}
-
 #battery.critical {
     color: #e06c75;
 }
 
-#tray {
-    margin: 0px 8px 0px 16px;
+#clock {
+    margin: 0px 8px 0px 12px;
+    font-weight: 500;
 }

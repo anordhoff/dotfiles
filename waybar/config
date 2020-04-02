@@ -2,29 +2,41 @@
     "layer": "top",
     "height": 25,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["clock"],
-    "modules-right": ["network", "pulseaudio", "backlight", "battery", "tray"],
+    "modules-right": ["tray", "custom/spotify", "custom/vpn", "network", "pulseaudio", "backlight", "battery", "clock"],
 
-    "clock": {
-        "tooltip": false,
-        "format": "{:%a %h %-e   %-l:%M %p}"
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
     },
-
+    "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.dotfiles/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+    },
+    "custom/vpn": {
+        "interval": 10,
+        "return-type": "json",
+        "exec": "~/.dotfiles/waybar/modules/vpn.sh",
+        "exec-if": "pgrep openvpn",
+        "escape": true
+    },
     "network": {
         "tooltip": false,
-        "interval": 10,
+        "interval": 1,
         "format": "{ifname}",
         "format-wifi": "{essid}  ",
-        "format-ethernet": "{ipaddr}  ",
+        "format-ethernet": "{ifname} {ipaddr}  ",
         "format-linked": "{ifname}  ",
         "format-disconnected": "Disconnected  "
     },
     "pulseaudio": {
         "tooltip": false,
         "format": "{volume}  {icon}",
-        "format-bluetooth": "{volume}  {icon}  ",
         "format-muted": "{volume}  ",
-        "format-bluetooth-muted": "{volume}    ",
+        "format-bluetooth": "{volume}    {icon}",
+        "format-bluetooth-muted": "{volume}    ",
         "format-icons": {
             "headphones": "",
             "headset": "",
@@ -46,12 +58,12 @@
             "critical": 10
         },
         "format": "{capacity}  {icon}",
-        "format-charging": "{capacity}  ",
-        "format-plugged": "{capacity}  ",
+        "format-charging": "{capacity}    ",
+        "format-plugged": "{capacity}    ",
         "format-icons": ["", "", "", "", ""]
     },
-    "tray": {
-        "icon-size": 15,
-        "spacing": 10
+    "clock": {
+        "tooltip": false,
+        "format": "{:%I:%M}"
     }
 }
