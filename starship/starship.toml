@@ -55,20 +55,26 @@ error_symbol = "❯"
 vicmd_symbol = "❮"
 
 [cmd_duration]
+style = "bold cyan"
 
 [conda]
 symbol = " "
+style = "bold green"
 
 [crystal]
 symbol = " "
+style = "bold green"
 
 [directory]
+style = "bold blue"
 
 [dotnet]
 symbol = ".NET"
+style = "bold green"
 
 [elm]
 symbol = "ELM"
+style = "bold green"
 
 [env_var]
 
@@ -81,12 +87,15 @@ disabled = true
 [git_state]
 
 [git_status]
+style = "bold purple"
 
 [golang]
 symbol = "GO "
+style = "bold green"
 
 [haskell]
 symbol = "λ "
+style = "bold green"
 
 [hg_branch]
 symbol = " "
@@ -94,14 +103,17 @@ symbol = " "
 [hostname]
 
 [jobs]
-symbol = " "
+symbol = " "
+threshold = 0
+style = "bold blue"
 
 [java]
 symbol = "☕"
+style = "bold green"
 
 [kubernetes]
 symbol = " "
-style = "bold blue"
+style = "bold cyan"
 disabled = false
 
 [line_break]
@@ -115,26 +127,33 @@ disabled = true
 
 [nodejs]
 symbol = " "
+style = "bold green"
 
 [package]
 symbol = " "
 
 [php]
 symbol = "php "
+style = "bold green"
 
 [python]
 symbol = " "
+style = "bold green"
 
 [ruby]
 symbol = " "
+style = "bold green"
 
 [rust]
 symbol = " "
+style = "bold green"
 
 [terraform]
 symbol = " "
+style = "bold green"
 
 [time]
+style = "bold cyan"
 disabled = false
 
 [username]

@@ -25,32 +25,34 @@ focus_wrapping no
 focus_follows_mouse no
 
 # remove title bars
-default_border pixel
-
-# notification daemon
-exec mako -c ~/.dotfiles/mako/config
+default_border pixel 2
 
 # redshift-wlr-gamma-control
 exec redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
+
+# fader
+exec python3 ~/.config/sway/scripts/fader.py
 
 #################### Output configuration ####################
 output eDP-1 {
     # position 0 1080
     position 0 1600
     resolution 1920x1080
-    background ~/Downloads/space-shuttle.jpg fill
+    background ~/Downloads/mountains.jpg fill
 }
 
+# work monitor
 output DP-1 {
     position 0 0
     resolution 3840x1600
-    background ~/Downloads/space-shuttle.jpg fill
+    background ~/Downloads/mountains.jpg fill
 }
 
+# home monitor
 output DP-3 {
     position 0 0
     resolution 1920x1080
-    background ~/Downloads/space-shuttle.jpg fill
+    background ~/Downloads/mountains.jpg fill
 }
 
 # clamshell mode
@@ -79,10 +81,12 @@ input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
     natural_scroll enabled
 }
 
+# work mouse
 input 1133:45086:MX_Master_Mouse {
     accel_profile flat
 }
 
+# work keyboard
 input 76:620:Magic_Keyboard_with_Numeric_Keypad {
     repeat_delay 200
     repeat_rate 35
@@ -141,7 +145,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # lock computer
-bindsym $mod+semicolon exec 'swaylock -f -i /home/anordhoff/Downloads/space-shuttle.jpg'
+bindsym $mod+semicolon exec 'swaylock -f -i /home/anordhoff/Downloads/mountains.jpg'
 
 # exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -246,11 +250,18 @@ bindsym $mod+r mode 'resize'
 
 #################### Style ####################
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #cfd6e6 #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #cfd6e6 #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #cfd6e6 #900000   #900000
-client.placeholder      #000000 #0c0c0c #cfd6e6 #000000   #0c0c0c
+client.focused          #4c7899 #1c1c1c #abb2bf #2e9ef4   #285577
+client.focused_inactive #333333 #1c1c1c #abb2bf #484e50   #5f676a
+client.unfocused        #333333 #1c1c1c #5c6370 #292d2e   #222222
+client.urgent           #e06c75 #1c1c1c #abb2bf #900000   #900000
+client.placeholder      #000000 #1c1c1c #abb2bf #000000   #0c0c0c
 client.background       #000000
+
+# client.focused          #4c7899 #285577 #cfd6e6 #2e9ef4   #285577
+# client.focused_inactive #333333 #5f676a #cfd6e6 #484e50   #5f676a
+# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+# client.urgent           #2f343a #900000 #cfd6e6 #900000   #900000
+# client.placeholder      #000000 #0c0c0c #cfd6e6 #000000   #0c0c0c
+# client.background       #000000
 
 include /etc/sway/config.d/*

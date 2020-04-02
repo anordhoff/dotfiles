@@ -2,13 +2,15 @@ max-visible=4
 sort=+time
 layer=top
 anchor=top-center
+# anchor=top-right
 
 font=SF Pro Display Regular 11
-background-color=#000000
+background-color=#111111
 text-color=#cfd6e6
-margin=15,15,0,0
+margin=10,10,0,0
+# margin=15,15,0,0
 border-size=2
-border-color=#222222
+border-color=#333333
 border-radius=6
 default-timeout=10000
 
@@ -24,3 +26,4 @@ ignore-timeout=1
 [app-name=Spotify]
 max-icon-size=64
 default-timeout=4000
+invisible=1
