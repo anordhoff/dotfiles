@@ -14,6 +14,9 @@ set $term termite
 # preferred application launcher
 set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 
+# wallpaper
+set $wallpaper $HOME/Downloads/space-shuttle.jpg
+
 #################### Basic configuration ####################
 # set font (font pango: Noto Sans 8)
 font San Francisco Display Medium 9
@@ -28,44 +31,36 @@ focus_follows_mouse no
 default_border pixel 2
 
 # redshift-wlr-gamma-control
-exec redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
+# exec redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
 
 # fader
-exec python3 ~/.config/sway/scripts/fader.py
+# exec python3 ~/.config/sway/scripts/fader.py
 
 #################### Output configuration ####################
 output eDP-1 {
     # position 0 1080
     position 0 1600
     resolution 1920x1080
-    background ~/Downloads/mountains.jpg fill
+    background $wallpaper fill
 }
 
 # work monitor
 output DP-1 {
     position 0 0
     resolution 3840x1600
-    background ~/Downloads/mountains.jpg fill
+    background $wallpaper fill
 }
 
 # home monitor
 output DP-3 {
     position 0 0
     resolution 1920x1080
-    background ~/Downloads/mountains.jpg fill
+    background $wallpaper fill
 }
 
 # clamshell mode
 bindswitch --reload lid:on output eDP-1 disable
 bindswitch --reload lid:off output eDP-1 enable 
-
-#################### Idle configuration ####################
-# idle configuration
-exec swayidle -w \
-    timeout 600 'swaylock -f -i /home/anordhoff/Downloads/space-shuttle.jpg' \
-    timeout 1800 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -i /home/anordhoff/Downloads/space-shuttle.jpg'
 
 #################### Input configuration ####################
 input 1:1:AT_Translated_Set_2_keyboard {
@@ -145,7 +140,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # lock computer
-bindsym $mod+semicolon exec 'swaylock -f -i /home/anordhoff/Downloads/mountains.jpg'
+bindsym $mod+semicolon exec 'swaylock -f -i $wallpaper'
 
 # exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -265,3 +260,4 @@ client.background       #000000
 # client.background       #000000
 
 include /etc/sway/config.d/*
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
