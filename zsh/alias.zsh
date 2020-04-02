@@ -1,7 +1,3 @@
-# file listing
-alias ls='ls --color=auto'
-alias ll='ls -al'
-
 # neovim
 alias vim='nvim'
 
@@ -9,3 +5,6 @@ alias vim='nvim'
 alias k='kubectl'
 alias kctx='kubectx'
 alias kns='kubens'
+
+# expand aliased arguments
+alias watch='watch -n 0.1 '

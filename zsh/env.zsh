@@ -14,6 +14,7 @@ export PATH=$PATH:$HOME/.local/bin
 # golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export GOPRIVATE="github.com/criticalstack"
 
 # npm
 export PATH=$PATH:$HOME/.npm/bin
