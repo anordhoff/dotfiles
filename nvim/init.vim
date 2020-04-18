@@ -8,10 +8,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
 " navigation
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " syntax highlighting
 Plug 'joshdick/onedark.vim'
@@ -23,13 +23,17 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'preservim/nerdcommenter'
+
+" autocomplete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " enable relative line numbers
-set rnu
+" set rnu
 set number
 
 " tab/indent settings
@@ -41,6 +45,25 @@ set smartindent
 " whitepace preferences
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType javascriptreact setlocal ts=2 sts=2 sw=2
+
+" switch buffers without saving
+set hidden
+
+" enable backspace for previous session
+set backspace=indent,eol,start
+
+" search case sensitivity
+set ignorecase
+set smartcase
+
+" wait to execute search until <enter> is pressed
+set noincsearch
+
+" reduce update time from 4s to 300ms
+set updatetime=300
+
+" always show the sign column
+set signcolumn=yes
 
 " copy to clipboard
 set clipboard=unnamedplus
@@ -59,21 +82,12 @@ let g:clipboard = {
     \   'cache_enabled': 1,
     \ }
 
-" enable backspace for previous session
-set backspace=indent,eol,start
-
-" show command
-set showcmd
-
-" wait to execute search until Enter is pressed
-set noincsearch
-
 " ==================== key mappings ==================== "
-" map space to leader key (\ by default)
-map <Space> <Leader>
+" map <space> to leader key (\ by default)
+map <space> <leader>
 
 " map jk to escape insert mode
-inoremap kj <Esc>
+inoremap kj <esc>
 
 " remap split movements
 nnoremap <C-h> <C-w>h
@@ -92,9 +106,15 @@ highlight Normal guibg=#1c1c1c
 
 " ==================== fzf ==================== "
 nmap <leader>; :Buffers<CR>
-nmap <leader>f :Files<CR>
+nmap <leader>: :History<CR>
+nmap <leader>f :GFiles<CR>
+nmap <leader>F :Files<CR>
+nmap <leader>t :BTags<CR>
+nmap <leader>T :Tags<CR>
+nmap <leader>l :BLines<CR>
+nmap <leader>L :Lines<CR>
 nmap <leader>g :Rg<CR>
-nmap <leader>t :Tags<CR>
+nmap <leader>G :Rg<space>
 
 " ==================== lightline ==================== "
 set noshowmode
@@ -120,42 +140,55 @@ function! LightlineFilename()
 endfunction
 
 " ==================== nerdtree ==================== "
-" if more than one window and previous buffer was nerdtree, go back to it
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
-
-" open nerdtree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" open nerdtree automatically when vim starts up on opening a directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
-
-" close vim if the only window left open is nerdtreeree
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" toggle nerdtree
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>N :NERDTreeFind<cr>
 
 " show hidden files
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 
 " change key mappings
-let NERDTreeMapOpenSplit='s'
-let NERDTreeMapOpenVSplit='v'
+let NERDTreeMapOpenSplit = 's'
+let NERDTreeMapOpenVSplit = 'v'
 
-" ==================== nerdtree-git-plugin ==================== "
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+" ==================== nerdcommenter ==================== "
+" yank, comment, and paste
+" nnoremap <silent> gz yy:call NERDComment(1, "toggle")<CR>p
+" vnoremap <silent> gz Ygv:call NERDComment(1, "toggle")<CR>`>p
+
+" ==================== coc ==================== "
+" extensions
+" disabled: coc-eslint, coc-prettier
+let g:coc_global_extensions = [
+    \ 'coc-highlight',
+    \ 'coc-json', 'coc-yaml', 'coc-css', 'coc-html', 'coc-python'
+    \ ]
+
+" don't pass messages to ins-completion-menu
+set shortmess+=c
+
+" use <tab> for trigger completion and navigate to the next complete item
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<tab>" :
+      \ coc#refresh()
+inoremap <expr><S-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" colors
+highlight CocErrorSign guifg=#e06c75
+highlight CocWarningSign guifg=#d19a66
+highlight CocInfoSign guifg=#e5c07b
+highlight CocHintSign guifg=#abb2bf
 
 " ==================== vim-go ==================== "
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
@@ -171,8 +204,8 @@ function! s:build_go_files()
 endfunction
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>T <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>r <plug>(go-run)
+autocmd FileType go nmap <leader>T <plug>(go-test)
+autocmd FileType go nmap <leader>c <plug>(go-coverage-toggle)
 
 let g:go_list_type = "quickfix"
