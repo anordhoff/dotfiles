@@ -28,7 +28,7 @@ focus_wrapping no
 focus_follows_mouse no
 
 # remove title bars
-default_border pixel 2
+default_border pixel 1
 
 # redshift-wlr-gamma-control
 # exec redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
@@ -236,20 +236,13 @@ mode 'resize' {
 }
 bindsym $mod+r mode 'resize'
 
-#################### Status bar ####################
-# waybar is running as a systemd process
-# bar {
-#     position top
-#     swaybar_command waybar
-# }
-
 #################### Style ####################
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #1c1c1c #abb2bf #2e9ef4   #285577
-client.focused_inactive #333333 #1c1c1c #abb2bf #484e50   #5f676a
-client.unfocused        #333333 #1c1c1c #5c6370 #292d2e   #222222
-client.urgent           #e06c75 #1c1c1c #abb2bf #900000   #900000
-client.placeholder      #000000 #1c1c1c #abb2bf #000000   #0c0c0c
+client.focused          #4c7899 #1c1c1c #a3acb5 #2e9ef4   #285577
+client.focused_inactive #333333 #1c1c1c #a3acb5 #484e50   #5f676a
+client.unfocused        #333333 #1c1c1c #f0f8ff #292d2e   #222222
+client.urgent           #bf5858 #1c1c1c #a3acb5 #bf5858   #bf5858
+client.placeholder      #000000 #1c1c1c #a3acb5 #000000   #0c0c0c
 client.background       #000000
 
 # client.focused          #4c7899 #285577 #cfd6e6 #2e9ef4   #285577

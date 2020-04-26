@@ -46,8 +46,8 @@ scrollbar = off
 #cursor = #dcdccc
 #cursor_foreground = #dcdccc
 
-foreground      = #abb2bf
-foreground_bold = #abb2bf
+foreground      = #a3acb5
+foreground_bold = #a3acb5
 background      = #1c1c1c
 
 # 20% background transparency (requires a compositor)
@@ -57,35 +57,35 @@ background      = #1c1c1c
 #highlight = #2f2f2f
 
 # black
-color0  = #282c34
-color8  = #282c34
+color0  = #1d242b
+color8  = #77808a
 
 # red
-color1  = #e06c75
-color9  = #be5046
+color1  = #bf5858
+color9  = #b56f45
 
 # green
-color2  = #98c379
-color10 = #98c379
+color2  = #508a50
+color10 = #2c333b
 
 # yellow
-color3  = #e5c07b
-color11 = #d19a66
+color3  = #ab8e38
+color11 = #616b75
 
 # blue
-color4  = #61afef
-color12 = #61afef
+color4  = #557b9e
+color12 = #8b959e
 
 # magenta
-color5  = #c678dd
-color13 = #c678dd
+color5  = #8b6a9e
+color13 = #dde6f0
 
 # cyan
-color6  = #56b6c2
-color14 = #56b6c2
+color6  = #458a8a
+color14 = #ab6a7a
 
 # white
-color7  = #abb2bf
-color15 = #5c6370
+color7  = #a3acb5
+color15 = #f0f8ff
 
 vim: ft=dosini cms=#%s

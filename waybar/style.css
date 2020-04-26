@@ -33,7 +33,7 @@ window#waybar {
 
 #custom-vpn.disconnected {
     margin: 0px 0px;
-    font-size: 0px
+    font-size: 0px;
 }
 
 #backlight.off {
@@ -42,7 +42,7 @@ window#waybar {
 }
 
 #battery.critical {
-    color: #e06c75;
+    color: #bf5858;
 }
 
 #clock {

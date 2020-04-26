@@ -1,159 +1,42 @@
 add_newline = false
 
 prompt_order = [
-    "username",
-    "hostname",
     "directory",
     "git_branch",
-    "git_commit",
     "git_state",
     "git_status",
-    "hg_branch",
-    "kubernetes",
-    "package",
-    "dotnet",
-    "elixir",
-    "elm",
-    "golang",
-    "haskell",
-    "java",
-    "nodejs",
-    "php",
-    "python",
-    "ruby",
-    "rust",
-    "terraform",
-    "nix_shell",
-    "conda",
-    "memory_usage",
-    "aws",
-    "env_var",
-    "crystal",
-    "cmd_duration",
-    "line_break",
-    "jobs",
     "battery",
-    "time",
     "character",
 ]
 
-[aws]
-symbol = "  "
-disabled = true
-
 [battery]
-full_symbol = "  "
-charging_symbol = "  "
-discharging_symbol = "  "
-unknown_symbol = "  "
-empty_symbol = "  "
+full_symbol = ""
+charging_symbol = ""
+discharging_symbol = ""
+unknown_symbol = ""
+empty_symbol = ""
 disabled = false
 
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
 [character]
-symbol = "❯"
-error_symbol = "❯"
-vicmd_symbol = "❮"
-
-[cmd_duration]
-style = "bold cyan"
-
-[conda]
-symbol = " "
-style = "bold green"
-
-[crystal]
-symbol = " "
-style = "bold green"
+symbol = "$"
+error_symbol = "$"
+vicmd_symbol = "|"
+style_success = "white"
+style_failure = "red"
 
 [directory]
 style = "bold blue"
 
-[dotnet]
-symbol = ".NET"
-style = "bold green"
-
-[elm]
-symbol = "ELM"
-style = "bold green"
-
-[env_var]
-
 [git_branch]
-symbol = " "
-
-[git_commit]
-disabled = true
+symbol = ""
+style = "bold purple"
 
 [git_state]
+style = "bold purple"
 
 [git_status]
 style = "bold purple"
-
-[golang]
-symbol = "GO "
-style = "bold green"
-
-[haskell]
-symbol = "λ "
-style = "bold green"
-
-[hg_branch]
-symbol = " "
-
-[hostname]
-
-[jobs]
-symbol = " "
-threshold = 0
-style = "bold blue"
-
-[java]
-symbol = "☕"
-style = "bold green"
-
-[kubernetes]
-symbol = " "
-style = "bold cyan"
-disabled = false
-
-[line_break]
-disabled = false
-
-[memory_usage]
-symbol = " "
-disabled = true
-
-[nix_shell]
-
-[nodejs]
-symbol = " "
-style = "bold green"
-
-[package]
-symbol = " "
-
-[php]
-symbol = "php "
-style = "bold green"
-
-[python]
-symbol = " "
-style = "bold green"
-
-[ruby]
-symbol = " "
-style = "bold green"
-
-[rust]
-symbol = " "
-style = "bold green"
-
-[terraform]
-symbol = " "
-style = "bold green"
-
-[time]
-style = "bold cyan"
-disabled = false
-
-[username]
