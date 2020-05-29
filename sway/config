@@ -1,6 +1,4 @@
-#################### Variables ####################
-# use alt as mod key
-set $mod Mod1
+set $mod Mod4
 
 # home row direction keys
 set $left h
@@ -15,7 +13,7 @@ set $term termite
 set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 
 # wallpaper
-set $wallpaper $HOME/Downloads/space-shuttle.jpg
+set $wallpaper $HOME/Pictures/space-shuttle.jpg
 
 #################### Basic configuration ####################
 # set font (font pango: Noto Sans 8)
@@ -29,9 +27,6 @@ focus_follows_mouse no
 
 # remove title bars
 default_border pixel 1
-
-# redshift-wlr-gamma-control
-# exec redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
 
 # fader
 # exec python3 ~/.config/sway/scripts/fader.py
@@ -140,7 +135,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # lock computer
-bindsym $mod+semicolon exec 'swaylock -f -i $wallpaper'
+bindsym $mod+u exec 'swaylock -f -i $wallpaper'
 
 # exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -237,13 +232,18 @@ mode 'resize' {
 bindsym $mod+r mode 'resize'
 
 #################### Style ####################
-# class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #1c1c1c #a3acb5 #2e9ef4   #285577
-client.focused_inactive #333333 #1c1c1c #a3acb5 #484e50   #5f676a
-client.unfocused        #333333 #1c1c1c #f0f8ff #292d2e   #222222
-client.urgent           #bf5858 #1c1c1c #a3acb5 #bf5858   #bf5858
-client.placeholder      #000000 #1c1c1c #a3acb5 #000000   #0c0c0c
-client.background       #000000
+# class                 border  backgr. text    indica. ch_bor.
+client.focused          #000000 #303030 #cfd6e6 #808080 #606060
+client.focused_inactive #000000 #303030 #cfd6e6 #404040 #303030
+client.unfocused        #000000 #303030 #cfd6e6 #404040 #303030
+client.urgent           #000000 #303030 #cfd6e6 #bf5858 #bf5858
+
+# client.focused          #4c7899 #1c1c1c #a3acb5 #2e9ef4   #285577
+# client.focused_inactive #333333 #1c1c1c #a3acb5 #484e50   #5f676a
+# client.unfocused        #333333 #1c1c1c #f0f8ff #292d2e   #222222
+# client.urgent           #bf5858 #1c1c1c #a3acb5 #bf5858   #bf5858
+# client.placeholder      #000000 #1c1c1c #a3acb5 #000000   #0c0c0c
+# client.background       #000000
 
 # client.focused          #4c7899 #285577 #cfd6e6 #2e9ef4   #285577
 # client.focused_inactive #333333 #5f676a #cfd6e6 #484e50   #5f676a
