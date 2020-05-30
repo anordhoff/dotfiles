@@ -1,8 +1,20 @@
 # dotfiles
 
-`~/.dotfiles/` directory for Arch Linux
+My `.dotfiles` repository for Arch Linux
 
-### audio
+```
+git clone https://github.com/anordhoff/dotfiles.git $HOME/.dotfiles
+```
+
+#### macOS
+
+See [macos/](macos/)
+
+#### windows
+
+See [windows/](windows/)
+
+## audio
 
 with headphones disconnected:
 
@@ -22,54 +34,145 @@ amixer -c 0 set Headphone 100%
 amixer -c 0 set Headphone unmute
 ```
 
-bluetooth:
+#### bluetooth
 
-https://wiki.archlinux.org/index.php/Bluetooth_headset#Configuration_via_CLI
-
-https://wiki.archlinux.org/index.php/Bluetooth_headset#Apple_Airpods_have_low_volume
-
-if no volume, try disconnecting, executing `sudo pkill pulseaudio`, and reconnect
+See https://wiki.archlinux.org/index.php/Bluetooth_headset#Configuration_via_CLI and https://wiki.archlinux.org/index.php/Bluetooth_headset#Apple_Airpods_have_low_volume
 
 ```
 pacmd list-sinks
 pactl set-sink-volume name_of_bluetooth_speaker x%
 ```
 
-### input
+If there is no sound, try disconnecting, executing `sudo pkill pulseaudio`, and reconnecting
 
-arch:
+## firefox
 
-remap caps lock to escape and control: https://aur.archlinux.org/packages/interception-caps2esc
+Firefox theme: https://github.com/overdodactyl/ShadowFox
 
-add this job to `/etc/udevmon.yaml`:
+Potential white flash fix: https://github.com/darkreader/darkreader/issues/1219
+
+#### dark reader
+
+Add the following snippet under `CSS` add the top of `Dev tools`:
+
 ```
-- JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
-  DEVICE:
-    EVENTS:
-      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+* {
+    scrollbar-color: #3d4143 transparent;
+}
 ```
 
-swap right alt right ctrl: https://askubuntu.com/a/885047
+#### vimium
 
-gnome:
+Vimium extension mappings:
 
-install dconf-editor
-mouse acceleration: org/gnome/desktop/peripherals/mouse/acceleration-profile
-keyboard repeat rate/delay: org/gnome/desktop/peripherals/keyboard
-remap caps to ctrl: org/gnome/desktop/input-sources/xkb-options, add `[ctrl:nocaps']`
+```
+# Insert your preferred key mappings here.
+map n scrollLeft
+map e scrollDown
+map i scrollUp
+map o scrollRight
+map zN scrollToLeft
+map zO scrollToRight
+map N goBack
+map E previousTab
+map I nextTab
+map O goForward
+```
 
-### font
+#### wayland
 
-icons: `ttf-font-awesome`
+Add the following line to `~/.pam_environment`:
+```
+MOZ_ENABLE_WAYLAND=1
+```
 
-### firefox
+## font
 
-shadowfox: https://github.com/overdodactyl/ShadowFox
+Icons for desktop apps (such as waybar) are pulled from the Font Awesome icon pack (`ttf-font-awesome` arch package)
 
-### tools
-bat
+## keyboard
 
-### vim-go
+The keyboard layout is a modified version of Colemak (with DH, wide, and angle mods), and a customized third level that can be accessed using the `AltGr` key.
+
+```sudo ln -s $HOME/.dotfiles/xkb/custom /usr/share/X11/xkb/symbols/.```
+
+#### ANSI
+
+```
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
+│  ~  │  !  │  @  │  #  │  $  │  %  │  _  │  +  │  ^  │  &  │  *  │  (  │  )  ┃         ┃
+│  `  │  1  │  2  │  3  │  4  │  5  │  -  │  =  │  6  │  7  │  8  │  9  │  0  ┃Backspace┃
+┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┯━━━━━━━┦
+┃       ┃  Q  │ W { │ F } │ P + │ B | │  {  │  J  │  L  │  U  │  Y  │  :  │  "  │   |   │
+┃ Tab   ┃  q  │ w { │ f } │ p + │ b | │  [  │  j  │  l  │  u  │  y  │  ;  │  '  │   \   │
+┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┲━━━━┷━━━━━━━┧
+┃        ┃ A [ │ R ] │ S = │ T _ │ G \ │  }  │  K  │  N  │  E  │  I  │  O  ┃            ┃
+┃Backspc.┃ a [ │ r ] │ s = │ t _ │ g \ │  ]  │  k  │  n  │  e  │  i  │  o  ┃      Enter ┃
+┣━━━━━━━━┻━━┱──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┲━━┻━━━━━━━━━━━━┫
+┃           ┃ X ` │ C ~ │ D - │  V  │  Z  │  ?  │  M  │  H  │  <  │  >  ┃               ┃
+┃ Shift     ┃ x ` │ c ~ │ d - │  v  │  z  │  /  │  m  │  h  │  ,  │  .  ┃         Shift ┃
+┣━━━━━━━┳━━━┻━━┳━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴──┲━━┷━━━┳━┷━━━━┳┻━━━━━┳━━━━━━━━━┫
+┃       ┃      ┃      ┃                                  ┃      ┃      ┃      ┃         ┃
+┃ Meta  ┃ Alt  ┃ Ctrl ┃              Space               ┃AltGr ┃ Meta ┃  Fn  ┃    Ctrl ┃
+┗━━━━━━━┻━━━━━━┻━━━━━━┹──────────────────────────────────┺━━━━━━┻━━━━━━┻━━━━━━┻━━━━━━━━━┛
+```
+
+#### Iris
+
+```
+                  ┌─────┐                                           ┌─────┐
+            ┌─────┤  #  ├─────┐                               ┌─────┤  *  ├─────┐
+┏━━━━━┱─────┤  @  │  3  │  $  ├─────┐                   ┌─────┤  &  │  8  │  (  ├─────┬─────┐
+┃     ┃  !  │  2  ├─────┤  4  │  %  │                   │  ^  │  7  ├─────┤  9  │  )  │  |  │
+┃ Esc ┃  1  ├─────┤ F } ├─────┤  5  │                   │  6  ├─────┤  U  ├─────┤  0  │  \  │
+┣━━━━━╉─────┤ W { │ f } │ P + ├─────┤                   ├─────┤  L  │  u  │  Y  ├─────┼─────┤
+┃     ┃  Q  │ w { ├─────┤ p + │ B | │                   │  J  │  l  ├─────┤  y  │  :  │  "  │
+┃ Tab ┃  q  ├─────┤ S = ├─────┤ b | │                   │  j  ├─────┤  E  ├─────┤  ;  │  '  │
+┣━━━━━╉─────┤ R ] │ s = │ T _ ├─────┤                   │─────┤  N  │  e  │  I  ├─────╆━━━━━┪
+┃     ┃ A [ │ r ] ├─────┤ t _ │ G \ │                   │  K  │  n  ├─────┤  i  │  O  ┃     ┃
+┃Bksp ┃ a [ ├─────┤ C ~ ├─────┤ g \ │                   │  k  ├─────┤  <  ├─────┤  o  ┃Enter┃
+┣━━━━━╉─────┤ X ` │ c ~ │ D - ├─────┤                   │─────┤  H  │  ,  │  >  ├─────╊━━━━━┫
+┃     ┃  Z  │ x ` ├─────┤ d - │  V  │ ┏━━━━━┓   ┏━━━━━┓ │  M  │  h  ├─────┤  .  │  ?  ┃     ┃
+┃Shift┃  z  ├─────┘     └─────┤  v  │ ┃     ┃   ┃     ┃ │  m  ├─────┘     └─────┤  /  ┃Shift┃
+┗━━━━━┹─────┘                 └─────┘ ┃     ┃   ┃     ┃ └─────┘                 └─────┺━━━━━┛
+                          ┏━━━━━┳━━━━━┫     ┃   ┃     ┣━━━━━┳━━━━━┓
+                          ┃     ┃     ┃Space┃   ┃  Fn ┃     ┃     ┃
+                          ┃ Alt ┃Ctrl ┃     ┃   ┃     ┃AltGr┃ Meta┃
+                          ┗━━━━━┻━━━━━┻━━━━━┛   ┗━━━━━┻━━━━━┻━━━━━┛
+```
+
+## screen sharing
+
+The following steps only enable screen sharing for chromium
+
+#### installation
+
+```
+sudo pacman -S chromium pipewire xdg-desktop-portal libpipewire02
+yay -S xdg-desktop-portal-wlr-git
+```
+
+#### setup
+
+Add the following lines to ~/.pam_environment:
+
+```
+XDG_SESSION_TYPE=wayland
+XDG_CURRENT_DESKTOP=sway
+```
+
+Ensure `pipewire.service` and `pipewire.socket` are running:
+
+```
+systemctl --user status pipewire.service
+systemctl --user status pipewire.socket
+```
+
+Enable `WebRTC PipeWire support` on chromium: `chrome://flags/#enable-webrtc-pipewire-capturer`
+
+## neovim
+
+#### vim-go
 
 edit `~/.local/share/nvim/plugged/vim-go/autoload/fzf/decls.vim`
 

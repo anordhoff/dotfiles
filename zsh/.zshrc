@@ -72,10 +72,8 @@ ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    colored-man-pages
     git
     kubectl
-    tmux
     vi-mode
 )
 
@@ -108,7 +106,7 @@ fi
 
 # vi key bindings
 bindkey -v
-bindkey 'kj' vi-cmd-mode
+bindkey 'ii' vi-cmd-mode
 KEYTIMEOUT=20
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
