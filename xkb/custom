@@ -1,0 +1,60 @@
+xkb_symbols "custom" {
+
+    include "us"
+    name[Group1] = "English (Colemak, custom)";
+
+    key <TLDE> { [        grave,   asciitilde                               ] };
+    key <AE01> { [            1,       exclam                               ] };
+    key <AE02> { [            2,           at                               ] };
+    key <AE03> { [            3,   numbersign                               ] };
+    key <AE04> { [            4,       dollar                               ] };
+    key <AE05> { [            5,      percent                               ] };
+    key <AE06> { [        minus,   underscore                               ] };
+    key <AE07> { [        equal,         plus                               ] };
+    key <AE08> { [            6,  asciicircum                               ] };
+    key <AE09> { [            7,    ampersand                               ] };
+    key <AE10> { [            8,     asterisk                               ] };
+    key <AE11> { [            9,    parenleft                               ] };
+    key <AE12> { [            0,   parenright                               ] };
+
+    key <AD01> { [            q,            Q                               ] };
+    key <AD02> { [            w,            W,     braceleft,     braceleft ] }; 
+    key <AD03> { [            f,            F,    braceright,    braceright ] };
+    key <AD04> { [            p,            P,          plus,          plus ] };
+    key <AD05> { [            b,            B,           bar,           bar ] };
+    key <AD06> { [  bracketleft,    braceleft                               ] };
+    key <AD07> { [            j,            J                               ] };
+    key <AD08> { [            l,            L                               ] };
+    key <AD09> { [            u,            U                               ] };
+    key <AD10> { [            y,            Y                               ] };
+    key <AD11> { [    semicolon,        colon                               ] };
+    key <AD12> { [   apostrophe,     quotedbl                               ] };
+    key <BKSL> { [    backslash,          bar                               ] };
+
+    key <AC01> { [            a,            A,   bracketleft,   bracketleft ] };
+    key <AC02> { [            r,            R,  bracketright,  bracketright ] };
+    key <AC03> { [            s,            S,         equal,         equal ] };
+    key <AC04> { [            t,            T,    underscore,    underscore ] };
+    key <AC05> { [            g,            G,     backslash,     backslash ] };
+    key <AC06> { [ bracketright,   braceright                               ] };
+    key <AC07> { [            k,            K                               ] };
+    key <AC08> { [            n,            N,          Left,          Left ] };
+    key <AC09> { [            e,            E,          Down,          Down ] };
+    key <AC10> { [            i,            I,            Up,            Up ] };
+    key <AC11> { [            o,            O,         Right,         Right ] };
+
+    key <AB01> { [            x,            X,         grave,         grave ] };
+    key <AB02> { [            c,            C,    asciitilde,    asciitilde ] };
+    key <AB03> { [            d,            D,         minus,         minus ] };
+    key <AB04> { [            v,            V                               ] };
+    key <AB05> { [            z,            Z                               ] };
+    key <AB06> { [        slash,     question                               ] };
+    key <AB07> { [            m,            M                               ] };
+    key <AB08> { [            h,            H                               ] };
+    key <AB09> { [        comma,         less                               ] };
+    key <AB10> { [       period,      greater                               ] };
+
+    key <CAPS> { [    BackSpace,    BackSpace,     BackSpace,     BackSpace ] };
+
+    include "level3(ralt_switch)"
+};
