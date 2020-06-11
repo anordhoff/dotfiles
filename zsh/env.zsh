@@ -22,5 +22,8 @@ export GOSUMDB=off
 export PATH=$PATH:$HOME/.npm/bin
 export npm_config_prefix=~/.npm
 
+# fzf
+export FZF_DEFAULT_OPTS='--height 40%'
+
 # disable kubectl interactive mode
 export KUBECTX_IGNORE_FZF=1
