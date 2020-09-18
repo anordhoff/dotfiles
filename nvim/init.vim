@@ -70,19 +70,25 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 " don't overwrite the main register when pasting with 'p'
 xnoremap <silent> p p:let @+=@0<CR>
 
-" wayland clipboard provider that strips carriage returns (wayland/GTK3 issue)
-let g:clipboard = {
-    \   'name': 'wayland-strip-carriage',
-    \   'copy': {
-    \      '+': 'wl-copy --foreground --type text/plain',
-    \      '*': 'wl-copy --foreground --type text/plain --primary',
-    \    },
-    \   'paste': {
-    \      '+': {-> systemlist('wl-paste | tr -d "\r"')},
-    \      '*': {-> systemlist('wl-paste --primary | tr -d "\r"')},
-    \   },
-    \   'cache_enabled': 1,
-    \ }
+" copy to clipboard
+if $WAYLAND_DISPLAY != ""
+    " wayland clipboard provider that strips carriage returns (wayland/GTK3 issue)
+    let g:clipboard = {
+        \   'name': 'wayland-strip-carriage',
+        \   'copy': {
+        \      '+': 'wl-copy --foreground --type text/plain',
+        \      '*': 'wl-copy --foreground --type text/plain --primary',
+        \    },
+        \   'paste': {
+        \      '+': {-> systemlist('wl-paste | tr -d "\r"')},
+        \      '*': {-> systemlist('wl-paste --primary | tr -d "\r"')},
+        \   },
+        \   'cache_enabled': 1,
+        \ }
+else
+    " preserve yank when exiting
+    autocmd VimLeave * call system("xsel -ib", getreg('+'))
+endif
 
 " ==================== key mappings ==================== "
 " leader key
