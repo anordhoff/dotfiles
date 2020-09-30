@@ -1,8 +1,3 @@
-# vpn
-#vpn() {
-#    systemctl "$@" wg-quick@criticalstack.service
-#}
-
 vpn() {
     default='dev'
     if [[ $2 == '' ]]; then

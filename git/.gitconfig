@@ -1,6 +1,6 @@
 [user]
-    signingkey = E3EE3624543FA445
-    email = aaron.nordhoff.cof@gmail.com
+    signingkey = 56C52ED1FB37BD45
+    email = aaron.nordhoff@outlook.com
     name = Aaron Nordhoff
 [credential]
     helper = cache --timeout=3600
@@ -17,3 +17,5 @@
     keepBackup = false
 [mergetool "vimdiff3"]
     cmd = nvim -d $LOCAL $MERGED $REMOTE
+[pull]
+	ff = only

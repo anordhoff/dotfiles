@@ -1,11 +1,4 @@
-set $mod Mod4
-
-# home row direction keys
-set $left h
-set $down j
-set $up k
-set $right l
-
+#################### Basic configuration ####################
 # preferred terminal emulator
 set $term termite
 
@@ -15,8 +8,7 @@ set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 # wallpaper
 set $wallpaper $HOME/Pictures/space-shuttle.jpg
 
-#################### Basic configuration ####################
-# set font (font pango: Noto Sans 8)
+# font
 font San Francisco Display Medium 9
 
 # disable focus wrapping
@@ -28,40 +20,41 @@ focus_follows_mouse no
 # remove title bars
 default_border pixel 1
 
-# fader
-# exec python3 ~/.config/sway/scripts/fader.py
-
 #################### Output configuration ####################
 output eDP-1 {
-    # position 0 1080
-    position 0 1600
+    position 3840 520
     resolution 1920x1080
     background $wallpaper fill
 }
 
-# work monitor
 output DP-1 {
     position 0 0
     resolution 3840x1600
-    background $wallpaper fill
-}
-
-# home monitor
-output DP-3 {
-    position 0 0
-    resolution 1920x1080
-    background $wallpaper fill
+    background $wallpaper center
 }
 
 # clamshell mode
 bindswitch --reload lid:on output eDP-1 disable
-bindswitch --reload lid:off output eDP-1 enable 
+bindswitch --reload lid:off output eDP-1 enable
 
 #################### Input configuration ####################
 input 1:1:AT_Translated_Set_2_keyboard {
     repeat_delay 200
     repeat_rate 35
-    xkb_options ctrl:nocaps
+    xkb_layout custom,us
+    xkb_options grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl
+}
+
+input 9494:26:CM_Storm_Keyboard_--_QuickFire_XT {
+    repeat_delay 200
+    repeat_rate 35
+    xkb_layout custom,us
+    xkb_options grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin
+}
+
+input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
+    repeat_delay 200
+    repeat_rate 35
 }
 
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
@@ -71,29 +64,17 @@ input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
     natural_scroll enabled
 }
 
-# work mouse
-input 1133:45086:MX_Master_Mouse {
-    accel_profile flat
-}
-
-# work keyboard
-input 76:620:Magic_Keyboard_with_Numeric_Keypad {
-    repeat_delay 200
-    repeat_rate 35
-    xkb_options altwin:swap_lalt_lwin,ctrl:nocaps
-}
-
-# home mouse
 input 5426:22:Razer_Razer_DeathAdder {
     accel_profile flat
 }
 
-# home keyboard
-input 9494:26:CM_Storm_Keyboard_--_QuickFire_XT {
-    repeat_delay 200
-    repeat_rate 35
-    xkb_options ctrl:nocaps
+input 1133:49970:Logitech_Gaming_Mouse_G502 {
+    accel_profile flat
+    pointer_accel -0.25
 }
+
+# backspace repeat (non-wayland windows)
+exec xset r 66
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -119,6 +100,18 @@ bindsym Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | selec
 bindsym Control+Shift+Print exec grim -g "$(slurp)" - | wl-copy
 
 #################### Key bindings ####################
+# modifier
+set $mod Mod4
+
+# home row direction keys
+set $left  n
+set $down  e
+set $up    i
+set $right o
+
+# drag/resize floating windows using the mouse
+floating_modifier $mod normal
+
 # start terminal
 bindsym $mod+Return exec $term
 
@@ -128,29 +121,49 @@ bindsym $mod+Shift+q kill
 # start launcher
 bindsym $mod+d exec $menu
 
-# drag/resize floating windows using the mouse
-floating_modifier $mod normal
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# lock computer
-bindsym $mod+u exec 'swaylock -f -i $wallpaper'
-
-# exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
 bindsym $mod+$right focus right
 
 # move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+$up    move up
 bindsym $mod+Shift+$right move right
+
+# split in horizontal orientation
+bindsym $mod+h splith
+
+# split in vertical orientation
+bindsym $mod+v splitv
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle split # previously $mod+e
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+c focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# cycle through scratchpad windows
+bindsym $mod+minus scratchpad show
 
 # define names for the default workspaces
 set $ws1  '1'
@@ -188,34 +201,14 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# split in horizontal orientation
-bindsym $mod+s splith
+# lock computer
+bindsym $mod+l exec 'swaylock -f -i $wallpaper'
 
-# split in vertical orientation
-bindsym $mod+v splitv
+# reload the configuration file
+bindsym $mod+Shift+c reload
 
-# change container layout
-bindsym $mod+q layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# cycle through scratchpad windows
-bindsym $mod+minus scratchpad show
+# exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit' # previously $mod+Shift+e
 
 # resize window
 mode 'resize' {
@@ -238,19 +231,7 @@ client.focused_inactive #000000 #303030 #cfd6e6 #404040 #303030
 client.unfocused        #000000 #303030 #cfd6e6 #404040 #303030
 client.urgent           #000000 #303030 #cfd6e6 #bf5858 #bf5858
 
-# client.focused          #4c7899 #1c1c1c #a3acb5 #2e9ef4   #285577
-# client.focused_inactive #333333 #1c1c1c #a3acb5 #484e50   #5f676a
-# client.unfocused        #333333 #1c1c1c #f0f8ff #292d2e   #222222
-# client.urgent           #bf5858 #1c1c1c #a3acb5 #bf5858   #bf5858
-# client.placeholder      #000000 #1c1c1c #a3acb5 #000000   #0c0c0c
-# client.background       #000000
-
-# client.focused          #4c7899 #285577 #cfd6e6 #2e9ef4   #285577
-# client.focused_inactive #333333 #5f676a #cfd6e6 #484e50   #5f676a
-# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-# client.urgent           #2f343a #900000 #cfd6e6 #900000   #900000
-# client.placeholder      #000000 #0c0c0c #cfd6e6 #000000   #0c0c0c
-# client.background       #000000
+#################### Source ####################
 
 include /etc/sway/config.d/*
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"

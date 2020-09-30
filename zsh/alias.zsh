@@ -1,10 +1,9 @@
 # neovim
-alias vim='nvim'
+alias e='nvim'
 
-# kubectl/kubectx/kubens
-alias k='kubectl'
+# kubectx/kubens
 alias kctx='kubectx'
 alias kns='kubens'
 
 # expand aliased arguments
-alias watch='watch -n 0.1 '
+alias watch='watch -n 1 '

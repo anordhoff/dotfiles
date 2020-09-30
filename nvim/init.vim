@@ -36,32 +36,33 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " ==================== settings ==================== "
-set number                     " enable line numbers
-set number rnu                 " relative line numbers
-set tabstop=4                  " tabs are four columns in width
-set shiftwidth=4               " shift by four columns in width
-set softtabstop=4              " insert/delete tab width of whitespace
-set expandtab                  " use spaces instead of tabs
-set smartindent                " smart indent
-set hidden                     " switch buffers without saving
-set backspace=indent,eol,start " enable backspace for previous session
-set ignorecase                 " insensitive case searching...
-set smartcase                  " ...but not if the search begins with upper case letter
-set noincsearch                " wait to execute search until <enter> is pressed
-set updatetime=400             " reduce update time from 4s to 400ms
-set signcolumn=yes             " always show the sign column
-set splitright                 " split vertical windows to the right of current windoww
-set splitbelow                 " split horizontal windows below current windows
-set clipboard=unnamedplus      " copy to clipboard
-set completeopt=menu           " show possible completions in a pmenu
+set number rnu            " relative line numbers
+set tabstop=4             " tabs are four columns in width
+set softtabstop=4         " insert/delete tab width of whitespace
+set shiftwidth=4          " shift by four columns in width
+set expandtab             " use spaces instead of tabs
+set smartindent           " smart indent
+set ignorecase            " case-insensitive searching...
+set smartcase             " ...but not if the search contains a capital letter
+set noincsearch           " wait to execute search until <enter> is pressed
+set hidden                " switch buffers without saving
+set splitright            " split vertical windows to the right of current window
+set splitbelow            " split horizontal windows below current window
+set clipboard=unnamedplus " copy to clipboard
+
+set updatetime=400   " reduce update time from 4s to 400ms
+set signcolumn=yes   " always show the sign column
+set completeopt=menu " show possible completions in a pmenu
 
 " whitepace preferences
-autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype json            setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype yaml            setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype html            setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype css             setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype javascript      setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype javascriptreact setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype typescript setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype terraform setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype typescript      setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype terraform       setlocal ts=2 sts=2 sw=2 expandtab
 
 " disable automatic inserting of the current comment leader
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
@@ -69,49 +70,41 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 " don't overwrite the main register when pasting with 'p'
 xnoremap <silent> p p:let @+=@0<CR>
 
-" send deleted text to the black hole register
-" TODO: better way to handle this?
-" nnoremap d "_d
-" vnoremap d "_d
-" nnoremap D "_D
-" vnoremap D "_D
-" nnoremap c "_c
-" vnoremap c "_c
-" nnoremap C "_C
-" vnoremap C "_C
-
-" wayland clipboard provider that strips carriage returns (wayland/GTK3 issue)
-let g:clipboard = {
-    \   'name': 'wayland-strip-carriage',
-    \   'copy': {
-    \      '+': 'wl-copy --foreground --type text/plain',
-    \      '*': 'wl-copy --foreground --type text/plain --primary',
-    \    },
-    \   'paste': {
-    \      '+': {-> systemlist('wl-paste --no-newline | tr -d "\r"')},
-    \      '*': {-> systemlist('wl-paste --no-newline --primary | tr -d "\r"')},
-    \   },
-    \   'cache_enabled': 1,
-    \ }
+" copy to clipboard
+if $WAYLAND_DISPLAY != ""
+    " wayland clipboard provider that strips carriage returns (wayland/GTK3 issue)
+    let g:clipboard = {
+        \   'name': 'wayland-strip-carriage',
+        \   'copy': {
+        \      '+': 'wl-copy --foreground --type text/plain',
+        \      '*': 'wl-copy --foreground --type text/plain --primary',
+        \    },
+        \   'paste': {
+        \      '+': {-> systemlist('wl-paste | tr -d "\r"')},
+        \      '*': {-> systemlist('wl-paste --primary | tr -d "\r"')},
+        \   },
+        \   'cache_enabled': 1,
+        \ }
+else
+    " preserve yank when exiting
+    autocmd VimLeave * call system("xsel -ib", getreg('+'))
+endif
 
 " ==================== key mappings ==================== "
+" leader key
 let mapleader = ","
 
-" map kj to escape insert mode
-inoremap kj <esc>
+" escape insert mode
+inoremap ii <esc>
 
 " yank from the cursor to the end of the line
 nnoremap Y y$
-
-" swap between buffers
-" noremap <leader>j :bn<CR>
-" noremap <leader>k :bp<CR>
 
 " create a new window with an empty file in a vertical split
 nnoremap <C-w>m :vnew<CR>
 
 " close quickfix list
-nnoremap <leader>a :cclose<CR>
+nnoremap <leader>q :cclose<CR>
 
 " clear search highlighting
 nnoremap <leader>/ :noh<CR>
@@ -125,8 +118,12 @@ colorscheme forgotten-dark
 " background
 hi Normal guibg=#1c1c1c
 
+" trailing whitespace
+hi TrailingWhitespace guibg=#77808a
+match TrailingWhitespace /\s\+$/
+
 " error/warning messages
-hi ErrorMsg guibg=bg
+hi ErrorMsg guibg=bg guifg=fg
 hi WarningMsg guibg=bg guifg=fg
 
 " default status line
@@ -147,15 +144,15 @@ hi pmenuSel guibg=#8b959e
 set noshowmode
 
 let g:lightline = {
-    \ 'colorscheme': 'lightline',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component': {
-    \   'gitbranch': '%{gitbranch#name()}',
-    \   'filename': '%<%{LightlineFilename()}',
-    \ },
+    \   'colorscheme': 'lightline',
+    \   'active': {
+    \     'left': [ [ 'mode', 'paste' ],
+    \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \   },
+    \   'component': {
+    \     'gitbranch': '%{gitbranch#name()}',
+    \     'filename': '%<%{LightlineFilename()}',
+    \   },
     \ }
 
 function! LightlineFilename()
@@ -175,20 +172,31 @@ let g:gitgutter_sign_priority = 1
 :lua << EOF
 require'nvim_lsp'.gopls.setup{}
 require'nvim_lsp'.pyls.setup{}
+require'nvim_lsp'.tsserver.setup{}
+require'nvim_lsp'.cssls.setup{}
+require'nvim_lsp'.html.setup{}
+require'nvim_lsp'.jsonls.setup{}
 EOF
 
 " key mappings
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
 " completion
-autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype go,python,javascript*,typescript* setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " style
+hi LspDiagnosticsHint guifg=#77808a
 hi LspDiagnosticsError guifg=#bf5858
-hi LspDiagnosticsErrorSign guifg=#bf5858
-hi LspDiagnosticsWarning guifg=#616b75
-hi LspDiagnosticsWarningSign guifg=#616b75
+hi LspDiagnosticsWarning guifg=#b56f45
+hi LspDiagnosticsInformation guifg=#557b9e
 
 " ==================== nerdtree ==================== "
 " show hidden files
@@ -217,11 +225,6 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-" colors
-let g:fzf_colors = {
-  \ 'bg': ['bg', 'CursorLine'],
-  \ 'border': ['fg', 'NonText'] }
-
 " enable preview window with files
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>,
@@ -232,6 +235,31 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
+
+" floating window with border (https://github.com/neovim/neovim/issues/9718#issuecomment-559573308)
+function! CreateCenteredFloatingWindow()
+    let width = min([&columns - 4, max([80, &columns - 20])])
+    let height = min([&lines - 4, max([20, &lines - 10])])
+    let top = ((&lines - height) / 2) - 1
+    let left = (&columns - width) / 2
+    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+    let top = "╭" . repeat("─", width - 2) . "╮"
+    let mid = "│" . repeat(" ", width - 2) . "│"
+    let bot = "╰" . repeat("─", width - 2) . "╯"
+    let lines = [top] + repeat([mid], height - 2) + [bot]
+    let s:buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    call nvim_open_win(s:buf, v:true, opts)
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
+    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    au BufWipeout <buffer> exe 'bw '.s:buf
+endfunction
+
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
@@ -244,15 +272,13 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 
-" map <C-n> :cnext<CR>
-" map <C-p> :cprevious<CR>
-" nnoremap <leader>a :cclose<CR>
-
+" key mappings
 autocmd Filetype go nmap <leader>d <plug>(go-decls-dir)
 
 autocmd Filetype go nmap <leader>B :<C-u>call <SID>build_go_files()<CR>
-autocmd Filetype go nmap <leader>R <Plug>(go-run)
+autocmd Filetype go nmap <leader>R <plug>(go-run)
 autocmd Filetype go nmap <leader>T <plug>(go-test)
 autocmd Filetype go nmap <leader>C <plug>(go-coverage-toggle)
 autocmd Filetype go nmap <leader>I <plug>(go-info)
