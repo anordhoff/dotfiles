@@ -6,6 +6,9 @@
 
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ZSH=$HOME/.oh-my-zsh
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -64,7 +67,9 @@ DISABLE_AUTO_TITLE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom
+fi
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -72,7 +77,6 @@ ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
     kubectl
     vi-mode
 )
@@ -112,8 +116,9 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -d /usr/share/fzf ] && source /usr/share/fzf/completion.zsh &&
+                         source /usr/share/fzf/key-bindings.zsh
 
 # vi key bindings
 bindkey -v
@@ -121,7 +126,8 @@ bindkey 'ii' vi-cmd-mode
 KEYTIMEOUT=30
 
 # change cursor shape depending on mode
-# https://unix.stackexchange.com/questions/433273/changing-cursor-style-based-on-mode-in-both-zsh-and-vim
+# https://unix.stackexchange.com/questions/433273/changing-cursor-style-
+#   based-on-mode-in-both-zsh-and-vim
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -138,3 +144,6 @@ zle -N zle-keymap-select
 zle-line-init() {
   echo -ne '\e[6 q'
 }
+
+# source capital one specific config
+[ -f ~/.capitalone/zsh/.zshrc ] && source ~/.capitalone/zsh/.zshrc
