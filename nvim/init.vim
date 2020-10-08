@@ -1,5 +1,10 @@
 " source global configuration file
-source /usr/share/nvim/sysinit.vim
+if has("unix")
+    let s:uname = system("uname")
+    if s:uname == "Linux\n"
+        source /usr/share/nvim/sysinit.vim
+    endif
+endif
 
 " ==================== plugins ==================== "
 " vim-plug setup (:PlugInstall)
@@ -15,11 +20,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 
 " linting/completion
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'prettier/vim-prettier'
 
 " navigation
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
@@ -62,13 +69,11 @@ autocmd Filetype css             setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype javascript      setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype javascriptreact setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype typescript      setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype terraform       setlocal ts=2 sts=2 sw=2 expandtab
 
 " disable automatic inserting of the current comment leader
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
-
-" don't overwrite the main register when pasting with 'p'
-xnoremap <silent> p p:let @+=@0<CR>
 
 " copy to clipboard
 if $WAYLAND_DISPLAY != ""
@@ -86,8 +91,10 @@ if $WAYLAND_DISPLAY != ""
         \   'cache_enabled': 1,
         \ }
 else
-    " preserve yank when exiting
-    autocmd VimLeave * call system("xsel -ib", getreg('+'))
+    if s:uname == "Linux\n"
+        " preserve yank when exiting
+        autocmd VimLeave * call system("xsel -ib", getreg('+'))
+    endif
 endif
 
 " ==================== key mappings ==================== "
@@ -99,6 +106,9 @@ inoremap ii <esc>
 
 " yank from the cursor to the end of the line
 nnoremap Y y$
+
+" don't overwrite the main register when pasting
+xnoremap <silent> <leader>p p:let @+=@0<CR>
 
 " create a new window with an empty file in a vertical split
 nnoremap <C-w>m :vnew<CR>
@@ -170,16 +180,17 @@ let g:gitgutter_sign_priority = 1
 
 " ==================== nvim-lsp ==================== "
 :lua << EOF
-require'nvim_lsp'.gopls.setup{}
-require'nvim_lsp'.pyls.setup{}
-require'nvim_lsp'.tsserver.setup{}
-require'nvim_lsp'.cssls.setup{}
-require'nvim_lsp'.html.setup{}
-require'nvim_lsp'.jsonls.setup{}
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.cssls.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.jsonls.setup{}
+require'lspconfig'.yamlls.setup{}
+require'lspconfig'.terraformls.setup{}
 EOF
 
 " key mappings
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -188,6 +199,7 @@ autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> 1gD   <cmd>
 autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
 " completion
 autocmd Filetype go,python,javascript*,typescript* setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -197,6 +209,9 @@ hi LspDiagnosticsHint guifg=#77808a
 hi LspDiagnosticsError guifg=#bf5858
 hi LspDiagnosticsWarning guifg=#b56f45
 hi LspDiagnosticsInformation guifg=#557b9e
+
+" ==================== vim-prettier ==================== "
+nnoremap <leader>P :PrettierAsync<CR>
 
 " ==================== nerdtree ==================== "
 " show hidden files
