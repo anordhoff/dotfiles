@@ -18,3 +18,19 @@ sudo defaults write com.apple.loginwindow LoginHook $HOME/.dotfiles/macos/keyboa
 ```
 
 Reboot for the changes to take effect
+
+#### tools
+
+[WhichSpace](https://github.com/gechr/WhichSpace)
+
+[Bearded Spice](https://github.com/beardedspice/beardedspice)
+
+[Scroll Reverser](https://github.com/pilotmoon/Scroll-Reverser)
+
+[autokbisw](https://github.com/jeantil/autokbisw)
+
+[SpotMenu](https://github.com/kmikiy/SpotMenu) (install v1.8 to disable scrolling text)
+
+#### yabai/skhd
+
+Change mission control shortcuts: `System Preferences > Keyboard > Shortcuts > Mission Control`
