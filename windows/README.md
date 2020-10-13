@@ -2,6 +2,8 @@
 
 #### keyboard
 
+*NOTE: Current keyboard layout is outdated*
+
 Keyboard layout was generated using Windows Keyboard Layout Creator 1.4
 
 1. unzip `custom.zip`

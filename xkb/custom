@@ -18,9 +18,9 @@ xkb_symbols "custom" {
     key <AE12> { [            0,   parenright                               ] };
 
     key <AD01> { [            q,            Q                               ] };
-    key <AD02> { [            w,            W,     braceleft,     braceleft ] }; 
-    key <AD03> { [            f,            F,    braceright,    braceright ] };
-    key <AD04> { [            p,            P,          plus,          plus ] };
+    key <AD02> { [            w,            W,    asciitilde,    asciitilde ] };
+    key <AD03> { [            f,            F,     braceleft,     braceleft ] };
+    key <AD04> { [            p,            P,    braceright,     braceleft ] };
     key <AD05> { [            b,            B,           bar,           bar ] };
     key <AD06> { [  bracketleft,    braceleft                               ] };
     key <AD07> { [            j,            J                               ] };
@@ -31,8 +31,8 @@ xkb_symbols "custom" {
     key <AD12> { [   apostrophe,     quotedbl                               ] };
     key <BKSL> { [    backslash,          bar                               ] };
 
-    key <AC01> { [            a,            A,   bracketleft,   bracketleft ] };
-    key <AC02> { [            r,            R,  bracketright,  bracketright ] };
+    key <AC01> { [            a,            A,         minus,         minus ] };
+    key <AC02> { [            r,            R,          plus,          plus ] };
     key <AC03> { [            s,            S,         equal,         equal ] };
     key <AC04> { [            t,            T,    underscore,    underscore ] };
     key <AC05> { [            g,            G,     backslash,     backslash ] };
@@ -44,8 +44,8 @@ xkb_symbols "custom" {
     key <AC11> { [            o,            O,         Right,         Right ] };
 
     key <AB01> { [            x,            X,         grave,         grave ] };
-    key <AB02> { [            c,            C,    asciitilde,    asciitilde ] };
-    key <AB03> { [            d,            D,         minus,         minus ] };
+    key <AB02> { [            c,            C,   bracketleft,   bracketleft ] };
+    key <AB03> { [            d,            D,  bracketright,  bracketright ] };
     key <AB04> { [            v,            V                               ] };
     key <AB05> { [            z,            Z                               ] };
     key <AB06> { [        slash,     question                               ] };
