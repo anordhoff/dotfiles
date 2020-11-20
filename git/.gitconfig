@@ -18,4 +18,6 @@
 [mergetool "vimdiff3"]
     cmd = nvim -d $LOCAL $MERGED $REMOTE
 [pull]
-	ff = only
+    ff = only
+[oh-my-zsh]
+    hide-dirty = 1
