@@ -22,13 +22,13 @@ default_border pixel 1
 
 #################### Output configuration ####################
 output eDP-1 {
-    position 3840 520
+    position 0 520
     resolution 1920x1080
     background $wallpaper fill
 }
 
 output DP-1 {
-    position 0 0
+    position 1920 0
     resolution 3840x1600
     background $wallpaper center
 }
@@ -55,6 +55,8 @@ input 9494:26:CM_Storm_Keyboard_--_QuickFire_XT {
 input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
     repeat_delay 200
     repeat_rate 35
+    repeat_delay 200
+    repeat_rate 35
 }
 
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
@@ -70,7 +72,6 @@ input 5426:22:Razer_Razer_DeathAdder {
 
 input 1133:49970:Logitech_Gaming_Mouse_G502 {
     accel_profile flat
-    pointer_accel -0.25
 }
 
 # backspace repeat (non-wayland windows)
@@ -90,14 +91,11 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
-# capture all screens to clipboard
-bindsym Print exec grim - | wl-copy
-
 # capture the focused monitor to clipboard
-bindsym Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+bindsym Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
 
 # capture the specified area to clipboard
-bindsym Control+Shift+Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy
 
 #################### Key bindings ####################
 # modifier
@@ -113,13 +111,13 @@ set $right o
 floating_modifier $mod normal
 
 # start terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Ctrl+Return exec $term
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Ctrl+q kill
 
 # start launcher
-bindsym $mod+d exec $menu
+bindsym $mod+Space exec $menu
 
 # change focus
 bindsym $mod+$left  focus left
@@ -128,42 +126,30 @@ bindsym $mod+$up    focus up
 bindsym $mod+$right focus right
 
 # move focused window
-bindsym $mod+Shift+$left  move left
-bindsym $mod+Shift+$down  move down
-bindsym $mod+Shift+$up    move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Ctrl+$left  move left
+bindsym $mod+Ctrl+$down  move down
+bindsym $mod+Ctrl+$up    move up
+bindsym $mod+Ctrl+$right move right
 
 # split in horizontal orientation
-bindsym $mod+h splith
+bindsym $mod+Ctrl+h splith
 
 # split in vertical orientation
-bindsym $mod+v splitv
+bindsym $mod+Ctrl+v splitv
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+Ctrl+f fullscreen
 
 # change container layout
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+t layout toggle split # previously $mod+e
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Ctrl+s layout stacking
+bindsym $mod+Ctrl+w layout tabbed
+bindsym $mod+Ctrl+t layout toggle split # previously $mod+e
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Ctrl+a focus parent
 
 # focus the child container
-bindsym $mod+c focus child
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# cycle through scratchpad windows
-bindsym $mod+minus scratchpad show
+bindsym $mod+Ctrl+c focus child
 
 # define names for the default workspaces
 set $ws1  '1'
@@ -190,19 +176,19 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym $mod+Ctrl+0 move container to workspace $ws10
 
 # lock computer
-bindsym $mod+l exec 'swaylock -f -i $wallpaper'
+bindsym $mod+Ctrl+l exec 'swaylock -f -i $wallpaper'
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -211,18 +197,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit' # previously $mod+Shift+e
 
 # resize window
-mode 'resize' {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # return to default mode
-    bindsym Return mode 'default'
-    bindsym Escape mode 'default'
-    bindsym $mod+r mode 'default'
-}
-bindsym $mod+r mode 'resize'
+bindsym $mod+Alt+$left resize shrink width 100px
+bindsym $mod+Alt+$down resize grow height 100px
+bindsym $mod+Alt+$up resize shrink height 100px
+bindsym $mod+Alt+$right resize grow width 100px
 
 #################### Style ####################
 # class                 border  backgr. text    indica. ch_bor.

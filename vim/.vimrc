@@ -33,9 +33,6 @@ autocmd Filetype terraform       setlocal ts=2 sts=2 sw=2 expandtab
 " disable automatic inserting of the current comment leader
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
-" don't overwrite the main register when pasting with 'p'
-xnoremap <silent> p p:let @+=@0<CR>
-
 " enable filetype detection
 filetype plugin indent on
 
@@ -48,6 +45,9 @@ inoremap ii <esc>
 
 " yank from the cursor to the end of the line
 nnoremap Y y$
+
+" don't overwrite the main register when pasting
+xnoremap <silent> <leader>p p:let @+=@0<CR>
 
 " create a new window with an empty file in a vertical split
 nnoremap <C-w>m :vnew<CR>
