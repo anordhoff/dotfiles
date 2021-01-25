@@ -5,7 +5,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+ZSH=$HOME/.local/share/oh-my-zsh
 if [[ "$OSTYPE" == "darwin"* ]]; then
     ZSH=$HOME/.oh-my-zsh
 fi
@@ -56,7 +56,7 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -67,9 +67,7 @@ DISABLE_AUTO_TITLE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom
-fi
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -77,7 +75,6 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    kubectl
     vi-mode
 )
 
@@ -108,22 +105,27 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  ZSH_CACHE_DIR=$XDG_CACHE_HOME/oh-my-zsh
+  if [[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  HISTFILE=$XDG_DATA_HOME/zsh/history
+  if [[ -d $XDG_DATA_HOME/zsh ]] || mkdir -p $XDG_DATA_HOME/zsh
 fi
 
 source $ZSH/oh-my-zsh.sh
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -d /usr/share/fzf ] && source /usr/share/fzf/completion.zsh &&
-                         source /usr/share/fzf/key-bindings.zsh
 
 # vi key bindings
 bindkey -v
 bindkey 'ii' vi-cmd-mode
 KEYTIMEOUT=30
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
+[ -f /usr/share/fzf/shell/completion.zsh ] && source /usr/share/fzf/shell/completion.zsh
 
 # change cursor shape depending on mode
 # https://unix.stackexchange.com/questions/433273/changing-cursor-style-

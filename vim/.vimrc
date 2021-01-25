@@ -1,19 +1,19 @@
 " plugin-free vim config
 
 " ==================== settings ==================== "
-set number rnu            " relative line numbers
-set tabstop=4             " tabs are four columns in width
-set softtabstop=4         " insert/delete tab width of whitespace
-set shiftwidth=4          " shift by four columns in width
-set expandtab             " use spaces instead of tabs
-set smartindent           " smart indent
-set ignorecase            " case-insensitive searching...
-set smartcase             " ...but not if the search contains a capital letter
-set noincsearch           " wait to execute search until <enter> is pressed
-set hidden                " switch buffers without saving
-set splitright            " split vertical windows to the right of current window
-set splitbelow            " split horizontal windows below current window
-set clipboard=unnamedplus " copy to clipboard
+set number rnu             " relative line numbers
+set tabstop=4              " tabs are four columns in width
+set softtabstop=4          " insert/delete tab width of whitespace
+set shiftwidth=4           " shift by four columns in width
+set expandtab              " use spaces instead of tabs
+set smartindent            " smart indent
+set ignorecase             " case-insensitive searching...
+set smartcase              " ...but not if the search contains a capital letter
+set noincsearch            " wait to execute search until <enter> is pressed
+set hidden                 " switch buffers without saving
+set splitright             " split vertical windows to the right of current window
+set splitbelow             " split horizontal windows below current window
+set clipboard^=unnamedplus " copy to clipboard
 
 set backspace=indent,eol,start       " enable backspace for previous session
 set hlsearch                         " highlight search results

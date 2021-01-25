@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/redshift -l 48.9:-77.0 -t 6500:5000 -g 0.9 -m wayland
+ExecStart=/usr/bin/redshift -l 39.7:-105.0 -t 6500:5000 -g 0.9 -m wayland
 
 [Install]
 WantedBy=sway-session.target

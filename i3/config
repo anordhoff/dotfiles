@@ -21,7 +21,7 @@ for_window [class=".*"] border pixel 1
 mouse_warping output
 
 # keyboard settings
-# exec --no-startup-id setxkbmap -layout custom,us -option 'grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl'
+exec --no-startup-id setxkbmap -layout custom,us -option 'grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl'
 exec --no-startup-id xset r rate 200 35
 exec --no-startup-id xset r 66
 
@@ -40,13 +40,16 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # print screen
-bindsym Print exec scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+bindsym Print exec maim | xclip -selection clipboard -t image/png
+
+# print screen (selection)
+bindsym Ctrl+Print exec maim -s | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Ctrl+Return exec termite
+bindsym $mod+Ctrl+Return exec kitty
 
 # kill focused window
 bindsym $mod+Ctrl+q kill

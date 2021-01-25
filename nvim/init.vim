@@ -31,31 +31,33 @@ Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
 " usability
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'anordhoff/vim-commentary' " fork of tpope/vim-commentary
+Plug 'jeetsukumaran/vim-commentary'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " languages
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
 " ==================== settings ==================== "
-set number rnu            " relative line numbers
-set tabstop=4             " tabs are four columns in width
-set softtabstop=4         " insert/delete tab width of whitespace
-set shiftwidth=4          " shift by four columns in width
-set expandtab             " use spaces instead of tabs
-set smartindent           " smart indent
-set ignorecase            " case-insensitive searching...
-set smartcase             " ...but not if the search contains a capital letter
-set noincsearch           " wait to execute search until <enter> is pressed
-set hidden                " switch buffers without saving
-set splitright            " split vertical windows to the right of current window
-set splitbelow            " split horizontal windows below current window
-set clipboard=unnamedplus " copy to clipboard
+set number rnu             " relative line numbers
+set tabstop=4              " tabs are four columns in width
+set softtabstop=4          " insert/delete tab width of whitespace
+set shiftwidth=4           " shift by four columns in width
+set expandtab              " use spaces instead of tabs
+set smartindent            " smart indent
+set ignorecase             " case-insensitive searching...
+set smartcase              " ...but not if the search contains a capital letter
+set noincsearch            " wait to execute search until <enter> is pressed
+set hidden                 " switch buffers without saving
+set splitright             " split vertical windows to the right of current window
+set splitbelow             " split horizontal windows below current window
+set clipboard^=unnamedplus " copy to clipboard
 
 set updatetime=400   " reduce update time from 4s to 400ms
 set signcolumn=yes   " always show the sign column
@@ -132,6 +134,10 @@ hi Normal guibg=#1c1c1c
 hi TrailingWhitespace guibg=#77808a
 match TrailingWhitespace /\s\+$/
 
+" highlighting
+hi Search guibg=bg guifg=#ab6a7a
+hi Todo guibg=bg guifg=#557b9e
+
 " error/warning messages
 hi ErrorMsg guibg=bg guifg=fg
 hi WarningMsg guibg=bg guifg=fg
@@ -178,16 +184,16 @@ endfunction
 " prevent gitgutter from overwriting existing signs
 let g:gitgutter_sign_priority = 1
 
-" ==================== nvim-lsp ==================== "
+" ==================== nvim-lspconfig ==================== "
 :lua << EOF
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.pyls.setup{}
-require'lspconfig'.tsserver.setup{}
 require'lspconfig'.cssls.setup{}
+require'lspconfig'.gopls.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.jsonls.setup{}
-require'lspconfig'.yamlls.setup{}
+require'lspconfig'.pyls.setup{}
 require'lspconfig'.terraformls.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.yamlls.setup{}
 EOF
 
 " key mappings
@@ -205,13 +211,13 @@ autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gd    <cmd>
 autocmd Filetype go,python,javascript*,typescript* setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " style
-hi LspDiagnosticsHint guifg=#77808a
-hi LspDiagnosticsError guifg=#bf5858
-hi LspDiagnosticsWarning guifg=#b56f45
-hi LspDiagnosticsInformation guifg=#557b9e
+hi LspDiagnosticsDefaultHint guifg=#77808a
+hi LspDiagnosticsDefaultError guifg=#bf5858
+hi LspDiagnosticsDefaultWarning guifg=#b56f45
+hi LspDiagnosticsDefaultInformation guifg=#557b9e
 
 " ==================== vim-prettier ==================== "
-nnoremap <leader>P :PrettierAsync<CR>
+autocmd Filetype javascript*,typescript* nnoremap <leader>F :PrettierAsync<CR>
 
 " ==================== nerdtree ==================== "
 " show hidden files
@@ -280,6 +286,10 @@ let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 " dedicated tag directory
 let g:gutentags_cache_dir = expand('~/.local/share/nvim/ctags/')
 
+" ==================== vim-obsession ==================== "
+nnoremap <leader>o :Obsess<CR>
+nnoremap <leader>O :Obsess!<CR>
+
 " ==================== vim-go ==================== "
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -298,7 +308,6 @@ autocmd Filetype go nmap <leader>T <plug>(go-test)
 autocmd Filetype go nmap <leader>C <plug>(go-coverage-toggle)
 autocmd Filetype go nmap <leader>I <plug>(go-info)
 autocmd Filetype go nmap <leader>D <plug>(go-doc)
-autocmd Filetype go nmap <leader>F <plug>(go-doc-browser)
 
 autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
@@ -314,3 +323,6 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
+
+" ==================== vim-terraform ==================== "
+autocmd Filetype terraform nnoremap <leader>F :TerraformFmt<CR>
