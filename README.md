@@ -77,7 +77,25 @@ map N goBack
 map E previousTab
 map I nextTab
 map O goForward
+map s LinkHints.activateMode
+map S LinkHints.activateModeToOpenInNewTab
+map <a-s> LinkHints.activateModeWithQueue
+map f performFind
+map F performBackwardsFind
+map a Vomnibar.activate
+map A Vomnibar.activateInNewTab
+map q enterInsertMode
 ```
+
+Characters used for link hints: `arstneio`
+
+Enable `Don't let pages steal the focus on load`
+
+Theme: https://github.com/ysjn/vimium-simply-dark
+
+- change color from hotpink to cadetblue
+- remove the block `#vimiumHintMarkerContainer div > .matchingCharacter ~ span {`
+- change `opacity: 0.4;` to `color: cadetblue`
 
 #### wayland
 
@@ -88,7 +106,9 @@ MOZ_ENABLE_WAYLAND=1
 
 ## font
 
-Icons for desktop apps (such as waybar) are pulled from the Font Awesome icon pack (`ttf-font-awesome` arch package)
+Icons for desktop apps (such as waybar) are pulled from the Font Awesome icon pack (`ttf-font-awesome` arch package) (`fontawesome-fonts` fedora package)
+
+San Francisco fonts can be cloned and installed from https://github.com/AppleDesignResources/SanFranciscoFont and https://www.cufonfonts.com/font/sf-mono
 
 ## keyboard
 
@@ -176,13 +196,24 @@ Enable `WebRTC PipeWire support` on chromium: `chrome://flags/#enable-webrtc-pip
 
 edit `~/.local/share/nvim/plugged/vim-go/autoload/fzf/decls.vim`
 
-change lines 136 and 148:
+change lines 47, 134, and 146:
 ```
+let cmd = get({'ctrl-s': 'split',
 ...
-" let normal_bg = s:code("Normal", "bg")
-let normal_bg = s:code("CursorLine", "bg")
+let normal_bg = s:code("CursorLine", "#222222")
 ...
-" \ 'options': '-n 1 --ansi --prompt "GoDecls> " --expect=ctrl-t,ctrl-v,ctrl-x'.colors,
-\ 'options': '-n 1 --ansi --prompt "GoDecls> " --expect=ctrl-t,ctrl-v,ctrl-s'.colors,
+\ 'options': printf('-n 1 --with-nth 1,2 --delimiter=$''\t'' --preview "echo {3}" --ansi --prompt "GoDecls> " --expect=ctrl-t,ctrl-v,ctrl-s%s', colors),
 ...
+```
+
+## xdg
+
+For the sake of being explicit, add the following to /etc/profile.d/xdg.sh:
+
+```
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
 ```

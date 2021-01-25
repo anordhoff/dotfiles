@@ -1,3 +1,5 @@
+# ln -s $HOME/.dotfiles/zsh/function.zsh $XDG_DATA_DIR/oh-my-zsh/custom/.
+
 # java lazy loading
 jenv() {
     unset -f jenv
@@ -17,7 +19,17 @@ mvn() {
     mvn "$@"
 }
 
+# kubectl lazy loading
+function kubectl() {
+    if ! type __start_kubectl >/dev/null 2>&1; then
+        source <(command kubectl completion zsh)
+    fi
+    command kubectl "$@"
+}
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+
+    # connect/disconnect from vpn
     vpn() {
         default='dev'
         if [[ $2 == '' ]]; then
@@ -30,19 +42,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             nmcli connection down $2
         else
           nmcli connection "$@"
-        fi
-    }
-
-    wifi() {
-        nmcli device wifi "$@"
-    }
-
-    bluetooth() {
-        default="74:9E:AF:E4:42:7B" # airpods
-        if [[ ($1 == 'connect' || $1 == 'disconnect') && $2 == '' ]]; then
-              echo "$1 $default\nquit" | bluetoothctl
-        else
-            echo "$@\nquit" | bluetoothctl
         fi
     }
 fi

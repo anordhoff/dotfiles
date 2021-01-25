@@ -1,6 +1,6 @@
 #################### Basic configuration ####################
 # preferred terminal emulator
-set $term termite
+set $term kitty
 
 # preferred application launcher
 set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
