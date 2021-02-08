@@ -1,13 +1,12 @@
 " source global configuration file
 if has("unix")
-    let s:uname = system("uname")
-    if s:uname == "Linux\n"
-        source /usr/share/nvim/sysinit.vim
-    endif
+  let s:uname = system("uname")
+  if s:uname == "Linux\n"
+    source /usr/share/nvim/sysinit.vim
+  endif
 endif
 
 " ==================== plugins ==================== "
-" vim-plug setup (:PlugInstall)
 call plug#begin(stdpath('data') . '/plugged')
 
 " statusline
@@ -16,6 +15,7 @@ Plug 'itchyny/vim-gitbranch'
 
 " syntax highlighting
 Plug 'nightsense/forgotten'
+Plug 'Yggdroot/indentLine'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 
@@ -24,19 +24,19 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'prettier/vim-prettier'
 
 " navigation
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ludovicchabant/vim-gutentags'
 
 " usability
+Plug 'AndrewRadev/splitjoin.vim' " gS, gJ
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'jeetsukumaran/vim-commentary'
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-commentary'
 
 " languages
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -45,82 +45,83 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " ==================== settings ==================== "
-set number rnu             " relative line numbers
-set tabstop=4              " tabs are four columns in width
-set softtabstop=4          " insert/delete tab width of whitespace
-set shiftwidth=4           " shift by four columns in width
-set expandtab              " use spaces instead of tabs
-set smartindent            " smart indent
+" set number rnu             " relative line numbers
+set number
+" set number
+" set tabstop=8              " tabs are eight columns in width
+" set softtabstop=4          " insert/delete tab width of whitespace
+" set shiftwidth=8           " shift by four columns in width
+" set expandtab              " use spaces instead of tabs
+" set autoindent
+" set smartindent            " smart indent
 set ignorecase             " case-insensitive searching...
 set smartcase              " ...but not if the search contains a capital letter
 set noincsearch            " wait to execute search until <enter> is pressed
 set hidden                 " switch buffers without saving
 set splitright             " split vertical windows to the right of current window
 set splitbelow             " split horizontal windows below current window
-set clipboard^=unnamedplus " copy to clipboard
+" set clipboard^=unnamedplus " copy to clipboard
 
-set updatetime=400   " reduce update time from 4s to 400ms
+" set updatetime=400   " reduce update time from 4s to 400ms
 set signcolumn=yes   " always show the sign column
 set completeopt=menu " show possible completions in a pmenu
 
 " whitepace preferences
-autocmd Filetype json            setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype yaml            setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype html            setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype css             setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype javascript      setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype javascriptreact setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype typescript      setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype terraform       setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd Filetype json            setlocal ts=8 sts=2 sw=2 expandtab
+" autocmd Filetype html            setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd Filetype css             setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd Filetype javascript      setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd Filetype javascriptreact setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd Filetype typescript      setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
 
 " disable automatic inserting of the current comment leader
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " copy to clipboard
 if $WAYLAND_DISPLAY != ""
-    " wayland clipboard provider that strips carriage returns (wayland/GTK3 issue)
-    let g:clipboard = {
-        \   'name': 'wayland-strip-carriage',
-        \   'copy': {
-        \      '+': 'wl-copy --foreground --type text/plain',
-        \      '*': 'wl-copy --foreground --type text/plain --primary',
-        \    },
-        \   'paste': {
-        \      '+': {-> systemlist('wl-paste | tr -d "\r"')},
-        \      '*': {-> systemlist('wl-paste --primary | tr -d "\r"')},
-        \   },
-        \   'cache_enabled': 1,
-        \ }
+  " wayland clipboard provider that strips carriage returns (wayland/GTK3 issue)
+  let g:clipboard = {
+    \   'name': 'wayland-strip-carriage',
+    \   'copy': {
+    \     '+': 'wl-copy --foreground --type text/plain',
+    \     '*': 'wl-copy --foreground --type text/plain --primary',
+    \   },
+    \   'paste': {
+    \     '+': {-> systemlist('wl-paste | tr -d "\r"')},
+    \     '*': {-> systemlist('wl-paste --primary | tr -d "\r"')},
+    \   },
+    \   'cache_enabled': 1,
+    \ }
 else
-    if s:uname == "Linux\n"
-        " preserve yank when exiting
-        autocmd VimLeave * call system("xsel -ib", getreg('+'))
-    endif
+  if s:uname == "Linux\n"
+    " preserve yank when exiting
+    autocmd VimLeave * call system("xsel -ib", getreg('+'))
+  endif
 endif
 
 " ==================== key mappings ==================== "
 " leader key
-let mapleader = ","
+let mapleader = "\<space>"
+" map <space> <leader>
 
 " escape insert mode
-inoremap ii <esc>
+" inoremap ii <esc>
 
 " yank from the cursor to the end of the line
-nnoremap Y y$
+" nnoremap Y y$
+
+" create a new window with an empty file in a vertical split
+" nnoremap <C-w>m :vnew<CR>
 
 " don't overwrite the main register when pasting
 xnoremap <silent> <leader>p p:let @+=@0<CR>
-
-" create a new window with an empty file in a vertical split
-nnoremap <C-w>m :vnew<CR>
 
 " close quickfix list
 nnoremap <leader>q :cclose<CR>
 
 " clear search highlighting
 nnoremap <leader>/ :noh<CR>
-nnoremap <leader>? :noh<CR>
 
 " ==================== style ==================== "
 syntax on
@@ -130,9 +131,9 @@ colorscheme forgotten-dark
 " background
 hi Normal guibg=#1c1c1c
 
-" trailing whitespace
-hi TrailingWhitespace guibg=#77808a
-match TrailingWhitespace /\s\+$/
+" default status line
+hi statusLine guibg=bg guifg=fg
+hi statusLineNC guibg=bg guifg=fg
 
 " highlighting
 hi Search guibg=bg guifg=#ab6a7a
@@ -142,9 +143,8 @@ hi Todo guibg=bg guifg=#557b9e
 hi ErrorMsg guibg=bg guifg=fg
 hi WarningMsg guibg=bg guifg=fg
 
-" default status line
-hi statusLine guibg=bg guifg=fg
-hi statusLineNC guibg=bg guifg=fg
+" indentation lines
+hi NonText guifg=#303030
 
 " gutter
 hi lineNr guibg=bg
@@ -156,20 +156,30 @@ hi signColumn guibg=bg
 hi pmenu guibg=#1d242b guifg=#a3acb5
 hi pmenuSel guibg=#8b959e
 
+" trailing whitespace
+hi ExtraWhitespace guibg=#2c333b
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 " ==================== lightline ==================== "
 set noshowmode
 
 let g:lightline = {
-    \   'colorscheme': 'lightline',
-    \   'active': {
-    \     'left': [ [ 'mode', 'paste' ],
-    \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \   },
-    \   'component': {
-    \     'gitbranch': '%{gitbranch#name()}',
-    \     'filename': '%<%{LightlineFilename()}',
-    \   },
-    \ }
+  \   'colorscheme': 'lightline',
+  \   'active': {
+  \     'left':  [ [ 'mode', 'paste' ],
+  \                [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+  \     'right': [ [ 'lineinfo' ],
+  \                [ 'filetype', 'percent' ] ]
+  \   },
+  \   'component': {
+  \     'gitbranch': '%{gitbranch#name()}',
+  \     'filename': '%<%{LightlineFilename()}',
+  \   },
+  \ }
 
 function! LightlineFilename()
   let root = fnamemodify(get(b:, 'gitbranch_path'), ':h:h')
@@ -179,6 +189,14 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
+" ==================== indentLine ==================== "
+let g:indentLine_fileTypeExclude = ['vim', 'markdown', 'text', 'help']
+let g:indentLine_defaultGroup = 'NonText'
+let g:indentLine_showFirstIndentLevel = 1
+
+" support for tabs
+set list lcs=tab:¦\ 
 
 " ==================== gitgutter ==================== "
 " prevent gitgutter from overwriting existing signs
@@ -193,22 +211,39 @@ require'lspconfig'.jsonls.setup{}
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.terraformls.setup{}
 require'lspconfig'.tsserver.setup{}
-require'lspconfig'.yamlls.setup{}
+require'lspconfig'.yamlls.setup{
+  settings = {
+    yaml = {
+      customTags = {
+        '!Equals sequence',
+        '!FindInMap sequence',
+        '!GetAtt',
+        '!GetAZs',
+        '!ImportValue',
+        '!Join sequence',
+        '!Ref',
+        '!Select sequence',
+        '!Split sequence',
+        '!Sub'
+      }
+    }
+  }
+}
 EOF
 
 " key mappings
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-autocmd Filetype go,python,javascript*,typescript* nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
 " completion
-autocmd Filetype go,python,javascript*,typescript* setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype * setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " style
 hi LspDiagnosticsDefaultHint guifg=#77808a
@@ -218,18 +253,6 @@ hi LspDiagnosticsDefaultInformation guifg=#557b9e
 
 " ==================== vim-prettier ==================== "
 autocmd Filetype javascript*,typescript* nnoremap <leader>F :PrettierAsync<CR>
-
-" ==================== nerdtree ==================== "
-" show hidden files
-let g:NERDTreeShowHidden = 1
-
-" key mappings
-let g:NERDTreeMapOpenSplit = 's'
-let g:NERDTreeMapOpenVSplit = 'v'
-
-" toggle nerdtree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>N :NERDTreeFind<CR>
 
 " ==================== fzf ==================== "
 " key mappings
@@ -259,28 +282,40 @@ command! -bang -nargs=* Rg
 
 " floating window with border (https://github.com/neovim/neovim/issues/9718#issuecomment-559573308)
 function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
+  let width = min([&columns - 4, max([80, &columns - 20])])
+  let height = min([&lines - 4, max([20, &lines - 10])])
+  let top = ((&lines - height) / 2) - 1
+  let left = (&columns - width) / 2
+  let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+  let top = "╭" . repeat("─", width - 2) . "╮"
+  let mid = "│" . repeat(" ", width - 2) . "│"
+  let bot = "╰" . repeat("─", width - 2) . "╯"
+  let lines = [top] + repeat([mid], height - 2) + [bot]
+  let s:buf = nvim_create_buf(v:false, v:true)
+  call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+  call nvim_open_win(s:buf, v:true, opts)
+  set winhl=Normal:Floating
+  let opts.row += 1
+  let opts.height -= 2
+  let opts.col += 2
+  let opts.width -= 4
+  call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+  au BufWipeout <buffer> exe 'bw '.s:buf
 endfunction
 
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
+" ==================== nerdtree ==================== "
+" show hidden files
+let g:NERDTreeShowHidden = 1
+
+" key mappings
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapOpenVSplit = 'v'
+
+" toggle nerdtree
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>N :NERDTreeFind<CR>
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
