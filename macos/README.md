@@ -13,6 +13,10 @@ $ chmod +x $HOME/.dotfiles/macos/keyboard/options.sh
 $ sudo defaults write com.apple.loginwindow LoginHook $HOME/.dotfiles/macos/keyboard/options.sh
 ```
 
+## Karabiner Elements
+
+Symbolic link: [https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link](https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link)
+
 Reboot for the changes to take effect
 
 #### tools
@@ -34,10 +38,15 @@ Change mission control shortcuts: `System Preferences > Keyboard > Shortcuts > M
 ```
 Mission Control:      Ctrl-Up
 Show Desktop:         Ctrl-Down
-Move left a space:    Ctrl-Left
-Move right a space:   Ctrl-Right
+Move left a space:    Command-a
+Move right a space:   Command-t
 Switch to Desktop 1:  Command-1
 Switch to Desktop 2:  Command-2
 ...
 Switch to Desktop 10: Command-0
+```
+
+Add a shortcut under `App Shortcuts`:
+```
+Lock Screen: Ctrl-Command-l
 ```
