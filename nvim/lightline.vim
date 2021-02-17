@@ -1,4 +1,4 @@
-let s:base03  = [ '#1d242b', 0 ]
+let s:base03  = [ '#242424', 0 ] " prev. 1d242b
 let s:base02  = [ '#2c333b', 0 ]
 let s:base01  = [ '#616b75', 0 ]
 let s:base00  = [ '#77808a', 0 ]

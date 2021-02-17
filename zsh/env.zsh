@@ -3,22 +3,19 @@
 # ~/.local/bin
 export PATH=$PATH:$HOME/.local/bin
 
+# aws
+export AWS_PAGER=""
+
 # fzf
 export FZF_DEFAULT_OPTS='--height 40%'
+export KUBECTX_IGNORE_FZF=1
 
 # golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-# gpg
-export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-export GPG_TTY=$(tty)
-
 # java (lazy loading functions can be found in function.zsh)
 export PATH="$PATH:$HOME/.jenv/bin"
-
-# kubectl - disable interactive mode
-export KUBECTX_IGNORE_FZF=1
 
 # less
 [[ -d "$XDG_CACHE_HOME/less" ]] || mkdir -p $XDG_CACHE_HOME/less

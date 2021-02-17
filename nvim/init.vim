@@ -45,9 +45,7 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " ==================== settings ==================== "
-" set number rnu             " relative line numbers
-set number
-" set number
+set number rnu             " relative line numbers
 " set tabstop=8              " tabs are eight columns in width
 " set softtabstop=4          " insert/delete tab width of whitespace
 " set shiftwidth=8           " shift by four columns in width
@@ -60,12 +58,14 @@ set noincsearch            " wait to execute search until <enter> is pressed
 set hidden                 " switch buffers without saving
 set splitright             " split vertical windows to the right of current window
 set splitbelow             " split horizontal windows below current window
-" set clipboard^=unnamedplus " copy to clipboard
 
-" set updatetime=400   " reduce update time from 4s to 400ms
-set signcolumn=yes   " always show the sign column
-set completeopt=menu " show possible completions in a pmenu
+set clipboard^=unnamedplus  " copy to clipboard
+set signcolumn=yes           " always show the sign column
+set completeopt=menu         " show possible completions in a pmenu
+set list lcs=tab:¦\ ,trail:· " indentation lines and trailing spaces
 
+autocmd Filetype json setlocal sts=2 sw=2 expandtab
+" TODO
 " whitepace preferences
 " autocmd Filetype json            setlocal ts=8 sts=2 sw=2 expandtab
 " autocmd Filetype html            setlocal ts=2 sts=2 sw=2 expandtab
@@ -103,25 +103,22 @@ endif
 " ==================== key mappings ==================== "
 " leader key
 let mapleader = "\<space>"
-" map <space> <leader>
-
-" escape insert mode
-" inoremap ii <esc>
 
 " yank from the cursor to the end of the line
-" nnoremap Y y$
+" nnoremap Y y$ " TODO
 
 " create a new window with an empty file in a vertical split
-" nnoremap <C-w>m :vnew<CR>
+" nnoremap <C-w>m :vnew<CR> " TODO
 
-" don't overwrite the main register when pasting
-xnoremap <silent> <leader>p p:let @+=@0<CR>
-
-" close quickfix list
-nnoremap <leader>q :cclose<CR>
+" prevent clipboard hijacking
+inoremap  <C-r>+  <C-r><C-r>+
+inoremap  <C-r>*  <C-r><C-r>*
 
 " clear search highlighting
 nnoremap <leader>/ :noh<CR>
+
+" close quickfix list
+nnoremap <leader>q :cclose<CR>
 
 " ==================== style ==================== "
 syntax on
@@ -135,6 +132,10 @@ hi Normal guibg=#1c1c1c
 hi statusLine guibg=bg guifg=fg
 hi statusLineNC guibg=bg guifg=fg
 
+" indentation lines
+hi NonText guifg=#4d4d4d
+match NonText /\t/
+
 " highlighting
 hi Search guibg=bg guifg=#ab6a7a
 hi Todo guibg=bg guifg=#557b9e
@@ -143,9 +144,6 @@ hi Todo guibg=bg guifg=#557b9e
 hi ErrorMsg guibg=bg guifg=fg
 hi WarningMsg guibg=bg guifg=fg
 
-" indentation lines
-hi NonText guifg=#303030
-
 " gutter
 hi lineNr guibg=bg
 hi cursorLineNr guibg=bg guifg=#8b959e
@@ -153,16 +151,13 @@ hi vertSplit guibg=bg guifg=#303030
 hi signColumn guibg=bg
 
 " pmenu
-hi pmenu guibg=#1d242b guifg=#a3acb5
+hi pmenu guibg=#1d242b guifg=fg
 hi pmenuSel guibg=#8b959e
 
 " trailing whitespace
-hi ExtraWhitespace guibg=#2c333b
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+hi Whitespace guifg=bg
+hi TrailingWhitespace guifg=fg
+2match TrailingWhitespace /\s\+\%#\@<!$/
 
 " ==================== lightline ==================== "
 set noshowmode
@@ -191,12 +186,10 @@ function! LightlineFilename()
 endfunction
 
 " ==================== indentLine ==================== "
-let g:indentLine_fileTypeExclude = ['vim', 'markdown', 'text', 'help']
+" support for indents using spaces
+let g:indentLine_fileTypeExclude = ['help', 'markdown', 'text', 'vim']
 let g:indentLine_defaultGroup = 'NonText'
 let g:indentLine_showFirstIndentLevel = 1
-
-" support for tabs
-set list lcs=tab:¦\ 
 
 " ==================== gitgutter ==================== "
 " prevent gitgutter from overwriting existing signs
@@ -252,10 +245,11 @@ hi LspDiagnosticsDefaultWarning guifg=#b56f45
 hi LspDiagnosticsDefaultInformation guifg=#557b9e
 
 " ==================== vim-prettier ==================== "
-autocmd Filetype javascript*,typescript* nnoremap <leader>F :PrettierAsync<CR>
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#quickfix_auto_focus = 0
 
 " ==================== fzf ==================== "
-" key mappings
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
 nmap <leader>t :Tags<CR>
@@ -360,4 +354,4 @@ function! s:build_go_files()
 endfunction
 
 " ==================== vim-terraform ==================== "
-autocmd Filetype terraform nnoremap <leader>F :TerraformFmt<CR>
+let g:terraform_fmt_on_save=1

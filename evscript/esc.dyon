@@ -1,0 +1,12 @@
+//! [events]
+//! keys = ['ESC']
+fn main() ~ evdevs, uinput {
+    should_ralt := false
+    loop {
+        evts := next_events(evdevs)
+        for i {
+            evt := evts[i]
+            xcape(mut should_ralt, evt, KEY_RIGHTALT(), [KEY_RIGHTALT(), KEY_ESC()])
+        }
+    }
+}

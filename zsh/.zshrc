@@ -96,15 +96,6 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   ZSH_CACHE_DIR=$XDG_CACHE_HOME/oh-my-zsh
   if [[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
@@ -115,12 +106,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if [[ -d $XDG_DATA_HOME/zsh ]] || mkdir -p $XDG_DATA_HOME/zsh
 fi
 
+# disable PackageKit-command-not-found by creating custom handler
+command_not_found_handler () {
+  echo "zsh: $1: command not found..."
+}
+
 source $ZSH/oh-my-zsh.sh
 
 # vi key bindings
 bindkey -v
-bindkey 'ii' vi-cmd-mode
-KEYTIMEOUT=30
+KEYTIMEOUT=1
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -147,5 +142,5 @@ zle-line-init() {
   echo -ne '\e[6 q'
 }
 
-# source capital one specific config
-[ -f ~/.capitalone/zsh/.zshrc ] && source ~/.capitalone/zsh/.zshrc
+# source work specific config
+[ -f ~/.work/zsh/.zshrc ] && source ~/.work/zsh/.zshrc

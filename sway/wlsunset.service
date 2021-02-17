@@ -1,0 +1,10 @@
+[Unit]
+Description=Adjusts the color temperature of the screen
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/wlsunset -l 39.7 -L -105.0 -t 4500
+
+[Install]
+WantedBy=sway-session.target

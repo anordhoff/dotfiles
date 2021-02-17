@@ -39,24 +39,21 @@ bindswitch --reload lid:off output eDP-1 enable
 
 #################### Input configuration ####################
 input 1:1:AT_Translated_Set_2_keyboard {
-    repeat_delay 200
-    repeat_rate 35
-    xkb_layout custom,us
-    xkb_options grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl
-}
-
-input 9494:26:CM_Storm_Keyboard_--_QuickFire_XT {
-    repeat_delay 200
-    repeat_rate 35
-    xkb_layout custom,us
-    xkb_options grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin
+    # TODO: stop abusing hjkl
+    # repeat_delay 200
+    # repeat_rate 35
+    repeat_delay 10000
+    repeat_rate 1
+    xkb_layout custom
+    xkb_options ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl
 }
 
 input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
-    repeat_delay 200
-    repeat_rate 35
-    repeat_delay 200
-    repeat_rate 35
+    # TODO: stop abusing hjkl
+    # repeat_delay 200
+    # repeat_rate 35
+    repeat_delay 10000
+    repeat_rate 1
 }
 
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
@@ -64,10 +61,6 @@ input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
     click_method clickfinger
     dwt enabled
     natural_scroll enabled
-}
-
-input 5426:22:Razer_Razer_DeathAdder {
-    accel_profile flat
 }
 
 input 1133:49970:Logitech_Gaming_Mouse_G502 {
@@ -174,6 +167,10 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+
+# switch between adjacent workspaces
+bindsym $mod+a workspace next
+bindsym $mod+t workspace prev
 
 # move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1

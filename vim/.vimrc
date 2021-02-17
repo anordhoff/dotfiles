@@ -1,9 +1,10 @@
 " plugin-free vim config
 
 " ==================== settings ==================== "
-set number rnu             " relative line numbers
-set tabstop=4              " tabs are four columns in width
-set softtabstop=4          " insert/delete tab width of whitespace
+" set number rnu             " relative line numbers
+set number
+set tabstop=8              " tabs are eight columns in width
+set softtabstop=4          " insert/delete four columns of whitespace
 set shiftwidth=4           " shift by four columns in width
 set expandtab              " use spaces instead of tabs
 set smartindent            " smart indent
@@ -13,7 +14,6 @@ set noincsearch            " wait to execute search until <enter> is pressed
 set hidden                 " switch buffers without saving
 set splitright             " split vertical windows to the right of current window
 set splitbelow             " split horizontal windows below current window
-set clipboard^=unnamedplus " copy to clipboard
 
 set backspace=indent,eol,start       " enable backspace for previous session
 set hlsearch                         " highlight search results
@@ -38,23 +38,23 @@ filetype plugin indent on
 
 " ==================== key mappings ==================== "
 " leader key
-let mapleader = ","
+let mapleader = "\<space>"
 
 " escape insert mode
-inoremap ii <esc>
+" inoremap ii <esc>
 
 " yank from the cursor to the end of the line
-nnoremap Y y$
+" nnoremap Y y$
 
 " don't overwrite the main register when pasting
-xnoremap <silent> <leader>p p:let @+=@0<CR>
+" xnoremap <silent> <leader>p p:let @+=@0<CR>
 
 " create a new window with an empty file in a vertical split
-nnoremap <C-w>m :vnew<CR>
+" nnoremap <C-w>m :vnew<CR>
 
 " close quickfix list
-nnoremap <leader>q :cclose<CR>
+" nnoremap <leader>q :cclose<CR>
 
 " clear search highlighting
 nnoremap <leader>/ :noh<CR>
-nnoremap <leader>? :noh<CR>
+" nnoremap <leader>? :noh<CR>

@@ -1,12 +1,11 @@
 [user]
-    signingkey = 56C52ED1FB37BD45
-    email = aaron.nordhoff@outlook.com
+    signingkey = 3C85E9B77ED51BB5
+    email = git@anordhoff.com
     name = Aaron Nordhoff
 [credential]
     helper = cache --timeout=3600
 [core]
     pager = less -FRX
-    excludesfile = ~/.gitignore
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [commit]
