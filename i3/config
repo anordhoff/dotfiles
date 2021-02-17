@@ -21,7 +21,7 @@ for_window [class=".*"] border pixel 1
 mouse_warping output
 
 # keyboard settings
-exec --no-startup-id setxkbmap -layout custom,us -option 'grp:ctrls_toggle,ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl'
+# exec --no-startup-id setxkbmap -layout custom -option 'ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl'
 exec --no-startup-id xset r rate 200 35
 exec --no-startup-id xset r 66
 
@@ -120,6 +120,10 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+# switch between adjacent workspaces
+bindsym $mod+a workspace next
+bindsym $mod+t workspace prev
+
 # move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace number $ws1
 bindsym $mod+Ctrl+2 move container to workspace number $ws2
@@ -149,5 +153,3 @@ bindsym $mod+Mod1+$left resize shrink width 10 px or 10 ppt
 bindsym $mod+Mod1+$down resize grow height 10 px or 10 ppt
 bindsym $mod+Mod1+$up resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1+$right resize grow width 10 px or 10 ppt
-
-bindsym $mod+r mode "resize"

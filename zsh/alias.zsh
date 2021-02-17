@@ -4,22 +4,20 @@
 alias watch='watch -n 1 '
 
 # git
-alias g='git'
-alias ga='git add'
-alias gb='git branch'
-alias gc='git commit'
+alias   g='git'
+alias  ga='git add'
+alias  gb='git branch'
+alias  gc='git commit'
 alias gco='git checkout'
-alias gd='git diff'
-alias gl='git log'
-alias gp='git pull'
-alias gr='git reset'
+alias  gd='git diff'
+alias  gl='git log'
+alias  gp='git pull'
+alias gpu='git push'
+alias  gr='git reset'
 alias grb='git rebase'
-alias gs='git status'
+alias  gs='git status'
 alias gst='git stash'
 alias gsh='git show'
-
-# gpg
-alias gpg2='gpg2 --homedir $XDG_DATA_HOME/gnupg'
 
 # kubectl
 alias k='kubectl'
