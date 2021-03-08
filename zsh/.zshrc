@@ -107,9 +107,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 # disable PackageKit-command-not-found by creating custom handler
-command_not_found_handler () {
-  echo "zsh: $1: command not found..."
-}
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  command_not_found_handler () {
+    echo "zsh: $1: command not found..."
+  }
+fi
 
 source $ZSH/oh-my-zsh.sh
 

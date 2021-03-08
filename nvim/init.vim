@@ -11,7 +11,6 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " statusline
 Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
 
 " syntax highlighting
 Plug 'nightsense/forgotten'
@@ -59,7 +58,7 @@ set hidden                 " switch buffers without saving
 set splitright             " split vertical windows to the right of current window
 set splitbelow             " split horizontal windows below current window
 
-set clipboard^=unnamedplus  " copy to clipboard
+set clipboard^=unnamedplus   " copy to clipboard
 set signcolumn=yes           " always show the sign column
 set completeopt=menu         " show possible completions in a pmenu
 set list lcs=tab:¦\ ,trail:· " indentation lines and trailing spaces
@@ -166,12 +165,11 @@ let g:lightline = {
   \   'colorscheme': 'lightline',
   \   'active': {
   \     'left':  [ [ 'mode', 'paste' ],
-  \                [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+  \                [ 'filename', 'readonly', 'modified' ] ],
   \     'right': [ [ 'lineinfo' ],
   \                [ 'filetype', 'percent' ] ]
   \   },
   \   'component': {
-  \     'gitbranch': '%{gitbranch#name()}',
   \     'filename': '%<%{LightlineFilename()}',
   \   },
   \ }
@@ -186,7 +184,7 @@ function! LightlineFilename()
 endfunction
 
 " ==================== indentLine ==================== "
-" support for indents using spaces
+" support for indents that use spaces
 let g:indentLine_fileTypeExclude = ['help', 'markdown', 'text', 'vim']
 let g:indentLine_defaultGroup = 'NonText'
 let g:indentLine_showFirstIndentLevel = 1
@@ -245,9 +243,9 @@ hi LspDiagnosticsDefaultWarning guifg=#b56f45
 hi LspDiagnosticsDefaultInformation guifg=#557b9e
 
 " ==================== vim-prettier ==================== "
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-let g:prettier#quickfix_auto_focus = 0
+" let g:prettier#autoformat = 1
+" let g:prettier#autoformat_require_pragma = 0
+nnoremap <leader>P :PrettierAsync<CR>
 
 " ==================== fzf ==================== "
 nmap <leader>b :Buffers<CR>

@@ -8,6 +8,7 @@ alias   g='git'
 alias  ga='git add'
 alias  gb='git branch'
 alias  gc='git commit'
+alias gcl='git clone'
 alias gco='git checkout'
 alias  gd='git diff'
 alias  gl='git log'
@@ -28,9 +29,6 @@ alias kns='kubens'
 
 # neovim
 alias e='nvim'
-
-# wget
-alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 # wifi
 alias wifi='nmcli device wifi'

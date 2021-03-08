@@ -1,0 +1,99 @@
+(defcfg
+  ;; For MacOS
+  input  (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+
+  fallthrough false
+  allow-cmd   false
+)
+
+(defalias
+  lsh  (tap-hold-next 250 z (layer-toggle left-shift))
+  rsh  (tap-hold-next 250 / (layer-toggle right-shift))
+  rai  (layer-toggle raise)
+  lsr  (layer-toggle left-shift-raise)
+  rsr  (layer-toggle right-shift-raise)
+  low  (tap-hold-next 250 esc (layer-toggle lower))
+  lsl  (layer-toggle left-shift-lower)
+  rsl  (layer-toggle right-shift-lower)
+)
+
+(defsrc
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps      a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft      up
+  fn        lctl lalt lmet      spc            rmet ralt           left down rght
+)
+
+(deflayer colemak
+  esc       1    2    3    4    5    _    _    6    7    8    9    0    caps
+  tab       q    w    f    p    b    _    j    l    u    y    '    bspc _
+  @rai      a    r    s    t    g    _    m    n    e    i    o    ret
+  @lsh      x    c    d    v    _    _    k    h    ,    .    @rsh      up
+  fn        _    lalt lctl      spc            @low rmet           left down rght
+)
+
+(deflayer left-shift
+  S-esc     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-caps
+  S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc _
+  @lsr      A    R    S    T    G    _    M    N    E    I    O    S-ret
+  -         X    C    D    V    _    _    K    H    <    >    ?         S-up
+  S-fn   _  S-lalt    S-lctl    S-spc          @lsl S-rmet       S-left S-down S-rght
+)
+
+(deflayer right-shift
+  RS-esc    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-caps
+  RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc _
+  @rsr      A    R    S    T    G    _    M    N    E    I    O    RS-ret
+  Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
+  RS-fn  _  RS-lalt   RS-lctl   RS-spc         @rsl RS-rmet     RS-left RS-down RS-rght
+)
+
+(deflayer raise
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    \(   *    &    _    _    _    7    8    9    _    _    _
+  _         \)   ^    %    $    _    _    _    4    5    6    0    _
+  @lsr      #    @    !    _    _    _    _    1    2    3    @rsr      _
+  _         _    _    _         _              _    _              _    _    _
+)
+
+(deflayer left-shift-raise
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    \(   *    &    _    _    _    7    8    9    _    _    _
+  _         \)   ^    %    $    _    _    _    4    5    6    0    _
+  _         #    @    !    _    _    _    _    1    2    3    XX        _
+  _         _    _    _         _              _    _              _    _    _
+)
+
+(deflayer right-shift-raise
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    \(   *    &    _    _    _    7    8    9    _    _    _
+  _         \)   ^    %    $    _    _    _    4    5    6    0    _
+  XX        #    @    !    _    _    _    _    1    2    3    _         _
+  _         _    _    _         _              _    _              _    _    _
+)
+
+(deflayer lower
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
+  _         -    \_   [    ]    _    -    -    left down up   rght _
+  @lsl      `    {    }    _    _    -    -    \    ;    :    @rsl      _
+  _         _    _    _         _              _    _              _    _    _
+)
+
+(deflayer left-shift-lower
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
+  _         -    \_   [    ]    _    -    -    S-left S-down  S-up S-rght _
+  _         `    {    }    _    _    -    -    \    ;    :    XX        _
+  _         _    _    _         _              _    _              _    _    _
+)
+
+(deflayer right-shift-lower
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
+  _         -    \_   [    ]    _    -    -    RS-left RS-down RS-up RS-rght _
+  XX        `    {    }    _    _    -    -    \    ;    :    _         _
+  _         _    _    _         _              _    _              _    _    _
+)

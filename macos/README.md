@@ -31,13 +31,13 @@ Reboot for the changes to take effect
 
 [SpotMenu](https://github.com/kmikiy/SpotMenu) (install v1.8 to disable scrolling text)
 
+[f.lux](https://justgetflux.com)
+
 #### yabai/skhd
 
 Change mission control shortcuts: `System Preferences > Keyboard > Shortcuts > Mission Control`
 
 ```
-Mission Control:      Ctrl-Up
-Show Desktop:         Ctrl-Down
 Move left a space:    Command-a
 Move right a space:   Command-t
 Switch to Desktop 1:  Command-1
