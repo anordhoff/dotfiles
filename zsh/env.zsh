@@ -14,7 +14,7 @@ export KUBECTX_IGNORE_FZF=1
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-# gpg key
+# gpg
 export GPG_TTY=$(tty)
 
 # java (lazy loading functions can be found in function.zsh)
