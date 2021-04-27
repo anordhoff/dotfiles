@@ -58,10 +58,11 @@ set hidden                 " switch buffers without saving
 set splitright             " split vertical windows to the right of current window
 set splitbelow             " split horizontal windows below current window
 
-set clipboard^=unnamedplus   " copy to clipboard
-set signcolumn=yes           " always show the sign column
-set completeopt=menu         " show possible completions in a pmenu
-set list lcs=tab:¦\ ,trail:· " indentation lines and trailing spaces
+set clipboard^=unnamedplus          " copy to clipboard
+set signcolumn=yes                  " always show the sign column
+set completeopt=menu                " show possible completions in a pmenu
+set list lcs=tab:¦\ ,trail:\·       " indentation lines and trailing spaces
+set fillchars=vert:\|,stl:-,stlnc:- " vertical and horizontal separators
 
 autocmd Filetype json setlocal sts=2 sw=2 expandtab
 " TODO
@@ -103,9 +104,6 @@ endif
 " leader key
 let mapleader = "\<space>"
 
-" yank from the cursor to the end of the line
-" nnoremap Y y$ " TODO
-
 " create a new window with an empty file in a vertical split
 " nnoremap <C-w>m :vnew<CR> " TODO
 
@@ -128,8 +126,8 @@ colorscheme forgotten-dark
 hi Normal guibg=#1c1c1c
 
 " default status line
-hi statusLine guibg=bg guifg=fg
-hi statusLineNC guibg=bg guifg=fg
+hi statusLine guibg=bg guifg=#606060
+hi statusLineNC guibg=bg guifg=#606060
 
 " indentation lines
 hi NonText guifg=#4d4d4d
@@ -146,7 +144,7 @@ hi WarningMsg guibg=bg guifg=fg
 " gutter
 hi lineNr guibg=bg
 hi cursorLineNr guibg=bg guifg=#8b959e
-hi vertSplit guibg=bg guifg=#303030
+hi vertSplit guibg=bg guifg=#606060
 hi signColumn guibg=bg
 
 " pmenu
@@ -168,6 +166,10 @@ let g:lightline = {
   \                [ 'filename', 'readonly', 'modified' ] ],
   \     'right': [ [ 'lineinfo' ],
   \                [ 'filetype', 'percent' ] ]
+  \   },
+  \   'inactive': {
+  \     'left': [],
+  \     'right': [],
   \   },
   \   'component': {
   \     'filename': '%<%{LightlineFilename()}',
@@ -215,7 +217,8 @@ require'lspconfig'.yamlls.setup{
         '!Ref',
         '!Select sequence',
         '!Split sequence',
-        '!Sub'
+        '!Sub',
+        '!If'
       }
     }
   }
