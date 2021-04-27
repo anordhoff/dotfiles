@@ -71,7 +71,7 @@
 #               an EOL character signifies the end of the bind.
 
 # open terminal
-ctrl + cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
+cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
 
 # toggle window zoom
 ctrl + cmd - f : yabai -m window --toggle zoom-fullscreen
