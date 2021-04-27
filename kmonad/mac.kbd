@@ -11,11 +11,8 @@
   lsh  (tap-hold-next 250 z (layer-toggle left-shift))
   rsh  (tap-hold-next 250 / (layer-toggle right-shift))
   rai  (layer-toggle raise)
-  lsr  (layer-toggle left-shift-raise)
-  rsr  (layer-toggle right-shift-raise)
   low  (tap-hold-next 250 esc (layer-toggle lower))
-  lsl  (layer-toggle left-shift-lower)
-  rsl  (layer-toggle right-shift-lower)
+  joi  (layer-toggle join)
 )
 
 (defsrc
@@ -37,40 +34,24 @@
 (deflayer left-shift
   S-esc     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-caps
   S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc _
-  @lsr      A    R    S    T    G    _    M    N    E    I    O    S-ret
+  @rai      A    R    S    T    G    _    M    N    E    I    O    S-ret
   -         X    C    D    V    _    _    K    H    <    >    ?         S-up
-  S-fn   _  S-lalt    S-lctl    S-spc          @lsl S-rmet       S-left S-down S-rght
+  S-fn   _  S-lalt    S-lctl    S-spc          @low S-rmet       S-left S-down S-rght
 )
 
 (deflayer right-shift
   RS-esc    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-caps
   RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc _
-  @rsr      A    R    S    T    G    _    M    N    E    I    O    RS-ret
+  @rai      A    R    S    T    G    _    M    N    E    I    O    RS-ret
   Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
-  RS-fn  _  RS-lalt   RS-lctl   RS-spc         @rsl RS-rmet     RS-left RS-down RS-rght
+  RS-fn  _  RS-lalt   RS-lctl   RS-spc         @low RS-rmet     RS-left RS-down RS-rght
 )
 
 (deflayer raise
   _         _    _    _    _    _    _    _    _    _    _    _    _    _
   _         _    \(   *    &    _    _    _    7    8    9    _    _    _
   _         \)   ^    %    $    _    _    _    4    5    6    0    _
-  @lsr      #    @    !    _    _    _    _    1    2    3    @rsr      _
-  _         _    _    _         _              _    _              _    _    _
-)
-
-(deflayer left-shift-raise
-  _         _    _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    \(   *    &    _    _    _    7    8    9    _    _    _
-  _         \)   ^    %    $    _    _    _    4    5    6    0    _
-  _         #    @    !    _    _    _    _    1    2    3    XX        _
-  _         _    _    _         _              _    _              _    _    _
-)
-
-(deflayer right-shift-raise
-  _         _    _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    \(   *    &    _    _    _    7    8    9    _    _    _
-  _         \)   ^    %    $    _    _    _    4    5    6    0    _
-  XX        #    @    !    _    _    _    _    1    2    3    _         _
+  _         #    @    !    _    _    _    _    1    2    3    _         _
   _         _    _    _         _              _    _              _    _    _
 )
 
@@ -78,22 +59,14 @@
   _         _    _    _    _    _    _    _    _    _    _    _    _    _
   _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
   _         -    \_   [    ]    _    -    -    left down up   rght _
-  @lsl      `    {    }    _    _    -    -    \    ;    :    @rsl      _
+  _         `    {    }    _    _    -    -    \    ;    :    _         _
   _         _    _    _         _              _    _              _    _    _
 )
 
-(deflayer left-shift-lower
+(deflayer join
   _         _    _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
-  _         -    \_   [    ]    _    -    -    S-left S-down  S-up S-rght _
-  _         `    {    }    _    _    -    -    \    ;    :    XX        _
-  _         _    _    _         _              _    _              _    _    _
-)
-
-(deflayer right-shift-lower
-  _         _    _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
-  _         -    \_   [    ]    _    -    -    RS-left RS-down RS-up RS-rght _
-  XX        `    {    }    _    _    -    -    \    ;    :    _         _
+  _         _    ssrq slck pause _   _    f12  f7   f8   f9   _    _    _
+  _         nlck ins  home pgup _    _    f11  f4   f5   f6   f10  _
+  _         del  end  pgdn _    _    _    _    f1   f2   f3   _         _
   _         _    _    _         _              _    _              _    _    _
 )

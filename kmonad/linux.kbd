@@ -3,57 +3,77 @@
   input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
   output (uinput-sink "kmonad output")
 
-  ;; For Windows
-  ;; input  (low-level-hook)
-  ;; output (send-event-sink)
-
-  ;; For MacOS
-  ;; input  (iokit-name "my-keyboard-product-string")
-  ;; output (kext)
-
   fallthrough false
-  allow-cmd false
+  allow-cmd   false
 )
 
 (defalias
+  lsh  (tap-hold-next 250 z (layer-toggle left-shift))
+  rsh  (tap-hold-next 250 / (layer-toggle right-shift))
   rai  (layer-toggle raise)
-  low  (tap-hold-next 200 esc (layer-toggle lower))
-  lsh  (tap-hold 150 z lsft)
-  rsh  (tap-hold 150 / rsft)
+  low  (tap-hold-next 250 esc (layer-toggle lower))
+  joi  (layer-toggle join)
 )
 
 (defsrc
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt ins  del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
-  lctl lmet lalt                spc            ralt rctl left down rght
+  esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  ssrq ins  del
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps      a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft      up
+  lctl      lmet lalt           spc            ralt rctl           left down rght
 )
 
 (deflayer colemak
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt ins  del
-  esc  1    2    3    4    5    _    _    6    7    8    9    0    caps
-  tab  q    w    f    p    b    _    j    l    u    y    '    bspc _
-  @rai a    r    s    t    g    _    m    n    e    i    o    ret
-  @lsh x    c    d    v    _    _    k    h    ,    .    @rsh up
-  _    lalt lctl                spc            @low rmet left down rght
+  esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  ssrq ins  del
+  esc       1    2    3    4    5    _    _    6    7    8    9    0    caps
+  tab       q    w    f    p    b    _    j    l    u    y    '    bspc bspc
+  @rai      a    r    s    t    g    _    m    n    e    i    o    ret
+  @lsh      x    c    d    v    _    _    k    h    ,    .    @rsh      up
+  _         lalt lctl           spc            @low rmet           left down rght
+)
+
+(deflayer left-shift
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  S-esc     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-caps
+  S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc    S-bspc
+  @rai      A    R    S    T    G    _    M    N    E    I    O    S-ret
+  -         X    C    D    V    _    _    K    H    <    >    ?         S-up
+  _         S-lalt    S-lctl    S-spc          @low S-rmet       S-left S-down S-rght
+)
+
+(deflayer right-shift
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  RS-esc    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-caps
+  RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc   RS-bspc
+  @rai      A    R    S    T    G    _    M    N    E    I    O    RS-ret
+  Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
+  _         RS-lalt   RS-lctl   RS-spc         @low RS-rmet     RS-left RS-down RS-rght
 )
 
 (deflayer raise
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    \(   *    &    _    _    _    7    8    9    _    _    _
-  _    \)   ^    %    $    _    _    _    4    5    6    0    _
-  _    #    @    !    _    _    _    _    1    2    3    _    _
-  _    _    _                   _              _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    \(   *    &    _    _    _    7    8    9    _    _    _
+  _         \)   ^    %    $    _    _    _    4    5    6    0    _
+  _         #    @    !    _    _    _    _    1    2    3    _         _
+  _         _         _         _              @joi _              _    _    _
 )
 
 (deflayer lower
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    ~    \(   \)   _    -    -    |    =    +    _    _    _
-  _    -    \_   [    ]    _    -    -    lft  down up   rght _
-  _    `    {    }    _    _    -    -    \    ;    :    _    _
-  _    _    _                   _              _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    ~    \(   \)   _    -    -    |    =    +    _    _    _
+  @joi      -    \_   [    ]    _    -    -    left down up   rght _
+  _         `    {    }    _    _    -    -    \    ;    :    _         _
+  _         _         _         _              _    _              _    _    _
+)
+
+(deflayer join
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    ssrq slck pause _   _    f12  f7   f8   f9   _    _    _
+  _         nlck ins  home pgup _    _    f11  f4   f5   f6   f10  _
+  _         del  end  pgdn _    _    _    _    f1   f2   f3   _         _
+  _         _         _         _              _    _              _    _    _
 )
