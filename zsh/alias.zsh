@@ -28,7 +28,7 @@ alias kctx='kubectx'
 alias kns='kubens'
 
 # neovim
-alias e='nvim'
+alias v='nvim'
 
 # wifi
 alias wifi='nmcli device wifi'
