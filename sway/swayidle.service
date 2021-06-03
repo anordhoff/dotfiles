@@ -6,8 +6,8 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/swayidle -w \
-        timeout 1800 'swaylock -f -i /home/anordhoff/Pictures/space-shuttle.jpg' \
-        timeout 2400 'swaymsg "output * dpms off"' \
+        timeout 2400 'swaylock -f -i /home/anordhoff/Pictures/space-shuttle.jpg' \
+        timeout 3000 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
         before-sleep 'swaylock -f -i /home/anordhoff/Pictures/space-shuttle.jpg'
 
