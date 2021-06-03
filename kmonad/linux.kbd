@@ -8,10 +8,10 @@
 )
 
 (defalias
-  lsh  (tap-hold-next 250 z (layer-toggle left-shift))
-  rsh  (tap-hold-next 250 / (layer-toggle right-shift))
-  rai  (layer-toggle raise)
-  low  (tap-hold-next 250 esc (layer-toggle lower))
+  lsh  (tap-hold-next 200 z (layer-toggle left-shift))
+  rsh  (tap-hold-next 200 / (layer-toggle right-shift))
+  low  (tap-hold-next 200 esc (layer-toggle lower))
+  rai  (tap-hold-next 200 esc (layer-toggle raise))
   joi  (layer-toggle join)
 )
 
@@ -26,47 +26,47 @@
 (deflayer colemak
   esc       1    2    3    4    5    XX   XX   6    7    8    9    0    caps
   tab       q    w    f    p    b    XX   j    l    u    y    '    bspc bspc
-  @rai      a    r    s    t    g    XX   m    n    e    i    o    ret
+  lmet      a    r    s    t    g    XX   m    n    e    i    o    ret
   @lsh      x    c    d    v    XX   XX   k    h    ,    .    @rsh      up
-  XX        lalt lctl           spc            @low rmet           left down rght
+  XX        lalt lctl           spc            @low @rai           left down rght
 )
 
 (deflayer left-shift
   S-esc     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-caps
   S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc    S-bspc
-  @rai      A    R    S    T    G    _    M    N    E    I    O    S-ret
+  S-lmet    A    R    S    T    G    _    M    N    E    I    O    S-ret
   -         X    C    D    V    _    _    K    H    <    >    ?         S-up
-  _         S-lalt    S-lctl    S-spc          @low S-rmet       S-left S-down S-rght
+  _         S-lalt    S-lctl    S-spc          @low @rai         S-left S-down S-rght
 )
 
 (deflayer right-shift
   RS-esc    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-caps
   RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc   RS-bspc
-  @rai      A    R    S    T    G    _    M    N    E    I    O    RS-ret
+  RS-lmet   A    R    S    T    G    _    M    N    E    I    O    RS-ret
   Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
-  _         RS-lalt   RS-lctl   RS-spc         @low RS-rmet     RS-left RS-down RS-rght
-)
-
-(deflayer raise
-  _         XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   -
-  _         XX   \(   *    &    XX   _    XX   7    8    9    XX   _    _
-  _         \)   ^    %    $    XX   _    XX   4    5    6    0    _
-  _         #    @    !    XX   _    _    XX   1    2    3    _         _
-  _         _         _         _              @joi _              _    _    _
+  _         RS-lalt   RS-lctl   RS-spc         @low @rai        RS-left RS-down RS-rght
 )
 
 (deflayer lower
-  _         XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   _
-  _         XX   ~    \(   \)   XX   -    XX   |    =    +    XX   _    _
-  @joi      -    \_   [    ]    XX   -    XX   left down up   rght _
-  _         `    {    }    XX   _    -    XX   \    ;    :    _         _
-  _         _         _         _              _    _              _    _    _
+  f12       f1   f2   f3   f4   f5   _    _    f6   f7   f8   f9   f10  f11
+  _         XX   9    8    7    XX   -    XX   [    ]    =    XX   _    _
+  _         0    6    5    4    XX   -    XX   -    \_   ;    :    _
+  _         3    2    1    XX   _    -    XX   {    }    +    _         _
+  _         _         _         _              _    @joi           _    _    _
+)
+
+(deflayer raise
+  XX        XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   XX
+  _         XX   \(   *    &    XX   _    XX   XX   \    |    XX   _    _
+  _         \)   ^    %    $    XX   _    XX   left down up   rght _
+  _         #    @    !    XX   _    _    XX   @joi `    ~    _         _
+  _         _         _         _              @joi _              _    _    _
 )
 
 (deflayer join
-  _         XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   _
-  _         XX   ssrq slck pause XX  _    f12  f7   f8   f9   XX   _    _
-  _         nlck ins  home pgup XX   _    f11  f4   f5   f6   f10  _
-  _         del  end  pgdn XX   _    _    XX   f1   f2   f3   _         _
+  XX        XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   XX
+  _         XX   ssrq slck pause XX  _    XX   XX   XX   XX   XX   _    _
+  _         nlck ins  home pgup XX   _    XX   XX   XX   XX   XX   _
+  _         del  end  pgdn XX   _    _    XX   _    XX   XX   _         _
   _         _         _         _              _    _              _    _    _
 )

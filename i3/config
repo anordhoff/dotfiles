@@ -2,8 +2,6 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
@@ -21,9 +19,10 @@ for_window [class=".*"] border pixel 1
 mouse_warping output
 
 # keyboard settings
-# exec --no-startup-id setxkbmap -layout custom -option 'ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl'
 exec --no-startup-id xset r rate 200 35
-exec --no-startup-id xset r 66
+
+# suspend when idle
+exec --no-startup-id ~/dotfiles/i3/locker.sh &
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -45,68 +44,67 @@ bindsym Print exec maim | xclip -selection clipboard -t image/png
 # print screen (selection)
 bindsym Ctrl+Print exec maim -s | xclip -selection clipboard -t image/png
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+#################### Key bindings ####################
+# modifier
+set $mod Mod4
 
-# start a terminal
-bindsym $mod+Ctrl+Return exec kitty
+# movement keys
+set $left  n
+set $down  e
+set $up    i
+set $right o
+set $prev  h
+set $next  comma
+
+# start terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
-bindsym $mod+Ctrl+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec dmenu_run
 
-# movement keys
-set $left n
-set $down e
-set $up i
-set $right o
-
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
 bindsym $mod+$right focus right
 
 # move focused window
-bindsym $mod+Ctrl+$left move left
-bindsym $mod+Ctrl+$down move down
-bindsym $mod+Ctrl+$up move up
+bindsym $mod+Ctrl+$left  move left
+bindsym $mod+Ctrl+$down  move down
+bindsym $mod+Ctrl+$up    move up
 bindsym $mod+Ctrl+$right move right
 
 # split in horizontal orientation
-bindsym $mod+Ctrl+h split h
+bindsym $mod+Ctrl+s splith
 
 # split in vertical orientation
-bindsym $mod+Ctrl+v split v
+bindsym $mod+Ctrl+v splitv
 
 # enter fullscreen mode for the focused container
-bindsym $mod+Ctrl+f fullscreen toggle
+bindsym $mod+Ctrl+f fullscreen
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+Ctrl+s layout stacking
+# change container layout
 bindsym $mod+Ctrl+w layout tabbed
-bindsym $mod+Ctrl+t layout toggle split # previously $mod+e
+bindsym $mod+Ctrl+t layout toggle split
 
-# focus the parent container
-bindsym $mod+Ctrl+a focus parent
+# define names for the default workspaces
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "0"
 
-# focus the child container
-bindsym $mod+Ctrl+c focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+# define names for adjacent workspaces
+set $wsleft  "$(( $( i3-msg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1 ))";
+set $wsright "$(( $( i3-msg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1 ))";
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -121,8 +119,8 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # switch between adjacent workspaces
-bindsym $mod+a workspace next
-bindsym $mod+t workspace prev
+bindsym $mod+$prev workspace prev
+bindsym $mod+$next workspace next
 
 # move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace number $ws1
@@ -136,20 +134,27 @@ bindsym $mod+Ctrl+8 move container to workspace number $ws8
 bindsym $mod+Ctrl+9 move container to workspace number $ws9
 bindsym $mod+Ctrl+0 move container to workspace number $ws10
 
+# move focused container to adjacent workspace
+bindsym $mod+Ctrl+$prev exec i3-msg move container to workspace $wsleft
+bindsym $mod+Ctrl+$next exec i3-msg move container to workspace $wsright
+
 # lock computer
-bindsym $mod+Ctrl+l exec i3lock -c 000000
+bindsym $mod+l exec i3lock -c 000000
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Ctrl+c reload
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'" # previously $mod+Shift+e
+bindsym $mod+Ctrl+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-bindsym $mod+Mod1+$left resize shrink width 10 px or 10 ppt
-bindsym $mod+Mod1+$down resize grow height 10 px or 10 ppt
-bindsym $mod+Mod1+$up resize shrink height 10 px or 10 ppt
-bindsym $mod+Mod1+$right resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1+$left  resize shrink width  10 px or 10 ppt
+bindsym $mod+Mod1+$down  resize grow   height 10 px or 10 ppt
+bindsym $mod+Mod1+$up    resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+$right resize grow   width  10 px or 10 ppt
+
+bar {
+	status_command i3status
+	position top
+	font pango:monospace 9
+}

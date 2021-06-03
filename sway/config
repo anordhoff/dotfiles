@@ -9,7 +9,7 @@ set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --
 set $wallpaper $HOME/Pictures/space-shuttle.jpg
 
 # font
-font San Francisco Display Medium 9
+font San Francisco Display Medium 10
 
 # disable focus wrapping
 focus_wrapping no
@@ -38,22 +38,21 @@ bindswitch --reload lid:on output eDP-1 disable
 bindswitch --reload lid:off output eDP-1 enable
 
 #################### Input configuration ####################
-input 1:1:AT_Translated_Set_2_keyboard {
-    # TODO: stop abusing hjkl
-    # repeat_delay 200
-    # repeat_rate 35
-    repeat_delay 10000
-    repeat_rate 1
-    xkb_layout custom
-    xkb_options ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl
+# input 1:1:AT_Translated_Set_2_keyboard {
+#     repeat_delay 200
+#     repeat_rate 35
+#     xkb_layout custom
+#     xkb_options ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl
+# }
+
+input 4661:22137:kmonad_output {
+    repeat_delay 200
+    repeat_rate 35
 }
 
 input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
-    # TODO: stop abusing hjkl
-    # repeat_delay 200
-    # repeat_rate 35
-    repeat_delay 10000
-    repeat_rate 1
+    repeat_delay 200
+    repeat_rate 35
 }
 
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
@@ -66,9 +65,6 @@ input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
 input 1133:49970:Logitech_Gaming_Mouse_G502 {
     accel_profile flat
 }
-
-# backspace repeat (non-wayland windows)
-exec xset r 66
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -85,7 +81,7 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # capture the focused monitor to clipboard
-bindsym Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+bindsym Print exec grim -o $(swaymsg -t get_outputs | jq -r ".[] | select(.focused) | .name") - | wl-copy
 
 # capture the specified area to clipboard
 bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy
@@ -94,20 +90,19 @@ bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy
 # modifier
 set $mod Mod4
 
-# home row direction keys
+# movement keys
 set $left  n
 set $down  e
 set $up    i
 set $right o
-
-# drag/resize floating windows using the mouse
-floating_modifier $mod normal
+set $prev  h
+set $next  comma
 
 # start terminal
-bindsym $mod+Ctrl+Return exec $term
+bindsym $mod+Return exec $term
 
 # kill focused window
-bindsym $mod+Ctrl+q kill
+bindsym $mod+q kill
 
 # start launcher
 bindsym $mod+Space exec $menu
@@ -125,7 +120,7 @@ bindsym $mod+Ctrl+$up    move up
 bindsym $mod+Ctrl+$right move right
 
 # split in horizontal orientation
-bindsym $mod+Ctrl+h splith
+bindsym $mod+Ctrl+s splith
 
 # split in vertical orientation
 bindsym $mod+Ctrl+v splitv
@@ -134,27 +129,24 @@ bindsym $mod+Ctrl+v splitv
 bindsym $mod+Ctrl+f fullscreen
 
 # change container layout
-bindsym $mod+Ctrl+s layout stacking
 bindsym $mod+Ctrl+w layout tabbed
-bindsym $mod+Ctrl+t layout toggle split # previously $mod+e
-
-# focus the parent container
-bindsym $mod+Ctrl+a focus parent
-
-# focus the child container
-bindsym $mod+Ctrl+c focus child
+bindsym $mod+Ctrl+t layout toggle split
 
 # define names for the default workspaces
-set $ws1  '1'
-set $ws2  '2'
-set $ws3  '3'
-set $ws4  '4'
-set $ws5  '5'
-set $ws6  '6'
-set $ws7  '7'
-set $ws8  '8'
-set $ws9  '9'
-set $ws10 '10'
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+
+# define names for adjacent workspaces
+set $wsleft  "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1 ))";
+set $wsright "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1 ))";
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -169,8 +161,8 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # switch between adjacent workspaces
-bindsym $mod+a workspace next
-bindsym $mod+t workspace prev
+bindsym $mod+$prev workspace prev
+bindsym $mod+$next workspace next
 
 # move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -184,29 +176,32 @@ bindsym $mod+Ctrl+8 move container to workspace $ws8
 bindsym $mod+Ctrl+9 move container to workspace $ws9
 bindsym $mod+Ctrl+0 move container to workspace $ws10
 
+# move focuse container to adjacent workspace
+bindsym $mod+Ctrl+$prev exec swaymsg move container to workspace $wsleft
+bindsym $mod+Ctrl+$next exec swaymsg move container to workspace $wsright
+
 # lock computer
-bindsym $mod+Ctrl+l exec 'swaylock -f -i $wallpaper'
+bindsym $mod+l exec "swaylock -f -i $wallpaper"
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Ctrl+c reload
 
 # exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit' # previously $mod+Shift+e
+bindsym $mod+Ctrl+x exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
 
 # resize window
-bindsym $mod+Alt+$left resize shrink width 100px
-bindsym $mod+Alt+$down resize grow height 100px
-bindsym $mod+Alt+$up resize shrink height 100px
-bindsym $mod+Alt+$right resize grow width 100px
+bindsym $mod+Alt+$left  resize shrink width  100px
+bindsym $mod+Alt+$down  resize grow   height 100px
+bindsym $mod+Alt+$up    resize shrink height 100px
+bindsym $mod+Alt+$right resize grow   width  100px
 
 #################### Style ####################
 # class                 border  backgr. text    indica. ch_bor.
-client.focused          #000000 #303030 #cfd6e6 #808080 #606060
-client.focused_inactive #000000 #303030 #cfd6e6 #404040 #303030
-client.unfocused        #000000 #303030 #cfd6e6 #404040 #303030
-client.urgent           #000000 #303030 #cfd6e6 #bf5858 #bf5858
+client.focused          #505050 #505050 #cfd6e6 #808080 #606060
+client.focused_inactive #303030 #303030 #cfd6e6 #404040 #303030
+client.unfocused        #303030 #303030 #cfd6e6 #404040 #303030
+client.urgent           #bf5858 #303030 #cfd6e6 #bf5858 #bf5858
 
 #################### Source ####################
-
 include /etc/sway/config.d/*
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
