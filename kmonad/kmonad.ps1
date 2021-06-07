@@ -1,1 +1,1 @@
-kmonad C:\Users\Aaron\dotfiles\kmonad\windows.ps1
+kmonad C:\Users\Aaron\dotfiles\kmonad\windows.kbd
