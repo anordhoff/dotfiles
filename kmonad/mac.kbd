@@ -8,11 +8,14 @@
 )
 
 (defalias
-  lsh  (tap-hold-next 200 z (layer-toggle left-shift))
-  rsh  (tap-hold-next 200 / (layer-toggle right-shift))
-  low  (tap-hold-next 200 esc (layer-toggle lower))
-  rai  (tap-hold-next 200 esc (layer-toggle raise))
-  joi  (layer-toggle join)
+  lsh    (tap-hold-next 200 z (layer-toggle left-shift))
+  rsh    (tap-hold-next 200 / (layer-toggle right-shift))
+  lmt    (tap-hold-next 200 esc lmet)
+  S-lmt  (tap-hold-next 200 S-esc S-lmet)
+  RS-lmt (tap-hold-next 200 RS-esc RS-lmet)
+  low    (layer-toggle lower)
+  rai    (layer-toggle raise)
+  joi    (layer-toggle join)
 )
 
 (defsrc
@@ -24,25 +27,25 @@
 )
 
 (deflayer colemak
-  esc       1    2    3    4    5    XX   XX   6    7    8    9    0    bspc
+  grv       1    2    3    4    5    XX   XX   6    7    8    9    0    bspc
   tab       q    w    f    p    b    XX   j    l    u    y    '    bspc bspc
-  lmet      a    r    s    t    g    XX   m    n    e    i    o    ret
+  @lmt      a    r    s    t    g    XX   m    n    e    i    o    ret
   @lsh      x    c    d    v    XX   XX   k    h    ,    .    @rsh      up
   fn        _    lalt lctl      spc            @low @rai           left down rght
 )
 
 (deflayer left-shift
-  S-esc     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-bspc
+  S-grv     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-bspc
   S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc    S-bspc
-  S-lmet    A    R    S    T    G    _    M    N    E    I    O    S-ret
+  @S-lmt    A    R    S    T    G    _    M    N    E    I    O    S-ret
   -         X    C    D    V    _    _    K    H    <    >    ?         S-up
   S-fn   _  S-lalt    S-lctl    S-spc          @low @rai         S-left S-down S-rght
 )
 
 (deflayer right-shift
-  RS-esc    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-bspc
+  RS-grv    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-bspc
   RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc   RS-bspc
-  RS-lmet   A    R    S    T    G    _    M    N    E    I    O    RS-ret
+  @RS-lmt   A    R    S    T    G    _    M    N    E    I    O    RS-ret
   Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
   RS-fn  _  RS-lalt   RS-lctl   RS-spc         @low @rai        RS-left RS-down RS-rght
 )
@@ -65,7 +68,7 @@
 
 (deflayer join
   XX        XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   XX
-  _         XX   ssrq slck pause XX  _    XX   XX   XX   XX   XX   _    _
+  _         XX   f13  f14  f15  XX   _    XX   XX   XX   XX   XX   _    _
   _         nlck ins  home pgup XX   _    XX   XX   XX   XX   XX   _
   _         del  end  pgdn XX   _    _    XX   _    XX   XX   _         _
   _         _    _    _         _              _    _              _    _    _
