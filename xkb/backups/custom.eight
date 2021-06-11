@@ -1,0 +1,61 @@
+xkb_symbols "custom" {
+
+    include "us"
+    name[Group1] = "English (Colemak, custom)";
+    key.type[Group1] = "EIGHT_LEVEL";
+
+    include "level3(caps_switch)"
+    include "level5(ralt_switch)"
+
+    key <TLDE> { [       Escape,       Escape,       Escape,       Escape,       Escape,       Escape,       Escape,       Escape ] };
+    key <AE01> { [            1,       exclam,         null,         null,         null,         null,         null,         null ] };
+    key <AE02> { [            2,           at,         null,         null,         null,         null,         null,         null ] };
+    key <AE03> { [            3,   numbersign,         null,         null,         null,         null,         null,         null ] };
+    key <AE04> { [            4,       dollar,         null,         null,         null,         null,         null,         null ] };
+    key <AE05> { [            5,      percent,         null,         null,         null,         null,         null,         null ] };
+    key <AE06> { [         null,         null,         null,         null,         null,         null,         null,         null ] };
+    key <AE07> { [         null,         null,         null,         null,         null,         null,         null,         null ] };
+    key <AE08> { [            6,  asciicircum,         null,         null,         null,         null,         null,         null ] };
+    key <AE09> { [            7,    ampersand,         null,         null,         null,         null,         null,         null ] };
+    key <AE10> { [            8,     asterisk,         null,         null,         null,         null,         null,         null ] };
+    key <AE11> { [            9,    parenleft,         null,         null,         null,         null,         null,         null ] };
+    key <AE12> { [            0,   parenright,         null,         null,         null,         null,         null,         null ] };
+    key <BKSP> { [    Caps_Lock,    Caps_Lock,    Caps_Lock,    Caps_Lock,    Caps_Lock,    Caps_Lock,    Caps_Lock,    Caps_Lock ] };
+
+    key <AD01> { [            q,            Q,         null,         null,         null,         null,         null,         null ] };
+    key <AD02> { [            w,            W,    parenleft,    parenleft,          bar,          bar,         null,         null ] };
+    key <AD03> { [            f,            F,     asterisk,     asterisk,    parenleft,    parenleft,         null,         null ] };
+    key <AD04> { [            p,            P,    ampersand,    ampersand,   parenright,   parenright,         null,         null ] };
+    key <AD05> { [            b,            B,         null,         null,         null,         null,         null,         null ] };
+    key <AD06> { [         null,         null,         null,         null,         null,         null,         null,         null ] };
+    key <AD07> { [            j,            J,         null,         null,         null,         null,         null,         null ] };
+    key <AD08> { [            l,            L,            7,            7,   asciitilde,   asciitilde,         null,         null ] };
+    key <AD09> { [            u,            U,            8,            8,        equal,        equal,         null,         null ] };
+    key <AD10> { [            y,            Y,            9,            9,         plus,         plus,         null,         null ] };
+    key <AD11> { [   apostrophe,     quotedbl,         null,         null,         null,         null,         null,         null ] };
+    key <AD12> { [    BackSpace,    BackSpace,         null,         null,    BackSpace,    BackSpace,         null,         null ] };
+    key <BKSL> { [         null,         null,         null,         null,         null,         null,         null,         null ] };
+
+    key <AC01> { [            a,            A,   parenright,   parenright,        minus,        minus,         null,         null ] };
+    key <AC02> { [            r,            R,  asciicircum,  asciicircum,   underscore,   underscore,         null,         null ] };
+    key <AC03> { [            s,            S,      percent,      percent,  bracketleft,  bracketleft,         null,         null ] };
+    key <AC04> { [            t,            T,       dollar,       dollar, bracketright, bracketright,         null,         null ] };
+    key <AC05> { [            g,            G,         null,         null,         null,         null,         null,         null ] };
+    key <AC06> { [         null,         null,         null,         null,         null,         null,         null,         null ] };
+    key <AC07> { [            m,            M,         null,         null,         null,         null,         null,         null ] };
+    key <AC08> { [            n,            N,            4,            4,         Left,         Left,         null,         null ] };
+    key <AC09> { [            e,            E,            5,            5,         Down,         Down,         null,         null ] };
+    key <AC10> { [            i,            I,            6,            6,           Up,           Up,         null,         null ] };
+    key <AC11> { [            o,            O,            0,            0,        Right,        Right,         null,         null ] };
+
+    key <AB01> { [            x,            X,   numbersign,   numbersign,    backslash,    backslash,         null,         null ] };
+    key <AB02> { [            c,            C,           at,           at,    braceleft,    braceleft,         null,         null ] };
+    key <AB03> { [            d,            D,       exclam,       exclam,   braceright,   braceright,         null,         null ] };
+    key <AB04> { [            v,            V,         null,         null,         null,         null,         null,         null ] };
+    key <AB05> { [            z,            Z,         null,         null,         null,         null,         null,         null ] };
+    key <AB06> { [        slash,     question,         null,         null,         null,         null,         null,         null ] };
+    key <AB07> { [            k,            K,         null,         null,         null,         null,         null,         null ] };
+    key <AB08> { [            h,            H,            1,            1,        grave,        grave,         null,         null ] };
+    key <AB09> { [        comma,         less,            2,            2,    semicolon,    semicolon,         null,         null ] };
+    key <AB10> { [       period,      greater,            3,            3,        colon,        colon,         null,         null ] };
+};

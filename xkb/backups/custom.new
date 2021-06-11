@@ -1,0 +1,63 @@
+xkb_symbols "custom" {
+
+    include "us"
+    name[Group1] = "English (Colemak, custom)";
+
+    key <TLDE> { [         null,         null,          null,          null ] };
+    key <AE01> { [         null,         null,          null,          null ] };
+    key <AE02> { [         null,         null,          null,          null ] };
+    key <AE03> { [         null,         null,          null,          null ] };
+    key <AE04> { [         null,         null,          null,          null ] };
+    key <AE05> { [         null,         null,          null,          null ] };
+    key <AE06> { [         null,         null,          null,          null ] };
+    key <AE07> { [         null,         null,          null,          null ] };
+    key <AE08> { [         null,         null,          null,          null ] };
+    key <AE09> { [         null,         null,          null,          null ] };
+    key <AE10> { [         null,         null,          null,          null ] };
+    key <AE11> { [         null,         null,          null,          null ] };
+    key <AE12> { [         null,         null,          null,          null ] };
+
+    key <AD01> { [            q,            Q,             1,        exclam ] };
+    key <AD02> { [            w,            W,             2,            at ] };
+    key <AD03> { [            f,            F,             3,    numbersign ] };
+    key <AD04> { [            p,            P,             4,        dollar ] };
+    key <AD05> { [            b,            B,             5,       percent ] };
+    key <AD06> { [         null,         null,          null,          null ] };
+    key <AD07> { [            j,            J,             6,   asciicircum ] };
+    key <AD08> { [            l,            L,             7,     ampersand ] };
+    key <AD09> { [            u,            U,             8,      asterisk ] };
+    key <AD10> { [            y,            Y,             9,     parenleft ] };
+    key <AD11> { [    semicolon,        colon,             0,    parenright ] };
+    key <AD12> { [   apostrophe,     quotedbl,          null,          null ] };
+    key <BKSL> { [         null,         null,          null,          null ] };
+
+    key <AC01> { [            a,            A,     parenleft,          Home ] };
+    key <AC02> { [            r,            R,    parenright,          Next ] };
+    key <AC03> { [            s,            S,   bracketleft,         Prior ] };
+    key <AC04> { [            t,            T,  bracketright,           End ] };
+    key <AC05> { [            g,            G,          null,          null ] };
+    key <AC06> { [         null,         null,          null,          null ] };
+    key <AC07> { [            m,            M,          null,          null ] };
+    key <AC08> {
+      symbols =   [ n, N, underscore, Left ],
+      actions =   [ NoAction(), NoAction(), NoAction(), Redirect(keycode=<LEFT>, clearmods=Shift) ] };
+    key <AC09> { [            e,            E,         equal,          Down ] };
+    key <AC10> { [            i,            I,          plus,            Up ] };
+    key <AC11> { [            o,            O,         minus,         Right ] };
+
+    key <AB01> { [            x,            X,           bar,          null ] };
+    key <AB02> { [            c,            C,     braceleft,        Insert ] };
+    key <AB03> { [            d,            D,    braceright,        Delete ] };
+    key <AB04> { [            v,            V,          null,          null ] };
+    key <AB05> { [            z,            Z,          null,          null ] };
+    key <AB06> { [        slash,     question,          null,          null ] };
+    key <AB07> { [            k,            K,          null,          null ] };
+    key <AB08> { [            h,            H,         grave,         Print ] };
+    key <AB09> { [        comma,         less,    asciitilde,   Scroll_Lock ] };
+    key <AB10> { [       period,      greater,     backslash,         Pause ] };
+
+    key <CAPS> { [    BackSpace,    BackSpace,     BackSpace,     BackSpace ] };
+    key <BKSP> { [    Caps_Lock,    Caps_Lock,     Caps_Lock,     Caps_Lock ] };
+
+    include "level3(ralt_switch)"
+};
