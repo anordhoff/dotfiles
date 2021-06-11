@@ -115,14 +115,14 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-# vi key bindings
-bindkey -v
-KEYTIMEOUT=1
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 [ -f /usr/share/fzf/shell/completion.zsh ] && source /usr/share/fzf/shell/completion.zsh
+
+# vi key bindings
+bindkey -v
+KEYTIMEOUT=1
 
 # change cursor shape depending on mode
 # https://unix.stackexchange.com/questions/433273/changing-cursor-style-
@@ -145,4 +145,4 @@ zle-line-init() {
 }
 
 # source work specific config
-[ -f ~/.work/zsh/.zshrc ] && source ~/.work/zsh/.zshrc
+[ -f ~/work/zsh/.zshrc ] && source ~/work/zsh/.zshrc
