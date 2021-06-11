@@ -269,7 +269,7 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>,
   \   fzf#vim#with_preview(), <bang>0)
 
-" enable preview window with ripgrep
+" enable preview window with ripgrep (and exclude .git/vendor/node_module directories)
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case --hidden --no-ignore -g "!.git/*" -g "!vendor/*" -g "!node_modules/*" -- '.shellescape(<q-args>), 1,
