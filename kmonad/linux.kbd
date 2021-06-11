@@ -27,7 +27,7 @@
 )
 
 (deflayer colemak
-  esc       1    2    3    4    5    XX   XX   6    7    8    9    0    bspc
+  grv       1    2    3    4    5    XX   XX   6    7    8    9    0    bspc
   tab       q    w    f    p    b    XX   j    l    u    y    '    bspc bspc
   @lmt      a    r    s    t    g    XX   m    n    e    i    o    ret
   @lsh      x    c    d    v    XX   XX   k    h    ,    .    @rsh      up
@@ -35,7 +35,7 @@
 )
 
 (deflayer left-shift
-  S-esc     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-bspc
+  S-grv     !    @    #    $    %    _    _    ^    &    *    \(   \)   S-bspc
   S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc    S-bspc
   @S-lmt    A    R    S    T    G    _    M    N    E    I    O    S-ret
   -         X    C    D    V    _    _    K    H    <    >    ?         S-up
@@ -43,7 +43,7 @@
 )
 
 (deflayer right-shift
-  RS-esc    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-bspc
+  RS-grv    !    @    #    $    %    _    _    ^    &    *    \(   \)   RS-bspc
   RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc   RS-bspc
   @RS-lmt   A    R    S    T    G    _    M    N    E    I    O    RS-ret
   Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
