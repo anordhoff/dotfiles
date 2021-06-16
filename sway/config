@@ -95,8 +95,8 @@ set $left  n
 set $down  e
 set $up    i
 set $right o
-set $prev  h
-set $next  comma
+set $prev  u
+set $next  y
 
 # start terminal
 bindsym $mod+Return exec $term

@@ -101,8 +101,8 @@ alt + cmd - i : yabai -m window --resize top:0:100; yabai -m window --resize bot
 alt + cmd - o : yabai -m window --resize left:-100:0; yabai -m window --resize right:100:0 # grow width
 
 # move window to adjacent space
-ctrl + cmd - h    : yabai -m window --space prev
-ctrl + cmd - 0x2B : yabai -m window --space next
+ctrl + cmd - u : yabai -m window --space prev
+ctrl + cmd - y : yabai -m window --space next
 
 # move window to specific space
 ctrl + cmd - 1 : yabai -m window --space 1
