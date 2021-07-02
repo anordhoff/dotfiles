@@ -114,10 +114,6 @@ nnoremap <C-w>m :vnew<CR>
 " clear search highlighting
 nnoremap <leader>/ :noh<CR>
 
-" close quickfix/location list
-nnoremap <leader>cq :cclose<CR>
-nnoremap <leader>cl :lclose<CR>
-
 " delete trailing whitespace
 nnoremap <leader>W :%s/\s\+$//e<CR>
 
@@ -138,7 +134,7 @@ hi NonText guifg=#4d4d4d
 match NonText /\t/
 
 " highlighting
-hi Search guibg=bg guifg=#ab6a7a
+hi Search guibg=bg guifg=#8b6a9e
 hi Todo guibg=bg guifg=#557b9e
 
 " error/warning messages
@@ -208,58 +204,29 @@ let g:gitgutter_sign_priority = 1
 " ==================== nvim-lspconfig ==================== "
 lua << EOF
 local nvim_lsp = require('lspconfig')
-local servers = { "cssls", "gopls", "html", "jsonls", "pyls", "terraformls", "tsserver", "yamlls" }
 
-nvim_lsp.cssls.setup{}
-nvim_lsp.gopls.setup{}
-nvim_lsp.html.setup{}
-nvim_lsp.jsonls.setup{}
-nvim_lsp.pyls.setup{}
-nvim_lsp.terraformls.setup{}
-nvim_lsp.tsserver.setup{}
-nvim_lsp.yamlls.setup{
-  settings = {
-    yaml = {
-      customTags = {
-        '!Equals sequence',
-        '!FindInMap sequence',
-        '!GetAtt',
-        '!GetAZs',
-        '!ImportValue',
-        '!Join sequence',
-        '!Ref',
-        '!Select sequence',
-        '!Split sequence',
-        '!Sub',
-        '!If',
-        '!Not'
-      }
-    }
-  }
-}
+-- TODO: enable borders on completion/omnifunc
 
--- Disable virtuall text on buffer diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+-- Disable virtual text on buffer diagnostics
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false
   }
 )
 
 -- Add border to hover windows
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover, {
-    border = "rounded"
+    border = 'rounded'
   }
 )
 
 -- Add border to signature help windows
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help, {
-    border = "rounded"
+    border = 'rounded'
   }
 )
-
--- TODO: enable borders on completion/omnifunc
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -294,6 +261,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
+local servers = { 'cssls', 'gopls', 'html', 'jsonls', 'pyls', 'terraformls', 'tsserver' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -302,6 +270,73 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+nvim_lsp['yamlls'].setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    yaml = {
+      schemas = {
+        ['https://raw.githubusercontent.com/aws-cloudformation/aws-cfn-lint-visual-studio-code/master/schema/all-spec.json'] = 'cloudformation/*'
+      },
+      format = {
+        enable = true
+      },
+      customTags = {
+        '!And scalar',
+        '!And mapping',
+        '!And sequence',
+        '!If scalar',
+        '!If mapping',
+        '!If sequence',
+        '!Not scalar',
+        '!Not mapping',
+        '!Not sequence',
+        '!Equals scalar',
+        '!Equals mapping',
+        '!Equals sequence',
+        '!Or scalar',
+        '!Or mapping',
+        '!Or sequence',
+        '!FindInMap scalar',
+        '!FindInMap mappping',
+        '!FindInMap sequence',
+        '!Base64 scalar',
+        '!Base64 mapping',
+        '!Base64 sequence',
+        '!Cidr scalar',
+        '!Cidr mapping',
+        '!Cidr sequence',
+        '!Ref scalar',
+        '!Ref mapping',
+        '!Ref sequence',
+        '!Sub scalar',
+        '!Sub mapping',
+        '!Sub sequence',
+        '!GetAtt scalar',
+        '!GetAtt mapping',
+        '!GetAtt sequence',
+        '!GetAZs scalar',
+        '!GetAZs mapping',
+        '!GetAZs sequence',
+        '!ImportValue scalar',
+        '!ImportValue mapping',
+        '!ImportValue sequence',
+        '!Select scalar',
+        '!Select mapping',
+        '!Select sequence',
+        '!Split scalar',
+        '!Split mapping',
+        '!Split sequence',
+        '!Join scalar',
+        '!Join mapping',
+        '!Join sequence' 
+      }
+    }
+  }
+}
 EOF
 
 " ==================== vim-prettier ==================== "
