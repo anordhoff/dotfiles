@@ -60,7 +60,7 @@ set splitbelow             " split horizontal windows below current window
 
 set clipboard^=unnamedplus          " copy to clipboard
 set signcolumn=yes                  " always show the sign column
-set completeopt=menu                " show possible completions in a pmenu
+set completeopt=menuone,noinsert    " show possible completions in a pmenu; do not auto-insert text
 set list lcs=tab:¦\ ,trail:\·       " indentation lines and trailing spaces
 set fillchars=vert:\|,stl:-,stlnc:- " vertical and horizontal separators
 
@@ -104,18 +104,22 @@ endif
 " leader key
 let mapleader = "\<space>"
 
-" create a new window with an empty file in a vertical split
-" nnoremap <C-w>m :vnew<CR> " TODO
-
 " prevent clipboard hijacking
-inoremap  <C-r>+  <C-r><C-r>+
-inoremap  <C-r>*  <C-r><C-r>*
+inoremap <C-r>+ <C-r><C-r>+
+inoremap <C-r>* <C-r><C-r>*
+
+" create a new window with an empty file in a vertical split
+nnoremap <C-w>m :vnew<CR>
 
 " clear search highlighting
 nnoremap <leader>/ :noh<CR>
 
-" close quickfix list
-nnoremap <leader>q :cclose<CR>
+" close quickfix/location list
+nnoremap <leader>cq :cclose<CR>
+nnoremap <leader>cl :lclose<CR>
+
+" delete trailing whitespace
+nnoremap <leader>W :%s/\s\+$//e<CR>
 
 " ==================== style ==================== "
 syntax on
@@ -148,13 +152,19 @@ hi vertSplit guibg=bg guifg=#606060
 hi signColumn guibg=bg
 
 " pmenu
-hi pmenu guibg=#1d242b guifg=fg
+hi pmenu guibg=bg guifg=fg
 hi pmenuSel guibg=#8b959e
 
 " trailing whitespace
 hi Whitespace guifg=bg
 hi TrailingWhitespace guifg=fg
 2match TrailingWhitespace /\s\+\%#\@<!$/
+
+" lsp diagnostics (nvim-lspconfig)
+hi LspDiagnosticsDefaultHint guifg=#77808a
+hi LspDiagnosticsDefaultError guifg=#bf5858
+hi LspDiagnosticsDefaultWarning guifg=#b56f45
+hi LspDiagnosticsDefaultInformation guifg=#557b9e
 
 " ==================== lightline ==================== "
 set noshowmode
@@ -187,7 +197,7 @@ endfunction
 
 " ==================== indentLine ==================== "
 " support for indents that use spaces
-let g:indentLine_fileTypeExclude = ['help', 'markdown', 'text', 'vim']
+let g:indentLine_fileTypeExclude = ['help', 'markdown', 'text']
 let g:indentLine_defaultGroup = 'NonText'
 let g:indentLine_showFirstIndentLevel = 1
 
@@ -196,15 +206,18 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:gitgutter_sign_priority = 1
 
 " ==================== nvim-lspconfig ==================== "
-:lua << EOF
-require'lspconfig'.cssls.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.html.setup{}
-require'lspconfig'.jsonls.setup{}
-require'lspconfig'.pyls.setup{}
-require'lspconfig'.terraformls.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.yamlls.setup{
+lua << EOF
+local nvim_lsp = require('lspconfig')
+local servers = { "cssls", "gopls", "html", "jsonls", "pyls", "terraformls", "tsserver", "yamlls" }
+
+nvim_lsp.cssls.setup{}
+nvim_lsp.gopls.setup{}
+nvim_lsp.html.setup{}
+nvim_lsp.jsonls.setup{}
+nvim_lsp.pyls.setup{}
+nvim_lsp.terraformls.setup{}
+nvim_lsp.tsserver.setup{}
+nvim_lsp.yamlls.setup{
   settings = {
     yaml = {
       customTags = {
@@ -218,36 +231,81 @@ require'lspconfig'.yamlls.setup{
         '!Select sequence',
         '!Split sequence',
         '!Sub',
-        '!If'
+        '!If',
+        '!Not'
       }
     }
   }
 }
+
+-- Disable virtuall text on buffer diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false
+  }
+)
+
+-- Add border to hover windows
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = "rounded"
+  }
+)
+
+-- Add border to signature help windows
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = "rounded"
+  }
+)
+
+-- TODO: enable borders on completion/omnifunc
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local opts = { noremap=true, silent=true }
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  -- Floating window borders enabled where appropriate
+  buf_set_keymap('n', 'gD',        '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd',        '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K',         '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<leader>D',  '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>e',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
+  buf_set_keymap('n', '[d',        '<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "rounded" }})<CR>', opts)
+  buf_set_keymap('n', ']d',        '<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "rounded" }})<CR>', opts)
+  buf_set_keymap('n', '<leader>q',  '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "<leader>F",  '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
 EOF
 
-" key mappings
-nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
-" completion
-autocmd Filetype * setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-" style
-hi LspDiagnosticsDefaultHint guifg=#77808a
-hi LspDiagnosticsDefaultError guifg=#bf5858
-hi LspDiagnosticsDefaultWarning guifg=#b56f45
-hi LspDiagnosticsDefaultInformation guifg=#557b9e
-
 " ==================== vim-prettier ==================== "
-" let g:prettier#autoformat = 1
-" let g:prettier#autoformat_require_pragma = 0
+" TODO: is this needed now that lua vim.lsp.buf.formatting() exists?
 nnoremap <leader>P :PrettierAsync<CR>
 
 " ==================== fzf ==================== "
@@ -289,6 +347,7 @@ nmap <leader>N :NERDTreeFind<CR>
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
+" TODO check if dir exists and use default in /etc or something otherswise
 let g:gutentags_cache_dir = expand('~/.local/share/nvim/ctags/')
 
 " ==================== vim-obsession ==================== "
@@ -296,28 +355,22 @@ nnoremap <leader>o :Obsess<CR>
 nnoremap <leader>O :Obsess!<CR>
 
 " ==================== vim-go ==================== "
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
 
 " key mappings
-autocmd Filetype go nmap <leader>d <plug>(go-decls-dir)
-
 autocmd Filetype go nmap <leader>B :<C-u>call <SID>build_go_files()<CR>
 autocmd Filetype go nmap <leader>R <plug>(go-run)
 autocmd Filetype go nmap <leader>T <plug>(go-test)
 autocmd Filetype go nmap <leader>C <plug>(go-coverage-toggle)
-autocmd Filetype go nmap <leader>I <plug>(go-info)
-autocmd Filetype go nmap <leader>D <plug>(go-doc)
-
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang A  call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+" TODO: fix colors on go-coverage-toggle
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
