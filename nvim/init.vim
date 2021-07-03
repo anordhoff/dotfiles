@@ -279,10 +279,7 @@ nvim_lsp['yamlls'].setup{
   settings = {
     yaml = {
       schemas = {
-        ['https://raw.githubusercontent.com/aws-cloudformation/aws-cfn-lint-visual-studio-code/master/schema/all-spec.json'] = 'cloudformation/*'
-      },
-      format = {
-        enable = true
+        ['https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/master/schema/all-spec.json'] = '**/{cloudformation,cfn}/**/*.yaml'
       },
       customTags = {
         '!And scalar',
