@@ -414,7 +414,7 @@ nmap <silent> <leader>n :NERDTreeFocus<CR>
 nmap <silent> <leader>N :NERDTreeFind<CR>
 nmap <leader><C-n> :NERDTreeClose<CR>
 
-" TODO: fix clearing of command line when first opened
+" TODO: fix white box when loading nerdtree for first time
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
