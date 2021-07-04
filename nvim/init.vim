@@ -11,6 +11,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " statusline
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 
 " syntax highlighting
 Plug 'nightsense/forgotten'
@@ -25,12 +26,12 @@ Plug 'prettier/vim-prettier'
 " navigation
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ludovicchabant/vim-gutentags'
 
 " usability
-Plug 'AndrewRadev/splitjoin.vim' " gS, gJ
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -44,36 +45,21 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " ==================== settings ==================== "
-set number rnu             " relative line numbers
-" set tabstop=8              " tabs are eight columns in width
-" set softtabstop=4          " insert/delete tab width of whitespace
-" set shiftwidth=8           " shift by four columns in width
-" set expandtab              " use spaces instead of tabs
-" set autoindent
-" set smartindent            " smart indent
-set ignorecase             " case-insensitive searching...
-set smartcase              " ...but not if the search contains a capital letter
-set noincsearch            " wait to execute search until <enter> is pressed
-set hidden                 " switch buffers without saving
-set splitright             " split vertical windows to the right of current window
-set splitbelow             " split horizontal windows below current window
-
+set number rnu                      " relative line numbers
+set ignorecase                      " case-insensitive searching...
+set smartcase                       " ...but not if the search contains a capital letter
+set noincsearch                     " wait to execute search until <enter> is pressed
+set hidden                          " switch buffers without saving
+set splitright                      " split vertical windows to the right of current window
+set splitbelow                      " split horizontal windows below current window
 set clipboard^=unnamedplus          " copy to clipboard
 set signcolumn=yes                  " always show the sign column
-set completeopt=menuone,noinsert    " show possible completions in a pmenu; do not auto-insert text
+set completeopt=menuone,noselect    " show possible completions in a pmenu; do not auto-select first option
 set list lcs=tab:¦\ ,trail:\·       " indentation lines and trailing spaces
 set fillchars=vert:\|,stl:-,stlnc:- " vertical and horizontal separators
 
+" tab preferences per filetype
 autocmd Filetype json setlocal sts=2 sw=2 expandtab
-" TODO
-" whitepace preferences
-" autocmd Filetype json            setlocal ts=8 sts=2 sw=2 expandtab
-" autocmd Filetype html            setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd Filetype css             setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd Filetype javascript      setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd Filetype javascriptreact setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd Filetype typescript      setlocal ts=2 sts=2 sw=2 expandtab
-" autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
 
 " disable automatic inserting of the current comment leader
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
@@ -134,8 +120,8 @@ hi NonText guifg=#4d4d4d
 match NonText /\t/
 
 " highlighting
-hi Search guibg=bg guifg=#8b6a9e
 hi Todo guibg=bg guifg=#557b9e
+hi Search guibg=bg guifg=#8b6a9e
 
 " error/warning messages
 hi ErrorMsg guibg=bg guifg=fg
@@ -147,20 +133,27 @@ hi cursorLineNr guibg=bg guifg=#8b959e
 hi vertSplit guibg=bg guifg=#606060
 hi signColumn guibg=bg
 
-" pmenu
+" popup menu
 hi pmenu guibg=bg guifg=fg
 hi pmenuSel guibg=#8b959e
+
+" floating windows
+hi FloatBorder guibg=bg guifg=#606060
 
 " trailing whitespace
 hi Whitespace guifg=bg
 hi TrailingWhitespace guifg=fg
 2match TrailingWhitespace /\s\+\%#\@<!$/
 
-" lsp diagnostics (nvim-lspconfig)
+" lsp diagnostics
 hi LspDiagnosticsDefaultHint guifg=#77808a
 hi LspDiagnosticsDefaultError guifg=#bf5858
 hi LspDiagnosticsDefaultWarning guifg=#b56f45
 hi LspDiagnosticsDefaultInformation guifg=#557b9e
+
+" vim-go
+hi goCoverageCovered guifg=#508a50
+hi goCoverageUncover guifg=#bf5858
 
 " ==================== lightline ==================== "
 set noshowmode
@@ -169,20 +162,77 @@ let g:lightline = {
   \   'colorscheme': 'lightline',
   \   'active': {
   \     'left':  [ [ 'mode', 'paste' ],
-  \                [ 'filename', 'readonly', 'modified' ] ],
+  \                [ 'gitbranch', 'filename', 'readonly', 'modified' ] ],
   \     'right': [ [ 'lineinfo' ],
   \                [ 'filetype', 'percent' ] ]
   \   },
   \   'inactive': {
-  \     'left': [],
+  \     'left': [ [ 'gitbranch' ], [] ],
   \     'right': [],
   \   },
-  \   'component': {
-  \     'filename': '%<%{LightlineFilename()}',
-  \   },
+  \   'component_function': {
+  \     'mode': 'LightlineMode',
+  \     'paste': 'LightlinePaste',
+  \     'gitbranch': 'LightlineGitbranch',
+  \     'filename': 'LightlineFilename',
+  \     'readonly': 'LightlineReadonly',
+  \     'modified': 'LightlineModified',
+  \     'lineinfo': 'LightlineLineinfo',
+  \     'filetype': 'LightlineFiletype',
+  \     'percent': 'LightlinePercent'
+  \   }
   \ }
 
+" NOTE: good to go
+function! LightlineMode()
+  return &ft ==# 'nerdtree' ? '' : lightline#mode()
+endfunction
+
+" NOTE: good to go
+function! LightlinePaste()
+  return &ft ==# 'nerdtree' ? '' : &paste ? 'PASTE' : ''
+endfunction
+
+" NOTE: good to go
+function! LightlineGitbranch()
+  return &ft ==# 'nerdtree' ? gitbranch#name() : ''
+endfunction
+
+" NOTE: good to go
 function! LightlineFilename()
+  return &ft ==# 'nerdtree' ? '' : LightlineFilenameFromProjectRoot()
+endfunction
+
+" NOTE: good to go
+function! LightlineReadonly()
+  return &ft ==# 'nerdtree' ? '' : &readonly ? 'RO' : ''
+endfunction
+
+" NOTE: good to go
+function! LightlineModified()
+  return &ft ==# 'nerdtree' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+" TODO: padding has dashes
+function! LightlineLineinfo()
+  return &ft ==# 'nerdtree' ? '' : printf("%3d:%-2d", line('.'), col('.'))
+endfunction
+
+" NOTE: good to go
+function! LightlineFiletype()
+  return &ft ==# 'nerdtree' ? '' : &filetype !=# '' ? &filetype : 'no ft'
+endfunction
+
+" TODO: padding has dashes
+function! LightlinePercent()
+  return &ft ==# 'nerdtree' ? '' : printf('%-4s', line('.') * 100 / line('$') . '%')
+endfunction
+
+" if file is part of a git project, return file path from root of project
+function! LightlineFilenameFromProjectRoot()
+  if expand('%:t') ==# ''
+    return '[No Name]'
+  endif
   let root = fnamemodify(get(b:, 'gitbranch_path'), ':h:h')
   let path = expand('%:p')
   if path[:len(root)-1] ==# root
@@ -205,8 +255,6 @@ let g:gitgutter_sign_priority = 1
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
--- TODO: enable borders on completion/omnifunc
-
 -- Disable virtual text on buffer diagnostics
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -214,6 +262,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
+-- TODO: enable borders on completion/omnifunc
 -- Add border to hover windows
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover, {
@@ -233,13 +282,13 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-  local opts = { noremap=true, silent=true }
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Mappings; floating window borders enabled
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- Floating window borders enabled where appropriate
+  local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gD',         '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd',         '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K',          '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -271,6 +320,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- TODO: cloudformation schema throws an error
 nvim_lsp['yamlls'].setup{
   on_attach = on_attach,
   flags = {
@@ -279,7 +329,7 @@ nvim_lsp['yamlls'].setup{
   settings = {
     yaml = {
       schemas = {
-        ['https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/master/schema/all-spec.json'] = '**/{cloudformation,cfn}/**/*.yaml'
+        ['https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/master/schema/all-spec.json'] = '**/{cloudformation,cfn,aws}/**/*.yaml'
       },
       customTags = {
         '!And scalar',
@@ -337,8 +387,7 @@ nvim_lsp['yamlls'].setup{
 EOF
 
 " ==================== vim-prettier ==================== "
-" TODO: is this needed now that lua vim.lsp.buf.formatting() exists?
-nnoremap <leader>P :PrettierAsync<CR>
+nmap <leader>P :PrettierAsync<CR>
 
 " ==================== fzf ==================== "
 nmap <leader>b :Buffers<CR>
@@ -369,6 +418,9 @@ command! -bang -nargs=* Rg
 " show hidden files
 let g:NERDTreeShowHidden = 1
 
+" disable custom nerdtree status line
+let g:NERDTreeStatusline = -1
+
 " key mappings
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
@@ -379,12 +431,11 @@ nmap <leader>N :NERDTreeFind<CR>
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
-" TODO check if dir exists and use default in /etc or something otherswise
-let g:gutentags_cache_dir = expand('~/.local/share/nvim/ctags/')
+let g:gutentags_cache_dir = expand('~/.cache/nvim/ctags/')
 
 " ==================== vim-obsession ==================== "
-nnoremap <leader>o :Obsess<CR>
-nnoremap <leader>O :Obsess!<CR>
+nmap <leader>o :Obsess<CR>
+nmap <leader>O :Obsess!<CR>
 
 " ==================== vim-go ==================== "
 let g:go_fmt_command = "goimports"
@@ -401,8 +452,6 @@ autocmd Filetype go command! -bang A  call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-
-" TODO: fix colors on go-coverage-toggle
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
