@@ -27,7 +27,7 @@ Plug 'prettier/vim-prettier'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'ludovicchabant/vim-gutentags'
 
 " usability
@@ -227,7 +227,7 @@ endfunction
 
 " ==================== indentLine ==================== "
 " support for indents that use spaces
-let g:indentLine_fileTypeExclude = ['help', 'markdown', 'text']
+let g:indentLine_fileTypeExclude = ['help', 'markdown', 'nerdtree', 'text']
 let g:indentLine_defaultGroup = 'NonText'
 let g:indentLine_showFirstIndentLevel = 1
 
@@ -399,21 +399,22 @@ command! -bang -nargs=* Rg
   \   fzf#vim#with_preview(), <bang>0)
 
 " ==================== nerdtree ==================== "
-" show hidden files
-let g:NERDTreeShowHidden = 1
-
 " disable custom nerdtree status line
 let g:NERDTreeStatusline = -1
+
+" show hidden files
+let g:NERDTreeShowHidden = 1
 
 " key mappings
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
 
 " toggle nerdtree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>N :NERDTreeFind<CR>
+nmap <silent> <leader>n :NERDTreeFocus<CR>
+nmap <silent> <leader>N :NERDTreeFind<CR>
+nmap <leader><C-n> :NERDTreeClose<CR>
 
-" TODO: fix flashing when opening nerdtree for the first time
+" TODO: fix clearing of command line when first opened
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
