@@ -56,7 +56,7 @@ set clipboard^=unnamedplus          " copy to clipboard
 set signcolumn=yes                  " always show the sign column
 set completeopt=menuone,noselect    " show possible completions in a pmenu; do not auto-select first option
 set list lcs=tab:¦\ ,trail:\·       " indentation lines and trailing spaces
-set fillchars=vert:\|,stl:-,stlnc:- " vertical and horizontal separators
+set fillchars=vert:\|,stlnc:-       " vertical and horizontal separators
 
 " tab preferences per filetype
 autocmd Filetype json setlocal sts=2 sw=2 expandtab
@@ -183,52 +183,36 @@ let g:lightline = {
   \   }
   \ }
 
-" NOTE: good to go
+" component functions that hide components from the nerdtree status line
 function! LightlineMode()
   return &ft ==# 'nerdtree' ? '' : lightline#mode()
 endfunction
-
-" NOTE: good to go
 function! LightlinePaste()
   return &ft ==# 'nerdtree' ? '' : &paste ? 'PASTE' : ''
 endfunction
-
-" NOTE: good to go
 function! LightlineGitbranch()
   return &ft ==# 'nerdtree' ? gitbranch#name() : ''
 endfunction
-
-" NOTE: good to go
 function! LightlineFilename()
   return &ft ==# 'nerdtree' ? '' : LightlineFilenameFromProjectRoot()
 endfunction
-
-" NOTE: good to go
 function! LightlineReadonly()
   return &ft ==# 'nerdtree' ? '' : &readonly ? 'RO' : ''
 endfunction
-
-" NOTE: good to go
 function! LightlineModified()
   return &ft ==# 'nerdtree' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
-
-" TODO: padding has dashes
 function! LightlineLineinfo()
   return &ft ==# 'nerdtree' ? '' : printf("%3d:%-2d", line('.'), col('.'))
 endfunction
-
-" NOTE: good to go
 function! LightlineFiletype()
   return &ft ==# 'nerdtree' ? '' : &filetype !=# '' ? &filetype : 'no ft'
 endfunction
-
-" TODO: padding has dashes
 function! LightlinePercent()
   return &ft ==# 'nerdtree' ? '' : printf('%-4s', line('.') * 100 / line('$') . '%')
 endfunction
 
-" if file is part of a git project, return file path from root of project
+" if the file is part of a git project, return the file path from the root of project
 function! LightlineFilenameFromProjectRoot()
   if expand('%:t') ==# ''
     return '[No Name]'
