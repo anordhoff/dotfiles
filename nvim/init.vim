@@ -45,18 +45,18 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " ==================== settings ==================== "
-set number rnu                      " relative line numbers
-set ignorecase                      " case-insensitive searching...
-set smartcase                       " ...but not if the search contains a capital letter
-set noincsearch                     " wait to execute search until <enter> is pressed
-set hidden                          " switch buffers without saving
-set splitright                      " split vertical windows to the right of current window
-set splitbelow                      " split horizontal windows below current window
-set clipboard^=unnamedplus          " copy to clipboard
-set signcolumn=yes                  " always show the sign column
-set completeopt=menuone,noselect    " show possible completions in a pmenu; do not auto-select first option
-set list lcs=tab:¦\ ,trail:\·       " indentation lines and trailing spaces
-set fillchars=vert:\|,stlnc:-       " vertical and horizontal separators
+set number rnu                   " relative line numbers
+set ignorecase                   " case-insensitive searching...
+set smartcase                    " ...but not if the search contains a capital letter
+set noincsearch                  " wait to execute search until <enter> is pressed
+set hidden                       " switch buffers without saving
+set splitright                   " split vertical windows to the right of current window
+set splitbelow                   " split horizontal windows below current window
+set clipboard^=unnamedplus       " copy to clipboard
+set signcolumn=yes               " always show the sign column
+set completeopt=menuone,noselect " show possible completions in a pmenu; do not auto-select first option
+set list lcs=tab:¦\ ,trail:\·    " indentation lines and trailing spaces
+set fillchars=vert:\|,stlnc:-    " vertical and horizontal separators
 
 " tab preferences per filetype
 autocmd Filetype json setlocal sts=2 sw=2 expandtab
@@ -168,7 +168,7 @@ let g:lightline = {
   \   },
   \   'inactive': {
   \     'left': [ [ 'gitbranch' ], [] ],
-  \     'right': [],
+  \     'right': []
   \   },
   \   'component_function': {
   \     'mode': 'LightlineMode',
@@ -412,6 +412,8 @@ let g:NERDTreeMapOpenVSplit = 'v'
 " toggle nerdtree
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>N :NERDTreeFind<CR>
+
+" TODO: fix flashing when opening nerdtree for the first time
 
 " ==================== gutentags ==================== "
 " dedicated tag directory
