@@ -120,8 +120,8 @@ hi NonText guifg=#4d4d4d
 match NonText /\t/
 
 " highlighting
-hi Todo guibg=bg guifg=#557b9e
-hi Search guibg=bg guifg=#8b6a9e
+hi Todo guibg=bg guifg=#8b6a9e
+hi Search guibg=bg guifg=#557b9e
 
 " error/warning messages
 hi ErrorMsg guibg=bg guifg=fg
