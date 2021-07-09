@@ -38,13 +38,6 @@ bindswitch --reload lid:on output eDP-1 disable
 bindswitch --reload lid:off output eDP-1 enable
 
 #################### Input configuration ####################
-# input 1:1:AT_Translated_Set_2_keyboard {
-#     repeat_delay 200
-#     repeat_rate 35
-#     xkb_layout custom
-#     xkb_options ctrl:swap_lalt_lctl_lwin,ctrl:swap_rwin_rctl
-# }
-
 input 4661:22137:kmonad_output {
     repeat_delay 200
     repeat_rate 35
