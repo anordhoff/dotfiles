@@ -1,3 +1,5 @@
+# ~/.config/i3/config
+
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -17,9 +19,6 @@ for_window [class=".*"] border pixel 1
 
 # enable mouse warping when changing screens
 mouse_warping output
-
-# keyboard settings
-exec --no-startup-id xset r rate 200 35
 
 # suspend when idle
 exec --no-startup-id ~/dotfiles/i3/locker.sh &
