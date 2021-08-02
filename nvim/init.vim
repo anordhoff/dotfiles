@@ -45,7 +45,7 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " ==================== settings ==================== "
-set number rnu                   " relative line numbers
+set number nu                   " relative line numbers
 set ignorecase                   " case-insensitive searching...
 set smartcase                    " ...but not if the search contains a capital letter
 set noincsearch                  " wait to execute search until <enter> is pressed
@@ -242,6 +242,7 @@ local nvim_lsp = require('lspconfig')
 -- Disable virtual text on buffer diagnostics
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline    = false,
     virtual_text = false
   }
 )
