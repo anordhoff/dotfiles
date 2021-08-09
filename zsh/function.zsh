@@ -26,3 +26,18 @@ kubectl() {
     fi
     command kubectl "$@"
 }
+
+# qmk
+qmk() {
+    if [[ $@ == 'compile iris' ]]; then
+        command qmk compile -kb keebio/iris/rev4 -km anordhoff
+    elif [[ $@ == 'flash iris' ]]; then
+        command qmk flash -kb keebio/iris/rev4 -km anordhoff
+    elif [[ $@ == 'compile yd60' ]]; then
+        command qmk compile -kb yd60mq/16led -km anordhoff
+    elif [[ $@ == 'flash yd60' ]]; then
+        command qmk flash -kb yd60mq/16led -km anordhoff
+    else
+        command qmk "$@"
+    fi
+}
