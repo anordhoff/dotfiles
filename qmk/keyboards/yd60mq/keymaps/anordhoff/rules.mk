@@ -1,0 +1,1 @@
+TAP_TERM_KEYS_ENABLE = yes
