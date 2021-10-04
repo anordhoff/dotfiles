@@ -20,7 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define USE_I2C
 #define EE_HANDS
 
-#define TAPPING_TERM 160          /* Configure the global tapping term (default: 200ms) */
+/* #define TAPPING_TERM 160 */          /* Configure the global tapping term (default: 200ms) */
+#define TAPPING_TERM 200          /* Configure the global tapping term (default: 200ms) */
 #define TAPPING_TERM_PER_KEY      /* Enable granular control of the tapping term */
 #define IGNORE_MOD_TAP_INTERRUPT  /* Prevent normal rollover on alphas from accidentally triggering mods */
 #define TAPPING_FORCE_HOLD        /* Enable rapid switch from tap to hold, disables double tap hold auto-repeat */
