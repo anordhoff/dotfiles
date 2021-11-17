@@ -28,5 +28,7 @@ export KUBECTX_IGNORE_FZF=1
 # node
 [[ "$OSTYPE" == "linux-gnu"* ]] && export NVM_DIR=$XDG_CONFIG_HOME/nvm \
     || export NVM_DIR=$HOME/.nvm
-export PATH=:$PATH:$NVM_DIR/versions/node/v13.12.0/bin # decrease startup time
+[[ "$OSTYPE" == "linux-gnu"* ]] && export PATH=:$PATH:$NVM_DIR/versions/node/v14.17.2/bin \
+    || export PATH=:$PATH:$NVM_DIR/versions/node/v13.12.0/bin # decrease startup time
+export PATH=:$PATH:~/.yarn/bin
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use

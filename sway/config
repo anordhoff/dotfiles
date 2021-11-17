@@ -20,6 +20,12 @@ focus_follows_mouse no
 # remove title bars
 default_border pixel 1
 
+# ydotool (for gestures) # TODO: systemd
+exec_always --no-startup-id /usr/bin/ydotoold
+
+# TODO (systemd)
+# exec_always --no-startup-id /usr/bin/light-locker
+
 #################### Output configuration ####################
 output eDP-1 {
     position 0 520
@@ -44,6 +50,11 @@ input 4661:22137:kmonad_output {
 }
 
 input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
+    repeat_delay 200
+    repeat_rate 35
+}
+
+input 22861:24653:YMDK_YD60MQ {
     repeat_delay 200
     repeat_rate 35
 }
@@ -175,6 +186,7 @@ bindsym $mod+Ctrl+$next exec swaymsg move container to workspace $wsright
 
 # lock computer
 bindsym $mod+l exec "swaylock -f -i $wallpaper"
+# bindsym $mod+l exec "light-locker-command -l"
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload

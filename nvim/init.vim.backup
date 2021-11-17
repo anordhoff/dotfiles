@@ -14,7 +14,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
 " syntax highlighting
-Plug 'nightsense/forgotten'
+" Plug 'nightsense/forgotten'
+Plug 'projekt0n/github-nvim-theme'
 Plug 'Yggdroot/indentLine'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
@@ -45,7 +46,7 @@ Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " ==================== settings ==================== "
-set number nu                   " relative line numbers
+set number rnu                   " relative line numbers
 set ignorecase                   " case-insensitive searching...
 set smartcase                    " ...but not if the search contains a capital letter
 set noincsearch                  " wait to execute search until <enter> is pressed
@@ -94,9 +95,6 @@ let mapleader = "\<space>"
 inoremap <C-r>+ <C-r><C-r>+
 inoremap <C-r>* <C-r><C-r>*
 
-" keep neovim consistent with vim
-nnoremap Y yy
-
 " create a new window with an empty file in a vertical split
 nnoremap <C-w>m :vnew<CR>
 
@@ -109,54 +107,61 @@ nnoremap <leader>W :%s/\s\+$//e<CR>
 " ==================== style ==================== "
 syntax on
 set termguicolors
-colorscheme forgotten-dark
+" colorscheme forgotten-dark
+
+lua << EOF
+require("github-theme").setup({
+  themeStyle = "dark",
+  -- ... your github-theme config
+})
+EOF
 
 " background
-hi Normal guibg=#1c1c1c
+: hi Normal guibg=#1c1c1c
 
-" default status line
-hi statusLine guibg=bg guifg=#606060
-hi statusLineNC guibg=bg guifg=#606060
+" " default status line
+" hi statusLine guibg=bg guifg=#606060
+" hi statusLineNC guibg=bg guifg=#606060
 
-" indentation lines
-hi NonText guifg=#4d4d4d
-match NonText /\t/
+" " indentation lines
+" hi NonText guifg=#4d4d4d
+" match NonText /\t/
 
-" highlighting
-hi Todo guibg=bg guifg=#8b6a9e
-hi Search guibg=bg guifg=#557b9e
+" " highlighting
+" hi Todo guibg=bg guifg=#8b6a9e
+" hi Search guibg=bg guifg=#557b9e
 
-" error/warning messages
-hi ErrorMsg guibg=bg guifg=fg
-hi WarningMsg guibg=bg guifg=fg
+" " error/warning messages
+" hi ErrorMsg guibg=bg guifg=fg
+" hi WarningMsg guibg=bg guifg=fg
 
-" gutter
-hi lineNr guibg=bg
-hi cursorLineNr guibg=bg guifg=#8b959e
-hi vertSplit guibg=bg guifg=#606060
-hi signColumn guibg=bg
+" " gutter
+" hi lineNr guibg=bg
+" hi cursorLineNr guibg=bg guifg=#8b959e
+" hi vertSplit guibg=bg guifg=#606060
+" hi signColumn guibg=bg
 
-" popup menu
-hi pmenu guibg=bg guifg=fg
-hi pmenuSel guibg=#8b959e
+" " popup menu
+" hi pmenu guibg=bg guifg=fg
+" hi pmenuSel guibg=#8b959e
 
-" floating windows
-hi FloatBorder guibg=bg guifg=#606060
+" " floating windows
+" hi FloatBorder guibg=bg guifg=#606060
 
-" trailing whitespace
-hi Whitespace guifg=bg
-hi TrailingWhitespace guifg=fg
-2match TrailingWhitespace /\s\+\%#\@<!$/
+" " trailing whitespace
+" hi Whitespace guifg=bg
+" hi TrailingWhitespace guifg=fg
+" 2match TrailingWhitespace /\s\+\%#\@<!$/
 
-" lsp diagnostics
-hi LspDiagnosticsDefaultHint guifg=#77808a
-hi LspDiagnosticsDefaultError guifg=#bf5858
-hi LspDiagnosticsDefaultWarning guifg=#b56f45
-hi LspDiagnosticsDefaultInformation guifg=#557b9e
+" " lsp diagnostics
+" hi LspDiagnosticsDefaultHint guifg=#77808a
+" hi LspDiagnosticsDefaultError guifg=#bf5858
+" hi LspDiagnosticsDefaultWarning guifg=#b56f45
+" hi LspDiagnosticsDefaultInformation guifg=#557b9e
 
-" vim-go
-hi goCoverageCovered guifg=#508a50
-hi goCoverageUncover guifg=#bf5858
+" " vim-go
+" hi goCoverageCovered guifg=#508a50
+" hi goCoverageUncover guifg=#bf5858
 
 " ==================== lightline ==================== "
 set noshowmode
@@ -245,7 +250,6 @@ local nvim_lsp = require('lspconfig')
 -- Disable virtual text on buffer diagnostics
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline    = false,
     virtual_text = false
   }
 )
