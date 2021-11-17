@@ -21,7 +21,10 @@ for_window [class=".*"] border pixel 1
 mouse_warping output
 
 # suspend when idle
-exec --no-startup-id ~/dotfiles/i3/locker.sh &
+exec_always --no-startup-id ~/dotfiles/i3/locker.sh &
+
+# locker
+exec_always --no-startup-id /usr/bin/light-locker
 
 # volume keys
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -138,7 +141,8 @@ bindsym $mod+Ctrl+$prev exec i3-msg move container to workspace $wsleft
 bindsym $mod+Ctrl+$next exec i3-msg move container to workspace $wsright
 
 # lock computer
-bindsym $mod+l exec i3lock -c 000000
+# bindsym $mod+l exec i3lock -c 000000
+bindsym $mod+l exec light-locker-command -l
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload

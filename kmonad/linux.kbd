@@ -16,6 +16,9 @@
   low    (layer-toggle lower)
   rai    (layer-toggle raise)
   joi    (layer-toggle join)
+
+  ;; home row mods
+  mt_a   (tap-hold-next-release 200 a lsft)
 )
 
 (defsrc
