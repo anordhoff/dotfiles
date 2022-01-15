@@ -33,13 +33,13 @@ Reboot for the changes to take effect
 
 [f.lux](https://justgetflux.com)
 
+[BetterTouchTool](https://folivora.ai/)
+
 #### yabai/skhd
 
 Change mission control shortcuts: `System Preferences > Keyboard > Shortcuts > Mission Control`
 
 ```
-Move left a space:    Command-a
-Move right a space:   Command-t
 Switch to Desktop 1:  Command-1
 Switch to Desktop 2:  Command-2
 ...
@@ -48,5 +48,5 @@ Switch to Desktop 10: Command-0
 
 Add a shortcut under `App Shortcuts`:
 ```
-Lock Screen: Ctrl-Command-l
+Lock Screen: Command-l
 ```

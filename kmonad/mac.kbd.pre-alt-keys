@@ -4,8 +4,8 @@
   output (kext)
 
   fallthrough true
-  allow-cmd   false
   ;; TODO: set to true when using pointer controls
+  allow-cmd   false
   ;; allow-cmd   true
 )
 
@@ -15,18 +15,6 @@
 ;;       media controls
 
 (defalias
-  ;; TODO: pointer and media controls
-  ;; pointer and media controls
-  ;; mml (cmd-button "while true; do cliclick m:-10,+0; done")
-  ;;                 "ps aux | grep -E \'cliclick|sleep 0.1\' | awk \'END{print $3}\' | xargs kill")
-  ;; mmd (cmd-button "cliclick m:+0,+10")
-  ;; mmu (cmd-button "cliclick m:+0,-10")
-  ;; mmr (cmd-button "cliclick m:+10,+0")
-  ;; scru (cmd-button "while true; do sleep 0.1; xdotool click 4; done"
-  ;;                  "ps aux | grep \'xdotool click 4\' | awk \'{ print $2 }\' | xargs kill")
-  ;; scrd (cmd-button "while true; do sleep 0.1; xdotool click 5; done"
-  ;;                  "ps aux | grep \'xdotool click 5\' | awk \'{ print $2 }\' | xargs kill")
-
   ;; layouts
   qwe (layer-switch qwerty)
   col (layer-switch colemak)
@@ -69,10 +57,22 @@
   sft (layer-toggle shift)
   joi (layer-toggle join)
   adj (layer-toggle adjust)
+  poi (layer-toggle pointer)
 
   ;; switch out of qwerty using shifts
   qls (layer-toggle qwerty-lsft)
   qrs (layer-toggle qwerty-rsft)
+
+  ;; pointer and media controls
+  ;; mml (cmd-button "while true; do cliclick m:-10,+0; done")
+  ;;                 "ps aux | grep -E \'cliclick|sleep 0.1\' | awk \'END{print $3}\' | xargs kill")
+  ;; mmd (cmd-button "cliclick m:+0,+10")
+  ;; mmu (cmd-button "cliclick m:+0,-10")
+  ;; mmr (cmd-button "cliclick m:+10,+0")
+  ;; scru (cmd-button "while true; do sleep 0.1; xdotool click 4; done"
+  ;;                  "ps aux | grep \'xdotool click 4\' | awk \'{ print $2 }\' | xargs kill")
+  ;; scrd (cmd-button "while true; do sleep 0.1; xdotool click 5; done"
+  ;;                  "ps aux | grep \'xdotool click 5\' | awk \'{ print $2 }\' | xargs kill")
 )
 
 (defsrc
@@ -88,7 +88,7 @@
   tab       @mtq w    f    p    b    [    j    l    u    y    @mt' bspc bspc
   esc       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   @mtz      x    c    @mtd v    ;    \    k    @mth ,    .    @mt/      up
-  fn        XX   XX   XX        spc            @sft XX             left down rght
+  fn        XX   XX   @poi      spc            @sft XX             left down rght
 )
 
 (deflayer shift
@@ -96,7 +96,15 @@
   RS-tab    @mtQ W    F    P    B    {    J    L    U    Y    @mt` RS-bspc RS-bspc
   RS-esc    @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO RS-ret
   @mtZ      X    C    @mtD V    :    |    K    @mtH <    >    @mt?      RS-up
-  RS-fn     XX   XX   XX        RS-spc         _    XX        RS-left RS-down RS-rght
+  RS-fn     XX   XX   @poi      RS-spc         _    _         RS-left RS-down RS-rght
+)
+
+(deflayer pointer
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  _         XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _    _
+  _         XX   lmet lalt lctl XX   XX   XX   XX   XX   XX   XX   _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX        _
+  _         XX   XX   _         _              _    _              _    _    _
 )
 
 (deflayer left-layer
@@ -127,7 +135,7 @@
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   _         XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   _    _
   _         0    4    5    6    XX   XX   XX   rctl ralt rmet _    _
-  XX        1    2    3    XX   XX   XX   XX   XX   XX   XX   XX        _
+  .         1    2    3    XX   XX   XX   XX   XX   XX   XX   XX        _
   _         XX   XX   _         _              _    _              _    _    _
 )
 
@@ -168,7 +176,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc bspc
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
   z         x    c    d    v    ;    \    k    h    ,    .    /         up
-  fn        lctl lalt lmet      spc            rsft @joi           left down rght
+  fn        lctl lalt lmet      spc            lsft @joi           left down rght
 )
 
 (deflayer qwerty

@@ -18,5 +18,5 @@
     cmd = nvim -d $LOCAL $MERGED $REMOTE
 [pull]
     ff = only
-[oh-my-zsh]
-    hide-dirty = 1
+[hub]
+    protocol = ssh

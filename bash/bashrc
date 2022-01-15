@@ -1,0 +1,186 @@
+# vim: set filetype=bash:
+
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# start tmux on shell login, attaching to (or creating a) session named 'home'
+[[ -z "$TMUX" ]] && tmux new-session -A -s home
+
+# TODO
+bind '"\C-p": history-search-backward'
+bind '"\C-n": history-search-forward'
+
+# disable suspending terminal with ctrl-s
+stty -ixon
+
+# make tab completion case insensitive
+bind 'set completion-ignore-case on'
+
+# shopt settings
+shopt -s autocd
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s dotglob
+shopt -s histappend
+shopt -s histverify
+shopt -s globstar
+
+# print current working directory and git branch in prompt
+# git_branch() {
+#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+# }
+# PS1="\[\e[0;35m\]\w\[\e[0;30m\]\$(git_branch)\[\e[0;00m\] \$ "
+PS1="\[\e[0;37m\]\t\[\e[0;34m\] \w\[\e[0;00m\] \$ "
+# PS1="\[\e[0;34m\]\w\[\e[0;00m\] \$ "
+
+# shorten the path in the prompt to three directories
+PROMPT_DIRTRIM=3
+
+# history
+HISTSIZE=5000            # number of lines/commands stored in memory
+HISTFILESIZE=10000       # number of lines/commands stored in the history file
+HISTTIMEFORMAT="%F %T  " # add the execution time to commands in the hist file
+
+# ignore subsequent, duplicate lines; erase previous matching lines;
+# ignore lines starting with a whitespace character
+HISTCONTROL=ignoreboth:erasedups
+
+# update history after every command
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# environment variables
+export GPG_TTY=$(tty)            # set to the path of the tty device for gpg
+export MANPAGER='less -s -M +Gg' # prompt percent into file
+export AWS_PAGER=''              # do not paginate awscli responses
+export GOPATH=$HOME/go           # set GOPATH
+export PATH=$GOPATH/bin:$PATH    # add GOPATH to PATH
+export KUBECTX_IGNORE_FZF=1      # kubectx prints to stout instead of fzf
+
+# set the preferred editor to vim if not already set
+[[ -z "$VISUAL" ]] && export VISUAL='vim'
+
+# add ~/.local/bin to path if it doesn't already exist
+[[ ! "$PATH" == *$HOME/.local/bin* ]] && export PATH=$HOME/.local/bin:$PATH
+
+# fzf
+export FZF_DEFAULT_OPTS='--inline-info --border --height 60%'
+export FZF_CTRL_T_OPTS='--no-reverse --preview "cat {}"'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git/ \
+    --exclude vendor/ --exclude node_modules/'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_ALT_C_COMMAND=$FZF_DEFAULT_COMMAND
+
+
+# editor
+alias e='nvim'
+
+# refresh watch every 100 milliseconds
+alias watch='watch -n 0.1 '
+
+# cd
+alias     ..='cd ..'
+alias    ...='cd ../..'
+alias   ....='cd ../../..'
+alias  .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# ls
+alias  l='ls -lah'
+alias ll='ls -lh'
+alias ls='ls -G'
+
+# colorize grep
+alias  grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# kubernetes
+alias    k='kubectl'
+alias kctx='kubectx'
+alias  kns='kubens'
+
+# git
+alias   g='git'
+alias  ga='git add'
+alias  gb='git branch'
+alias  gc='git commit'
+alias gcl='git clone'
+alias gco='git checkout'
+alias  gd='git diff'
+alias  gf='git fetch'
+alias  gl='git log'
+alias  gm='git merge'
+alias  gp='git pull'
+alias gpu='git push'
+alias  gr='git reset'
+alias grb='git rebase'
+alias grm='git remote'
+alias  gs='git status'
+alias gst='git stash'
+alias gsh='git show'
+
+
+# nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# fzf key bindings
+[[ -r "/usr/local/opt/fzf/shell/key-bindings.bash" ]] && \
+    source "/usr/local/opt/fzf/shell/key-bindings.bash"
+[[ -r "/usr/share/fzf/shell/key-bindings.bash" ]] && \
+    source "/usr/share/fzf/shell/key-bindings.bash"
+
+# completion
+[[ -r "/usr/local/bin/aws_completer" ]] && \
+    complete -C "/usr/local/bin/aws_completer" aws
+[[ -r "/usr/local/bin/git-completion.bash" ]] && \
+    source "/usr/local/bin/git-completion.bash"
+[[ -r "/usr/local/opt/fzf/shell/completion.bash" ]] && \
+    source "/usr/local/opt/fzf/shell/completion.bash"
+[[ -r "/usr/share/fzf/shell/completion.bash" ]] && \
+    source "/usr/share/fzf/shell/completion.bash"
+
+# TODO: this file takes 0.2 seconds to load
+# alias completion (source after alias/completion configs)
+[[ -r "$HOME/dotfiles/bash/alias-completion.bash" ]] && \
+    source "$HOME/dotfiles/bash/alias-completion.bash"
+
+
+# kubectl completion lazy loading
+kubectl() {
+    unset -f kubectl
+    source <(kubectl completion bash)
+    kubectl "$@"
+}
+
+# qmk compile/flash commands
+qmk() {
+    case $@ in
+        'compile iris')
+            command qmk compile -kb keebio/iris/rev4 -km anordhoff
+            ;;
+        'flash iris')
+            command qmk flash -kb keebio/iris/rev4 -km anordhoff
+            ;;
+        'compile yd60')
+            command qmk compile -kb yd60mq/16led -km anordhoff
+            ;;
+        'flash yd60')
+            command qmk flash -kb yd60mq/16led -km anordhoff
+            ;;
+        *)
+            command qmk "$@"
+            ;;
+    esac
+}
+
+
+# source work bashrc
+[[ -r ~/jobfiles/bash/bashrc ]] && source ~/jobfiles/bash/bashrc
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

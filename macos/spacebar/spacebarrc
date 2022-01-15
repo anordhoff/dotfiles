@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+
+spacebar -m config position                    top
+spacebar -m config display                     all
+spacebar -m config height                      22
+
+spacebar -m config padding_left                20
+spacebar -m config padding_right               45
+spacebar -m config spacing_left                15
+spacebar -m config spacing_right               20
+
+spacebar -m config text_font                   "SF Mono:Bold:13.0"
+spacebar -m config icon_font                   "SF Mono:Bold:13.0"
+spacebar -m config foreground_color            0xff859289
+spacebar -m config background_color            0xff000000
+
+spacebar -m config spaces                      on
+spacebar -m config display_separator           on
+spacebar -m config spaces_for_all_displays     on
+spacebar -m config space_icon                  •
+spacebar -m config space_icon_strip            1 2 3 4 5 6 7 8 9 10
+spacebar -m config display_separator_icon      |
+spacebar -m config space_icon_color            0xffd3c6aa
+spacebar -m config space_icon_color_secondary  0xffd699b6
+spacebar -m config space_icon_color_tertiary   0xff7fbbb3
+
+spacebar -m config title                       off
+
+spacebar -m config right_shell                 on
+spacebar -m config right_shell_icon            'wifi:'
+spacebar -m config right_shell_command         "$HOME/dotfiles/macos/spacebar/wifi.sh"
+spacebar -m config right_shell_icon_color      0xff859289
+
+spacebar -m config dnd_icon                    '|  dnd: on'
+spacebar -m config dnd_icon_color              0xff859289
+
+spacebar -m config power                       on
+spacebar -m config power_icon_strip            '|  battery:' '|  battery(c):'
+spacebar -m config battery_icon_color          0xff859289
+spacebar -m config power_icon_color            0xff859289
+
+spacebar -m config clock                       on
+spacebar -m config clock_icon                  ' |'
+spacebar -m config clock_format                "   %b %e - %-I:%M"
+spacebar -m config clock_icon_color            0xff859289
+
+echo "spacebar configuration loaded.."
