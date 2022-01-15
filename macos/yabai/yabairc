@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+yabai -m config layout bsp
+yabai -m config auto_balance on
+
+# TODO: do these work with a mouse?
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+
+# applications to ignore
+yabai -m rule --add app="Docker Desktop" manage=off
+yabai -m rule --add app="Finder" manage=off
+yabai -m rule --add app="System Preferences" manage=off
+
+# menu bar padding at the top of the screen
+# yabai -m config external_bar all:28:0
+
+# kill any existing limelight process if one exists, before we launch a new one
+killall limelight &> /dev/null
+limelight -c ~/.limelightrc &> /dev/null &
+
+# source work config
+[ -f ~/jobfiles/yabai/yabairc ] && source ~/jobfiles/yabai/yabairc
+
+echo "yabai configuration loaded.."

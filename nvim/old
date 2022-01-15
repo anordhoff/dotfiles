@@ -1,0 +1,276 @@
+"=============================================================================
+"
+" colorscheme.vim (based on https://raw.githubusercontent.com/zhester/vim-hz/3
+"   2369fda4ea6b24799750669dc1b33a4fb8dc9de/colors/mindark.vim)
+"
+" a minimalist dark color scheme
+"
+" this file does not define the colors.  This, rather, gets the ANSI colors in
+" a good arrangement to be used with the TTY's scheme
+"
+"  0 black              (unmapped)
+"  1 red                (unmapped)
+"  2 green              (unmapped)
+"  3 yellow             (unmapped)
+"  4 blue               type identifiers
+"  5 magenta            (unmapped)
+"  6 cyan               string literals
+"  7 white              normal text foreground
+"  8 bblack             (unmapped)
+"  9 bred               (unmapped)
+" 10 bgreen             comments
+" 11 byellow            (unmapped)
+" 12 bblue              (unmapped)
+" 13 bmagenta           (unmapped)
+" 14 bcyan              (unmapped)
+" 15 bwhite             highlighted/special foreground
+"
+"=============================================================================
+
+"-----------------------------------------------------------------------------
+" colorscheme boilerplate
+"-----------------------------------------------------------------------------
+
+" this is a dark scheme
+set background=dark
+
+" drop current highlighting
+highlight clear
+
+" reset highlighting to the defaults
+if exists('syntax_on')
+    syntax reset
+endif
+
+" set the name of the scheme
+let g:colors_name = 'colorscheme'
+
+"-----------------------------------------------------------------------------
+" editor display
+"-----------------------------------------------------------------------------
+
+" normal text (everything that isn't 'highlighted', must be first in scheme)
+hi Normal           cterm=none      ctermbg=none    ctermfg=15
+
+" cursor and selection
+hi Cursor           cterm=none      ctermbg=none    ctermfg=none
+hi CursorColumn     cterm=none      ctermbg=8       ctermfg=15
+hi CursorLine       cterm=none      ctermbg=8       ctermfg=15
+hi Visual           cterm=none      ctermbg=8       ctermfg=15
+
+" window margins
+hi ColorColumn      cterm=none      ctermbg=8       ctermfg=none
+hi CursorLineNr     cterm=none      ctermbg=none    ctermfg=15
+hi LineNr           cterm=none      ctermbg=none    ctermfg=8
+hi VertSplit        cterm=none      ctermbg=none    ctermfg=8
+hi SignColumn       cterm=none      ctermbg=none    ctermfg=8
+
+"-----------------------------------------------------------------------------
+" in-buffer highlighting
+"-----------------------------------------------------------------------------
+
+" other
+hi Underlined       cterm=underline
+
+"-----------------------------------------------------------------------------
+" informational highlighting
+"-----------------------------------------------------------------------------
+
+" errors and debugging
+hi Error            cterm=none      ctermbg=none    ctermfg=1
+
+"-----------------------------------------------------------------------------
+" code syntax highlighting
+"-----------------------------------------------------------------------------
+
+" highlight other delimiters the same as parenthesis
+hi link Delimiter Parens
+
+" comments
+hi Comment          cterm=none      ctermbg=none    ctermfg=7
+
+" constants
+hi Constant         cterm=none      ctermbg=none    ctermfg=15
+hi String           cterm=none      ctermbg=none    ctermfg=5
+
+" highlight other constants similarly
+hi link Boolean Constant
+hi link Character Constant
+hi link Float Constant
+hi link Number Constant
+
+" include the quotation marks when highlighting string constants
+hi link StringDelimiter String
+
+" named identifiers
+hi Function         cterm=none      ctermbg=none    ctermfg=15
+hi Identifier       cterm=none      ctermbg=none    ctermfg=15
+
+" language constructs
+hi Operator         cterm=none      ctermbg=none    ctermfg=15
+hi Statement        cterm=none      ctermbg=none    ctermfg=15
+
+" preprocessor
+hi PreProc          cterm=none      ctermbg=none    ctermfg=15
+
+" types
+hi Type             cterm=none      ctermbg=none    ctermfg=15
+
+
+hi Special          cterm=none      ctermbg=none    ctermfg=15
+hi NonText          cterm=none      ctermbg=none    ctermfg=8
+hi StatusLine       cterm=none      ctermbg=0       ctermfg=15
+hi StatusLineNC     cterm=none      ctermbg=0       ctermfg=7
+
+
+" json
+hi jsonKeyword	cterm=none ctermbg=none ctermfg=5
+hi jsonString 	cterm=none ctermbg=none ctermfg=15
+
+" yaml
+hi yamlBlockMappingKey		cterm=none ctermbg=none ctermfg=5
+hi yamlFlowString		cterm=none ctermbg=none ctermfg=15
+hi yamlFlowStringDelimiter	cterm=none ctermbg=none ctermfg=15
+
+" Signify, git-gutter
+hi link SignifySignAdd              LineNr
+hi link SignifySignDelete           LineNr
+hi link SignifySignChange           LineNr
+hi link GitGutterAdd                LineNr
+hi link GitGutterDelete             LineNr
+hi link GitGutterChange             LineNr
+hi link GitGutterChangeDelete       LineNr
+
+
+
+
+
+
+
+call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
+call s:h("Cursor",        {"bg": s:blue, "fg": s:norm })
+call s:h("Comment",       {"fg": s:bg_subtle_comment, "gui": "italic"})
+
+"call s:h("Constant",      {"fg": s:cyan})
+hi! link Constant         Normal
+hi! link Character        Constant " not in other list
+hi! link Number           Constant
+hi! link Boolean          Constant " not in other list
+hi! link Float            Constant " not in other list
+hi! link String           Constant
+
+"call s:h("Identifier",    {"fg": s:dark_blue})
+hi! link Identifier       Normal
+hi! link Function         Identifier " not in other list
+
+"call s:h("Statement",     {"fg": s:green})
+hi! link Statement        Normal
+hi! link Conditonal       Statement " not in other list
+hi! link Repeat           Statement " not in other list
+hi! link Label            Statement " not in other list
+hi! link Operator         Statement " not in other list
+hi! link Keyword          Statement " not in other list
+hi! link Exception        Statement " not in other list
+
+"call s:h("PreProc",       {"fg": s:red})
+hi! link PreProc          Normal
+hi! link Include          PreProc " not in other list
+hi! link Define           PreProc " not in other list
+hi! link Macro            PreProc " not in other list
+hi! link PreCondit        PreProc " not in other list
+
+"call s:h("Type",          {"fg": s:purple})
+hi! link Type             Normal
+hi! link StorageClass     Type " not in other list
+hi! link Structure        Type " not in other list
+hi! link Typedef          Type " not in other list
+
+"call s:h("Special",       {"fg": s:pink})
+hi! link Special          Normal
+hi! link SpecialChar      Special " not in other list
+hi! link Tag              Special " not in other list
+hi! link Delimiter        Special " not in other list
+hi! link SpecialComment   Special " not in other list
+hi! link Debug            Special " not in other list
+
+call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline"})
+call s:h("Ignore",        {"fg": s:bg})
+call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
+call s:h("Todo",          {"fg": s:actual_white, "bg": s:pink, "gui": "bold", "cterm": "bold"})
+call s:h("SpecialKey",    {"fg": s:light_green})
+call s:h("NonText",       {"fg": s:medium_gray})
+call s:h("Directory",     {"fg": s:dark_blue})
+call s:h("ErrorMsg",      {"fg": s:pink})
+call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
+call s:h("Search",        {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
+hi! link ModeMsg MoreMsg
+call s:h("LineNr",        {"fg": s:bg_subtle})
+call s:h("CursorLineNr",  {"fg": s:blue, "bg": s:bg_very_subtle}) " not in other list
+call s:h("Question",      {"fg": s:red}) " not in other list
+call s:h("StatusLine",    {"bg": s:bg_very_subtle}) " not in other list
+call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray}) " not in other list
+call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle}) " not in other list
+call s:h("Title",         {"fg": s:dark_blue})
+call s:h("Visual",        {"bg": s:visual})
+call s:h("VisualNOS",     {"bg": s:bg_subtle})
+call s:h("WarningMsg",    {"fg": s:red})
+call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
+call s:h("Folded",        {"fg": s:medium_gray})
+call s:h("FoldColumn",    {"fg": s:bg_subtle})
+call s:h("DiffAdd",       {"fg": s:green})
+call s:h("DiffDelete",    {"fg": s:red})
+call s:h("DiffChange",    {"fg": s:dark_yellow})
+call s:h("DiffText",      {"fg": s:dark_blue})
+call s:h("SignColumn",    {"fg": s:light_green})
+
+call s:h("SpellBad",    {"gui": "underline", "sp": s:red})
+call s:h("SpellCap",    {"gui": "underline", "sp": s:light_green})
+call s:h("SpellRare",   {"gui": "underline", "sp": s:pink})
+call s:h("SpellLocal",  {"gui": "underline", "sp": s:dark_green})
+
+call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg_subtle})
+call s:h("PmenuSel",      {"fg": s:norm, "bg": s:blue})
+call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
+call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
+call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
+call s:h("TabLineSel",    {"fg": s:blue, "bg": s:bg_subtle, "gui": "bold", "cterm": "bold"})
+call s:h("TabLineFill",   {"fg": s:norm, "bg": s:bg_very_subtle})
+call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
+call s:h("CursorLine",    {"fg": s:norm, "bg": s:bg_very_subtle})
+call s:h("ColorColumn",   {"bg": s:bg_subtle})
+
+call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("qfLineNr",      {"fg": s:medium_gray}) " not in other list
+
+call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm}) " not in other list
+call s:h("htmlH2",        {"bg": s:bg, "fg": s:norm}) " not in other list
+call s:h("htmlH3",        {"bg": s:bg, "fg": s:norm}) " not in other list
+call s:h("htmlH4",        {"bg": s:bg, "fg": s:norm}) " not in other list
+call s:h("htmlH5",        {"bg": s:bg, "fg": s:norm}) " not in other list
+call s:h("htmlH6",        {"bg": s:bg, "fg": s:norm}) " not in other list
+
+hi link diffRemoved       DiffDelete " not in other list
+hi link diffAdded         DiffAdd " not in other list
+
+
+
+
+
+" not in other list
+hi EndOfBuffer","NonTex cterm=none ctermbg=none ctermfg=15
+hi Number cterm=none ctermbg=none ctermfg=15
+hi StatusLineTerm cterm=none ctermbg=none ctermfg=15
+hi StatusLineTermNC cterm=none ctermbg=none ctermfg=15
+hi helpLeadBlank cterm=none ctermbg=none ctermfg=15
+hi helpNormal cterm=none ctermbg=none ctermfg=15
+hi DiffChange cterm=none ctermbg=none ctermfg=15
+hi ModeMsg cterm=none ctermbg=none ctermfg=15
+hi CursorIM cterm=none ctermbg=none ctermfg=15
+hi QuickFixLine cterm=none ctermbg=none ctermfg=15
+hi Terminal cterm=none ctermbg=none ctermfg=15
+hi Conceal cterm=none ctermbg=none ctermfg=15
+hi ToolbarLine cterm=none ctermbg=none ctermfg=15
+hi ToolbarButton cterm=none ctermbg=none ctermfg=15
+hi debugPC cterm=none ctermbg=none ctermfg=15
+hi debugBreakpoint cterm=none ctermbg=none ctermfg=15

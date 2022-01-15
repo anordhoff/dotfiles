@@ -14,6 +14,7 @@ function s:SetFileType()
                  \ 'jsx': 'javascriptreact',
                  \ 'ts':  'typescript',
                  \ 'tsx': 'typescriptreact',
+                 \ 'py':  'python',
                  \ 'tf':  'terraform'}
         let &ft=has_key(s:d, s:s[1]) ? s:d[s:s[1]] : s:s[1]
     endif

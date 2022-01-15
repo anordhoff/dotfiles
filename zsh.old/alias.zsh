@@ -31,4 +31,4 @@ alias kctx='kubectx'
 alias kns='kubens'
 
 # neovim
-alias v='nvim'
+alias e='nvim'

@@ -1,7 +1,7 @@
 (defcfg
-  ;; For Windows
-  input  (low-level-hook)
-  output (send-event-sink)
+  ;; For MacOS
+  input  (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
 
   fallthrough true
   allow-cmd   false
@@ -23,15 +23,15 @@
   tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps      a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft      z    x    c    v    b    n    m    ,    .    /    rsft      up
-  lctl      lmet lalt           spc            ralt rctl           left down rght
+  fn        lctl lalt lmet      spc            rmet ralt           left down rght
 )
 
 (deflayer colemak
-  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  grv       1    2    3    4    5    XX   XX   6    7    8    9    0    bspc
   tab       q    w    f    p    b    XX   j    l    u    y    '    bspc bspc
   @lmt      a    r    s    t    g    XX   m    n    e    i    o    ret
   @lsh      x    c    d    v    XX   XX   k    h    ,    .    @rsh      up
-  XX        lalt lctl           spc            @low @rai           left down rght
+  fn        _    lalt lctl      spc            @low @rai           left down rght
 )
 
 (deflayer left-shift
@@ -39,7 +39,7 @@
   S-tab     Q    W    F    P    B    _    J    L    U    Y    "    S-bspc    S-bspc
   @S-lmt    A    R    S    T    G    _    M    N    E    I    O    S-ret
   -         X    C    D    V    _    _    K    H    <    >    ?         S-up
-  _         S-lalt    S-lctl    S-spc          @low @rai         S-left S-down S-rght
+  S-fn   _  S-lalt    S-lctl    S-spc          @low @rai         S-left S-down S-rght
 )
 
 (deflayer right-shift
@@ -47,7 +47,7 @@
   RS-tab    Q    W    F    P    B    _    J    L    U    Y    "    RS-bspc   RS-bspc
   @RS-lmt   A    R    S    T    G    _    M    N    E    I    O    RS-ret
   Z         X    C    D    V    _    _    K    H    <    >    -         RS-up
-  _         RS-lalt   RS-lctl   RS-spc         @low @rai        RS-left RS-down RS-rght
+  RS-fn  _  RS-lalt   RS-lctl   RS-spc         @low @rai        RS-left RS-down RS-rght
 )
 
 (deflayer lower
@@ -55,7 +55,7 @@
   _         XX   7    8    9    XX   -    XX   ~    =    +    XX   _    _
   _         0    4    5    6    XX   -    XX   -    \_   ;    :    _
   _         1    2    3    XX   _    -    XX   `    \    |    _         _
-  _         _         _         _              _    @joi           _    _    _
+  _         _    _    _         _              _    @joi           _    _    _
 )
 
 (deflayer raise
@@ -63,13 +63,13 @@
   _         XX   &    *    \(   XX   _    XX   XX   [    ]    XX   _    _
   _         \)   $    %    ^    XX   _    XX   left down up   rght _
   _         !    @    #    XX   _    _    XX   @joi {    }    _         _
-  _         _         _         _              @joi _              _    _    _
+  _         _    _    _         _              @joi _              _    _    _
 )
 
 (deflayer join
   XX        XX   XX   XX   XX   XX   _    _    XX   XX   XX   XX   XX   XX
-  _         XX   ssrq slck pause XX  _    XX   XX   XX   XX   XX   _    _
+  _         XX   f13  f14  f15  XX   _    XX   XX   XX   XX   XX   _    _
   _         nlck ins  home pgup XX   _    XX   XX   XX   XX   XX   _
   _         del  end  pgdn XX   _    _    XX   _    XX   XX   _         _
-  _         _         _         _              _    _              _    _    _
+  _         _    _    _         _              _    _              _    _    _
 )
