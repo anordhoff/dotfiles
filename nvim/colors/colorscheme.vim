@@ -20,8 +20,9 @@ let g:colors_name = 'colorscheme'
 " --------------------------------
 " Editor settings
 " --------------------------------
-hi Normal			cterm=none	ctermfg=15	ctermbg=0
-hi Cursor			cterm=none	ctermfg=none	ctermbg=none
+hi Normal			cterm=none	ctermfg=15	ctermbg=none
+hi Cursor			cterm=none	ctermfg=0	ctermbg=7
+hi! link TermCursor		Cursor
 hi CursorLine			cterm=none	ctermfg=none	ctermbg=8
 hi! link CursorLineNr		Normal
 hi! link CursorColumn		CursorLine
@@ -31,7 +32,7 @@ hi! link ColorColumn		CursorLine
 " - Number column -
 " -----------------
 hi LineNr			cterm=none	ctermfg=7	ctermbg=none
-hi SignColumn			cterm=none	ctermfg=none	ctermbg=none
+hi SignColumn			cterm=none	ctermfg=15	ctermbg=none
 hi! link FoldColumn		SignColumn
 hi! link Folded			Comment
 
@@ -47,7 +48,7 @@ hi TabLineSel			cterm=none	ctermfg=15	ctermbg=8
 " - File Navigation / Searching -
 " -------------------------------
 hi! link Directory		Normal
-hi Search			cterm=none	ctermfg=0	ctermbg=2
+hi Search			cterm=none	ctermfg=0	ctermbg=5
 hi IncSearch			cterm=none	ctermfg=0	ctermbg=4
 
 " -----------------
@@ -55,7 +56,7 @@ hi IncSearch			cterm=none	ctermfg=0	ctermbg=4
 " -----------------
 hi StatusLine			cterm=none	ctermfg=15	ctermbg=8
 hi StatusLineNC			cterm=none	ctermfg=7	ctermbg=8
-" TODO: WildMenu, Question, Title, MoreMsg?
+" TODO: WildMenu, Question, Title, ModeMsg, MoreMsg?
 hi WildMenu			cterm=none	ctermfg=none	ctermbg=none
 hi Question			cterm=none	ctermfg=none	ctermbg=none
 hi Title			cterm=none	ctermfg=none	ctermbg=none
@@ -192,12 +193,18 @@ hi goSpecialString		cterm=none	ctermfg=2	ctermbg=none
 "--------------------------------------------------------------------
 
 " --------------------------------
+" netrw
+" --------------------------------
+hi netrwDir			cterm=none	ctermfg=4	ctermbg=none
+hi netrwSymLink			cterm=none	ctermfg=5	ctermbg=none
+
+" --------------------------------
 " nvim-lspconfig
 " --------------------------------
 hi DiagnosticError		cterm=none	ctermfg=1	ctermbg=none
 hi DiagnosticWarn		cterm=none	ctermfg=3	ctermbg=none
 hi DiagnosticInfo		cterm=none	ctermfg=4	ctermbg=none
-hi DiagnosticHint		cterm=none	ctermfg=7	ctermbg=none
+hi DiagnosticHint		cterm=none	ctermfg=6	ctermbg=none
 
 " --------------------------------
 " vim-signature
@@ -205,23 +212,16 @@ hi DiagnosticHint		cterm=none	ctermfg=7	ctermbg=none
 hi SignatureMarkText		cterm=none	ctermfg=15	ctermbg=none
 
 " --------------------------------
-" vim-gitgutter
+" gitsigns.nvim
 " --------------------------------
-" hi GitGutterAdd			cterm=none	ctermfg=2	ctermbg=none
-" hi GitGutterChange		cterm=none	ctermfg=3	ctermbg=none
-" hi GitGutterDelete		cterm=none	ctermfg=1	ctermbg=none
-hi GitGutterAdd			cterm=none	ctermfg=7	ctermbg=none
-hi GitGutterChange		cterm=none	ctermfg=7	ctermbg=none
-hi GitGutterDelete		cterm=none	ctermfg=7	ctermbg=none
+hi GitSignsAdd  		cterm=none	ctermfg=2	ctermbg=none
+hi GitSignsChange		cterm=none	ctermfg=3	ctermbg=none
+hi GitSignsDelete		cterm=none	ctermfg=1	ctermbg=none
 
 " --------------------------------
-" telescope
+" telescope.nvim
 " --------------------------------
-hi TelescopePrompt		cterm=none	ctermfg=none	ctermbg=none
-hi TelescopePromptBorder	cterm=none	ctermfg=none	ctermbg=none
-hi TelescopeResultsConstant	cterm=none	ctermfg=none	ctermbg=none
-hi TelescopeResultsVariable	cterm=none	ctermfg=none	ctermbg=none
-hi TelescopeResultsFunction	cterm=none	ctermfg=none	ctermbg=none
+hi TelescopeMatching		cterm=none	ctermfg=4	ctermbg=none
 
 " --------------------------------
 " vim-go

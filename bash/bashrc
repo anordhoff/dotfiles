@@ -31,8 +31,8 @@ shopt -s globstar
 #     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 # }
 # PS1="\[\e[0;35m\]\w\[\e[0;30m\]\$(git_branch)\[\e[0;00m\] \$ "
-PS1="\[\e[0;37m\]\t\[\e[0;34m\] \w\[\e[0;00m\] \$ "
-# PS1="\[\e[0;34m\]\w\[\e[0;00m\] \$ "
+# PS1="\[\e[0;37m\]\t\[\e[0;34m\] \w\[\e[0;00m\] \$ "
+PS1="\[\e[0;34m\]\w\[\e[0;00m\] \$ "
 
 # shorten the path in the prompt to three directories
 PROMPT_DIRTRIM=3
@@ -47,7 +47,9 @@ HISTTIMEFORMAT="%F %T  " # add the execution time to commands in the hist file
 HISTCONTROL=ignoreboth:erasedups
 
 # update history after every command
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# TODO: bash: PROMPT_COMMAND: line 3: syntax error near unexpected token `;'
+#       bash: PROMPT_COMMAND: line 3: `history -a; ; _ksi_prompt_command'
+# PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # environment variables
 export GPG_TTY=$(tty)            # set to the path of the tty device for gpg
@@ -58,7 +60,7 @@ export PATH=$GOPATH/bin:$PATH    # add GOPATH to PATH
 export KUBECTX_IGNORE_FZF=1      # kubectx prints to stout instead of fzf
 
 # set the preferred editor to vim if not already set
-[[ -z "$VISUAL" ]] && export VISUAL='vim'
+[[ -z "$VISUAL" ]] && export VISUAL='nvim --noplugin'
 
 # add ~/.local/bin to path if it doesn't already exist
 [[ ! "$PATH" == *$HOME/.local/bin* ]] && export PATH=$HOME/.local/bin:$PATH
@@ -184,3 +186,5 @@ qmk() {
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+alias luamake=/Users/qsq854/cloudcontrol/policy-dashboard-api/docker/lua-language-server/3rd/luamake/luamake
