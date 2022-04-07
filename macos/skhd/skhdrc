@@ -1,23 +1,23 @@
 # open terminal
-ctrl + alt + cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
+shift + ctrl + alt - return : /Applications/kitty.app/Contents/MacOS/kitty
 
 # close current window
-ctrl + alt + cmd - q : yabai -m window --close
+shift + ctrl + alt - q : yabai -m window --close
 
 # toggle window zoom
-ctrl + alt + cmd - z : yabai -m window --toggle zoom-fullscreen
+shift + ctrl + alt - z : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
-ctrl + alt + cmd - g : yabai -m window --toggle split
+shift + ctrl + alt - g : yabai -m window --toggle split
 
 # balance size of windows
-ctrl + alt + cmd - b : yabai -m space --balance
+shift + ctrl + alt - b : yabai -m space --balance
 
 # focus window
-ctrl + alt + cmd - n : yabai -m window --focus west
-ctrl + alt + cmd - e : yabai -m window --focus south
-ctrl + alt + cmd - i : yabai -m window --focus north
-ctrl + alt + cmd - o : yabai -m window --focus east
+shift + ctrl + alt - n : yabai -m window --focus west
+shift + ctrl + alt - e : yabai -m window --focus south
+shift + ctrl + alt - i : yabai -m window --focus north
+shift + ctrl + alt - o : yabai -m window --focus east
 
 # swap managed window
 shift + ctrl + alt + cmd - n : yabai -m window --swap west
@@ -26,10 +26,10 @@ shift + ctrl + alt + cmd - i : yabai -m window --swap north
 shift + ctrl + alt + cmd - o : yabai -m window --swap east
 
 # change window size
-ctrl + alt + cmd - h : yabai -m window --resize left:100:0; yabai -m window --resize right:-100:0 # shrink width
-ctrl + alt + cmd - j : yabai -m window --resize top:0:-100; yabai -m window --resize bottom:0:100 # grow height
-ctrl + alt + cmd - k : yabai -m window --resize top:0:100; yabai -m window --resize bottom:0:-100 # shrink height
-ctrl + alt + cmd - l : yabai -m window --resize left:-100:0; yabai -m window --resize right:100:0 # grow width
+shift + ctrl + alt - h : yabai -m window --resize left:100:0; yabai -m window --resize right:-100:0 # shrink width
+shift + ctrl + alt - j : yabai -m window --resize top:0:-100; yabai -m window --resize bottom:0:100 # grow height
+shift + ctrl + alt - k : yabai -m window --resize top:0:100; yabai -m window --resize bottom:0:-100 # shrink height
+shift + ctrl + alt - l : yabai -m window --resize left:-100:0; yabai -m window --resize right:100:0 # grow width
 
 # move window to adjacent space
 shift + ctrl + alt + cmd - u : yabai -m window --space prev
@@ -48,38 +48,38 @@ shift + ctrl + alt + cmd - p : yabai -m window --space 9
 shift + ctrl + alt + cmd - a : yabai -m window --space 10
 
 # move focus to adjacent monitor
-ctrl + alt + cmd - 0x2B : yabai -m display --focus prev # 0x2B = comma
-ctrl + alt + cmd - 0x2F : yabai -m display --focus next # 0x2F = period
+shift + ctrl + alt - 0x2B : yabai -m display --focus prev # 0x2B = comma
+shift + ctrl + alt - 0x2F : yabai -m display --focus next # 0x2F = period
 
 # move window to adjacent monitor
 shift + ctrl + alt + cmd - 0x2B : yabai -m window --display prev # 0x2B = comma
 shift + ctrl + alt + cmd - 0x2F : yabai -m window --display next # 0x2F = period
 
 # move focus to adjacent space (shorter transition time than native macos shortcut)
-# ctrl + alt + cmd - u : case $(yabai -m query --spaces | jq 'map(select(."focused" == 1)) | .[].index - 1') in \
-# 						1) skhd -k "ctrl + alt + cmd - x";; \
-# 						2) skhd -k "ctrl + alt + cmd - c";; \
-# 						3) skhd -k "ctrl + alt + cmd - d";; \
-# 						4) skhd -k "ctrl + alt + cmd - r";; \
-# 						5) skhd -k "ctrl + alt + cmd - s";; \
-# 						6) skhd -k "ctrl + alt + cmd - t";; \
-# 						7) skhd -k "ctrl + alt + cmd - w";; \
-# 						8) skhd -k "ctrl + alt + cmd - f";; \
-# 						9) skhd -k "ctrl + alt + cmd - p";; \
-# 						10) skhd -k "ctrl + alt + cmd - a";; \
+# shift + ctrl + alt - u : case $(yabai -m query --spaces | jq 'map(select(."focused" == 1)) | .[].index - 1') in \
+# 						1) skhd -k "shift + ctrl + alt - x";; \
+# 						2) skhd -k "shift + ctrl + alt - c";; \
+# 						3) skhd -k "shift + ctrl + alt - d";; \
+# 						4) skhd -k "shift + ctrl + alt - r";; \
+# 						5) skhd -k "shift + ctrl + alt - s";; \
+# 						6) skhd -k "shift + ctrl + alt - t";; \
+# 						7) skhd -k "shift + ctrl + alt - w";; \
+# 						8) skhd -k "shift + ctrl + alt - f";; \
+# 						9) skhd -k "shift + ctrl + alt - p";; \
+# 						10) skhd -k "shift + ctrl + alt - a";; \
 # 						*) \
 # 					esac
-# ctrl + alt + cmd - y : case $(yabai -m query --spaces | jq 'map(select(."focused" == 1)) | .[].index + 1') in \
-# 						1) skhd -k "ctrl + alt + cmd - x";; \
-# 						2) skhd -k "ctrl + alt + cmd - c";; \
-# 						3) skhd -k "ctrl + alt + cmd - d";; \
-# 						4) skhd -k "ctrl + alt + cmd - r";; \
-# 						5) skhd -k "ctrl + alt + cmd - s";; \
-# 						6) skhd -k "ctrl + alt + cmd - t";; \
-# 						7) skhd -k "ctrl + alt + cmd - w";; \
-# 						8) skhd -k "ctrl + alt + cmd - f";; \
-# 						9) skhd -k "ctrl + alt + cmd - p";; \
-# 						10) skhd -k "ctrl + alt + cmd - a";; \
+# shift + ctrl + alt - y : case $(yabai -m query --spaces | jq 'map(select(."focused" == 1)) | .[].index + 1') in \
+# 						1) skhd -k "shift + ctrl + alt - x";; \
+# 						2) skhd -k "shift + ctrl + alt - c";; \
+# 						3) skhd -k "shift + ctrl + alt - d";; \
+# 						4) skhd -k "shift + ctrl + alt - r";; \
+# 						5) skhd -k "shift + ctrl + alt - s";; \
+# 						6) skhd -k "shift + ctrl + alt - t";; \
+# 						7) skhd -k "shift + ctrl + alt - w";; \
+# 						8) skhd -k "shift + ctrl + alt - f";; \
+# 						9) skhd -k "shift + ctrl + alt - p";; \
+# 						10) skhd -k "shift + ctrl + alt - a";; \
 # 						*) \
 # 					esac
 
