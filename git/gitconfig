@@ -2,8 +2,6 @@
     signingkey = 3C85E9B77ED51BB5
     email = git@anordhoff.com
     name = Aaron Nordhoff
-[credential]
-    helper = cache --timeout=3600
 [core]
     pager = less -FRX
 [url "git@github.com:"]

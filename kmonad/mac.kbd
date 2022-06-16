@@ -24,7 +24,7 @@
 
   ;; home row mods / mod taps
   mtesc (tap-hold-next-release 150 esc lmet)
-  mta   (tap-hold-next-release 250 a (around lctl (around lsft (around lalt (layer-toggle colemak-lmeh)))))
+  mta   (tap-hold-next-release 300 a (around lctl (around lsft (around lalt (layer-toggle colemak-lmeh)))))
   mtr   (tap-hold-next-release 180 r (layer-toggle layer-r))
   mts   (tap-hold-next-release 180 s (layer-toggle layer-s))
   mtt   (tap-hold-next-release 180 t (layer-toggle layer-t))
@@ -32,11 +32,11 @@
   mtn   (tap-hold-next-release 180 n (layer-toggle layer-n))
   mte   (tap-hold-next-release 180 e (layer-toggle layer-e))
   mti   (tap-hold-next-release 180 i (layer-toggle layer-i))
-  mto   (tap-hold-next-release 250 o (around rctl (around rsft (around ralt (layer-toggle colemak-rmeh)))))
+  mto   (tap-hold-next-release 300 o (around rctl (around rsft (around ralt (layer-toggle colemak-rmeh)))))
   mtret (tap-hold-next-release 150 ret ralt)
 
   mtESC (tap-hold-next-release 150 (around rsft esc) (around rsft lmet))
-  mtA   (tap-hold-next-release 250 A (around rsft (around lctl (around lsft (around lalt (layer-toggle colemak-lmeh))))))
+  mtA   (tap-hold-next-release 300 A (around rsft (around lctl (around lsft (around lalt (layer-toggle colemak-lmeh))))))
   mtR   (tap-hold-next-release 180 R (around rsft (layer-toggle layer-r)))
   mtS   (tap-hold-next-release 180 S (around rsft (layer-toggle layer-s)))
   mtT   (tap-hold-next-release 180 T (layer-toggle layer-t))
@@ -44,7 +44,7 @@
   mtN   (tap-hold-next-release 180 N (layer-toggle layer-n))
   mtE   (tap-hold-next-release 180 E (around rsft (layer-toggle layer-e)))
   mtI   (tap-hold-next-release 180 I (around rsft (layer-toggle layer-i)))
-  mtO   (tap-hold-next-release 250 O (around rsft (around rctl (around rsft (around ralt (layer-toggle colemak-rmeh))))))
+  mtO   (tap-hold-next-release 300 O (around rsft (around rctl (around rsft (around ralt (layer-toggle colemak-rmeh))))))
   mtRET (tap-hold-next-release 150 (around rsft ret) (around rsft ralt))
 
   ;; media keys

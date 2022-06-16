@@ -26,6 +26,9 @@ export LS_COLORS='di=34:ln=35:so=31:pi=33:ex=32'
 export GREP_COLOR='0;35'
 export GREP_COLORS='ms=0;35'
 
+# jq colors (update field color: https://github.com/stedolan/jq/pull/1791)
+export JQ_COLORS='0;37:0;37:0;37:0;37:0;37:0;37:0;37'
+
 # less options
 export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5'
 

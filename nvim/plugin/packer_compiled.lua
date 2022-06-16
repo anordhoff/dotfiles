@@ -137,11 +137,6 @@ _G.packer_plugins = {
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-dirvish",
     url = "https://github.com/justinmk/vim-dirvish"
   },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
-  },
   ["vim-gutentags"] = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-gutentags",
@@ -156,11 +151,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
-  },
-  ["vim-rhubarb"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
-    url = "https://github.com/tpope/vim-rhubarb"
   },
   ["vim-rsi"] = {
     loaded = true,
@@ -227,14 +217,10 @@ end
 time([[Setup for telescope.nvim]], true)
 require("anordhoff.telescope.setup")
 time([[Setup for telescope.nvim]], false)
--- Config for: leap.nvim
-time([[Config for leap.nvim]], true)
-require("anordhoff.leap")
-time([[Config for leap.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require("anordhoff.comment")
-time([[Config for Comment.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("anordhoff.treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require("anordhoff.lspconfig")
@@ -243,10 +229,14 @@ time([[Config for nvim-lspconfig]], false)
 time([[Config for gitsigns.nvim]], true)
 require("anordhoff.gitsigns")
 time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("anordhoff.treesitter")
-time([[Config for nvim-treesitter]], false)
+-- Config for: leap.nvim
+time([[Config for leap.nvim]], true)
+require("anordhoff.leap")
+time([[Config for leap.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require("anordhoff.comment")
+time([[Config for Comment.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
