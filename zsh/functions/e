@@ -1,0 +1,6 @@
+# nvim alias with support for nested nvim sessions
+if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
+    nvim --server $NVIM_LISTEN_ADDRESS --remote "$@"
+else
+    nvim "$@"
+fi

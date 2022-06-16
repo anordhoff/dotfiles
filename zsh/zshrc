@@ -1,0 +1,207 @@
+# start tmux on shell launch, attaching to (or creating a) session 'dotfiles'
+[ -z "${TMUX}" ] && tmux new-session -A -s dotfiles
+
+
+
+# ----- general -----
+setopt   dotglob      # include hidden files in expansion and completion
+setopt   extendedglob # treat '#', '~', and '^' as part of patterns
+setopt   nomatch      # print an error if no filename matches pattern
+unsetopt flowcontrol  # disable suspending terminal with ctrl-s
+
+# directory stack options 
+setopt autopushd       # make cd push the old directory onto the dir stack
+setopt pushdignoredups # do not push copies of the same dir onto the dir stack
+setopt pushdsilent     # do not print the dir stack after pushd or popd
+
+# disable beeping
+unsetopt beep
+unsetopt histbeep
+unsetopt listbeep
+
+# print current working directory in the prompt
+PS1='%F{blue}%60<...<%~%F{default} %# '
+
+# use emacs mode for zle
+bindkey -e
+
+# bash-like navigation
+autoload -Uz select-word-style
+select-word-style bash
+
+# delete the line before the cursor, rather than entire line (to mimic bash)
+bindkey '^U' backward-kill-line
+
+# CTRL-X_CTRL-E opens the current command in the editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+# use 'help' command for zsh built-ins
+autoload -Uz run-help
+
+# lazyload functions in the dotfiles/zsh/functions directory
+typeset -U fpath
+fpath=(~/dotfiles/zsh/functions $fpath)
+autoload ${fpath[1]}/*(:t)
+
+# enable fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# enable expand-multiple-dots.zsh
+[ -f ~/dotfiles/zsh/expand-multiple-dots.zsh ] &&
+  source ~/dotfiles/zsh/expand-multiple-dots.zsh
+
+# enable tab-on-empty-line-shows-files.zsh
+[ -f ~/dotfiles/zsh/expand-or-complete-or-list-files.zsh ] &&
+  source ~/dotfiles/zsh/expand-or-complete-or-list-files.zsh
+
+
+
+# ----- history -----
+HISTFILE=~/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt extendedhistory   # save start time and length of time commands run
+setopt histignorealldups # keep only the most recently added duplicate command
+setopt histignorespace   # commands that start with a space are not written
+setopt histnostore       # history and fc commands are not written to history
+setopt histreduceblanks  # remove excess spaces before writing a comman
+# setopt histverify        # verify bang history substitution
+setopt incappendhistory  # update the history file after each executed command
+
+# match typed command and arguments when moving through history
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
+
+
+
+# ----- completion -----
+setopt   alwaystoend    # completion in a word will move cursor to end of word
+setopt   completeinword # completion takes place at the cursor position in word
+unsetopt listtypes      # don't show filetypes in completion menu
+
+# load the completion module
+autoload -Uz compinit; compinit
+zmodload -i zsh/complist
+
+# specify location of zshrc
+zstyle :compinstall filename "${HOME}/.zshrc"
+
+# automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
+
+# go backwards in completion menu using shift-tab
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+
+# use a completion menu
+zstyle ':completion:*' menu select
+
+# prefer the extensions completer, fallback to default completer
+zstyle ':completion:*' completer _extensions _complete
+
+# group matches based on type
+zstyle ':completion:*' group-name ''
+
+# list directories first when completing
+zstyle ':completion:*' list-dirs-first true
+
+# case-insensitive completion; complete partial words
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# cache completions TODO: doesn't work?
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*' cache-path ~/.zcompcache
+
+# formatting
+zstyle ':completion:*' select-prompt '-- scrolling active (%p) --'
+zstyle ':completion:*:messages' format '-- %d --'
+zstyle ':completion:*:warnings' format '-- no matches found --'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{magenta}-- %d --%f'
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm'
+
+# use colors in completion menu; set directory color to white
+LS_COLORS_COMPLETION=$(echo $LS_COLORS | sed "s/di=[0-9]\{2\}/di=37/")
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS_COMPLETION}
+
+
+
+# ----- aliases -----
+# unalias default run-help alias to man; alias help to run-help
+(( ${+aliases[run-help]} )) && unalias run-help
+alias help=run-help
+
+# refresh watch every second
+alias watch='watch -n 1'
+
+# diff files in an editor
+alias ediff='nvim --noplugin -R -d'
+
+# directory stack
+alias dirs='dirs -v'
+for i in {0..9}; do
+  alias d${i}="cd +${i}"
+done
+
+# grep colors
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# use gnu ls on bsd (bsd ls does not have --group-directories-first)
+if [[ "${OSTYPE}" =~ "darwin"* ]]; then
+  alias l='gls -lhA --color=auto --group-directories-first'
+  alias ll='gls -lh --color=auto --group-directories-first'
+  alias ls='gls --color=auto --group-directories-first'
+else
+  alias l='ls -lhA --color=auto --group-directories-first'
+  alias ll='ls -lh --color=auto --group-directories-first'
+  alias ls='ls --color=auto --group-directories-first'
+fi
+
+# notes
+alias n='nvim ~/notes/notes.md'
+
+# git (gcm is a function)
+alias    g='git'
+alias   ga='git add'
+alias   gb='git branch'
+alias   gc='git commit'
+alias  gcl='git clone'
+alias  gco='git checkout'
+alias gcob='git checkout -b'
+alias   gd='git diff'
+alias   gf='git fetch'
+alias gfom='git fetch origin master:master'
+alias   gl='git log'
+alias  glo='git log --oneline'
+alias   gm='git merge'
+alias  gmt='git mergetool'
+alias   gp='git pull'
+alias  gpu='git push'
+alias   gr='git reset'
+alias  grb='git rebase'
+alias  grm='git rm'
+alias  grv='git remote --verbose'
+alias   gs='git status'
+alias  gst='git stash'
+alias  gsh='git show'
+
+# kubernetes
+alias     k='kubectl'
+alias   kns='kubens'
+alias  kctx='kubectx'
+alias kgnst='k get nodes --sort-by metadata.creationTimestamp'
+
+
+
+# ----- misc -----
+# source work zshrc
+[ -r ~/jobfiles/zsh/zshrc ] && source ~/jobfiles/zsh/zshrc

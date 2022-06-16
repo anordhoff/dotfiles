@@ -1,0 +1,61 @@
+# prepend ~/.local/bin to PATH
+typeset -U path
+path=(~/.local/bin $path)
+
+# faster than $(brew --prefix)
+BREW_PREFIX='/usr/local'
+
+# set help directory for zsh built-ins
+if [[ "${OSTYPE}" =~ "darwin"* ]]; then
+    HELPDIR="${BREW_PREFIX}/share/zsh/help"
+else
+    HELPDIR="/usr/share/zsh/${ZSH_VERSION}/help"
+fi
+
+# set the preferred editor to nvim (without plugins) if not already set
+[ -z "${VISUAL}" ] && export VISUAL='nvim --noplugin'
+
+# turn on colors for bsd tools
+export CLICOLOR=1
+
+# ls colors (bsd, gnu)
+export LSCOLORS='exfxbxdxcx'
+export LS_COLORS='di=34:ln=35:so=31:pi=33:ex=32'
+
+# grep colors (bsd, gnu)
+export GREP_COLOR='0;35'
+export GREP_COLORS='ms=0;35'
+
+# less options
+export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5'
+
+# set to the path of the tty device for gpg
+export GPG_TTY=$(tty)
+
+# set GOPATH and prepend to PATH
+export GOPATH="${HOME}/go"
+path=($GOPATH/bin $path)
+
+# do not paginate awscli responses
+export AWS_PAGER=''
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git/ \
+    --exclude vendor/ --exclude node_modules/'
+export FZF_DEFAULT_OPTS="--inline-info --border \
+    --color border:8 \
+    --color bg+:11 \
+    --color fg+:7:regular \
+    --color gutter:0 \
+    --color header:15 \
+    --color hl:4:regular \
+    --color hl+:4:regular \
+    --color info:8 \
+    --color marker:4:regular \
+    --color spinner:4 \
+    --color pointer:7:regular \
+    --color prompt:4:regular \
+    --color query:7:regular"
+
+# source work zshenv
+[ -r ~/jobfiles/zsh/zshenv ] && source ~/jobfiles/zsh/zshenv
