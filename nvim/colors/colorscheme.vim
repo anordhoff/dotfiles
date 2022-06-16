@@ -69,7 +69,7 @@ hi TabLineSel			cterm=none	ctermfg=5	ctermbg=11
 " - File Navigation / Searching -
 " -------------------------------
 hi! link Directory		Normal
-hi Search			cterm=none	ctermfg=0	ctermbg=7
+hi Search			cterm=none	ctermfg=0	ctermbg=4
 hi IncSearch			cterm=none	ctermfg=0	ctermbg=5
 
 " -----------------
@@ -198,13 +198,18 @@ hi vimCommentTitle		cterm=none	ctermfg=3	ctermbg=none
 " --------------------------------
 " json
 " --------------------------------
-hi jsonKeyword			cterm=none	ctermfg=5	ctermbg=none
+hi jsonKeyword			cterm=none	ctermfg=6	ctermbg=none
 hi jsonString			cterm=none	ctermfg=7	ctermbg=none
 
 " --------------------------------
 " yaml
 " --------------------------------
-hi yamlBlockMappingKey		cterm=none	ctermfg=5	ctermbg=none
+hi yamlBlockMappingKey		cterm=none	ctermfg=6	ctermbg=none
+
+" --------------------------------
+" make
+" --------------------------------
+hi MakeTarget			cterm=none	ctermfg=6	ctermbg=none
 
 " --------------------------------
 " go

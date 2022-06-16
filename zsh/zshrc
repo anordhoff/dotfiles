@@ -49,12 +49,12 @@ autoload ${fpath[1]}/*(:t)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # enable expand-multiple-dots.zsh
-[ -f ~/dotfiles/zsh/expand-multiple-dots.zsh ] &&
-  source ~/dotfiles/zsh/expand-multiple-dots.zsh
+[ -f ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] &&
+  source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
 
 # enable tab-on-empty-line-shows-files.zsh
-[ -f ~/dotfiles/zsh/expand-or-complete-or-list-files.zsh ] &&
-  source ~/dotfiles/zsh/expand-or-complete-or-list-files.zsh
+[ -f ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] &&
+  source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
 
 
@@ -144,6 +144,9 @@ alias watch='watch -n 1'
 # diff files in an editor
 alias ediff='nvim --noplugin -R -d'
 
+# open the notes dir
+alias n='nvim ~/notes'
+
 # directory stack
 alias dirs='dirs -v'
 for i in {0..9}; do
@@ -166,14 +169,13 @@ else
   alias ls='ls --color=auto --group-directories-first'
 fi
 
-# notes
-alias n='nvim ~/notes/notes.md'
-
 # git (gcm is a function)
 alias    g='git'
 alias   ga='git add'
+alias  gap='git add -p'
 alias   gb='git branch'
-alias   gc='git commit'
+alias  gbl='git blame'
+alias   gc='git commit -v'
 alias  gcl='git clone'
 alias  gco='git checkout'
 alias gcob='git checkout -b'

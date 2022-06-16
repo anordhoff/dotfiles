@@ -27,22 +27,22 @@ return packer.startup(function()
     'tpope/vim-unimpaired',
     'wbthomason/packer.nvim',
 
-    -- fugitive / rhubarb
-    {
-      {
-	'tpope/vim-fugitive',
-	-- opt = true,
-	-- cmd = {
-	--   "G", "Git", "Gedit", "Gsplit", "Gdiffsplit", "Gvdiffsplit",
-	--   "Gread", "Gwrite", "Ggrep", "Glgrep",
-	--   "GMove", "GDelete", "GRemove", "GBrowse"
-	-- },
-      },
-      {
-	'tpope/vim-rhubarb',
-	requires = { 'tpope/vim-fugitive' },
-      },
-    },
+ --    -- fugitive / rhubarb
+ --    {
+ --      {
+	-- 'tpope/vim-fugitive',
+	-- -- opt = true,
+	-- -- cmd = {
+	-- --   "G", "Git", "Gedit", "Gsplit", "Gdiffsplit", "Gvdiffsplit",
+	-- --   "Gread", "Gwrite", "Ggrep", "Glgrep",
+	-- --   "GMove", "GDelete", "GRemove", "GBrowse"
+	-- -- },
+ --      },
+ --      {
+	-- 'tpope/vim-rhubarb',
+	-- requires = { 'tpope/vim-fugitive' },
+ --      },
+ --    },
 
     -- comment --
     {

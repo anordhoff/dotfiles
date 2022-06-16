@@ -8,6 +8,7 @@ end
 EOF
 
 
+
 " ==================== settings ==================== "
 set number nu         " line numbers
 set noincsearch       " don't execute search until hitting enter
@@ -28,6 +29,12 @@ set listchars=tab:>\ ,trail:-,nbsp:+,extends:>,precedes:<
 
 " only show the sign column if running with plugins enabled
 if &loadplugins | set signcolumn=yes | endif
+
+" load custom colorscheme
+colorscheme colorscheme
+
+" disable syntax highlighting when using vimdiff
+if &diff | syntax off | endif
 
 " show possible completions in a pmenu; insert longest common text of matches
 " TODO: stabilize the buffer when preview window is opened or closed
@@ -50,39 +57,12 @@ augroup formatoptions
   autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal fo-=t fo-=r fo-=o
 augroup END
 
-" disable syntax highlighting when using vimdiff
-if &diff | syntax off | endif
-
-" load custom colorscheme
-colorscheme colorscheme
-
-" enable spellchecking for markdown, git commit messages
+" enable spellchecking for text files, markdown, and git commit messages
 augroup spellcheck
   autocmd!
-  autocmd FileType gitcommit,markdown setlocal spell
+  autocmd FileType text,markdown,gitcommit setlocal spell
 augroup END
 
-" enable proper yanking/pasting to/from clipboard on Linux
-if $WAYLAND_DISPLAY != ""
-  " wayland clipboard provider that strips carriage returns (GTK3 issue)
-  let g:clipboard = {
-    \   'name': 'wayland-strip-carriage',
-    \   'copy': {
-    \     '+': 'wl-copy --foreground --type text/plain',
-    \     '*': 'wl-copy --foreground --type text/plain --primary',
-    \   },
-    \   'paste': {
-    \     '+': {-> systemlist('wl-paste | tr -d "\r"')},
-    \     '*': {-> systemlist('wl-paste --primary | tr -d "\r"')},
-    \   },
-    \   'cache_enabled': 1,
-    \ }
-else
-  if system("uname") == "Linux\n"
-    " preserve yank when exiting
-    autocmd VimLeave * call system("xsel -ib", getreg('+'))
-  endif
-endif
 
 
 " ==================== keymaps ==================== "
@@ -102,27 +82,14 @@ function! SynGroup()
   endfor
 endfunction
 
-" toggle the notebook
-nnoremap <silent> <leader>n :call NotesToggle()<CR>
-let g:notes = 0
-function! NotesToggle()
-  if g:notes
-    if bufnr('%') == g:notes
-      bdelete
-      let g:notes = 0
-    else
-      exec 'buffer ' . g:notes
-    endif
-  else
-    edit ~/notes/notes.md
-    let g:notes = bufnr('%')
-  endif
-endfunction
-
 " maximize the current window
 nnoremap <silent> <leader>z :call MaximizeWindowToggle()<CR>
-let t:maximized = 0
 function! MaximizeWindowToggle()
+  " initialize the maximized variable
+  if !exists('t:maximized')
+    let t:maximized = 0
+  endif
+
   if t:maximized
     execute "normal! \<C-w>="
     let t:maximized = 0
@@ -157,6 +124,7 @@ function! LocationListToggle()
 endfunction
 
 
+
 " ==================== statusline ==================== "
 set statusline=\ \[%n\]                    " buffer number
 set statusline+=\ \ %f                     " filepath
@@ -172,9 +140,6 @@ augroup statusline
   autocmd!
   " quickfix/location list
   autocmd Filetype qf setlocal statusline=\ \[%n\]\ \ %l/%L\ lines%=%q\ 
-  " TODO: remove netrw
-  " netrw
-  " autocmd Filetype netrw setlocal statusline=\ \[%n\]\ \ netrw\ \ %{PasteFlag()}%H%W%R%M
   " terminal
   autocmd TermOpen * setlocal statusline=\ \[%n\]\ \ terminal\ \ %{NopluginFlag()}%{PasteFlag()}%H%W%R%M
 augroup END
@@ -221,6 +186,7 @@ function! PasteFlag()
 endfunction
 
 
+
 " ==================== tabline ==================== "
 set tabline=%!TabLine()
 
@@ -240,8 +206,8 @@ endfunction
 
 " TODO: buffers opened with dirvish have absolute path rather than relative
 function! TabLabel(n)
-  let l:buflist = tabpagebuflist(a:n)
   let l:winnr = tabpagewinnr(a:n)
+  let l:buflist = tabpagebuflist(a:n)
   let l:bufname = bufname(l:buflist[l:winnr - 1])
   let l:filetype = getbufvar(l:buflist[l:winnr - 1], '&filetype')
   if l:filetype == 'dirvish'
@@ -252,40 +218,54 @@ function! TabLabel(n)
     return 'help'
   elseif l:bufname =~ '^term://'
     return 'terminal'
-  " TODO: remove netrw
-  " elseif l:bufname =~ '^netrw://'
-  "   return 'netrw'
   else
     return l:bufname
   endif
 endfunction
 
 
-" ==================== netrw ==================== "
-" TODO: remove netrw
-" if &loadplugins
-"   " set the absolute size of netrw windows
-"   let g:netrw_winsize = -28
-"
-"   " prevent errors when moving files
-"   let g:netrw_keepdir = 0
-"
-"   " enable recursive copies of directories when using the copy command
-"   let g:netrw_localcopydircmd = 'cp -r'
-"
-"   " toggle netrw as a project drawer
-"   nnoremap <leader>n :call ProjectDrawer()<CR>
-"   function! ProjectDrawer()
-"     let g:netrw_liststyle = 3
-"     execute 'Lexplore'
-"     let g:netrw_liststyle = 0
-"   endfunction
-" endif
+
+" ==================== notes ==================== "
+let s:notesdir = '~/notes'
+
+" toggle the notebook
+nnoremap <silent> <leader>n :call NotesToggle()<CR>
+function! NotesToggle()
+  " initialize the notesbuf and noteswin variables
+  if !exists('t:notesbuf')
+    let t:notesbuf = 0
+  endif
+  if !exists('t:noteswin')
+    let t:noteswin = 0
+  endif
+
+  " toggle the notes window, saving the currently open buffer
+  if win_gotoid(t:noteswin)
+    let t:notesbuf = bufnr('%')
+    hide
+  else
+    try
+      exec 'sbuffer ' . t:notesbuf
+    catch
+      exec 'split ' . s:notesdir
+      let t:notesbuf = bufnr('%')
+    endtry
+    let t:noteswin = win_getid()
+  endif
+endfunction
+
+augroup notes
+  autocmd!
+  " prevent notes from being added to the buffer list
+  autocmd BufNewFile,BufRead ~/notes/*.txt,~/notes/*.md setlocal nobuflisted
+augroup END
+
 
 
 " ==================== terminal ==================== "
 " TODO: return to same :term when closing nested nvim session (ie <C-x><C-e>)
 " TODO: git mergetool with --remote
+" TODO: implement an i_CTRL-O command in terminal readline
 
 " set the preferred editor to use the current session's RPC server
 let $VISUAL="nvim --server $NVIM_LISTEN_ADDRESS --remote"
@@ -295,9 +275,9 @@ tnoremap <C-[> <C-\><C-n>
 tnoremap <esc> <C-\><C-n>
 
 " open terminal in a horizontal split, vertical split, or tab
-nnoremap <A-s> :call TermToggle(0)<CR>
-nnoremap <A-v> :call TermToggle(1)<CR>
-nnoremap <leader>t :call TermTab()<CR>
+nnoremap <silent> <A-s> :call TermToggle(0)<CR>
+nnoremap <silent> <A-v> :call TermToggle(1)<CR>
+nnoremap <silent> <leader>t :tabnew +term<CR>
 
 " toggle terminal without leaving terminal insert mode
 tnoremap <silent> <A-s> <C-\><C-n>:call TermToggle(0)<CR>
@@ -309,17 +289,24 @@ tnoremap <silent> gT <C-\><C-n>:let b:termtab=1<CR>gT
 tnoremap <expr> <A-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
 " toggle a horizontal/vertical terminal split
-let g:termbuf = 0
-let g:termwin = 0
 function! TermToggle(vsplit)
-  if win_gotoid(g:termwin)
+  " initialize the termbuf and termwin variables
+  if !exists('t:termbuf')
+    let t:termbuf = 0
+  endif
+  if !exists('t:termwin')
+    let t:termwin = 0
+  endif
+
+  " if a terminal window is open, hide it; else, (re)open a terminal window
+  if bufname(winbufnr(t:termwin)) =~ '^term://' && win_gotoid(t:termwin)
     hide
   else
     try
       if a:vsplit
-        exec 'vertical sbuffer ' . g:termbuf
+        exec 'vertical sbuffer ' . t:termbuf
       else
-        exec 'sbuffer ' . g:termbuf
+        exec 'sbuffer ' . t:termbuf
       endif
       startinsert!
     catch
@@ -328,22 +315,10 @@ function! TermToggle(vsplit)
       else
         exec 'split +term'
       endif
-      let g:termbuf = bufnr('%')
+      let t:termbuf = bufnr('%')
     endtry
-    let g:termwin = win_getid()
+    let t:termwin = win_getid()
   endif
-endfunction
-
-" open existing terminal buffer (or new buffer) in a tab
-function! TermTab()
-  try
-    exec 'tab sbuffer ' . g:termbuf
-    let g:termbuf = 0
-    let g:termwin = 0
-    startinsert!
-  catch
-    exec 'tabnew +term'
-  endtry
 endfunction
 
 augroup terminal
@@ -354,6 +329,8 @@ augroup terminal
   autocmd TermOpen * setlocal nonumber norelativenumber
   " hide the sign column
   autocmd TermOpen * setlocal signcolumn=no
+  " prevent the terminal from being added to the buffer list
+  autocmd TermOpen * setlocal nobuflisted
   " when leaving the terminal tab using gt/gT, enter insert mode when returning
   autocmd TermOpen * let b:termtab = 0
   autocmd BufWinEnter,WinEnter term://*
@@ -362,6 +339,7 @@ augroup terminal
     \   let b:termtab = 0 |
     \ endif
 augroup END
+
 
 
 " ==================== jobfiles ==================== "
