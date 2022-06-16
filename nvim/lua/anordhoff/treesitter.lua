@@ -1,7 +1,7 @@
 require('nvim-treesitter.configs').setup {
 
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  ensure_installed = {},
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -10,48 +10,69 @@ require('nvim-treesitter.configs').setup {
   ignore_install = {},
 
   highlight = {
-    enable = true,
-    disable = { 'json', 'yaml' },
-    additional_vim_regex_highlighting = false,
-    custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      -- ["foo.bar"] = "Identifier",
-    },
+    enable = false,
   },
+  -- TODO: what is incremental_selection even for
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      init_selection = 'gnn',
+      node_incremental = 'grn',
+      scope_incremental = 'grc',
+      node_decremental = 'grm',
     },
   },
+  -- TODO: created indent when adding newline from first column
   indent = {
-    enable = false -- Created indent when adding newline from first column
+    enable = true
   },
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
+
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['if'] = '@function.inner',
+        ['af'] = '@function.outer',
+        ['im'] = '@class.inner',
+        ['am'] = '@class.outer',
+        ['ic'] = '@conditional.inner',
+        ['ac'] = '@conditional.outer',
+        ['il'] = '@loop.inner',
+        ['al'] = '@loop.outer',
+      },
     },
-  }
+    swap = {
+      enable = true,
+      swap_next = {
+        ['gl'] = '@parameter.inner',
+      },
+      swap_previous = {
+        ['gh'] = '@parameter.inner',
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = false,
+      goto_next_start = {
+        [']f'] = '@function.outer',
+        [']m'] = '@class.outer',
+      },
+      goto_next_end = {
+        [']F'] = '@function.outer',
+        [']M'] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[f'] = '@function.outer',
+        ['[m'] = '@class.outer',
+      },
+      goto_previous_end = {
+        ['[F'] = '@function.outer',
+        ['[M'] = '@class.outer',
+      },
+    },
+  },
 }
 
+-- install parsers using git instead of curl to prevent proxy issues
 require('nvim-treesitter.install').prefer_git = true
-
-local opts = { noremap=true }
-vim.api.nvim_set_keymap('n', '<space>p', '<cmd>TSPlaygroundToggle<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>hi', '<cmd>TSHighlightCapturesUnderCursor<CR>', opts)

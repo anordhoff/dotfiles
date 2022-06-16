@@ -69,14 +69,31 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Comment.nvim"] = {
+    config = { 'require("anordhoff.comment")' },
+    loaded = true,
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
+  },
   ["gitsigns.nvim"] = {
     config = { 'require("anordhoff.gitsigns")' },
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
+  },
+  ["leap.nvim"] = {
+    config = { 'require("anordhoff.leap")' },
+    loaded = true,
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
+  },
   ["nvim-lspconfig"] = {
-    config = { 'require("anordhoff.lspconfig.lspconfig")' },
+    config = { 'require("anordhoff.lspconfig")' },
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
@@ -97,28 +114,10 @@ _G.packer_plugins = {
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  playground = {
-    commands = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
-    loaded = false,
-    needs_bufread = true,
-    only_cond = false,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/opt/playground",
-    url = "https://github.com/nvim-treesitter/playground"
-  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["splitjoin.vim"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/splitjoin.vim",
-    url = "https://github.com/AndrewRadev/splitjoin.vim"
-  },
-  ["startuptime.vim"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/startuptime.vim",
-    url = "https://github.com/tweekmonster/startuptime.vim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -133,10 +132,10 @@ _G.packer_plugins = {
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-commentary"] = {
+  ["vim-dirvish"] = {
     loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-commentary",
-    url = "https://github.com/tpope/vim-commentary"
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-dirvish",
+    url = "https://github.com/justinmk/vim-dirvish"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -163,10 +162,25 @@ _G.packer_plugins = {
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
     url = "https://github.com/tpope/vim-rhubarb"
   },
+  ["vim-rsi"] = {
+    loaded = true,
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-rsi",
+    url = "https://github.com/tpope/vim-rsi"
+  },
   ["vim-sleuth"] = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
+  },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
+  },
+  ["vim-subversive"] = {
+    loaded = true,
+    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-subversive",
+    url = "https://github.com/svermeulen/vim-subversive"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -177,11 +191,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
     url = "https://github.com/tpope/vim-unimpaired"
-  },
-  ["vim-vinegar"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-vinegar",
-    url = "https://github.com/tpope/vim-vinegar"
   }
 }
 
@@ -218,25 +227,26 @@ end
 time([[Setup for telescope.nvim]], true)
 require("anordhoff.telescope.setup")
 time([[Setup for telescope.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("anordhoff.treesitter")
-time([[Config for nvim-treesitter]], false)
+-- Config for: leap.nvim
+time([[Config for leap.nvim]], true)
+require("anordhoff.leap")
+time([[Config for leap.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require("anordhoff.comment")
+time([[Config for Comment.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
-require("anordhoff.lspconfig.lspconfig")
+require("anordhoff.lspconfig")
 time([[Config for nvim-lspconfig]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 require("anordhoff.gitsigns")
 time([[Config for gitsigns.nvim]], false)
-
--- Command lazy-loads
-time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlaygroundToggle lua require("packer.load")({'playground'}, { cmd = "TSPlaygroundToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSHighlightCapturesUnderCursor lua require("packer.load")({'playground'}, { cmd = "TSHighlightCapturesUnderCursor", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-time([[Defining lazy-load commands]], false)
-
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("anordhoff.treesitter")
+time([[Config for nvim-treesitter]], false)
 if should_profile then save_profiles() end
 
 end)

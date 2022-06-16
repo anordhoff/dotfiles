@@ -1,5 +1,6 @@
 require('telescope').setup {
   defaults = {
+    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     layout_strategy = 'flex',
     layout_config = {
       flex = {
@@ -8,7 +9,7 @@ require('telescope').setup {
     },
     prompt_prefix = ' $ ',
     preview = {
-      treesitter = true,
+      treesitter = false,
     },
     color_devicons = false,
     mappings = {

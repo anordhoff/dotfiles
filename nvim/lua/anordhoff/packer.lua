@@ -1,44 +1,54 @@
--- TODO: what does this do
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
+-- use a protected call so it doesn't error out on first use
+local ok, packer = pcall(require, 'packer')
+if not ok then
   return
 end
 
 -- automatically run :PackerCompile when packer.lua is updated
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost packer.lua source <afile> | PackerCompile
-  augroup end
-]])
+local packer_group = vim.api.nvim_create_augroup('packer', { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  command = 'PackerCompile',
+  group = packer_group,
+  pattern = 'packer.lua'
+})
 
-return require('packer').startup(function()
+-- load plugins
+return packer.startup(function()
   use {
-    -- vim --
-    'AndrewRadev/splitjoin.vim',
+    'dstein64/vim-startuptime',
+    'justinmk/vim-dirvish',
     'ludovicchabant/vim-gutentags',
-    'tweekmonster/startuptime.vim',
-    -- {
-    --   'fatih/vim-go',
-    --   run = ':GoUpdateBinaries',
-    --   ft = { 'go', 'go.mod', 'go.sum' }
-    -- },
+    'svermeulen/vim-subversive',
+    'tpope/vim-obsession',
+    'tpope/vim-repeat',
+    'tpope/vim-rsi',
+    'tpope/vim-sleuth',
+    'tpope/vim-surround',
+    'tpope/vim-unimpaired',
+    'wbthomason/packer.nvim',
 
-
-    -- tpope --
-    -- TODO: vim fugitive, lazyload?
+    -- fugitive / rhubarb
     {
-      'tpope/vim-commentary',
-      'tpope/vim-fugitive',
-      'tpope/vim-obsession',
-      'tpope/vim-repeat',
-      'tpope/vim-rhubarb',
-      'tpope/vim-sleuth',
-      'tpope/vim-surround',
-      'tpope/vim-unimpaired',
-      'tpope/vim-vinegar',
+      {
+	'tpope/vim-fugitive',
+	-- opt = true,
+	-- cmd = {
+	--   "G", "Git", "Gedit", "Gsplit", "Gdiffsplit", "Gvdiffsplit",
+	--   "Gread", "Gwrite", "Ggrep", "Glgrep",
+	--   "GMove", "GDelete", "GRemove", "GBrowse"
+	-- },
+      },
+      {
+	'tpope/vim-rhubarb',
+	requires = { 'tpope/vim-fugitive' },
+      },
     },
 
+    -- comment --
+    {
+      'numToStr/Comment.nvim',
+      config = 'require("anordhoff.comment")',
+    },
 
     -- gitsigns --
     {
@@ -47,31 +57,22 @@ return require('packer').startup(function()
       config = 'require("anordhoff.gitsigns")',
     },
 
+    {
+      'lewis6991/impatient.nvim',
+    },
+
+    -- leap --
+    {
+      'ggandor/leap.nvim',
+      requires = { 'tpope/vim-repeat' },
+      config = 'require("anordhoff.leap")',
+    },
+
     -- lspconfig --
     {
       'neovim/nvim-lspconfig',
-      config = 'require("anordhoff.lspconfig.lspconfig")',
+      config = 'require("anordhoff.lspconfig")',
     },
-
-
-    -- treesitter --
-    {
-      {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = 'require("anordhoff.treesitter")',
-      },
-      {
-        'nvim-treesitter/playground',
-        requires = { 'nvim-treesitter/nvim-treesitter' },
-        cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
-      },
-      {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        requires = { 'nvim-treesitter/nvim-treesitter' },
-      },
-    },
-
 
     -- telescope --
     {
@@ -85,8 +86,17 @@ return require('packer').startup(function()
       config = 'require("anordhoff.telescope.config")',
     },
 
-
-    -- packer --
-    'wbthomason/packer.nvim',
+    -- treesitter --
+    {
+      {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = 'require("anordhoff.treesitter")',
+      },
+      {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+      },
+    },
   }
 end)
