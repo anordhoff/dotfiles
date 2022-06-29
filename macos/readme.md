@@ -50,3 +50,5 @@ Add a shortcut under `App Shortcuts`:
 ```
 Lock Screen: Command-l
 ```
+
+https://github.com/universal-ctags/ctags

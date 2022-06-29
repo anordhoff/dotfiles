@@ -14,7 +14,8 @@
   gme (layer-switch game)
 
   ;; additional layers
-  sft (layer-toggle shift)
+  meh (around rctl (around rsft (around ralt (layer-toggle colemak-meh))))
+  sft (layer-toggle colemak-shift)
   joi (layer-toggle join)
   adj (layer-toggle adjust)
 
@@ -24,7 +25,6 @@
 
   ;; home row mods / mod taps
   mtesc (tap-hold-next-release 150 esc lmet)
-  mta   (tap-hold-next-release 300 a (around lctl (around lsft (around lalt (layer-toggle colemak-lmeh)))))
   mtr   (tap-hold-next-release 180 r (layer-toggle layer-r))
   mts   (tap-hold-next-release 180 s (layer-toggle layer-s))
   mtt   (tap-hold-next-release 180 t (layer-toggle layer-t))
@@ -32,11 +32,9 @@
   mtn   (tap-hold-next-release 180 n (layer-toggle layer-n))
   mte   (tap-hold-next-release 180 e (layer-toggle layer-e))
   mti   (tap-hold-next-release 180 i (layer-toggle layer-i))
-  mto   (tap-hold-next-release 300 o (around rctl (around rsft (around ralt (layer-toggle colemak-rmeh)))))
   mtret (tap-hold-next-release 150 ret ralt)
 
   mtESC (tap-hold-next-release 150 (around rsft esc) (around rsft lmet))
-  mtA   (tap-hold-next-release 300 A (around rsft (around lctl (around lsft (around lalt (layer-toggle colemak-lmeh))))))
   mtR   (tap-hold-next-release 180 R (around rsft (layer-toggle layer-r)))
   mtS   (tap-hold-next-release 180 S (around rsft (layer-toggle layer-s)))
   mtT   (tap-hold-next-release 180 T (layer-toggle layer-t))
@@ -44,7 +42,6 @@
   mtN   (tap-hold-next-release 180 N (layer-toggle layer-n))
   mtE   (tap-hold-next-release 180 E (around rsft (layer-toggle layer-e)))
   mtI   (tap-hold-next-release 180 I (around rsft (layer-toggle layer-i)))
-  mtO   (tap-hold-next-release 300 O (around rsft (around rctl (around rsft (around ralt (layer-toggle colemak-rmeh))))))
   mtRET (tap-hold-next-release 150 (around rsft ret) (around rsft ralt))
 
   ;; media keys
@@ -71,41 +68,25 @@
 (deflayer colemak
   grv       1    2    3    4    5    6    7    8    9    0    -    =    @adj
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-  @mtesc    @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto @mtret
+  @mtesc    a    @mtr @mts @mtt g    ]    m    @mtn @mte @mti o     @mtret
   z         x    c    d    v    ;    \    k    h    ,    .    /         up
-  fn        lmet lalt lctl           spc       @sft @adj           left down rght
+  fn        lmet lalt lctl           spc       @sft @meh           left down rght
 )
 
-(deflayer shift
-  RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +    XX
-  RS-tab    Q    W    F    P    B    {    J    L    U    Y    "    RS-bspc RS-del
-  @mtESC    @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO @mtRET
-  Z         X    C    D    V    :    |    K    H    <    >    ?         RS-up
-  RS-fn     RS-lmet RS-lalt RS-lctl  RS-spc    _    XX          RS-left RS-down RS-rght
-)
-
-(deflayer colemak-lmeh
+(deflayer colemak-meh
   grv       1    2    3    4    5    6    7    8    9    0    -    =    XX
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-  esc       _    XX   XX   lmet g    ]    m    n    e    i    o    ret
-  z         x    c    d    v    ;    \    k    h    ,    .    /         up
-  fn        lmet lalt lctl           spc       rsft XX             left down rght
-)
-
-(deflayer colemak-rmeh
-  grv       1    2    3    4    5    6    7    8    9    0    -    =    XX
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-  esc       a    r    s    t    g    ]    m    rmet XX   XX   _    ret
-  z         x    c    d    v    ;    \    k    h    ,    .    /         up
-  fn        lmet lalt lctl           spc       rsft XX             left down rght
-)
-
-(deflayer game
-  grv       1    2    3    4    5    6    7    8    9    0    -    =    @adj
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
   z         x    c    d    v    ;    \    k    h    ,    .    /         up
-  fn        lmet lalt lctl           spc       rsft @joi           left down rght
+  fn        lmet lalt @adj           rmet      XX   _              left down rght
+)
+
+(deflayer colemak-shift
+  RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +    XX
+  RS-tab    Q    W    F    P    B    {    J    L    U    Y    "    RS-bspc RS-del
+  @mtESC    A    @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI O    @mtRET
+  Z         X    C    D    V    :    |    K    H    <    >    ?         RS-up
+  RS-fn     RS-lmet RS-lalt RS-lctl  RS-spc    _    XX          RS-left RS-down RS-rght
 )
 
 (deflayer layer-r
@@ -154,6 +135,14 @@
   caps      f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   _
   f11       f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        _
   _         _    _    _              _         rsft _              _    _    _
+)
+
+(deflayer game
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    @adj
+  tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
+  esc       a    r    s    t    g    ]    m    n    e    i    o    ret
+  z         x    c    d    v    ;    \    k    h    ,    .    /         up
+  fn        lmet lalt lctl           spc       rsft @joi           left down rght
 )
 
 (deflayer join

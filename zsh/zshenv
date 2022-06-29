@@ -13,18 +13,24 @@ else
 fi
 
 # set the preferred editor to nvim (without plugins) if not already set
+[ -z "${EDITOR}" ] && export EDITOR='nvim --noplugin'
 [ -z "${VISUAL}" ] && export VISUAL='nvim --noplugin'
 
 # turn on colors for bsd tools
-export CLICOLOR=1
+# export CLICOLOR=1
 
 # ls colors (bsd, gnu)
-export LSCOLORS='exfxbxdxcx'
-export LS_COLORS='di=34:ln=35:so=31:pi=33:ex=32'
+# export LSCOLORS='exfxbxdxcx'
+# export LS_COLORS='di=34:ln=35:so=31:pi=33:ex=32'
 
-# grep colors (bsd, gnu)
-export GREP_COLOR='0;35'
+# ls colors (gnu)
+export LS_COLORS='rs=0:di=34:ln=36:mh=00:pi=40;33:so=35:do=35:bd=40;33\
+    :cd=40;33:or=40;31:mi=00:su=30;41:sg=30;43:ca=30;41:tw=30;42:ow=30;42\
+    :st=30;44:ex=32'
+
+# grep colors (gnu, bsd)
 export GREP_COLORS='ms=0;35'
+export GREP_COLOR='0;35'
 
 # jq colors (update field color: https://github.com/stedolan/jq/pull/1791)
 export JQ_COLORS='0;37:0;37:0;37:0;37:0;37:0;37:0;37'
@@ -43,8 +49,8 @@ path=($GOPATH/bin $path)
 export AWS_PAGER=''
 
 # fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git/ \
-    --exclude vendor/ --exclude node_modules/'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git \
+    --exclude vendor --exclude node_modules'
 export FZF_DEFAULT_OPTS="--inline-info --border \
     --color border:8 \
     --color bg+:11 \

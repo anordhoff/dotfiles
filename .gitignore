@@ -1,3 +1,2 @@
-macos/keyboard/custom.bundle
-macos/karabiner/assets
-macos/karabiner/automatic_backups
+.DS_Store
+nvim/swap

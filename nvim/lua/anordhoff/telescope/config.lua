@@ -22,9 +22,9 @@ require('telescope').setup {
       },
     },
     file_ignore_patterns = {
-      ".git/",
-      "vendor/",
-      "node_modules/",
+      ".git",
+      "vendor",
+      "node_modules",
     },
     vimgrep_arguments = {
       "rg",

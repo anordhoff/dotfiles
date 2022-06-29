@@ -29,6 +29,12 @@
  */
 
 {
+	"^x"      = "cut:";
+	"^c"      = "copy:";
+	"^v"      = "paste:";
+	"^z"      = "undo:";
+	"^Z"      = "redo:";
+
 	"^u"      = "deleteToBeginningOfLine:";
 	"^w"      = "deleteWordBackward:";
 	"^_"      = ("undo:", "moveForward:");

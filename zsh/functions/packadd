@@ -1,0 +1,11 @@
+# vim: ft=zsh
+
+if [[ "${PWD}" != "${HOME}/dotfiles" ]]; then
+	echo "packadd must me executed at ~/dotfiles"
+else
+	while [ -n "${1}" ]; do
+		git submodule add "https://github.com/${1}.git" "nvim/package/start/$(echo "${1}" | cut -d/ -f2)"
+		nvim -u NONE -c "helptags ALL" -c q
+		shift
+	done
+fi

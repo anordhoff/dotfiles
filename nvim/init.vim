@@ -1,6 +1,8 @@
 " ==================== plugins ==================== "
+lua require('impatient')
+lua require('anordhoff.leap')
+
 lua << EOF
-pcall(require, 'impatient')
 local ok, _ = pcall(require, 'anordhoff.packer')
 if not ok then
   vim.opt.loadplugins = false
@@ -28,13 +30,10 @@ set sidescrolloff=8   " keep a minimum of 8 columns before and after the cursor
 set listchars=tab:>\ ,trail:-,nbsp:+,extends:>,precedes:<
 
 " only show the sign column if running with plugins enabled
-if &loadplugins | set signcolumn=yes | endif
+" if &loadplugins | set signcolumn=yes | endif
 
 " load custom colorscheme
 colorscheme colorscheme
-
-" disable syntax highlighting when using vimdiff
-if &diff | syntax off | endif
 
 " show possible completions in a pmenu; insert longest common text of matches
 " TODO: stabilize the buffer when preview window is opened or closed
@@ -57,11 +56,23 @@ augroup formatoptions
   autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal fo-=t fo-=r fo-=o
 augroup END
 
+" enable the cursorline when in diff mode
+augroup diff
+  autocmd!
+  autocmd BufNewFile,BufRead * if &diff | let &cursorline=1 | endif
+  autocmd BufHidden * set nocursorline
+  autocmd OptionSet diff let &cursorline=v:option_new
+augroup END
+
 " enable spellchecking for text files, markdown, and git commit messages
 augroup spellcheck
   autocmd!
   autocmd FileType text,markdown,gitcommit setlocal spell
 augroup END
+
+" Enable filetype.lua for better performance (NOTE: experimental)
+let g:do_filetype_lua = 1
+let g:did_load_filetypes = 0
 
 
 
@@ -73,6 +84,9 @@ let mapleader = "\<space>"
 inoremap <C-r>+ <C-r><C-r>+
 inoremap <C-r>* <C-r><C-r>*
 
+" clear the specified register
+nnoremap <leader>cr :call setreg('', [])<Left><Left><Left><Left><Left><Left>
+
 " get highlight group under the cursor
 nnoremap <silent> <leader>H :call SynGroup()<CR>
 function! SynGroup()                                                            
@@ -82,7 +96,7 @@ function! SynGroup()
   endfor
 endfunction
 
-" maximize the current window
+" maximize (toggle) the current window
 nnoremap <silent> <leader>z :call MaximizeWindowToggle()<CR>
 function! MaximizeWindowToggle()
   " initialize the maximized variable
@@ -126,23 +140,32 @@ endfunction
 
 
 " ==================== statusline ==================== "
-set statusline=\ \[%n\]                    " buffer number
-set statusline+=\ \ %f                     " filepath
-set statusline+=%{GitStatus()}             " git branch
-set statusline+=\ \ %{NopluginFlag()}      " session flag
-set statusline+=%{SessionFlag()}           " session flag
-set statusline+=%{PasteFlag()}             " paste flag
-set statusline+=%H%W%R%M                   " help/preview/read-only/modified flags
-set statusline+=%=\ \ %c%V\ \ :\ \ %2l\/%L " byte index, virtual column number; line number
-set statusline+=\ \ %y\                    " filetype
+set statusline=\ \[%n\]                      " buffer number
+set statusline+=\ \ %f                       " filepath
+set statusline+=%{GitStatus()}               " git branch
+set statusline+=\ \ %{NopluginFlag()}        " session flag
+set statusline+=%{SessionFlag()}             " session flag
+set statusline+=%{PasteFlag()}               " paste flag
+set statusline+=%H%W%R%M                     " help/preview/read-only/modified flags
+set statusline+=%=\ \ \ %c%V\ \ :\ \ %2l\/%L " byte index, virtual column number; line number
+set statusline+=%{Filetype()}                " filetype
 
 augroup statusline
   autocmd!
   " quickfix/location list
   autocmd Filetype qf setlocal statusline=\ \[%n\]\ \ %l/%L\ lines%=%q\ 
   " terminal
-  autocmd TermOpen * setlocal statusline=\ \[%n\]\ \ terminal\ \ %{NopluginFlag()}%{PasteFlag()}%H%W%R%M
+  autocmd TermOpen * setlocal statusline=\ \[%n\]\ \ terminal\ \ %{NopluginFlag()}%{PasteFlag()}%H%W%R%M\ \ %{TerminalMode()}
 augroup END
+
+" correct padding when there is no filetype
+function! Filetype()
+  if &filetype == ''
+    return ' '
+  else
+    return '  [' . &filetype . '] '
+  endif
+endfunction
 
 " git branch and status
 function! GitStatus()
@@ -183,6 +206,15 @@ function! PasteFlag()
     endif
   endif
   return ''
+endfunction
+
+" set 'insert' flag if terminal buffer is in 'terminal' mode
+function! TerminalMode()
+  if mode() == 't'
+    return 'insert'
+  else
+    return ''
+  endif
 endfunction
 
 
@@ -268,7 +300,8 @@ augroup END
 " TODO: implement an i_CTRL-O command in terminal readline
 
 " set the preferred editor to use the current session's RPC server
-let $VISUAL="nvim --server $NVIM_LISTEN_ADDRESS --remote"
+let $VISUAL="nvim --server " . $NVIM_LISTEN_ADDRESS . " --remote"
+let $EDITOR="nvim --server " . $NVIM_LISTEN_ADDRESS . " --remote"
 
 " exit to normal mode using ctrl-[ / esc
 tnoremap <C-[> <C-\><C-n>

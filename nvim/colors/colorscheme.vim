@@ -76,20 +76,22 @@ hi IncSearch			cterm=none	ctermfg=0	ctermbg=5
 " - Prompt/Status -
 " -----------------
 hi StatusLine			cterm=none	ctermfg=7	ctermbg=11
-hi StatusLineNC			cterm=none	ctermfg=15	ctermbg=10
+hi StatusLineNC			cterm=none	ctermfg=8	ctermbg=10
 hi WildMenu			cterm=none	ctermfg=4	ctermbg=11
 hi Question			cterm=none	ctermfg=7	ctermbg=none
 hi Title			cterm=none	ctermfg=7	ctermbg=none
 hi ModeMsg			cterm=none	ctermfg=7	ctermbg=none
-hi MoreMsg			cterm=none	ctermfg=15	ctermbg=none
+hi MoreMsg			cterm=none	ctermfg=7	ctermbg=none
 
 " --------------
 " - Visual aid -
 " --------------
 hi MatchParen			cterm=none	ctermfg=5	ctermbg=none
-hi Visual			cterm=none	ctermfg=none	ctermbg=11
-hi VisualNOS			cterm=none	ctermfg=none	ctermbg=11
-hi NonText			cterm=none	ctermfg=15	ctermbg=none
+" hi Visual			cterm=none	ctermfg=none	ctermbg=11
+" hi VisualNOS			cterm=none	ctermfg=none	ctermbg=11
+hi Visual			cterm=none	ctermfg=7	ctermbg=15
+hi VisualNOS			cterm=none	ctermfg=7	ctermbg=15
+hi NonText			cterm=none	ctermfg=8	ctermbg=none
 hi EndOfBuffer			cterm=none	ctermfg=14	ctermbg=none
 hi Conceal			cterm=none	ctermfg=none	ctermbg=none
 
@@ -99,7 +101,7 @@ hi Error			cterm=none	ctermfg=1	ctermbg=none
 hi! link ErrorMsg		Error
 hi WarningMsg			cterm=none	ctermfg=3	ctermbg=none
 hi Ignore			cterm=none	ctermfg=3	ctermbg=none
-hi SpecialKey			cterm=none	ctermfg=15	ctermbg=none
+hi SpecialKey			cterm=none	ctermfg=2	ctermbg=none
 
 " --------------------------------
 " Variable types
@@ -151,16 +153,31 @@ hi! link Typedef		Type
 " --------------------------------
 " Diff
 " --------------------------------
-hi DiffAdd			cterm=none	ctermfg=2	ctermbg=none
-hi DiffChange			cterm=none	ctermfg=3	ctermbg=none
+" hi DiffAdd			cterm=none	ctermfg=none	ctermbg=11
+" hi DiffChange			cterm=none	ctermfg=none	ctermbg=11
+" hi DiffDelete			cterm=none	ctermfg=1	ctermbg=none
+" hi DiffText			cterm=none	ctermfg=none	ctermbg=11
+
+" DiffAdd:bg:green, DiffChange:bg:darkgray, DiffDelete:fg:red, DiffText:bg:yellow
+" OR
+" DiffAdd:bg:darkgray, DiffChange:bg:darkgray, DiffDelete:fg:red, DiffText:bg:darkblue
+hi DiffAdd			cterm=none	ctermfg=7	ctermbg=13
+hi DiffChange			cterm=none	ctermfg=none	ctermbg=11
 hi DiffDelete			cterm=none	ctermfg=1	ctermbg=none
-hi! link DiffText		Normal
+hi DiffText			cterm=none	ctermfg=7	ctermbg=9
+
+" hi DiffAdd			cterm=none	ctermfg=2	ctermbg=none
+" hi DiffChange			cterm=none	ctermfg=7	ctermbg=none
+" hi DiffDelete			cterm=none	ctermfg=1	ctermbg=none
+" hi DiffText			cterm=none	ctermfg=3	ctermbg=none
+" hi! link DiffText		Normal
 
 " --------------------------------
 " Completion menu
 " --------------------------------
 hi Pmenu			cterm=none	ctermfg=7	ctermbg=12
 hi PmenuSel			cterm=none	ctermfg=5	ctermbg=12
+" hi PmenuSel			cterm=none	ctermfg=none	ctermbg=15
 hi PmenuSbar			cterm=none	ctermfg=none	ctermbg=12
 hi PmenuThumb			cterm=none	ctermfg=none	ctermbg=8
 
