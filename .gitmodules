@@ -1,0 +1,30 @@
+# tmux
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "tmux/plugins/tmux-continuum"]
+	path = tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git
+
+# nvim
+[submodule "nvim/package/start/vim-surround"]
+	path = nvim/package/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "nvim/package/start/vim-rsi"]
+	path = nvim/package/start/vim-rsi
+	url = https://github.com/tpope/vim-rsi.git
+[submodule "nvim/package/start/vim-dirvish"]
+	path = nvim/package/start/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish.git
+[submodule "nvim/package/start/vim-commentary"]
+	path = nvim/package/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "nvim/package/start/leap.nvim"]
+	path = nvim/package/start/leap.nvim
+	url = https://github.com/ggandor/leap.nvim.git
+[submodule "nvim/package/start/vim-peekaboo"]
+	path = nvim/package/start/vim-peekaboo
+	url = https://github.com/junegunn/vim-peekaboo.git
+[submodule "nvim/package/start/vim-fugitive"]
+	path = nvim/package/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
