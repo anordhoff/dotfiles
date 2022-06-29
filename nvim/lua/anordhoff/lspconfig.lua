@@ -176,8 +176,17 @@ local patterns = {
 -- nested table of the same under the 'patterns' table
 local path_to_schemas = home_dir .. '/jobfiles/nvim/schemas/'
 for schema, _ in pairs(patterns) do
-  for line in io.lines(path_to_schemas .. schema .. '.txt') do
-    table.insert(patterns[schema], line)
+  local file = io.open(path_to_schemas .. schema .. '.txt', 'r')
+  if file ~= nil then
+    while true do
+      local line = file:read()
+      if line == nil then break end
+      table.insert(patterns[schema], line)
+    end
+    -- for line in io.lines(path_to_schemas .. schema .. '.txt') do
+    --   table.insert(patterns[schema], line)
+    -- end
+    io.close(file)
   end
 end
 
