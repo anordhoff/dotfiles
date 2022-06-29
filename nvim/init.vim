@@ -1,14 +1,11 @@
 " ==================== plugins ==================== "
-lua require('impatient')
-lua require('anordhoff.leap')
-
-lua << EOF
-local ok, _ = pcall(require, 'anordhoff.packer')
-if not ok then
-  vim.opt.loadplugins = false
-end
-EOF
-
+if &loadplugins
+  lua require('impatient')
+  lua require('anordhoff.leap')
+  lua require('anordhoff.lspconfig')
+  lua require('anordhoff.telescope')
+  lua require('anordhoff.treesitter')
+endif
 
 
 " ==================== settings ==================== "
