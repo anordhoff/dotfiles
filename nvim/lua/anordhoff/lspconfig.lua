@@ -32,15 +32,15 @@ vim.fn.sign_define('DiagnosticSignInfo', { numhl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { numhl = 'DiagnosticSignHint' })
 
 -- diagnostic keymaps
-vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist)
+vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
+vim.keymap.set('n', '[e', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']e', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>el', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>eq', vim.diagnostic.setqflist)
 
 -- lsp settings
 local on_attach = function(_, bufnr)
-  -- enable completion
+  -- enable completion (NOTE: onminfunc_sync.lua func for synchronous omnifunc)
   require('anordhoff.omnifunc_sync')
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.omnifunc_sync')
 
@@ -50,7 +50,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wl', function()
@@ -60,40 +60,8 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<leader>F', vim.lsp.buf.formatting, opts) -- TODO: if using formatter.nvim, remove this line
+  vim.keymap.set('n', '<leader>F', vim.lsp.buf.formatting, opts)
 end
-
--- TODO: look into https://github.com/mhartington/formatter.nvim
--- vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
-
--- require('formatter').setup {
---   filetype = {
---     python = {
---       --Configuration for psf/black
---       function()
---         return {
---           exe = 'black', --this should be available on your $PATH
---           args = { '-' },
---           stdin = true,
---         }
---       end,
---     },
---     lua = {
---       function()
---         return {
---           exe = 'stylua',
---           args = {
---             --"--config-path "
---             --  .. os.getenv("XDG_CONFIG_HOME")
---             --  .. "/stylua/stylua.toml",
---             '-',
---           },
---           stdin = true,
---         }
---       end,
---     },
---   },
--- }
 
 -- use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -117,6 +85,7 @@ lspconfig.gopls.setup {
     gopls = {
       analyses = {
         unusedparams = true,
+        shadow = true,
       },
       staticcheck = true
     }
@@ -149,6 +118,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = gopls_group,
   pattern = '*.go'
 })
+
 
 -------------------- sumneko_lua --------------------
 

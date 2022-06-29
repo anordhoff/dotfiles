@@ -16,16 +16,18 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 return packer.startup(function()
   use {
     'dstein64/vim-startuptime',
-    'justinmk/vim-dirvish',
-    'ludovicchabant/vim-gutentags',
+    -- 'justinmk/vim-dirvish',
+    -- 'ludovicchabant/vim-gutentags',
     'svermeulen/vim-subversive',
     'tpope/vim-obsession',
     'tpope/vim-repeat',
-    'tpope/vim-rsi',
+    -- 'tpope/vim-rsi',
     'tpope/vim-sleuth',
-    'tpope/vim-surround',
+    -- 'tpope/vim-surround',
     'tpope/vim-unimpaired',
     'wbthomason/packer.nvim',
+    -- 'tpope/vim-commentary',
+    -- 'junegunn/vim-peekaboo',
 
  --    -- fugitive / rhubarb
  --    {
@@ -45,28 +47,28 @@ return packer.startup(function()
  --    },
 
     -- comment --
-    {
-      'numToStr/Comment.nvim',
-      config = 'require("anordhoff.comment")',
-    },
+    -- {
+    --   'numToStr/Comment.nvim',
+    --   config = 'require("anordhoff.comment")',
+    -- },
 
     -- gitsigns --
-    {
-      'lewis6991/gitsigns.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = 'require("anordhoff.gitsigns")',
-    },
+    -- {
+    --   'lewis6991/gitsigns.nvim',
+    --   requires = { 'nvim-lua/plenary.nvim' },
+    --   config = 'require("anordhoff.gitsigns")',
+    -- },
 
     {
       'lewis6991/impatient.nvim',
     },
 
     -- leap --
-    {
-      'ggandor/leap.nvim',
-      requires = { 'tpope/vim-repeat' },
-      config = 'require("anordhoff.leap")',
-    },
+    -- {
+    --   'ggandor/leap.nvim',
+    --   requires = { 'tpope/vim-repeat' },
+    --   config = 'require("anordhoff.leap")',
+    -- },
 
     -- lspconfig --
     {

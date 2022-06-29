@@ -69,28 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["Comment.nvim"] = {
-    config = { 'require("anordhoff.comment")' },
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/Comment.nvim",
-    url = "https://github.com/numToStr/Comment.nvim"
-  },
-  ["gitsigns.nvim"] = {
-    config = { 'require("anordhoff.gitsigns")' },
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
-    url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
-  },
-  ["leap.nvim"] = {
-    config = { 'require("anordhoff.leap")' },
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/leap.nvim",
-    url = "https://github.com/ggandor/leap.nvim"
   },
   ["nvim-lspconfig"] = {
     config = { 'require("anordhoff.lspconfig")' },
@@ -132,16 +114,6 @@ _G.packer_plugins = {
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-dirvish"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-dirvish",
-    url = "https://github.com/justinmk/vim-dirvish"
-  },
-  ["vim-gutentags"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-gutentags",
-    url = "https://github.com/ludovicchabant/vim-gutentags"
-  },
   ["vim-obsession"] = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-obsession",
@@ -151,11 +123,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
-  },
-  ["vim-rsi"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-rsi",
-    url = "https://github.com/tpope/vim-rsi"
   },
   ["vim-sleuth"] = {
     loaded = true,
@@ -171,11 +138,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-subversive",
     url = "https://github.com/svermeulen/vim-subversive"
-  },
-  ["vim-surround"] = {
-    loaded = true,
-    path = "/Users/qsq854/.local/share/nvim/site/pack/packer/start/vim-surround",
-    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-unimpaired"] = {
     loaded = true,
@@ -225,18 +187,6 @@ time([[Config for nvim-treesitter]], false)
 time([[Config for nvim-lspconfig]], true)
 require("anordhoff.lspconfig")
 time([[Config for nvim-lspconfig]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require("anordhoff.gitsigns")
-time([[Config for gitsigns.nvim]], false)
--- Config for: leap.nvim
-time([[Config for leap.nvim]], true)
-require("anordhoff.leap")
-time([[Config for leap.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require("anordhoff.comment")
-time([[Config for Comment.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

@@ -1,20 +1,21 @@
 [user]
-    signingkey = 3C85E9B77ED51BB5
-    email = git@anordhoff.com
-    name = Aaron Nordhoff
+	signingkey = 3C85E9B77ED51BB5
+	email = git@anordhoff.com
+	name = Aaron Nordhoff
 [core]
-    pager = less -FRX
+	pager = less -FRX
+	excludesFile = ~/.gitignore
 [url "git@github.com:"]
-    insteadOf = https://github.com/
+	insteadOf = https://github.com/
 [commit]
-    gpgsign = true
+	gpgsign = true
 [merge]
-    tool = vimdiff3
+	tool = nvimdiff
 [mergetool]
-    keepBackup = false
-[mergetool "vimdiff3"]
-    cmd = nvim -d $LOCAL $MERGED $REMOTE
+	keepBackup = false
 [pull]
-    ff = only
-[hub]
-    protocol = ssh
+	ff = only
+[init]
+	templatedir = ~/.git_template
+[alias]
+	ctags = !.git/hooks/ctags

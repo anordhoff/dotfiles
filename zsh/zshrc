@@ -68,7 +68,6 @@ setopt histignorealldups # keep only the most recently added duplicate command
 setopt histignorespace   # commands that start with a space are not written
 setopt histnostore       # history and fc commands are not written to history
 setopt histreduceblanks  # remove excess spaces before writing a comman
-# setopt histverify        # verify bang history substitution
 setopt incappendhistory  # update the history file after each executed command
 
 # match typed command and arguments when moving through history
@@ -92,20 +91,29 @@ unsetopt listtypes      # don't show filetypes in completion menu
 autoload -Uz compinit; compinit
 zmodload -i zsh/complist
 
-# specify location of zshrc
-zstyle :compinstall filename "${HOME}/.zshrc"
-
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
 
 # go backwards in completion menu using shift-tab
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
+# complete *. with extensions; standard; one error; case insensitive completion
+zstyle ':completion:*' completer \
+  _extensions _complete _approximate _complete:-extended
+
+# allow one error
+zstyle ':completion:*' max-errors 1
+
+# smart case completion; complete partial words
+zstyle ':completion:*:complete-extended:*' \
+  matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# cache completions
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*' cache-path ~/.zcompcache
+
 # use a completion menu
 zstyle ':completion:*' menu select
-
-# prefer the extensions completer, fallback to default completer
-zstyle ':completion:*' completer _extensions _complete
 
 # group matches based on type
 zstyle ':completion:*' group-name ''
@@ -113,23 +121,18 @@ zstyle ':completion:*' group-name ''
 # list directories first when completing
 zstyle ':completion:*' list-dirs-first true
 
-# case-insensitive completion; complete partial words
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-# cache completions TODO: doesn't work?
-zstyle ':completion:*' use-cache true
-zstyle ':completion:*' cache-path ~/.zcompcache
-
-# formatting
+# improve the style of the completion menu
 zstyle ':completion:*' select-prompt '-- scrolling active (%p) --'
 zstyle ':completion:*:messages' format '-- %d --'
 zstyle ':completion:*:warnings' format '-- no matches found --'
 zstyle ':completion:*:*:*:*:descriptions' format '%F{magenta}-- %d --%f'
-zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm'
+zstyle ':completion:*:*:*:*:processes' command \
+  'ps -u $USER -o pid,user,time,comm -w -w'
 
 # use colors in completion menu; set directory color to white
 LS_COLORS_COMPLETION=$(echo $LS_COLORS | sed "s/di=[0-9]\{2\}/di=37/")
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS_COMPLETION}
+unset LS_COLORS_COMPLETION
 
 
 
@@ -169,6 +172,13 @@ else
   alias ls='ls --color=auto --group-directories-first'
 fi
 
+# cd
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
 # git (gcm is a function)
 alias    g='git'
 alias   ga='git add'
@@ -200,7 +210,10 @@ alias  gsh='git show'
 alias     k='kubectl'
 alias   kns='kubens'
 alias  kctx='kubectx'
-alias kgnst='k get nodes --sort-by metadata.creationTimestamp'
+alias  kgpo='kubectl get pod'
+alias  kdpo='kubectl describe pod'
+alias   kgn='kubectl get node'
+alias kgnst='kubectl get node --sort-by metadata.creationTimestamp'
 
 
 

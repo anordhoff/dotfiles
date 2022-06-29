@@ -6,7 +6,7 @@
 # start tmux on shell login, attaching to (or creating a) session 'dotfiles'
 [[ -z "$TMUX" ]] && tmux new-session -A -s dotfiles
 
-# TODO
+# match typed command and arguments when moving through history
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
@@ -26,12 +26,7 @@ shopt -s histappend
 shopt -s histverify
 shopt -s globstar
 
-# print current working directory and git branch in prompt
-# git_branch() {
-#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-# }
-# PS1="\[\e[0;35m\]\w\[\e[0;30m\]\$(git_branch)\[\e[0;00m\] \$ "
-# PS1="\[\e[0;37m\]\t\[\e[0;34m\] \w\[\e[0;00m\] \$ "
+# print current working directory in prompt
 PS1="\[\e[0;34m\]\w\[\e[0;00m\] \$ "
 
 # shorten the path in the prompt to three directories
@@ -47,9 +42,7 @@ HISTTIMEFORMAT="%F %T  " # add the execution time to commands in the hist file
 HISTCONTROL=ignoreboth:erasedups
 
 # update history after every command
-# TODO: bash: PROMPT_COMMAND: line 3: syntax error near unexpected token `;'
-#       bash: PROMPT_COMMAND: line 3: `history -a; ; _ksi_prompt_command'
-# PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # environment variables
 export GPG_TTY=$(tty)            # set to the path of the tty device for gpg
@@ -66,16 +59,13 @@ export KUBECTX_IGNORE_FZF=1      # kubectx prints to stout instead of fzf
 [[ ! "$PATH" == *$HOME/.local/bin* ]] && export PATH=$HOME/.local/bin:$PATH
 
 # fzf
-export FZF_DEFAULT_OPTS='--inline-info --border --height 60%'
-export FZF_CTRL_T_OPTS='--no-reverse --preview "cat {}"'
+export FZF_DEFAULT_OPTS='--inline-info --border'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git/ \
     --exclude vendor/ --exclude node_modules/'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_ALT_C_COMMAND=$FZF_DEFAULT_COMMAND
 
 
-# refresh watch every 100 milliseconds
-alias watch='watch -n 0.1 '
+# refresh watch every second
+alias watch='watch -n 1 '
 
 # cd
 alias     ..='cd ..'
@@ -120,11 +110,6 @@ alias gst='git stash'
 alias gsh='git show'
 
 
-# nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # fzf key bindings
 [[ -r "/usr/local/opt/fzf/shell/key-bindings.bash" ]] && \
     source "/usr/local/opt/fzf/shell/key-bindings.bash"
@@ -141,7 +126,7 @@ alias gsh='git show'
 [[ -r "/usr/share/fzf/shell/completion.bash" ]] && \
     source "/usr/share/fzf/shell/completion.bash"
 
-# TODO: this file takes 0.2 seconds to load
+# NOTE: this file takes 0.2 seconds to load
 # alias completion (source after alias/completion configs)
 [[ -r "$HOME/dotfiles/bash/alias-completion.bash" ]] && \
     source "$HOME/dotfiles/bash/alias-completion.bash"
@@ -187,10 +172,3 @@ qmk() {
 
 # source work bashrc
 [[ -r ~/jobfiles/bash/bashrc ]] && source ~/jobfiles/bash/bashrc
-
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
-
-alias luamake=/Users/qsq854/cloudcontrol/policy-dashboard-api/docker/lua-language-server/3rd/luamake/luamake

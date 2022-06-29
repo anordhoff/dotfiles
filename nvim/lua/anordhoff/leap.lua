@@ -1,15 +1,17 @@
 local leap = require('leap')
 
 leap.setup {
-  case_insensitive = true,
   labels = {'n', 't', 'e', 's', 'i', 'r', 'o', 'a', 'h', 'd', 'u', 'f', 'y', 'w'},
   safe_labels = {},
 }
 
-vim.keymap.set('n', 'x', '<Plug>(leap-forward)')
-vim.keymap.set('n', 'X', '<Plug>(leap-backward)')
-vim.keymap.set('x', 'x', '<Plug>(leap-forward)')
-vim.keymap.set('x', 'X', '<Plug>(leap-backward)')
-vim.keymap.set('o', 'x', '<Plug>(leap-forward)')
-vim.keymap.set('o', 'X', '<Plug>(leap-backward)')
-vim.keymap.set('n', '<leader>x', '<Plug>(leap-cross-window)')
+function leap_bidirectional()
+  leap.leap { ['target-windows'] = { vim.api.nvim_get_current_win() } }
+end
+
+-- TODO: leap doesn't respect `<leader>` mappings
+local opts = { silent = true }
+vim.keymap.set('n', 'x', leap_bidirectional, opts)
+vim.keymap.set('x', 'x', leap_bidirectional, opts)
+vim.keymap.set('o', 'x', leap_bidirectional, opts)
+vim.keymap.set('n', 'X', '<Plug>(leap-cross-window)', opts)
