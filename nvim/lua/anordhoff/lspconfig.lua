@@ -185,9 +185,6 @@ for schema, _ in pairs(patterns) do
       end
       table.insert(patterns[schema], line)
     end
-    -- for line in io.lines(path_to_schemas .. schema .. '.txt') do
-    --   table.insert(patterns[schema], line)
-    -- end
     io.close(file)
   end
 end
