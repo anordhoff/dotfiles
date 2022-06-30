@@ -16,9 +16,6 @@
 [submodule "nvim/package/start/vim-obsession"]
 	path = nvim/package/start/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
-[submodule "nvim/package/start/vim-peekaboo"]
-	path = nvim/package/start/vim-peekaboo
-	url = https://github.com/junegunn/vim-peekaboo.git
 [submodule "nvim/package/start/vim-repeat"]
 	path = nvim/package/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
