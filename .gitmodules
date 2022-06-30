@@ -1,12 +1,12 @@
 # tmux
-[submodule "tmux/plugins/tmux-resurrect"]
-	path = tmux/plugins/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect.git
 [submodule "tmux/plugins/tmux-continuum"]
 	path = tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum.git
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
 
-# vim
+# vim (start)
 [submodule "nvim/package/start/vim-commentary"]
 	path = nvim/package/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -38,6 +38,7 @@
 	path = nvim/package/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 
+# vim (opt)
 [submodule "nvim/package/opt/vim-startuptime"]
 	path = nvim/package/opt/vim-startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
@@ -53,19 +54,21 @@
 	path = nvim/package/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
 
-[submodule "nvim/package/start/telescope.nvim"]
-	path = nvim/package/start/telescope.nvim
-	url = https://github.com/nvim-telescope/telescope.nvim.git
-[submodule "nvim/package/start/plenary.nvim"]
-	path = nvim/package/start/plenary.nvim
-	url = https://github.com/nvim-lua/plenary.nvim.git
-[submodule "nvim/package/start/telescope-fzf-native.nvim"]
-	path = nvim/package/start/telescope-fzf-native.nvim
-	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim.git
-
+# treesitter
 [submodule "nvim/package/start/nvim-treesitter"]
 	path = nvim/package/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "nvim/package/start/nvim-treesitter-textobjects"]
 	path = nvim/package/start/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+
+# telescope
+[submodule "nvim/package/start/plenary.nvim"]
+	path = nvim/package/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "nvim/package/start/telescope.nvim"]
+	path = nvim/package/start/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim.git
+[submodule "nvim/package/start/telescope-fzf-native.nvim"]
+	path = nvim/package/start/telescope-fzf-native.nvim
+	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim.git
