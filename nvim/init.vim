@@ -1,13 +1,3 @@
-" ==================== plugins ==================== "
-if &loadplugins
-  lua require('impatient')
-  lua require('anordhoff.leap')
-  lua require('anordhoff.lspconfig')
-  lua require('anordhoff.telescope')
-  lua require('anordhoff.treesitter')
-endif
-
-
 " ==================== settings ==================== "
 set number nu         " line numbers
 set noincsearch       " don't execute search until hitting enter
@@ -374,3 +364,14 @@ augroup END
 
 " ==================== jobfiles ==================== "
 runtime job.vim
+
+
+
+" ==================== plugins ==================== "
+if &loadplugins
+  lua require('impatient')
+  lua require('anordhoff.leap')
+  lua require('anordhoff.lspconfig')
+  lua require('anordhoff.telescope')
+  lua require('anordhoff.treesitter')
+endif
