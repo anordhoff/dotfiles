@@ -32,11 +32,11 @@ vim.fn.sign_define('DiagnosticSignInfo', { numhl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { numhl = 'DiagnosticSignHint' })
 
 -- diagnostic keymaps
-vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
-vim.keymap.set('n', '[e', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']e', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>el', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>eq', vim.diagnostic.setqflist)
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist)
 
 -- lsp settings
 local on_attach = function(_, bufnr)
@@ -180,7 +180,9 @@ for schema, _ in pairs(patterns) do
   if file ~= nil then
     while true do
       local line = file:read()
-      if line == nil then break end
+      if line == nil then
+        break
+      end
       table.insert(patterns[schema], line)
     end
     -- for line in io.lines(path_to_schemas .. schema .. '.txt') do
