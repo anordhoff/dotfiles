@@ -20,7 +20,7 @@ unsetopt histbeep
 unsetopt listbeep
 
 # print current working directory in the prompt
-PS1='%F{blue}%60<...<%~%F{default} %# '
+PS1='%F{blue}%60<...<%~%F{default} $ '
 
 # use emacs mode for zle
 bindkey -e
