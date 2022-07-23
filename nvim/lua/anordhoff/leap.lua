@@ -6,7 +6,7 @@ leap.setup {
 }
 
 function leap_bidirectional()
-  leap.leap { ['target-windows'] = { vim.api.nvim_get_current_win() } }
+  leap.leap { ['target_windows'] = { vim.api.nvim_get_current_win() } }
 end
 
 -- TODO: leap doesn't respect `<leader>` mappings
