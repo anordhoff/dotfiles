@@ -2,6 +2,9 @@
 typeset -U path
 path=(~/.local/bin $path)
 
+# prepend ~/.krew/bin to PATH
+path=(~/.krew/bin $path)
+
 # faster than $(brew --prefix)
 BREW_PREFIX='/usr/local'
 
