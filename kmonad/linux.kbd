@@ -4,7 +4,7 @@
   output (uinput-sink "kmonad output")
 
   fallthrough true
-  allow-cmd   false
+  allow-cmd   true
 )
 
 (defalias
@@ -45,16 +45,16 @@
   mtRET (tap-hold-next-release 150 (around rsft ret) (around rsft ralt))
 
   ;; media keys
-  bdn (around rctl (around rsft (around ralt f1)))
-  bup (around rctl (around rsft (around ralt f2)))
-  kdn (around rctl (around rsft (around ralt f3)))
-  kup (around rctl (around rsft (around ralt f4)))
-  prv (around rctl (around rsft (around ralt f5)))
-  ply (around rctl (around rsft (around ralt f6)))
-  nxt (around rctl (around rsft (around ralt f7)))
-  mut (around rctl (around rsft (around ralt f8)))
-  vdn (around rctl (around rsft (around ralt f9)))
-  vup (around rctl (around rsft (around ralt f10)))
+  bdn (cmd-button "exec light -U 5")
+  bup (cmd-button "exec light -A 5")
+  kdn (cmd-button "exec light -Ss sysfs/leds/dell::kbd_backlight 0")
+  kup (cmd-button "exec light -Ss sysfs/leds/dell::kbd_backlight 50")
+  prv (cmd-button "playerctl previous")
+  ply (cmd-button "playerctl play-pause")
+  nxt (cmd-button "playerctl next")
+  mut (cmd-button "amixer -q set Master toggle")
+  vdn (cmd-button "amixer -q set Master 5%-")
+  vup (cmd-button "amixer -q set Master 5%+")
 )
 
 (defsrc
