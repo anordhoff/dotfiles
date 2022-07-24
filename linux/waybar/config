@@ -1,8 +1,8 @@
 {
-    "layer": "top",
-    "height": 25,
+    "layer": "bottom",
+    "height": 24,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["tray", "custom/spotify", "custom/vpn", "network", "pulseaudio", "backlight", "battery", "clock"],
+    "modules-right": ["tray", "custom/spotify", "network", "pulseaudio", "backlight", "battery", "clock"],
 
     "tray": {
         "icon-size": 15,
@@ -11,59 +11,43 @@
     "custom/spotify": {
         "interval": 1,
         "return-type": "json",
-        "exec": "~/.dotfiles/waybar/modules/spotify.sh",
+        "exec": "~/.config/waybar/modules/spotify.sh",
         "exec-if": "pgrep spotify",
-        "escape": true
-    },
-    "custom/vpn": {
-        "interval": 10,
-        "return-type": "json",
-        "exec": "~/.dotfiles/waybar/modules/vpn.sh",
-        "exec-if": "pgrep openvpn",
         "escape": true
     },
     "network": {
         "tooltip": false,
         "interval": 1,
         "format": "{ifname}",
-        "format-wifi": "{essid}  ",
-        "format-ethernet": "{ifname} {ipaddr}  ",
-        "format-linked": "{ifname}  ",
-        "format-disconnected": "Disconnected  "
+        "format-wifi": "Wifi: {essid}",
+        "format-ethernet": "Ethernet: {ifname} {ipaddr}",
+        "format-linked": "Linked: {ifname}",
+        "format-disconnected": "Disconnected"
     },
     "pulseaudio": {
-        "tooltip": false,
-        "format": "{volume}  {icon}",
-        "format-muted": "{volume}  ",
-        "format-bluetooth": "{volume}    {icon}",
-        "format-bluetooth-muted": "{volume}    ",
-        "format-icons": {
-            "headphones": "",
-            "headset": "",
-            "default": ["", "", "", ""]
-        }
+        "format": "Volume: {volume}%",
+        "format-muted": "Volume (muted): {volume}%",
+        "format-bluetooth": "Bluetooth: {volume}%",
+        "format-bluetooth-muted": "Bluetooth (muted): {volume}%"
     },
     "backlight": {
+    	"tooltip": false,
         "device": "intel_backlight",
         "states": {
             "on": 1,
             "off": 0
         },
-        "format": "{percent}  {icon}",
-        "format-icons": ["", "", "", ""]
+        "format": "Brightness: {percent}%"
     },
     "battery": {
         "tooltip": false,
         "states": {
             "critical": 10
         },
-        "format": "{capacity}  {icon}",
-        "format-charging": "{capacity}    ",
-        "format-plugged": "{capacity}    ",
-        "format-icons": ["", "", "", "", ""]
+        "format": "Battery: {capacity}%"
     },
     "clock": {
         "tooltip": false,
-        "format": "{:%b %e   -   %-I:%M}"
+	"format": "{:%a %b %e  %I:%M %p}"
     }
 }
