@@ -1,9 +1,9 @@
 # prepend ~/.local/bin to PATH
 typeset -U path
-path=(~/.local/bin $path)
+path=($HOME/.local/bin $path)
 
 # prepend ~/.krew/bin to PATH
-path=(~/.krew/bin $path)
+path=($HOME/.krew/bin $path)
 
 # faster than $(brew --prefix)
 BREW_PREFIX='/usr/local'
@@ -63,6 +63,6 @@ export FZF_DEFAULT_OPTS="--inline-info --border \
 	--color query:7:regular"
 
 # source additional configs
-[ -r ~/jobfiles/zsh/zshenv ] && source ~/jobfiles/zsh/zshenv
-[ -r ~/dotfiles/zsh/zshalias ] && source ~/dotfiles/zsh/zshalias
-[ -r ~/jobfiles/zsh/zshalias ] && source ~/jobfiles/zsh/zshalias
+[ -r $HOME/jobfiles/zsh/zshenv ] && source $HOME/jobfiles/zsh/zshenv
+[ -r $HOME/dotfiles/zsh/zshalias ] && source $HOME/dotfiles/zsh/zshalias
+[ -r $HOME/jobfiles/zsh/zshalias ] && source $HOME/jobfiles/zsh/zshalias
