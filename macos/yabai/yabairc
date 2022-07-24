@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 yabai -m config layout bsp
 yabai -m config auto_balance on
