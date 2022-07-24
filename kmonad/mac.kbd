@@ -24,25 +24,25 @@
   qrs (layer-toggle qwerty-rsft)
 
   ;; home row mods / mod taps
-  mtesc (tap-hold-next-release 150 esc rmet)
-  mtr   (tap-hold-next-release 170 r (layer-toggle layer-r))
-  mts   (tap-hold-next-release 170 s (layer-toggle layer-s))
-  mtt   (tap-hold-next-release 170 t (layer-toggle layer-t))
+  mtesc (tap-hold-next-release 140 esc rmet)
+  mtr   (tap-hold-next-release 160 r (layer-toggle layer-r))
+  mts   (tap-hold-next-release 160 s (layer-toggle layer-s))
+  mtt   (tap-hold-next-release 160 t (layer-toggle layer-t))
 
-  mtn   (tap-hold-next-release 170 n (layer-toggle layer-n))
-  mte   (tap-hold-next-release 170 e (layer-toggle layer-e))
-  mti   (tap-hold-next-release 170 i (layer-toggle layer-i))
-  mtret (tap-hold-next-release 150 ret ralt)
+  mtn   (tap-hold-next-release 160 n (layer-toggle layer-n))
+  mte   (tap-hold-next-release 160 e (layer-toggle layer-e))
+  mti   (tap-hold-next-release 160 i (layer-toggle layer-i))
+  mtret (tap-hold-next-release 140 ret ralt)
 
-  mtESC (tap-hold-next-release 150 (around rsft esc) (around rsft rmet))
-  mtR   (tap-hold-next-release 170 R (around rsft (layer-toggle layer-r)))
-  mtS   (tap-hold-next-release 170 S (around rsft (layer-toggle layer-s)))
-  mtT   (tap-hold-next-release 170 T (layer-toggle layer-t))
+  mtESC (tap-hold-next-release 140 (around rsft esc) (around rsft rmet))
+  mtR   (tap-hold-next-release 160 R (around rsft (layer-toggle layer-r)))
+  mtS   (tap-hold-next-release 160 S (around rsft (layer-toggle layer-s)))
+  mtT   (tap-hold-next-release 160 T (layer-toggle layer-t))
 
-  mtN   (tap-hold-next-release 170 N (layer-toggle layer-n))
-  mtE   (tap-hold-next-release 170 E (around rsft (layer-toggle layer-e)))
-  mtI   (tap-hold-next-release 170 I (around rsft (layer-toggle layer-i)))
-  mtRET (tap-hold-next-release 150 (around rsft ret) (around rsft ralt))
+  mtN   (tap-hold-next-release 160 N (layer-toggle layer-n))
+  mtE   (tap-hold-next-release 160 E (around rsft (layer-toggle layer-e)))
+  mtI   (tap-hold-next-release 160 I (around rsft (layer-toggle layer-i)))
+  mtRET (tap-hold-next-release 140 (around rsft ret) (around rsft ralt))
 
   ;; media keys
   bdn (around rctl (around rsft (around ralt f1)))
@@ -77,7 +77,7 @@
   grv       1    2    3    4    5    6    7    8    9    0    -    =    XX
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
-  z         x    c    d    v    ;    \    k    h    ,    .    /         up
+  z         x    c    d    v    ;    \    k    h    -    =    /         up
   fn        lmet lalt @adj           rmet      XX   _              left down rght
 )
 

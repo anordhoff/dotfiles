@@ -1,18 +1,18 @@
 # qmk compile/flash commands
-case "$@" in
+case $@ in
 'compile iris')
-    command qmk compile -kb keebio/iris/rev4 -km anordhoff
-    ;;
+	command qmk compile -kb keebio/iris/rev4 -km anordhoff
+	;;
 'flash iris')
-    command qmk flash -kb keebio/iris/rev4 -km anordhoff
-    ;;
+	command qmk flash -kb keebio/iris/rev4 -km anordhoff
+	;;
 'compile yd60')
-    command qmk compile -kb ymdk/yd60mq/16led -km anordhoff
-    ;;
+	command qmk compile -kb ymdk/yd60mq/16led -km anordhoff
+	;;
 'flash yd60')
-    command qmk flash -kb ymdk/yd60mq/16led -km anordhoff
-    ;;
+	command qmk flash -kb ymdk/yd60mq/16led -km anordhoff
+	;;
 *)
-    command qmk "$@"
-    ;;
+	command qmk $@
+	;;
 esac

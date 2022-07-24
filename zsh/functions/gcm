@@ -1,3 +1,0 @@
-# 'git commit -m' alias that doesn't require explicitly quoting the message
-message="$@"
-git commit -m "$message"

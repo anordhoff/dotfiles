@@ -48,42 +48,15 @@ shift + ctrl + alt + cmd - p : yabai -m window --space 9
 shift + ctrl + alt + cmd - a : yabai -m window --space 10
 
 # move focus to adjacent monitor
-shift + ctrl + alt - 0x2B : yabai -m display --focus prev # 0x2B = comma
-shift + ctrl + alt - 0x2F : yabai -m display --focus next # 0x2F = period
+# shift + ctrl + alt - 0x1B : yabai -m display --focus prev # 0x1B = minus
+# shift + ctrl + alt - 0x18 : yabai -m display --focus next # 0x18 = equal
+shift + ctrl + alt - 0x1B : yabai -m display --focus next # 0x1B = minus
+shift + ctrl + alt - 0x18 : yabai -m display --focus prev # 0x18 = equal
 
 # move window to adjacent monitor
-shift + ctrl + alt + cmd - 0x2B : yabai -m window --display prev # 0x2B = comma
-shift + ctrl + alt + cmd - 0x2F : yabai -m window --display next # 0x2F = period
-
-# move focus to adjacent space (shorter transition time than native macos shortcut)
-# shift + ctrl + alt - u : case $(yabai -m query --spaces | jq 'map(select(."focused" == 1)) | .[].index - 1') in \
-# 						1) skhd -k "shift + ctrl + alt - x";; \
-# 						2) skhd -k "shift + ctrl + alt - c";; \
-# 						3) skhd -k "shift + ctrl + alt - d";; \
-# 						4) skhd -k "shift + ctrl + alt - r";; \
-# 						5) skhd -k "shift + ctrl + alt - s";; \
-# 						6) skhd -k "shift + ctrl + alt - t";; \
-# 						7) skhd -k "shift + ctrl + alt - w";; \
-# 						8) skhd -k "shift + ctrl + alt - f";; \
-# 						9) skhd -k "shift + ctrl + alt - p";; \
-# 						10) skhd -k "shift + ctrl + alt - a";; \
-# 						*) \
-# 					esac
-# shift + ctrl + alt - y : case $(yabai -m query --spaces | jq 'map(select(."focused" == 1)) | .[].index + 1') in \
-# 						1) skhd -k "shift + ctrl + alt - x";; \
-# 						2) skhd -k "shift + ctrl + alt - c";; \
-# 						3) skhd -k "shift + ctrl + alt - d";; \
-# 						4) skhd -k "shift + ctrl + alt - r";; \
-# 						5) skhd -k "shift + ctrl + alt - s";; \
-# 						6) skhd -k "shift + ctrl + alt - t";; \
-# 						7) skhd -k "shift + ctrl + alt - w";; \
-# 						8) skhd -k "shift + ctrl + alt - f";; \
-# 						9) skhd -k "shift + ctrl + alt - p";; \
-# 						10) skhd -k "shift + ctrl + alt - a";; \
-# 						*) \
-# 					esac
-
-# move window to specific monitor
-# alt + cmd - 1 : yabai -m display --focus 1
-# alt + cmd - 2 : yabai -m display --focus 2
-# alt + cmd - 3 : yabai -m display --focus 3
+# NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped
+# comma, period to minus, equal
+# shift + ctrl + alt + cmd - 0x1B : yabai -m window --display prev # 0x1B = minus
+# shift + ctrl + alt + cmd - 0x18 : yabai -m window --display next # 0x18 = equal
+shift + ctrl + alt + cmd - 0x1B : yabai -m window --display next # 0x1B = minus
+shift + ctrl + alt + cmd - 0x18 : yabai -m window --display prev # 0x18 = equal
