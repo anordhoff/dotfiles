@@ -13,14 +13,11 @@ yabai -m rule --add app="Docker Desktop" manage=off
 yabai -m rule --add app="Finder" manage=off
 yabai -m rule --add app="System Preferences" manage=off
 
-# menu bar padding at the top of the screen
-# yabai -m config external_bar all:28:0
-
 # kill any existing limelight process if one exists, before we launch a new one
 killall limelight &> /dev/null
-limelight -c ~/.limelightrc &> /dev/null &
+limelight -c $HOME/.limelightrc &> /dev/null &
 
 # source work config
-[ -f ~/jobfiles/yabai/yabairc ] && source ~/jobfiles/yabai/yabairc
+[ -r $HOME/jobfiles/yabai/yabairc ] && source $HOME/jobfiles/yabai/yabairc
 
 echo "yabai configuration loaded.."
