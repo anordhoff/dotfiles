@@ -1,18 +1,17 @@
 #!/bin/sh
 
 class=$(playerctl metadata --player=spotify --format '{{lc(status)}}')
-icon=" "
 
-if [[ $class == "playing" ]]; then
+if [[ $class == 'playing' ]]; then
   info=$(playerctl metadata --player=spotify --format '{{artist}} - {{title}}')
-  if [[ ${#info} > 40 ]]; then
-    info=$(echo $info | cut -c1-40)"..."
+  if [[ ${#info} > 80 ]]; then
+    info=$(echo $info | cut -c1-80)"..."
   fi
-  text=$info"  "$icon
-elif [[ $class == "paused" ]]; then
-  text="Paused  "$icon
-elif [[ $class == "stopped" ]]; then
-  text=""
+  text="${info}"
+elif [[ $class == 'paused' ]]; then
+  text='Spotify: paused'
+elif [[ $class == 'stopped' ]]; then
+  text='Spotify: stopped'
 fi
 
-echo -e "{\"text\":\"$text\", \"class\":\"$class\"}"
+echo -e "{\"text\":\"${text}\", \"class\":\"${class}\"}"

@@ -2,25 +2,25 @@
     border: none;
     border-radius: 0;
     font-family: San Francisco Display;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     min-height: 0;
 }
 
 window#waybar {
     background: #000000;
-    color: #cfd6e6;
+    color: #ebdbb2;
 }
 
 #workspaces button {
     box-shadow: none;
     text-shadow: none;
     padding: 0px 0px 0px 6px;
-    color: #5c6370;
+    color: #a89984;
 }
 
 #workspaces button.focused {
-    color: #cfd6e6;
+    color: #ebdbb2;
 }
 
 #workspaces button:hover {
@@ -31,21 +31,16 @@ window#waybar {
     margin: 0px 12px;
 }
 
-#custom-vpn.disconnected {
-    margin: 0px 0px;
-    font-size: 0px;
-}
-
 #backlight.off {
     margin: 0px 0px;
     font-size: 0px;
 }
 
 #battery.critical {
-    color: #bf5858;
+    color: #fb4934;
 }
 
+/* https://github.com/Alexays/Waybar/issues/1469 */
 #clock {
-    margin: 0px 8px 0px 12px;
-    font-weight: 500;
+    margin: 0px 12px 0px 12px;
 }

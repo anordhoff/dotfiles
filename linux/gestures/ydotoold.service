@@ -3,7 +3,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/mako
+ExecStart=/usr/bin/ydotoold
 
 [Install]
 WantedBy=sway-session.target
