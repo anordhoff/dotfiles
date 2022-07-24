@@ -1,10 +1,7 @@
-[Unit]
-Description=kmonad keyboard config
-
 [Service]
 Restart=always
 RestartSec=3
-ExecStart=/home/anordhoff/.local/bin/kmonad /home/anordhoff/.dotfiles/kmonad/linux.kbd
+ExecStart=/home/anordhoff/.local/bin/kmonad /home/anordhoff/dotfiles/kmonad/linux.kbd
 Nice=-20
 
 [Install]
