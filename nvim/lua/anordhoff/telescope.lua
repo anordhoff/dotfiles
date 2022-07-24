@@ -25,6 +25,7 @@ telescope.setup {
       },
     },
     file_ignore_patterns = {
+      "tags",
       ".git",
       "vendor",
       "node_modules",

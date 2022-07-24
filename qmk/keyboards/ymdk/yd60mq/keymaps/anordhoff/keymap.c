@@ -176,6 +176,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
   ),
 
+  // NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped
+  // RM_COMM, RM_DOT to RM_MINS, RM_EQL
   [_COLEMAK_MEH] = LAYOUT(
   //┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      RM_GRV , RM_1  , RM_2  , RM_3  , RM_4  , RM_5  , RM_6  , RM_7  , RM_8  , RM_9  , RM_0  ,RM_MINS,RM_EQL ,XXXXXXX,XXXXXXX,
@@ -184,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
      RM_ESC       , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,RM_RBRC, RM_M  , RM_N  , RM_E  , RM_I  , RM_O  ,XXXXXXX,   RM_ENT,
   //├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
-     KC_LSFT, RM_Z  , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,RM_BSLS, RM_K  , RM_H  ,RM_COMM,RM_DOT ,XXXXXXX,RM_SLSH,  RM_UP,
+     KC_LSFT, RM_Z  , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,RM_BSLS, RM_K  , RM_H  ,RM_MINS,RM_EQL ,XXXXXXX,RM_SLSH,  RM_UP,
   //├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
      KC_LCTL      , KC_LGUI , KC_LALT , ADJUST  ,        KC_RGUI        , XXXXXXX , _______ ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
   //├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
