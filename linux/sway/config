@@ -4,9 +4,9 @@ set $term kitty
 
 # preferred application launcher
 set $menu bemenu-run -i --line-height 24 --ch 16 --fn "SF Pro Display 11" -p '>' \
-    --tf "#83a598" --ff "#ebdbb2" --cf "#a89984" --nf "#ebdbb2" --af "#ebdbb2" \
-    --hf "#83a598" --sf "#ebdbb2" --tb "#000000" --fb "#000000" --cb "#000000" \
-    --nb "#000000" --ab "#000000" --hb "#000000" --sb "#000000"
+	--tf "#83a598" --ff "#ebdbb2" --cf "#a89984" --nf "#ebdbb2" --af "#ebdbb2" \
+	--hf "#83a598" --sf "#ebdbb2" --tb "#000000" --fb "#000000" --cb "#000000" \
+	--nb "#000000" --ab "#000000" --hb "#000000" --sb "#000000"
 
 # wallpaper
 set $wallpaper $HOME/Pictures/fedora-gruvbox.png
@@ -26,15 +26,15 @@ smart_borders on
 
 #################### Output configuration ####################
 output eDP-1 {
-    position 0 520
-    resolution 1920x1080
-    background $wallpaper fill
+	position 0 520
+	resolution 1920x1080
+	background $wallpaper fill
 }
 
 output DP-1 {
-    position 1920 0
-    resolution 3840x1600
-    background $wallpaper center
+	position 1920 0
+	resolution 3840x1600
+	background $wallpaper center
 }
 
 # clamshell mode
@@ -49,31 +49,31 @@ output DP-1 {
 
 #################### Input configuration ####################
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
-    # tap enabled
-    click_method clickfinger
-    dwt enabled
-    natural_scroll enabled
+	# tap enabled
+	click_method clickfinger
+	dwt enabled
+	natural_scroll enabled
 }
 
 input 4661:22137:kmonad_output {
-    repeat_delay 200
-    repeat_rate 35
+	repeat_delay 200
+	repeat_rate 35
 }
 
 input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
-    repeat_delay 200
-    repeat_rate 35
+	repeat_delay 200
+	repeat_rate 35
 }
 
 input 22861:24653:YMDK_YD60MQ {
-    repeat_delay 200
-    repeat_rate 35
+	repeat_delay 200
+	repeat_rate 35
 }
 
 # TODO: mouse is still too fast
 input 1739:31251:SYNA2393:00_06CB:7A13_Mouse {
-    accel_profile flat
-    pointer_accel -1.0
+	accel_profile flat
+	pointer_accel -1.0
 }
 
 # volume keys
