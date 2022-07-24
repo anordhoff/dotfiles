@@ -47,41 +47,42 @@ autoload -Uz run-help
 
 # lazyload functions in the *files/zsh/functions directory
 typeset -U fpath
-fpath=(~/dotfiles/zsh/functions ~/jobfiles/zsh/functions $fpath)
+fpath=($HOME/dotfiles/zsh/functions $fpath)
 autoload ${fpath[1]}/*(:t)
-autoload ${fpath[2]}/*(:t)
+[ -d $HOME/jobfiles/zsh/functions ] &&
+	fpath=($HOME/jobfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
 
 # add completion directories to fpath
-fpath=(~/dotfiles/zsh/completions $fpath)
-fpath=(~/jobfiles/zsh/completions $fpath)
+fpath=($HOME/dotfiles/zsh/completions $fpath)
+fpath=($HOME/jobfiles/zsh/completions $fpath)
 
 # enable fzf
 if [[ "${OSTYPE}" =~ "darwin"* ]]; then
-  [ -f /usr/local/opt/fzf/shell/completion.zsh ] &&
-    source /usr/local/opt/fzf/shell/completion.zsh
-  [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ] &&
-    source /usr/local/opt/fzf/shell/key-bindings.zsh
+	[ -r /usr/local/opt/fzf/shell/completion.zsh ] &&
+		source /usr/local/opt/fzf/shell/completion.zsh
+	[ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] &&
+		source /usr/local/opt/fzf/shell/key-bindings.zsh
 else
-  [ -f /usr/share/fzf/shell/completion.zsh ] &&
-    source /usr/share/fzf/shell/completion.zsh
-  [ -f /usr/share/fzf/shell/key-bindings.zsh ] &&
-    source /usr/share/fzf/shell/key-bindings.zsh
+	[ -r /usr/share/fzf/shell/completion.zsh ] &&
+		source /usr/share/fzf/shell/completion.zsh
+	[ -r /usr/share/fzf/shell/key-bindings.zsh ] &&
+		source /usr/share/fzf/shell/key-bindings.zsh
 fi
 
 # enable expand-multiple-dots.zsh
-[ -f ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] &&
-	source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
+[ -r $HOME/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] &&
+	source $HOME/dotfiles/zsh/extensions/expand-multiple-dots.zsh
 
 # enable tab-on-empty-line-shows-files.zsh
-[ -f ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] &&
-	source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
+[ -r $HOME/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] &&
+	source $HOME/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
 
 #-----------------------------
 # history
 #-----------------------------
 
-HISTFILE=~/.zhistory
+HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -134,7 +135,7 @@ zstyle ':completion:*:complete-extended:*' \
 
 # cache completions
 zstyle ':completion:*' use-cache true
-zstyle ':completion:*' cache-path ~/.zcompcache
+zstyle ':completion:*' cache-path $HOME/.zcompcache
 
 # use a completion menu
 zstyle ':completion:*' menu select
@@ -162,4 +163,4 @@ unset LS_COLORS_COMPLETION
 #-----------------------------
 
 # source work zshrc
-[ -r ~/jobfiles/zsh/zshrc ] && source ~/jobfiles/zsh/zshrc
+[ -r $HOME/jobfiles/zsh/zshrc ] && source $HOME/jobfiles/zsh/zshrc
