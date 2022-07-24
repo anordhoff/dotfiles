@@ -1,5 +1,4 @@
-/* Copy to ~/Library/KeyBindings/DefaultKeyBinding.dict;
- * a symlink will not work.
+/* Copy to ~/Library/KeyBindings/DefaultKeyBinding.dict; a symlink won't work.
  * More info at http://www.hcs.harvard.edu/~jrus/site/cocoa-text.html
  */
 
