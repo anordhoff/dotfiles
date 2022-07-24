@@ -62,7 +62,5 @@ export FZF_DEFAULT_OPTS="--inline-info --border \
 	--color prompt:4:regular \
 	--color query:7:regular"
 
-# source additional configs
+# source work zshenv
 [ -r $HOME/jobfiles/zsh/zshenv ] && source $HOME/jobfiles/zsh/zshenv
-[ -r $HOME/dotfiles/zsh/zshalias ] && source $HOME/dotfiles/zsh/zshalias
-[ -r $HOME/jobfiles/zsh/zshalias ] && source $HOME/jobfiles/zsh/zshalias
