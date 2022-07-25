@@ -29,40 +29,14 @@ smart_borders on
 
 
 # --------------------------------------
-# output
-# --------------------------------------
-
-output eDP-1 {
-	position 0 520
-	resolution 1920x1080
-	background $wallpaper fill
-}
-
-output DP-1 {
-	position 1920 0
-	resolution 3840x1600
-	background $wallpaper center
-}
-
-# clamshell mode
-# bindswitch --reload lid:on output eDP-1 disable
-# bindswitch --reload lid:off output eDP-1 enable
-# bindswitch --reload --locked lid:on output eDP-1 disable
-# bindswitch --reload --locked lid:off output eDP-1 enable
-# exec_always $HOME/dotfiles/linux/sway/clamshell.sh
-
-# focus external monitor on sway launch
-# exec swaymsg focus output DP-1
-
-
-# --------------------------------------
 # input
 # --------------------------------------
 
+# TODO: reduce tapping sensitivity
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
 	# tap enabled
-	click_method clickfinger
 	dwt enabled
+	click_method clickfinger
 	natural_scroll enabled
 }
 
@@ -87,19 +61,29 @@ input 1739:31251:SYNA2393:00_06CB:7A13_Mouse {
 	pointer_accel -1.0
 }
 
-# volume keys
-# TODO
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-# bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
-bindsym XF86AudioMute exec amixer -q set Master toggle
+# volume
+# TODO: percent adjusted when using hotkeys is messed up
+# bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+# # bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
+# bindsym XF86AudioMute exec amixer -q set Master toggle
 
-# media player keys
+# bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+# # bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
+# bindsym XF86AudioMute exec amixer -q set Master toggle
+
+# volume (prevent pulseaudio from increasing volume beyond 100%)
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec [ $(pactl get-sink-volume @DEFAULT_SINK@ | grep 'Volume:' | sed 's/.*\ \([0-9]*\)%\ .*/\1/') -lt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# media
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioPlay exec playerctl play-pause
 
-# backlight keys
+# backlight
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
@@ -107,8 +91,24 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 # capture the focused monitor to clipboard
-# TODO: what is this set to on macos
 bindsym Ctrl+Print exec grim -o $(swaymsg -t get_outputs | jq -r ".[] | select(.focused) | .name") - | wl-copy
+
+
+# --------------------------------------
+# output
+# --------------------------------------
+
+output eDP-1 {
+	position 0 520
+	resolution 1920x1080
+	background $wallpaper fill
+}
+
+output DP-1 {
+	position 1920 0
+	resolution 3840x1600
+	background $wallpaper center
+}
 
 
 # --------------------------------------
@@ -146,12 +146,6 @@ bindsym $mod+Mod4+$left  move left
 bindsym $mod+Mod4+$down  move down
 bindsym $mod+Mod4+$up    move up
 bindsym $mod+Mod4+$right move right
-
-# split in horizontal orientation
-# bindsym $mod+Ctrl+s splith
-
-# split in vertical orientation
-# bindsym $mod+Ctrl+v splitv
 
 # enter fullscreen mode for the focused container
 bindsym $mod+z fullscreen
@@ -218,6 +212,8 @@ bindsym $mod+Mod4+j resize grow   height 10px
 bindsym $mod+Mod4+k resize shrink height 10px
 bindsym $mod+Mod4+l resize grow   width  10px
 
+# TODO: switch between multiple monitors with , and .
+
 # lock computer
 bindsym $mod+Slash exec "swaylock -f -i $wallpaper"
 
@@ -225,7 +221,7 @@ bindsym $mod+Slash exec "swaylock -f -i $wallpaper"
 bindsym $mod+Mod4+Slash exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
 
 # reload the configuration file
-bindsym $mod+Mod4+z reload
+bindsym $mod+Mod4+Escape reload
 
 
 # --------------------------------------
