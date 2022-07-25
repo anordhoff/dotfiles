@@ -73,7 +73,9 @@ for _, lsp in pairs(servers) do
 end
 
 
--------------------- gopls --------------------
+----------------------------------------
+-- gopls
+----------------------------------------
 
 -- setup configuration
 lspconfig.gopls.setup {
@@ -120,7 +122,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 
--------------------- sumneko_lua --------------------
+----------------------------------------
+-- sumneko_lua
+----------------------------------------
 
 -- path to binary
 local path_to_binary = home_dir .. '/lua-language-server/bin/lua-language-server'
@@ -154,7 +158,9 @@ lspconfig.sumneko_lua.setup {
 }
 
 
--------------------- yamlls --------------------
+----------------------------------------
+-- yamlls
+----------------------------------------
 
 -- path to schemas
 local cloudformation = 'https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json'
