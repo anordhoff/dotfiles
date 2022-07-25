@@ -45,7 +45,7 @@ bindkey '^X^E' edit-command-line
 # use 'help' command for zsh built-ins
 autoload -Uz run-help
 
-# lazyload functions in the *files/zsh/functions directory
+# lazyload functions in the functions directory
 typeset -U fpath
 fpath=($HOME/dotfiles/zsh/functions $fpath)
 autoload ${fpath[1]}/*(:t)
@@ -54,7 +54,8 @@ autoload ${fpath[1]}/*(:t)
 
 # add completion directories to fpath
 fpath=($HOME/dotfiles/zsh/completions $fpath)
-fpath=($HOME/jobfiles/zsh/completions $fpath)
+[ -d $HOME/jobfiles/zsh/completions ] &&
+	fpath=($HOME/jobfiles/zsh/completions $fpath)
 
 # enable fzf (if not a vim command mode shell)
 if [ -z $VIM ]; then

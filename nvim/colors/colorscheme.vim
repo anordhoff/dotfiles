@@ -53,36 +53,36 @@ hi! link Debug                   Special
 " --------------------------------------
 " editor settings
 " --------------------------------------
-hi Cursor                        cterm=none        ctermfg=0        ctermbg=8
+hi Cursor                        cterm=reverse     ctermfg=8        ctermbg=none
 hi! link TermCursor              Cursor
-hi TermCursorNC                  cterm=none        ctermfg=0        ctermbg=14
+hi TermCursorNC                  cterm=reverse     ctermfg=15       ctermbg=none
 hi CursorLine                    cterm=none        ctermfg=none     ctermbg=10
-hi CursorLineNr                  cterm=none        ctermfg=14       ctermbg=none
+hi CursorLineNr                  cterm=none        ctermfg=15       ctermbg=none
 hi! link CursorColumn            CursorLine
 hi! link ColorColumn             CursorLine
 
 " --------------------------------------
 " number column
 " --------------------------------------
-hi LineNr                        cterm=none        ctermfg=14       ctermbg=none
+hi LineNr                        cterm=none        ctermfg=15       ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
-hi Folded                        cterm=none        ctermfg=14       ctermbg=none
+hi Folded                        cterm=none        ctermfg=15       ctermbg=none
 
 " --------------------------------------
 " window/tab delimiters
 " --------------------------------------
-hi VertSplit                     cterm=none        ctermfg=14       ctermbg=none
-hi TabLine                       cterm=none        ctermfg=7        ctermbg=11
-hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=11
-hi TabLineSel                    cterm=none        ctermfg=5        ctermbg=11
+hi VertSplit                     cterm=none        ctermfg=15       ctermbg=none
+hi TabLine                       cterm=none        ctermfg=7        ctermbg=10
+hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=10
+hi TabLineSel                    cterm=none        ctermfg=5        ctermbg=10
 
 " --------------------------------------
 " prompt / status
 " --------------------------------------
-hi StatusLine                    cterm=none        ctermfg=0        ctermbg=8
-hi StatusLineNC                  cterm=none        ctermfg=7        ctermbg=11
-hi WildMenu                      cterm=none        ctermfg=4        ctermbg=11
+hi StatusLine                    cterm=reverse     ctermfg=8        ctermbg=none
+hi StatusLineNC                  cterm=reverse     ctermfg=10       ctermbg=7
+hi WildMenu                      cterm=none        ctermfg=4        ctermbg=10
 hi Question                      cterm=none        ctermfg=7        ctermbg=none
 hi Title                         cterm=none        ctermfg=7        ctermbg=none
 hi ModeMsg                       cterm=none        ctermfg=7        ctermbg=none
@@ -92,15 +92,15 @@ hi MoreMsg                       cterm=none        ctermfg=7        ctermbg=none
 " file navigation / searching
 " --------------------------------------
 hi Directory                     cterm=none        ctermfg=7        ctermbg=none
-hi Search                        cterm=none        ctermfg=0        ctermbg=4
-hi IncSearch                     cterm=none        ctermfg=0        ctermbg=5
+hi Search                        cterm=reverse     ctermfg=4        ctermbg=none
+hi IncSearch                     cterm=reverse     ctermfg=5        ctermbg=none
 
 " --------------------------------------
 " completion menu
 " --------------------------------------
-hi Pmenu                         cterm=none        ctermfg=7        ctermbg=12
-hi PmenuSel                      cterm=none        ctermfg=5        ctermbg=12
-hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=12
+hi Pmenu                         cterm=none        ctermfg=7        ctermbg=11
+hi PmenuSel                      cterm=none        ctermfg=5        ctermbg=11
+hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=11
 hi PmenuThumb                    cterm=none        ctermfg=none     ctermbg=8
 
 " --------------------------------------
@@ -114,11 +114,11 @@ hi qfError                       cterm=none        ctermfg=8        ctermbg=none
 " visual aid
 " --------------------------------------
 hi MatchParen                    cterm=none        ctermfg=5        ctermbg=none
-hi Visual                        cterm=none        ctermfg=7        ctermbg=15
-hi VisualNOS                     cterm=none        ctermfg=7        ctermbg=15
+hi Visual                        cterm=none        ctermfg=7        ctermbg=14
+hi VisualNOS                     cterm=none        ctermfg=7        ctermbg=14
 hi NonText                       cterm=none        ctermfg=2        ctermbg=none
 hi Whitespace                    cterm=none        ctermfg=3        ctermbg=none
-hi EndOfBuffer                   cterm=none        ctermfg=14       ctermbg=none
+hi EndOfBuffer                   cterm=none        ctermfg=15       ctermbg=none
 hi Conceal                       cterm=none        ctermfg=2        ctermbg=none
 hi SpecialKey                    cterm=none        ctermfg=2        ctermbg=none
 
@@ -132,10 +132,10 @@ hi Todo                          cterm=none        ctermfg=3        ctermbg=none
 " --------------------------------------
 " diff
 " --------------------------------------
-hi DiffAdd                       cterm=none        ctermfg=7        ctermbg=13
-hi DiffChange                    cterm=none        ctermfg=none     ctermbg=11
+hi DiffAdd                       cterm=none        ctermfg=7        ctermbg=12
+hi DiffChange                    cterm=none        ctermfg=none     ctermbg=9
 hi DiffDelete                    cterm=none        ctermfg=1        ctermbg=none
-hi DiffText                      cterm=none        ctermfg=7        ctermbg=9
+hi DiffText                      cterm=none        ctermfg=7        ctermbg=13
 
 " --------------------------------------
 " spelling
@@ -148,7 +148,7 @@ hi! link SpellRare               SpellBad
 " --------------------------------------
 " neovim
 " --------------------------------------
-hi NormalFloat                   cterm=none        ctermfg=none     ctermbg=12
+hi NormalFloat                   cterm=none        ctermfg=none     ctermbg=11
 hi FloatBorder                   cterm=none        ctermfg=8        ctermbg=none
 
 
@@ -209,7 +209,7 @@ hi GitSignsDelete                cterm=none        ctermfg=1        ctermbg=none
 hi LeapMatch                     cterm=none        ctermfg=7        ctermbg=none
 hi LeapLabelPrimary              cterm=none        ctermfg=7        ctermbg=none
 hi LeapLabelSecondary            cterm=none        ctermfg=5        ctermbg=none
-hi LeapBackdrop                  cterm=none        ctermfg=14       ctermbg=none
+hi LeapBackdrop                  cterm=none        ctermfg=15       ctermbg=none
 
 " --------------------------------------
 " nvim-lspconfig
