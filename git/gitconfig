@@ -4,18 +4,18 @@
 	name = Aaron Nordhoff
 [core]
 	pager = less -FRX
-	excludesFile = ~/.gitignore
+	excludesFile = ~/.config/git/ignore
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [commit]
 	gpgsign = true
+[pull]
+	ff = only
 [merge]
 	tool = nvimdiff
 [mergetool]
 	keepBackup = false
-[pull]
-	ff = only
 [init]
-	templatedir = ~/.git_template
+	templatedir = ~/.config/git/git_template
 [alias]
 	ctags = !.git/hooks/ctags
