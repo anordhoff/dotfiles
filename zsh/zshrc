@@ -1,6 +1,6 @@
-#-----------------------------
+# --------------------------------------
 # general
-#-----------------------------
+# --------------------------------------
 
 # start tmux on shell launch, attaching to (or creating a) session 'dotfiles'
 [ -z $TMUX ] && tmux new-session -A -s dotfiles
@@ -80,9 +80,9 @@ fi
 	source $HOME/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
 
-#-----------------------------
+# --------------------------------------
 # history
-#-----------------------------
+# --------------------------------------
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
@@ -106,9 +106,9 @@ bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
 
 
-#-----------------------------
+# --------------------------------------
 # completion
-#-----------------------------
+# --------------------------------------
 
 setopt   alwaystoend    # completion in a word will move cursor to end of word
 setopt   completeinword # completion takes place at the cursor position in word
@@ -159,9 +159,9 @@ LS_COLORS_COMPLETION=$(echo $LS_COLORS | sed "s/di=[0-9]\{2\}/di=37/")
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS_COMPLETION}
 unset LS_COLORS_COMPLETION
 
-#-----------------------------
+# --------------------------------------
 # alias
-#-----------------------------
+# --------------------------------------
 
 # unalias default run-help alias to man; alias help to run-help
 (( ${+aliases[run-help]} )) && unalias run-help
@@ -243,9 +243,9 @@ alias  kgsc='kubectl get --sort-by metadata.creationTimestamp'
 alias    kd='kubectl describe'
 
 
-#-----------------------------
+# --------------------------------------
 # misc
-#-----------------------------
+# --------------------------------------
 
 # source work zshrc
 [ -r $HOME/jobfiles/zsh/zshrc ] && source $HOME/jobfiles/zsh/zshrc

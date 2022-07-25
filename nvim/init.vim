@@ -1,4 +1,7 @@
-" ==================== settings ==================== "
+" --------------------------------------
+" settings
+" --------------------------------------
+
 set number             " line numbers
 set noincsearch        " don't execute search until hitting enter
 set noshowmode         " hide the mode from the bottom row
@@ -71,7 +74,10 @@ let g:do_filetype_lua = 1
 let g:did_load_filetypes = 0
 
 
-" ==================== keymaps ==================== "
+" --------------------------------------
+" keymaps
+" --------------------------------------
+
 " leader key
 let mapleader = "\<space>"
 
@@ -133,7 +139,10 @@ function! LocationListToggle()
 endfunction
 
 
-" ==================== statusline ==================== "
+" --------------------------------------
+" statusline
+" --------------------------------------
+
 set statusline=\ \[%n\]                      " buffer number
 set statusline+=\ \ %f                       " filepath
 set statusline+=%{GitStatus()}               " git branch
@@ -212,7 +221,10 @@ function! TerminalMode()
 endfunction
 
 
-" ==================== tabline ==================== "
+" --------------------------------------
+" tabline
+" --------------------------------------
+
 set tabline=%!TabLine()
 
 function! TabLine()
@@ -248,7 +260,10 @@ function! TabLabel(n)
 endfunction
 
 
-" ==================== notes ==================== "
+" --------------------------------------
+" notes
+" --------------------------------------
+
 let s:notesdir = '~/notes'
 
 " toggle the notebook
@@ -284,7 +299,10 @@ augroup notes
 augroup END
 
 
-" ==================== terminal ==================== "
+" --------------------------------------
+" terminal
+" --------------------------------------
+
 " TODO: return to same :term when closing nested nvim session (ie <C-x><C-e>)
 " TODO: git mergetool with --remote
 " TODO: implement an i_CTRL-O command in terminal readline
@@ -364,11 +382,17 @@ augroup terminal
 augroup END
 
 
-" ==================== jobfiles ==================== "
+" --------------------------------------
+" jobfiles
+" --------------------------------------
+
 runtime job.vim
 
 
-" ==================== plugins ==================== "
+" --------------------------------------
+" plugins
+" --------------------------------------
+
 if &loadplugins
 	lua require('impatient')
 	lua require('anordhoff.leap')

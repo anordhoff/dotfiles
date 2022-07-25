@@ -1,4 +1,7 @@
-#################### Basic configuration ####################
+# --------------------------------------
+# basic configuration
+# --------------------------------------
+
 # preferred terminal emulator
 set $term kitty
 
@@ -24,7 +27,11 @@ focus_follows_mouse no
 default_border pixel 1
 smart_borders on
 
-#################### Output configuration ####################
+
+# --------------------------------------
+# output
+# --------------------------------------
+
 output eDP-1 {
 	position 0 520
 	resolution 1920x1080
@@ -47,7 +54,11 @@ output DP-1 {
 # focus external monitor on sway launch
 # exec swaymsg focus output DP-1
 
-#################### Input configuration ####################
+
+# --------------------------------------
+# input
+# --------------------------------------
+
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
 	# tap enabled
 	click_method clickfinger
@@ -99,7 +110,11 @@ bindsym Print exec grim -g "$(slurp)" - | wl-copy
 # TODO: what is this set to on macos
 bindsym Ctrl+Print exec grim -o $(swaymsg -t get_outputs | jq -r ".[] | select(.focused) | .name") - | wl-copy
 
-#################### Key bindings ####################
+
+# --------------------------------------
+# keybindings
+# --------------------------------------
+
 # modifier
 set $mod Shift+Ctrl+Alt
 
@@ -212,7 +227,11 @@ bindsym $mod+Mod4+Slash exec swaynag -t warning -m "You pressed the exit shortcu
 # reload the configuration file
 bindsym $mod+Mod4+z reload
 
-#################### Style ####################
+
+# --------------------------------------
+# style
+# --------------------------------------
+
 # class                 border  backgr. text    indica. ch_bor.
 client.focused          #83a598 #000000 #ebdbb2 #ffffff #d3869b
 client.focused_inactive #32302f #000000 #ebdbb2 #ffffff #32302f
@@ -244,6 +263,10 @@ client.urgent           #fb4934 #000000 #ebdbb2 #ffffff #fb4934
 #       │placeholder   │ #000000 │ #0c0c0c    │ #ffffff │ #000000   │ #0c0c0c      │
 #       └──────────────┴─────────┴────────────┴─────────┴───────────┴──────────────┘
 
-#################### Source ####################
+
+# --------------------------------------
+# source
+# --------------------------------------
+
 include /etc/sway/config.d/*
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
