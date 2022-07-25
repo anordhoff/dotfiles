@@ -75,7 +75,7 @@ hi IncSearch                     cterm=none        ctermfg=0        ctermbg=5
 " -----------------
 " hi StatusLine                    cterm=none        ctermfg=7        ctermbg=11
 " hi StatusLineNC                  cterm=none        ctermfg=8        ctermbg=10
-hi StatusLine                    cterm=none        ctermfg=0        ctermbg=7
+hi StatusLine                    cterm=none        ctermfg=0        ctermbg=8
 hi StatusLineNC                  cterm=none        ctermfg=7        ctermbg=11
 hi WildMenu                      cterm=none        ctermfg=4        ctermbg=11
 hi Question                      cterm=none        ctermfg=7        ctermbg=none

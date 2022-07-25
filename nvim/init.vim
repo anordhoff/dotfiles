@@ -1,24 +1,24 @@
 " ==================== settings ==================== "
-set number            " line numbers
-set noincsearch       " don't execute search until hitting enter
-set noshowmode        " hide the mode from the bottom row
-set ignorecase        " case-insensitive searching...
-set smartcase         " ...but not if the search contains a capital letter
-set nowrap            " don't wrap text that exceeds width of window
-set linebreak         " wrap lines at a character in 'breakat'
-set breakindent       " visually indent wrapped lines
-set list              " display listchars
-set showbreak=\ ..\   " add ' .. ' to the start of wrapped lines
-set fillchars=vert:\| " use the pipe symbol as a vertical separator
-set textwidth=79      " wrap lines at 79 characters when formatting
-set scrolloff=2       " keep a minimum of 2 lines above and below the cursor
-set sidescrolloff=8   " keep a minimum of 8 columns before and after the cursor
-set tabstop=4         " set the default tab size to 4
-set shiftwidth=4      " set the default tab size to 4
-set noexpandtab       " use tabs instead of spaces
+set number             " line numbers
+set noincsearch        " don't execute search until hitting enter
+set noshowmode         " hide the mode from the bottom row
+set ignorecase         " case-insensitive searching...
+set smartcase          " ...but not if the search contains a capital letter
+set nowrap             " don't wrap text that exceeds width of window
+set linebreak          " wrap lines at a character in 'breakat'
+set breakindent        " visually indent wrapped lines
+set list               " display listchars
+set showbreak=\ ..\    " add ' .. ' to the start of wrapped lines
+set fillchars=vert:\|  " use the pipe symbol as a vertical separator
+set textwidth=79       " wrap lines at 79 characters when formatting
+set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
+set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
+set noexpandtab        " use tabs instead of spaces
+set ts=4 sw=4          " set the default tab size to 4
+set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
 
-" show leading and trailing spaces for the default filetype
-set listchars=tab:\ \ ,lead:-,trail:-
+" show trailing spaces
+set listchars=tab:\ \ ,trail:-
 
 " don't show trailing spaces while in insert mode
 augroup listchars
@@ -26,9 +26,6 @@ augroup listchars
 	autocmd InsertEnter * setlocal listchars-=trail:-
 	autocmd InsertLeave * setlocal listchars+=trail:-
 augroup END
-
-" only show the sign column if running with plugins enabled
-" if &loadplugins | set signcolumn=yes | endif
 
 " load custom colorscheme
 colorscheme colorscheme
