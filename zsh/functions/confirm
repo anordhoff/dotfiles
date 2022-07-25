@@ -4,8 +4,8 @@ local answer
 echo -ne "zsh: sure you want to run '$*' [yN]? "
 read -q answer
 	echo
-if [[ "${answer}" =~ ^[Yy]$ ]]; then
-	command "${@}"
+if [[ $answer =~ ^[Yy]$ ]]; then
+	command $@
 else
 	return 1
 fi
