@@ -56,17 +56,19 @@ autoload ${fpath[1]}/*(:t)
 fpath=($HOME/dotfiles/zsh/completions $fpath)
 fpath=($HOME/jobfiles/zsh/completions $fpath)
 
-# enable fzf
-if [[ $OSTYPE =~ "darwin"* ]]; then
-	[ -r /usr/local/opt/fzf/shell/completion.zsh ] &&
-		source /usr/local/opt/fzf/shell/completion.zsh
-	[ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] &&
-		source /usr/local/opt/fzf/shell/key-bindings.zsh
-else
-	[ -r /usr/share/fzf/shell/completion.zsh ] &&
-		source /usr/share/fzf/shell/completion.zsh
-	[ -r /usr/share/fzf/shell/key-bindings.zsh ] &&
-		source /usr/share/fzf/shell/key-bindings.zsh
+# enable fzf (if not a vim command mode shell)
+if [ -z $VIM ]; then
+	if [[ $OSTYPE =~ "darwin"* ]]; then
+		[ -r /usr/local/opt/fzf/shell/completion.zsh ] &&
+			source /usr/local/opt/fzf/shell/completion.zsh
+		[ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] &&
+			source /usr/local/opt/fzf/shell/key-bindings.zsh
+	else
+		[ -r /usr/share/fzf/shell/completion.zsh ] &&
+			source /usr/share/fzf/shell/completion.zsh
+		[ -r /usr/share/fzf/shell/key-bindings.zsh ] &&
+			source /usr/share/fzf/shell/key-bindings.zsh
+	fi
 fi
 
 # enable expand-multiple-dots.zsh
