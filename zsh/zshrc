@@ -3,7 +3,7 @@
 #-----------------------------
 
 # start tmux on shell launch, attaching to (or creating a) session 'dotfiles'
-[ -z "${TMUX}" ] && tmux new-session -A -s dotfiles
+[ -z $TMUX ] && tmux new-session -A -s dotfiles
 
 # options
 setopt   dotglob      # include hidden files in expansion and completion
@@ -57,7 +57,7 @@ fpath=($HOME/dotfiles/zsh/completions $fpath)
 fpath=($HOME/jobfiles/zsh/completions $fpath)
 
 # enable fzf
-if [[ "${OSTYPE}" =~ "darwin"* ]]; then
+if [[ $OSTYPE =~ "darwin"* ]]; then
 	[ -r /usr/local/opt/fzf/shell/completion.zsh ] &&
 		source /usr/local/opt/fzf/shell/completion.zsh
 	[ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] &&
@@ -186,7 +186,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # use gnu ls on bsd (bsd ls does not have --group-directories-first)
-if [[ "${OSTYPE}" =~ "darwin"* ]]; then
+if [[ $OSTYPE =~ "darwin"* ]]; then
 	alias l='gls -lhA --color=auto --group-directories-first'
 	alias ll='gls -lh --color=auto --group-directories-first'
 	alias ls='gls --color=auto --group-directories-first'
