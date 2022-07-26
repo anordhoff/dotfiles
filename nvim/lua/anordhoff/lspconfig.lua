@@ -2,7 +2,7 @@ local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 
 -- get home dir for use in local filepaths
-local home_dir = os.getenv('HOME')
+local home_dir = os.getenv('HOME') .. '/'
 
 -- add a border to floating windows
 -- TODO: enable borders on pmenu / :LspInfo
@@ -127,7 +127,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 ----------------------------------------
 
 -- path to binary
-local path_to_binary = home_dir .. '/lua-language-server/bin/lua-language-server'
+local path_to_binary = home_dir .. 'lua-language-server/bin/lua-language-server'
 
 -- setup lua path
 local runtime_path = vim.split(package.path, ';')
@@ -180,7 +180,7 @@ local patterns = {
 -- newline separated list of glob patterns in its own file, where the name of
 -- the file matches the name of the schema (.txt). Patterns are appended to the
 -- nested table of the same under the 'patterns' table
-local path_to_schemas = home_dir .. '/jobfiles/nvim/schemas/'
+local path_to_schemas = home_dir .. 'jobfiles/nvim/schemas/'
 for schema, _ in pairs(patterns) do
   local file = io.open(path_to_schemas .. schema .. '.txt', 'r')
   if file ~= nil then
