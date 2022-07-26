@@ -18,6 +18,6 @@ killall limelight &> /dev/null
 limelight -c $HOME/.limelightrc &> /dev/null &
 
 # source work config
-[ -r $HOME/jobfiles/yabai/yabairc ] && source $HOME/jobfiles/yabai/yabairc
+[ -r $HOME/jobfiles/macos/yabai/yabairc ] && source $HOME/jobfiles/macos/yabai/yabairc
 
 echo "yabai configuration loaded.."

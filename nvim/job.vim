@@ -1,1 +1,1 @@
-../jobfiles/nvim/job.vim
+../../jobfiles/nvim/job.vim
