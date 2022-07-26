@@ -16,6 +16,6 @@
 [mergetool]
 	keepBackup = false
 [init]
-	templatedir = ~/.config/git/git_template
+	templatedir = ~/.config/git/template
 [alias]
 	ctags = !.git/hooks/ctags
