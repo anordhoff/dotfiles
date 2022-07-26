@@ -1,4 +1,6 @@
+# vim: ft=zsh
 # qmk compile/flash commands
+
 case $@ in
 'compile iris')
 	command qmk compile -kb keebio/iris/rev4 -km anordhoff
