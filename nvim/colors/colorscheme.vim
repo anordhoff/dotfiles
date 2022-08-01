@@ -80,8 +80,8 @@ hi TabLineSel                    cterm=none        ctermfg=5        ctermbg=10
 " --------------------------------------
 " prompt / status
 " --------------------------------------
-hi StatusLine                    cterm=reverse     ctermfg=8        ctermbg=none
-hi StatusLineNC                  cterm=reverse     ctermfg=10       ctermbg=7
+hi StatusLine                    cterm=none        ctermfg=7        ctermbg=14
+hi StatusLineNC                  cterm=none        ctermfg=7        ctermbg=10
 hi WildMenu                      cterm=none        ctermfg=4        ctermbg=10
 hi Question                      cterm=none        ctermfg=7        ctermbg=none
 hi Title                         cterm=none        ctermfg=7        ctermbg=none

@@ -12,11 +12,3 @@ nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
 xmap gs  <Plug>VSurround
 xmap gS  <Plug>VgSurround
-
-" enable <C-S>s and <C-S>S in insert mode
-" if !exists("g:surround_no_insert_mappings") || !g:surround_no_insert_mappings
-" 	if !hasmapto("<Plug>Isurround", "i") && mapcheck("<C-S>", "i") == ""
-" 		imap <C-S>s <Plug>Isurround
-" 		imap <C-S>S <Plug>ISurround
-" 	endif
-" endif

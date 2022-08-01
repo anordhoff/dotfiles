@@ -85,38 +85,29 @@ let mapleader = "\<space>"
 inoremap <C-r>+ <C-r><C-r>+
 inoremap <C-r>* <C-r><C-r>*
 
-" clear the specified register
+" clear the specified register (:wshada! to persist changes)
 nnoremap <leader>cr :call setreg('', [])<Left><Left><Left><Left><Left><Left>
 
-" get highlight group under the cursor
-nnoremap <silent> <leader>H :call SynGroup()<CR>
-function! SynGroup()
-	for i1 in synstack(line('.'), col('.'))
-		let i2 = synIDtrans(i1)
-		echo synIDattr(i1, 'name') '->' synIDattr(i2, 'name')
-	endfor
-endfunction
-
-" maximize (toggle) the current window
-nnoremap <silent> <leader>z :call MaximizeWindowToggle()<CR>
-function! MaximizeWindowToggle()
-	" initialize the maximized variable
+" maximize (toggle) the current window (overrides :pclose mapping)
+nnoremap <silent> <C-w>z :call ToggleMaximizeWindow()<CR>
+nnoremap <silent> <C-w><C-z> :call ToggleMaximizeWindow()<CR>
+function! ToggleMaximizeWindow()
 	if !exists('t:maximized')
 		let t:maximized = 0
 	endif
-
 	if t:maximized
 		execute "normal! \<C-w>="
 		let t:maximized = 0
 	else
-		execute "normal! \<C-w>\|\<C-w>_"
+		resize
+		vertical-resize
 		let t:maximized = 1
 	endif
 endfunction
 
 " toggle the quickfix list
-nnoremap <silent> <leader>q :call QuickfixListToggle()<CR>
-function! QuickfixListToggle()
+nnoremap <silent> <leader>q :call ToggleQuickfixList()<CR>
+function! ToggleQuickfixList()
 	if getqflist({'winid': 0}).winid
 		cclose
 	else
@@ -125,8 +116,8 @@ function! QuickfixListToggle()
 endfunction
 
 " toggle the location list
-nnoremap <silent> <leader>l :call LocationListToggle()<CR>
-function! LocationListToggle()
+nnoremap <silent> <leader>l :call ToggleLocationList()<CR>
+function! ToggleLocationList()
 	try
 		if getloclist(0, {'winid': 0}).winid
 			lclose
@@ -136,6 +127,35 @@ function! LocationListToggle()
 	catch 'E776'
 		echohl ErrorMsg | echo 'E776: No location list' | echohl None
 	endtry
+endfunction
+
+" toggle sharing mode (turns on cursorline/cursorcolumn for active buffer)
+command Share :call ToggleSharing()
+let g:sharing = 0
+function! ToggleSharing()
+	if g:sharing
+		setlocal nocursorline
+		setlocal nocursorcolumn
+		let g:sharing = 0
+	else
+		setlocal cursorline
+		setlocal cursorcolumn
+		let g:sharing = 1
+	endif
+endfunction
+augroup sharing
+	autocmd!
+    autocmd BufEnter * if g:sharing | execute 'set cursorline cursorcolumn' | endif
+    autocmd BufLeave * if g:sharing | execute 'set nocursorline nocursorcolumn' | endif
+augroup END
+
+" get highlight group under the cursor
+command Hi :call SynGroup()
+function! SynGroup()
+	for i1 in synstack(line('.'), col('.'))
+		let i2 = synIDtrans(i1)
+		echo synIDattr(i1, 'name') '->' synIDattr(i2, 'name')
+	endfor
 endfunction
 
 
@@ -267,8 +287,8 @@ endfunction
 let s:notesdir = '~/notes'
 
 " toggle the notebook
-nnoremap <silent> <leader>n :call NotesToggle()<CR>
-function! NotesToggle()
+nnoremap <silent> <leader>n :call ToggleNotes()<CR>
+function! ToggleNotes()
 	" initialize the notesbuf and noteswin variables
 	if !exists('t:notesbuf')
 		let t:notesbuf = 0
@@ -316,13 +336,13 @@ tnoremap <C-[> <C-\><C-n>
 tnoremap <esc> <C-\><C-n>
 
 " open terminal in a horizontal split, vertical split, or tab
-nnoremap <silent> <A-s> :call TermToggle(0)<CR>
-nnoremap <silent> <A-v> :call TermToggle(1)<CR>
+nnoremap <silent> <A-s> :call ToggleTerm(0)<CR>
+nnoremap <silent> <A-v> :call ToggleTerm(1)<CR>
 nnoremap <silent> <leader>t :tabnew +term<CR>
 
 " toggle terminal without leaving terminal insert mode
-tnoremap <silent> <A-s> <C-\><C-n>:call TermToggle(0)<CR>
-tnoremap <silent> <A-v> <C-\><C-n>:call TermToggle(1)<CR>
+tnoremap <silent> <A-s> <C-\><C-n>:call ToggleTerm(0)<CR>
+tnoremap <silent> <A-v> <C-\><C-n>:call ToggleTerm(1)<CR>
 tnoremap <silent> gt <C-\><C-n>:let b:termtab=1<CR>gt
 tnoremap <silent> gT <C-\><C-n>:let b:termtab=1<CR>gT
 
@@ -330,7 +350,7 @@ tnoremap <silent> gT <C-\><C-n>:let b:termtab=1<CR>gT
 tnoremap <expr> <A-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
 " toggle a horizontal/vertical terminal split
-function! TermToggle(vsplit)
+function! ToggleTerm(vsplit)
 	" initialize the termbuf and termwin variables
 	if !exists('t:termbuf')
 		let t:termbuf = 0
