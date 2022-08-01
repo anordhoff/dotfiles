@@ -61,18 +61,6 @@ input 1739:31251:SYNA2393:00_06CB:7A13_Mouse {
 	pointer_accel -1.0
 }
 
-# volume
-# TODO: percent adjusted when using hotkeys is messed up
-# bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-# bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-# # bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
-# bindsym XF86AudioMute exec amixer -q set Master toggle
-
-# bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
-# bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
-# # bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
-# bindsym XF86AudioMute exec amixer -q set Master toggle
-
 # volume (prevent pulseaudio from increasing volume beyond 100%)
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -116,7 +104,8 @@ output DP-1 {
 # --------------------------------------
 
 # modifier
-set $mod Shift+Ctrl+Alt
+set $meh Shift+Ctrl+Alt
+set $hyper Shift+Ctrl+Alt+Mod4
 
 # movement keys
 set $left  n
@@ -127,32 +116,20 @@ set $prev  u
 set $next  y
 
 # start terminal
-bindsym $mod+Return exec $term
+bindsym $meh+return exec $term
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $meh+q kill
 
 # start launcher
-bindsym $mod+Escape exec $menu
-
-# change focus
-bindsym $mod+$left  focus left
-bindsym $mod+$down  focus down
-bindsym $mod+$up    focus up
-bindsym $mod+$right focus right
-
-# move focused window
-bindsym $mod+Mod4+$left  move left
-bindsym $mod+Mod4+$down  move down
-bindsym $mod+Mod4+$up    move up
-bindsym $mod+Mod4+$right move right
+bindsym $meh+escape exec $menu
 
 # enter fullscreen mode for the focused container
-bindsym $mod+z fullscreen
+bindsym $meh+z fullscreen
 
 # change container layout
-bindsym $mod+b layout tabbed
-bindsym $mod+g layout toggle split
+bindsym $meh+b layout tabbed
+bindsym $meh+g layout toggle split
 
 # define names for the default workspaces
 set $ws1  "1"
@@ -170,58 +147,78 @@ set $ws10 "10"
 set $wsleft  "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) - 1 ))";
 set $wsright "$(( $( swaymsg -t get_workspaces | jq '.[] | select(.focused).num' ) + 1 ))";
 
+# change focus
+bindsym $meh+$left  focus left
+bindsym $meh+$down  focus down
+bindsym $meh+$up    focus up
+bindsym $meh+$right focus right
+
+# move focused window
+bindsym $hyper+$left  move left
+bindsym $hyper+$down  move down
+bindsym $hyper+$up    move up
+bindsym $hyper+$right move right
+
 # switch to workspace
-bindsym $mod+x workspace $ws1
-bindsym $mod+c workspace $ws2
-bindsym $mod+d workspace $ws3
-bindsym $mod+r workspace $ws4
-bindsym $mod+s workspace $ws5
-bindsym $mod+t workspace $ws6
-bindsym $mod+w workspace $ws7
-bindsym $mod+f workspace $ws8
-bindsym $mod+p workspace $ws9
-bindsym $mod+a workspace $ws10
+bindsym $meh+x workspace $ws1
+bindsym $meh+c workspace $ws2
+bindsym $meh+d workspace $ws3
+bindsym $meh+r workspace $ws4
+bindsym $meh+s workspace $ws5
+bindsym $meh+t workspace $ws6
+bindsym $meh+w workspace $ws7
+bindsym $meh+f workspace $ws8
+bindsym $meh+p workspace $ws9
+bindsym $meh+a workspace $ws10
 
 # switch between adjacent workspaces
-bindsym $mod+$prev workspace prev
-bindsym $mod+$next workspace next
+bindsym $meh+$prev workspace prev
+bindsym $meh+$next workspace next
 
 # move focused container to workspace
-bindsym $mod+Mod4+x move container to workspace $ws1
-bindsym $mod+Mod4+c move container to workspace $ws2
-bindsym $mod+Mod4+d move container to workspace $ws3
-bindsym $mod+Mod4+r move container to workspace $ws4
-bindsym $mod+Mod4+s move container to workspace $ws5
-bindsym $mod+Mod4+t move container to workspace $ws6
-bindsym $mod+Mod4+w move container to workspace $ws7
-bindsym $mod+Mod4+f move container to workspace $ws8
-bindsym $mod+Mod4+p move container to workspace $ws9
-bindsym $mod+Mod4+a move container to workspace $ws10
+bindsym $hyper+x move container to workspace $ws1
+bindsym $hyper+c move container to workspace $ws2
+bindsym $hyper+d move container to workspace $ws3
+bindsym $hyper+r move container to workspace $ws4
+bindsym $hyper+s move container to workspace $ws5
+bindsym $hyper+t move container to workspace $ws6
+bindsym $hyper+w move container to workspace $ws7
+bindsym $hyper+f move container to workspace $ws8
+bindsym $hyper+p move container to workspace $ws9
+bindsym $hyper+a move container to workspace $ws10
 
 # move focuse container to adjacent workspace
-bindsym $mod+Mod4+$prev exec swaymsg move container to workspace $wsleft
-bindsym $mod+Mod4+$next exec swaymsg move container to workspace $wsright
+bindsym $hyper+$prev exec swaymsg move container to workspace $wsleft
+bindsym $hyper+$next exec swaymsg move container to workspace $wsright
+
+# move focus to adjacent monitor
+bindsym $meh+minus focus output left
+bindsym $meh+equal focus output right
+
+# move window to adjacent monitor
+# NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped
+# comma, period to minux, equal
+bindsym $hyper+minus move container output left
+bindsym $hyper+equal move container output right
 
 # resize window
-bindsym $mod+h resize shrink width  100px
-bindsym $mod+j resize grow   height 100px
-bindsym $mod+k resize shrink height 100px
-bindsym $mod+l resize grow   width  100px
-bindsym $mod+Mod4+h resize shrink width  10px
-bindsym $mod+Mod4+j resize grow   height 10px
-bindsym $mod+Mod4+k resize shrink height 10px
-bindsym $mod+Mod4+l resize grow   width  10px
-
-# TODO: switch between multiple monitors with , and .
+bindsym $meh+h resize shrink width  100px
+bindsym $meh+j resize grow   height 100px
+bindsym $meh+k resize shrink height 100px
+bindsym $meh+l resize grow   width  100px
+bindsym $hyper+h resize shrink width  10px
+bindsym $hyper+j resize grow   height 10px
+bindsym $hyper+k resize shrink height 10px
+bindsym $hyper+l resize grow   width  10px
 
 # lock computer
-bindsym $mod+Slash exec "swaylock -f -i $wallpaper"
+bindsym $meh+slash exec "swaylock -f -i $wallpaper"
 
 # exit sway (logs you out of your Wayland session)
-bindsym $mod+Mod4+Slash exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
+bindsym $hyper+slash exec swaynag -t warning -m "You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit"
 
 # reload the configuration file
-bindsym $mod+Mod4+Escape reload
+bindsym $hyper+escape reload
 
 
 # --------------------------------------
