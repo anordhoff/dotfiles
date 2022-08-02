@@ -36,7 +36,7 @@
 
 	mtESC (tap-hold-next-release 140 (around lsft esc) (around lsft lmet))
 	mtR   (tap-hold-next-release 160 R (around lsft (layer-toggle layer-r)))
-	mtS   (tap-hold-next-release 160 S layer-toggle layer-s))
+	mtS   (tap-hold-next-release 160 S (layer-toggle layer-s))
 	mtT   (tap-hold-next-release 160 T (layer-toggle layer-t))
 
 	mtN   (tap-hold-next-release 160 N (layer-toggle layer-n))
