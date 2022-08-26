@@ -1,0 +1,2 @@
+anordho+    7198  0.0  0.0 455196  6216 ?        Sl   17:26   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+anordho+   12740  0.0  0.0 222304  2244 pts/1    S+   17:28   0:00 grep --color=auto keyring

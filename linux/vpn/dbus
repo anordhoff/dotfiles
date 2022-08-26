@@ -1,0 +1,10 @@
+earlyoom    4368  0.0  0.0   2760  1960 ?        SLs  17:25   0:00 /usr/bin/earlyoom -r 0 -m 4 -M 409600 --prefer ^(Web Content|Isolated Web Co)$ --avoid ^(dnf|packagekitd|gnome-shell|gnome-session-c|gnome-session-b|lightdm|sddm|sddm-helper|gdm|gdm-wayland-ses|gdm-session-wor|gdm-x-session|Xorg|Xwayland|systemd|systemd-logind|dbus-daemon|dbus-broker|cinnamon|cinnamon-sessio|kwin_x11|kwin_wayland|plasmashell|ksmserver|plasma_session|startplasma-way|xfce4-session|mate-session|marco|lxqt-session|openbox|cryptsetup)$
+root        4385  0.3  0.0 458196 10596 ?        Ssl  17:25   0:00 /usr/sbin/thermald --systemd --dbus-enable --adaptive
+dbus        4400  0.0  0.0  11020  5056 ?        Ss   17:25   0:00 /usr/bin/dbus-broker-launch --scope system --audit
+dbus        4420  0.3  0.0   9260  6896 ?        S    17:25   0:00 dbus-broker --log 4 --controller 9 --machine-id f6a99c5f39db4a478a4f4393241781f7 --max-bytes 536870912 --max-fds 4096 --max-matches 131072 --audit
+anordho+    7230  0.0  0.0  10516  4452 ?        Ss   17:26   0:00 /usr/bin/dbus-broker-launch --scope user
+anordho+    7232  0.2  0.0   7408  5172 ?        S    17:26   0:00 dbus-broker --log 4 --controller 10 --machine-id f6a99c5f39db4a478a4f4393241781f7 --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000
+root        7442  0.0  0.0 467676 12784 ?        Ssl  17:26   0:00 /usr/sbin/abrt-dbus -t133
+anordho+    7536  0.0  0.0  10388  4188 ?        S    17:26   0:00 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user
+anordho+    7538  0.0  0.0   4880  1356 ?        S    17:26   0:00 dbus-broker --log 4 --controller 9 --machine-id f6a99c5f39db4a478a4f4393241781f7 --max-bytes 100000000000000 --max-fds 6400000 --max-matches 5000000000
+anordho+   12529  0.0  0.0 222304  2240 pts/1    S+   17:28   0:00 grep --color=auto dbus

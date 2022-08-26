@@ -46,8 +46,7 @@ shift + ctrl + alt - 0x1B : yabai -m display --focus prev # 0x1B = minus
 shift + ctrl + alt - 0x18 : yabai -m display --focus next # 0x18 = equal
 
 # move window to adjacent monitor
-# NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped
-# comma, period to minus, equal
+# NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped comma, period to minus, equal
 shift + ctrl + alt + cmd - 0x1B : yabai -m window --display prev # 0x1B = minus
 shift + ctrl + alt + cmd - 0x18 : yabai -m window --display next # 0x18 = equal
 

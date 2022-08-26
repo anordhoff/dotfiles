@@ -2,7 +2,7 @@
   "layer": "bottom",
   "height": 24,
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-right": ["tray", "custom/spotify", "network", "pulseaudio", "backlight", "battery", "clock"],
+  "modules-right": ["tray", "custom/spotify", "custom/vpn", "network", "pulseaudio", "backlight", "battery", "clock"],
 
   "tray": {
     "icon-size": 15,
@@ -13,14 +13,18 @@
     "return-type": "json",
     "exec": "~/.config/waybar/modules/spotify.sh",
     "exec-if": "pgrep spotify",
-    "escape": true
+  },
+  "custom/vpn": {
+    "interval": 5,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/vpn.sh"
   },
   "network": {
     "tooltip": false,
     "interval": 1,
     "format": "{ifname}",
     "format-wifi": "Wifi: {essid}",
-    "format-ethernet": "Ethernet: {ifname} {ipaddr}",
+    "format-ethernet": "Ethernet: {ifname}",
     "format-linked": "Linked: {ifname}",
     "format-disconnected": "Disconnected"
   },
@@ -31,7 +35,7 @@
     "format-bluetooth-muted": "Bluetooth (muted): {volume}%"
   },
   "backlight": {
-  	"tooltip": false,
+    "tooltip": false,
     "device": "intel_backlight",
     "states": {
       "on": 1,
@@ -44,7 +48,8 @@
     "states": {
       "critical": 10
     },
-    "format": "Battery: {capacity}%"
+    "format": "Battery: {capacity}%",
+	"format-charging": "Charging: {capacity}%"
   },
   "clock": {
     "tooltip": false,

@@ -7,10 +7,10 @@ Keyboard layout was generated using SIL Language Technology's Ukelele
 Swap Control and Command keys: `System Preferences > Keyboard > Modifier Keys > Apple Internal Keyboard`
 
 ```
-$ tar -C $HOME/.dotfiles/macos/keyboard -xzf $HOME/.dotfiles/macos/keyboard/custom.bundle.tar.gz
-$ ln -s $HOME/.dotfiles/macos/keyboard/custom.bundle $HOME/Library/Keyboard\ Layouts/.
-$ chmod +x $HOME/.dotfiles/macos/keyboard/options.sh
-$ sudo defaults write com.apple.loginwindow LoginHook $HOME/.dotfiles/macos/keyboard/options.sh
+$ tar -C ~/.dotfiles/macos/keyboard -xzf ~/.dotfiles/macos/keyboard/custom.bundle.tar.gz
+$ ln -s ~/.dotfiles/macos/keyboard/custom.bundle ~/Library/Keyboard\ Layouts/.
+$ chmod +x ~/.dotfiles/macos/keyboard/options.sh
+$ sudo defaults write com.apple.loginwindow LoginHook ~/.dotfiles/macos/keyboard/options.sh
 ```
 
 ## Karabiner Elements
