@@ -4,10 +4,9 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/swayidle -w \
-	timeout 1200 'swaylock -f -i ~/Pictures/fedora-gruvbox.png' \
-	timeout 1800 'swaymsg "output * dpms off"' \
-	resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaylock -f -i ~/Pictures/fedora-gruvbox.png'
+	timeout 1200 'swaylock -f -i ~/.config/sway/wallpaper' \
+	timeout 1500 'systemctl suspend' \
+	before-sleep 'swaylock -f -i ~/.config/sway/wallpaper'
 
 [Install]
 WantedBy=sway-session.target

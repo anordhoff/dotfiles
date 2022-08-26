@@ -137,7 +137,7 @@ San Francisco fonts can be cloned and installed from https://github.com/AppleDes
 
 The keyboard layout is a modified version of Colemak (with DH, wide, and angle mods), and a symbol layer that can be accessed using the `Hyper`/`Lower` key (the `Raise` key is for Iris specific controls)
 
-```sudo ln -s $HOME/.dotfiles/xkb/custom /usr/share/X11/xkb/symbols/.```
+```sudo ln -s ~/.dotfiles/xkb/custom /usr/share/X11/xkb/symbols/.```
 
 Install evscript to make hyper send escape when tapped on linux: https://github.com/unrelentingtech/evscript
 
@@ -248,9 +248,9 @@ let normal_bg = s:code("CursorLine", "#222222")
 For the sake of being explicit, add the following to /etc/profile.d/xdg.sh:
 
 ```
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+export XDG_DATA_HOME=~/.local/share
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
 ```

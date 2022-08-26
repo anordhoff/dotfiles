@@ -15,9 +15,9 @@ yabai -m rule --add app="System Preferences" manage=off
 
 # kill any existing limelight process if one exists, before we launch a new one
 killall limelight &> /dev/null
-limelight -c $HOME/.limelightrc &> /dev/null &
+limelight -c ~/.limelightrc &> /dev/null &
 
 # source work config
-[ -r $HOME/jobfiles/macos/yabai/yabairc ] && source $HOME/jobfiles/macos/yabai/yabairc
+[ -r ~/jobfiles/macos/yabai/yabairc ] && source ~/jobfiles/macos/yabai/yabairc
 
 echo "yabai configuration loaded.."

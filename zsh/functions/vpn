@@ -1,0 +1,17 @@
+# vim: ft=zsh
+
+case $@ in
+'c')
+	protonvpn-cli connect --fastest
+	;;
+'d')
+	protonvpn-cli disconnect
+	;;
+'r')
+	protonvpn-cli disconnect
+	protonvpn-cli reconnect
+	;;
+*)
+	protonvpn-cli $@
+	;;
+esac

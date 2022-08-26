@@ -47,15 +47,15 @@ autoload -Uz run-help
 
 # lazyload functions
 typeset -U fpath
-fpath=($HOME/dotfiles/zsh/functions $fpath)
+fpath=(~/dotfiles/zsh/functions $fpath)
 autoload ${fpath[1]}/*(:t)
-[ -d $HOME/jobfiles/zsh/functions ] &&
-	fpath=($HOME/jobfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
+[ -d ~/jobfiles/zsh/functions ] &&
+	fpath=(~/jobfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
 
 # add completion directories to fpath
-fpath=($HOME/dotfiles/zsh/completions $fpath)
-[ -d $HOME/jobfiles/zsh/completions ] &&
-	fpath=($HOME/jobfiles/zsh/completions $fpath)
+fpath=(~/dotfiles/zsh/completions $fpath)
+[ -d ~/jobfiles/zsh/completions ] &&
+	fpath=(~/jobfiles/zsh/completions $fpath)
 
 # enable fzf (if not a vim command mode shell)
 if [ -z $VIM ]; then
@@ -73,19 +73,19 @@ if [ -z $VIM ]; then
 fi
 
 # enable expand-multiple-dots.zsh
-[ -r $HOME/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] &&
-	source $HOME/dotfiles/zsh/extensions/expand-multiple-dots.zsh
+[ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] &&
+	source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
 
 # enable tab-on-empty-line-shows-files.zsh
-[ -r $HOME/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] &&
-	source $HOME/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
+[ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] &&
+	source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
 
 # --------------------------------------
 # history
 # --------------------------------------
 
-HISTFILE=$HOME/.zhistory
+HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -138,7 +138,7 @@ zstyle ':completion:*:complete-extended:*' \
 
 # cache completions
 zstyle ':completion:*' use-cache true
-zstyle ':completion:*' cache-path $HOME/.zcompcache
+zstyle ':completion:*' cache-path ~/.zcompcache
 
 # use a completion menu
 zstyle ':completion:*' menu select
@@ -249,4 +249,4 @@ alias    kd='kubectl describe'
 # --------------------------------------
 
 # source work zshrc
-[ -r $HOME/jobfiles/zsh/zshrc ] && source $HOME/jobfiles/zsh/zshrc
+[ -r ~/jobfiles/zsh/zshrc ] && source ~/jobfiles/zsh/zshrc

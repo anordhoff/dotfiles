@@ -1,0 +1,12 @@
+[Unit]
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/usr/bin/systemctl stop protonvpn-autoconnect
+ExecStop=-/usr/bin/systemctl start protonvpn-autoconnect
+
+[Install]
+WantedBy=sleep.target

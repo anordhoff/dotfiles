@@ -1,0 +1,14 @@
+[Unit]
+Wants=network-online.target
+
+[Service]
+Type=forking
+# ExecStartPre=/usr/bin/protonvpn-cli disconnect
+ExecStart=/usr/bin/protonvpn-cli connect -f
+ExecStop=/usr/bin/protonvpn-cli disconnect
+# Environment=PVPN_WAIT=300
+# Environment=PVPN_DEBUG=1
+# Environment=SUDO_USER=user
+
+[Install]
+WantedBy=multi-user.target

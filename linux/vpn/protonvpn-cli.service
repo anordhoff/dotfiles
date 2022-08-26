@@ -1,0 +1,17 @@
+[Unit]
+Description=ProtonVPN autostart
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Waits until it is online. It is required because system targets cannot be used in user services.
+ExecStartPre=sh -c "until systemctl is-active network-online.target; do sleep 1; done"
+ExecStart=protonvpn-cli c -f
+# ExecStartPost=-sh -c "protonvpn &"
+TimeoutStartSec=30
+ExecStop=protonvpn-cli d
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

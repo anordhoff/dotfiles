@@ -1,13 +1,13 @@
 # prepend ~/.local/bin to PATH
 typeset -U path
-path=($HOME/.local/bin $path)
+path=(~/.local/bin $path)
 
 # prepend ~/.krew/bin to PATH
-path=($HOME/.krew/bin $path)
+path=(~/.krew/bin $path)
 
 # install global npm/yarn packages to the home directory
-export PREFIX="$HOME/.npm/global"
-path=($HOME/.npm/global/bin $path)
+export PREFIX="~/.npm/global"
+path=(~/.npm/global/bin $path)
 
 # faster than $(brew --prefix)
 BREW_PREFIX='/usr/local'
@@ -42,7 +42,7 @@ export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5'
 export GPG_TTY=$(tty)
 
 # set GOPATH and prepend to PATH
-export GOPATH="$HOME/go"
+export GOPATH="~/go"
 path=($GOPATH/bin $path)
 
 # do not paginate awscli responses
@@ -67,4 +67,4 @@ export FZF_DEFAULT_OPTS="--inline-info --border \
 	--color query:7:regular"
 
 # source work zshenv
-[ -r $HOME/jobfiles/zsh/zshenv ] && source $HOME/jobfiles/zsh/zshenv
+[ -r ~/jobfiles/zsh/zshenv ] && source ~/jobfiles/zsh/zshenv
