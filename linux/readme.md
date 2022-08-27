@@ -14,13 +14,13 @@ Type=Application
 
 ## display
 
-the [gnome-randr](https://github.com/maxwellainatchi/gnome-randr-rust) command can be used as a xrandr replacement for Gnome on Wayland. The following commands will configure an external 4k tv alongside the laptop's built-in display:
+the [gnome-randr](https://github.com/maxwellainatchi/gnome-randr-rust) command can be used as a replacement for xrandr on Gnome with Wayland. The following commands will configure an external 4k tv alongside the laptop's built-in display:
 ```
 gnome-randr modify eDP-1 --persistent --mode 1920x1080@59.999324798583984 --primary
 gnome-randr modify DP-3 --persistent --mode 3840x2160@60
 ```
 
-Use `gnome-randr query` to verify the configuration or to get the connector ids for the displays
+Use `gnome-randr query` to verify the configuration or to get the connector ids for each display
 
 
 ## audio
