@@ -1,5 +1,28 @@
 # linux
 
+## nvidia
+
+Install [proprietary Nvidia drivers](https://rpmfusion.org/Howto/NVIDIA) and follow [optimus setup instructions](https://rpmfusion.org/Howto/Optimus). Check that processes are using the Nvidia card with `nvidia-smi`
+
+Swaywm [does not support proprietary graphics drivers](https://github.com/swaywm/sway/wiki#nvidia-users). Force sway to use the [Intel graphics card](https://github.com/swaywm/sway/wiki#i-have-a-multi-gpu-setup-like-intelnvidia-or-intelamd-and-sway-does-not-start) by updating the session file at `/usr/share/wayland-sessions/sway.desktop` (ensure card0 is the Intel card using `drm_info -j | jq 'with_entries(.value |= .driver.desc)'`)
+```
+[Desktop Entry]
+Name=Sway
+Exec=env WLR_DRM_DEVICES=/dev/dri/card0 sway --unsupported-gpu
+Type=Application
+```
+
+## display
+
+the [gnome-randr](https://github.com/maxwellainatchi/gnome-randr-rust) command can be used as a xrandr replacement for Gnome on Wayland. The following commands will configure an external 4k tv alongside the laptop's built-in display:
+```
+gnome-randr modify eDP-1 --persistent --mode 1920x1080@59.999324798583984 --primary
+gnome-randr modify DP-3 --persistent --mode 3840x2160@60
+```
+
+Use `gnome-randr query` to verify the configuration or to get the connector ids for the displays
+
+
 ## audio
 
 with headphones disconnected:
