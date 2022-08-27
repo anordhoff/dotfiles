@@ -2,6 +2,13 @@
 typeset -U path
 path=(~/.local/bin $path)
 
+# set GOPATH and prepend to PATH
+export GOPATH="~/go"
+path=($GOPATH/bin $path)
+
+# prepend ~/.cargo/bin to PATH
+path=(~/.cargo/bin $path)
+
 # prepend ~/.krew/bin to PATH
 path=(~/.krew/bin $path)
 
@@ -40,10 +47,6 @@ export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5'
 
 # set to the path of the tty device for gpg
 export GPG_TTY=$(tty)
-
-# set GOPATH and prepend to PATH
-export GOPATH="~/go"
-path=($GOPATH/bin $path)
 
 # do not paginate awscli responses
 export AWS_PAGER=''
