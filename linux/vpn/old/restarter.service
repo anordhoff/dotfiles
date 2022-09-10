@@ -1,0 +1,12 @@
+[Unit]
+Description=Restart Bluetooth after resume
+After=suspend.target
+
+[Service]
+Type=simple
+# ExecStart=/bin/systemctl --user --no-block try-restart protonvpn_reconnect.service
+ExecStart=/usr/bin/touch /home/anordhoff/dotfiles/linux/vpn/test
+# ExecStart=/usr/bin/systemctl --no-block restart bluetooth.service
+
+[Install]
+WantedBy=suspend.target

@@ -6,10 +6,11 @@
 set $term kitty
 
 # preferred application launcher
-set $menu bemenu-run -i --line-height 24 --ch 16 --fn "SF Pro Display 11" -p '>' \
-	--tf "#83a598" --ff "#ebdbb2" --cf "#a89984" --nf "#ebdbb2" --af "#ebdbb2" \
-	--hf "#83a598" --sf "#ebdbb2" --tb "#000000" --fb "#000000" --cb "#000000" \
-	--nb "#000000" --ab "#000000" --hb "#000000" --sb "#000000"
+set $menu j4-dmenu-desktop --dmenu='bemenu -i -H 24 --ch 16 -p ">" \
+	--fn "SF Pro Display 11" --tf "#83a598" --ff "#ebdbb2" --cf "#a89984" \
+	--nf "#ebdbb2" --af "#ebdbb2" --hf "#83a598" --sf "#ebdbb2" \
+	--tb "#000000" --fb "#000000" --cb "#000000" --nb "#000000" \
+	--ab "#000000" --hb "#000000" --sb "#000000"'
 
 # wallpaper
 set $wallpaper ~/.config/sway/wallpaper

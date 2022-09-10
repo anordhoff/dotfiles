@@ -1,2 +1,0 @@
-polkitd     4372  0.7  0.0 2942004 26712 ?       Ssl  17:25   0:01 /usr/lib/polkit-1/polkitd --no-debug
-anordho+   12581  0.0  0.0 222304  2288 pts/1    S+   17:28   0:00 grep --color=auto polkit

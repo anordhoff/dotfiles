@@ -1,2 +1,0 @@
-root        4485  0.2  0.0 476024 22568 ?        Ssl  17:25   0:00 /usr/sbin/NetworkManager --no-daemon
-anordho+   12898  0.0  0.0 222304  2144 pts/1    S+   17:28   0:00 grep --color=auto -i network
