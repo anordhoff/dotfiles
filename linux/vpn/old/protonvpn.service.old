@@ -1,0 +1,25 @@
+[Unit]
+StartLimitInterval=300
+StartLimitBurst=5
+
+[Service]
+# Type=oneshot
+# RemainAfterExit=yes
+# Waits until it is online. It is required because system targets cannot be used in user services.
+# ExecStartPre=sh -c "until systemctl is-active network-online.target; do sleep 1; done"
+# ExecStart=protonvpn-cli c -f
+# ExecStartPost=-sh -c "protonvpn &"
+# TimeoutStartSec=30
+# ExecStop=protonvpn-cli d
+# Restart=on-failure
+# RestartSec=10
+
+Type=simple
+ExecStartPre=/usr/bin/protonvpn-cli reconnect
+ExecStart=while true; do sleep 5; if ! protonvpn-cli status | grep -e '^Server:' >/dev/null; then exit 1; fi; done
+ExecStop=/usr/bin/protonvpn-cli disconnect
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target

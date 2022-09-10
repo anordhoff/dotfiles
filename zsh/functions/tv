@@ -1,6 +1,0 @@
-# vim: ft=zsh
-# setup display configuration with external tv
-# https://github.com/maxwellainatchi/gnome-randr-rust
-
-gnome-randr modify eDP-1 --persistent --mode 1920x1080@59.999324798583984 --primary
-gnome-randr modify DP-3 --persistent --mode 3840x2160@60

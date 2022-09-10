@@ -3,7 +3,7 @@ Wants=network-online.target
 
 [Service]
 Type=forking
-# ExecStartPre=/usr/bin/protonvpn-cli disconnect
+ExecStartPre=/usr/bin/protonvpn-cli disconnect
 ExecStart=/usr/bin/protonvpn-cli connect -f
 ExecStop=/usr/bin/protonvpn-cli disconnect
 # Environment=PVPN_WAIT=300

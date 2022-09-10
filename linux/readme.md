@@ -22,6 +22,12 @@ gnome-randr modify DP-3 --persistent --mode 3840x2160@60
 
 Use `gnome-randr query` to verify the configuration or to get the connector ids for each display
 
+## casting
+
+To prevent wayland from dropping unfocused windows to 1 fps, launch google chrome with the following args:
+```
+--args --disable-gpu-vsync --disable-frame-rate-limit
+```
 
 ## audio
 

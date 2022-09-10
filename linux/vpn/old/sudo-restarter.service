@@ -1,0 +1,11 @@
+[Unit]
+PartOf=graphical-session.target
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=/bin/systemctl --user --machine=anordhoff@ try-restart protonvpn_reconnect.service
+
+[Install]
+WantedBy=suspend.target
+WantedBy=sway-session.target
