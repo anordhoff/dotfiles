@@ -13,6 +13,9 @@
 [submodule "nvim/package/start/vim-dirvish"]
 	path = nvim/package/start/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish.git
+[submodule "nvim/package/start/vim-dispatch"]
+	path = nvim/package/start/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
 [submodule "nvim/package/start/vim-obsession"]
 	path = nvim/package/start/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
@@ -69,6 +72,3 @@
 [submodule "nvim/package/start/telescope-fzf-native.nvim"]
 	path = nvim/package/start/telescope-fzf-native.nvim
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim.git
-[submodule "nvim/package/start/vim-dispatch"]
-	path = nvim/package/start/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch.git
