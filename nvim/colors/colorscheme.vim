@@ -4,7 +4,7 @@
 
 highlight clear
 if exists('syntax_on')
-	syntax reset
+  syntax reset
 endif
 let g:colors_name = 'colorscheme'
 
@@ -67,7 +67,7 @@ hi! link ColorColumn             CursorLine
 hi LineNr                        cterm=none        ctermfg=15       ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
-hi Folded                        cterm=none        ctermfg=15       ctermbg=none
+hi Folded                        cterm=none        ctermfg=2        ctermbg=none
 
 " --------------------------------------
 " window/tab delimiters
@@ -94,28 +94,32 @@ hi MoreMsg                       cterm=none        ctermfg=7        ctermbg=none
 hi Directory                     cterm=none        ctermfg=7        ctermbg=none
 hi Search                        cterm=reverse     ctermfg=4        ctermbg=none
 hi IncSearch                     cterm=reverse     ctermfg=5        ctermbg=none
+" TODO: CurSearch doesn't work (https://github.com/neovim/neovim/pull/18081)
+hi CurSearch                     cterm=reverse     ctermfg=5        ctermbg=none
 
 " --------------------------------------
 " completion menu
 " --------------------------------------
-hi Pmenu                         cterm=none        ctermfg=7        ctermbg=11
-hi PmenuSel                      cterm=none        ctermfg=5        ctermbg=11
-hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=11
+hi Pmenu                         cterm=none        ctermfg=none     ctermbg=11
+hi PmenuSel                      cterm=none        ctermfg=none     ctermbg=14
+hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=15
 hi PmenuThumb                    cterm=none        ctermfg=none     ctermbg=8
 
 " --------------------------------------
 " quickfix
 " --------------------------------------
-hi QuickFixLine                  cterm=none        ctermfg=5        ctermbg=none
+hi QuickFixLine                  cterm=none        ctermfg=none     ctermbg=14
+hi qfFileName                    cterm=none        ctermfg=5        ctermbg=none
 hi qfLineNr                      cterm=none        ctermfg=8        ctermbg=none
-hi qfError                       cterm=none        ctermfg=8        ctermbg=none
+" TODO
+" hi qfError                       cterm=none        ctermfg=8        ctermbg=none
 
 " --------------------------------------
 " visual aid
 " --------------------------------------
 hi MatchParen                    cterm=none        ctermfg=5        ctermbg=none
-hi Visual                        cterm=none        ctermfg=7        ctermbg=14
-hi VisualNOS                     cterm=none        ctermfg=7        ctermbg=14
+hi Visual                        cterm=none        ctermfg=none     ctermbg=14
+hi VisualNOS                     cterm=none        ctermfg=none     ctermbg=14
 hi NonText                       cterm=none        ctermfg=2        ctermbg=none
 hi Whitespace                    cterm=none        ctermfg=3        ctermbg=none
 hi EndOfBuffer                   cterm=none        ctermfg=15       ctermbg=none
@@ -159,9 +163,9 @@ hi FloatBorder                   cterm=none        ctermfg=8        ctermbg=none
 " --------------------------------------
 " go
 " --------------------------------------
-hi goFormatSpecifier             cterm=none        ctermfg=2        ctermbg=none
-hi goEscapeC                     cterm=none        ctermfg=2        ctermbg=none
-hi goEscapeError                 cterm=none        ctermfg=2        ctermbg=none
+" hi goFormatSpecifier             cterm=none        ctermfg=2        ctermbg=none
+" hi goEscapeC                     cterm=none        ctermfg=2        ctermbg=none
+" hi goEscapeError                 cterm=none        ctermfg=2        ctermbg=none
 
 " --------------------------------------
 " json
@@ -174,6 +178,16 @@ hi jsonString                    cterm=none        ctermfg=7        ctermbg=none
 " --------------------------------------
 hi makeTarget                    cterm=none        ctermfg=6        ctermbg=none
 hi makeSpecTarget                cterm=none        ctermfg=5        ctermbg=none
+
+" --------------------------------------
+" shell
+" --------------------------------------
+" hi shDerefSimple                 cterm=none        ctermfg=2        ctermbg=none
+
+" --------------------------------------
+" terraform
+" --------------------------------------
+hi hclStringInterp               cterm=none        ctermfg=2        ctermbg=none
 
 " --------------------------------------
 " vimscript
@@ -226,6 +240,7 @@ hi DiagnosticSignHint            cterm=none        ctermfg=2        ctermbg=none
 " --------------------------------------
 " telescope.nvim
 " --------------------------------------
-hi TelescopeMatching             cterm=none        ctermfg=4        ctermbg=none
+hi TelescopeMatching             cterm=none        ctermfg=5        ctermbg=none
 hi TelescopeBorder               cterm=none        ctermfg=8        ctermbg=none
-hi TelescopePromptCounter        cterm=none        ctermfg=7        ctermbg=none
+hi TelescopePromptCounter        cterm=none        ctermfg=8        ctermbg=none
+hi TelescopeMultiIcon            cterm=none        ctermfg=5        ctermbg=none

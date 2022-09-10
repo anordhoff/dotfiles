@@ -19,7 +19,7 @@
 /* set width of the navigation bar;
  * px for a fixed width or vw for a percentage of the window */
 :root {
-  --nav-bar-width: 300px;
+  --nav-bar-width: 350px;
 }
 
 /* set size and position of the navigation bar */

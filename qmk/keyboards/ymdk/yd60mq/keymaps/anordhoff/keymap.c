@@ -124,7 +124,7 @@ const key_override_t semicolon_key_override = ko_make_with_layers(MOD_MASK_SHIFT
 const key_override_t equal_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_EQL, KC_EQL, 1 << _LAYER_T);
 const key_override_t grave_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_GRV, KC_GRV, 1 << _LAYER_T);
 
-// layer_n overrides
+// layer_n overrides (TODO: numpad math keys)
 const key_override_t zero_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_0, KC_0, 1 << _LAYER_N);
 const key_override_t one_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_1, KC_1, 1 << _LAYER_N);
 const key_override_t two_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_2, KC_2, 1 << _LAYER_N);
@@ -237,11 +237,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 	   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
-	   _______    ,XXXXXXX, KC_7  , KC_8  , KC_9  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,    _______,
+	   _______    ,XXXXXXX, KC_7  , KC_8  , KC_9  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_MINS,KC_PLUS,XXXXXXX,_______,    _______,
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
-	   _______      , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  _______,
+	   _______      , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,XXXXXXX,XXXXXXX,_______,KC_LPRN,KC_RPRN,KC_ASTR,XXXXXXX,  _______,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
-	   _______,XXXXXXX, KC_1  , KC_2  , KC_3  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,
+	   _______,XXXXXXX, KC_1  , KC_2  , KC_3  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,_______,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   _______      , _______ , _______ , _______ ,        _______        , XXXXXXX , _______ ,_______,_______,_______,_______
 	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘

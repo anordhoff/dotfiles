@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead **/kitty/themes/*.conf set filetype=conf
+autocmd BufRead,BufNewFile **/kitty/themes/*.conf set filetype=conf

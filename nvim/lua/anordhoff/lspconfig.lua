@@ -41,6 +41,7 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist)
 -- lsp settings
 local on_attach = function(_, bufnr)
   -- enable completion (NOTE: onminfunc_sync.lua func for synchronous omnifunc)
+  -- https://github.com/neovim/neovim/pull/17218
   require('anordhoff.omnifunc_sync')
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.omnifunc_sync')
 

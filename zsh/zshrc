@@ -57,8 +57,8 @@ fpath=(~/dotfiles/zsh/completions $fpath)
 [ -d ~/jobfiles/zsh/completions ] &&
 	fpath=(~/jobfiles/zsh/completions $fpath)
 
-# enable fzf (if not a vim command mode shell)
-if [ -z $VIM ]; then
+# enable fzf (if not a vim/nvim command mode shell)
+if [ -z $VIM ] || ([ $VIM ] && ([ $VIM_TERMINAL ] || [ $NVIM ])); then
 	if [[ $OSTYPE =~ "darwin"* ]]; then
 		[ -r /usr/local/opt/fzf/shell/completion.zsh ] &&
 			source /usr/local/opt/fzf/shell/completion.zsh
@@ -144,21 +144,29 @@ zstyle ':completion:*' cache-path ~/.zcompcache
 zstyle ':completion:*' menu select
 
 # group matches based on type
-zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' group-name ''
 
 # list directories first when completing
-zstyle ':completion:*' list-dirs-first true
+# zstyle ':completion:*' list-dirs-first true
 
 # improve the style of the completion menu
-zstyle ':completion:*' select-prompt '-- scrolling active (%p) --'
-zstyle ':completion:*:descriptions' format '%F{magenta}-- %d --%f'
-zstyle ':completion:*:messages' format '-- %d --'
-zstyle ':completion:*:warnings' format '-- no matches found --'
+# zstyle ':completion:*' select-prompt '-- scrolling active (%p) --'
+# zstyle ':completion:*:descriptions' format '%F{magenta}-- %d --%f'
+# zstyle ':completion:*:messages' format '-- %d --'
+# zstyle ':completion:*:warnings' format '-- no matches found --'
 
 # use colors in completion menu; set directory color to white
-LS_COLORS_COMPLETION=$(echo $LS_COLORS | sed "s/di=[0-9]\{2\}/di=37/")
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS_COMPLETION}
-unset LS_COLORS_COMPLETION
+# LS_COLORS_COMPLETION=$(echo $LS_COLORS | sed "s/di=[0-9]\{2\}/di=37/")
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS_COMPLETION}
+# unset LS_COLORS_COMPLETION
+
+# show help and warning messages
+zstyle ':completion:*:messages' format '-- %d --'
+# zstyle ':completion:*:warnings' format '-- no matches found --'
+
+# use colors in completion menu
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 
 # --------------------------------------
 # alias
@@ -169,7 +177,7 @@ unset LS_COLORS_COMPLETION
 alias help=run-help
 
 # refresh watch every second
-alias watch='watch -n 1'
+alias watch='watch -n 1 '
 
 # diff files in an editor
 alias ediff='nvim --noplugin -R -d'

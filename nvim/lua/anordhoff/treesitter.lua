@@ -1,10 +1,13 @@
 require('nvim-treesitter.configs').setup {
 
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = {},
+  ensure_installed = all,
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = true,
 
   -- List of parsers to ignore installing
   ignore_install = {},
@@ -24,7 +27,7 @@ require('nvim-treesitter.configs').setup {
   },
   -- TODO: created indent when adding newline from first column
   indent = {
-    enable = true
+    enable = false
   },
 
   textobjects = {

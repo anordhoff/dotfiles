@@ -1,9 +1,10 @@
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
+local actions = require('telescope.actions')
 
 telescope.setup {
   defaults = {
-    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     layout_strategy = 'flex',
     layout_config = {
       flex = {
@@ -17,29 +18,30 @@ telescope.setup {
     color_devicons = false,
     mappings = {
       i = {
-        ["<C-s>"] = "select_horizontal",
+        ['<esc>'] = actions.close,
+        ['<Tab>'] = actions.toggle_selection + actions.move_selection_next,
+        ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_previous,
+        ['<C-x>'] = false,
+        ['<C-s>'] = actions.select_horizontal,
       },
-      n = {
-        ["<C-x>"] = false,
-        ["<C-s>"] = "select_horizontal",
-      },
+      n = {},
     },
     file_ignore_patterns = {
-      "tags",
-      ".git",
-      "vendor",
-      "node_modules",
+      'tags',
+      '.git',
+      'vendor',
+      'node_modules',
     },
     vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--hidden",
-      "--no-ignore",
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+      '--no-ignore',
     },
   },
   pickers = {
@@ -51,7 +53,7 @@ telescope.setup {
       fuzzy = true,
       override_generic_sorter = true,
       override_file_sorter = true,
-      case_mode = "smart_case",
+      case_mode = 'smart_case',
     },
   },
 }
@@ -68,3 +70,13 @@ vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations)
 vim.keymap.set('n', '<leader>ft', builtin.tags)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps)
+
+-- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
+vim.api.nvim_create_autocmd('BufRead', {
+   callback = function()
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+         once = true,
+         command = 'normal! zx'
+      })
+   end
+})
