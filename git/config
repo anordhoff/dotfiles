@@ -12,7 +12,7 @@
 [pull]
 	ff = only
 [merge]
-	tool = nvimdiff
+	tool = nvimdiff2
 [mergetool]
 	keepBackup = false
 [init]

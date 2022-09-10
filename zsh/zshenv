@@ -56,17 +56,17 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude tags \
 	--exclude .git --exclude vendor --exclude node_modules'
 export FZF_DEFAULT_OPTS="--inline-info --border \
 	--color border:8 \
-	--color bg+:11 \
+	--color bg+:14 \
 	--color fg+:7:regular \
-	--color gutter:0 \
-	--color header:15 \
-	--color hl:4:regular \
-	--color hl+:4:regular \
+	--color gutter:-1 \
+	--color header:8 \
+	--color hl:5:regular \
+	--color hl+:5:regular \
 	--color info:8 \
-	--color marker:4:regular \
-	--color spinner:4 \
+	--color marker:5:regular \
+	--color spinner:7 \
 	--color pointer:7:regular \
-	--color prompt:4:regular \
+	--color prompt:7:regular \
 	--color query:7:regular"
 
 # source work zshenv
