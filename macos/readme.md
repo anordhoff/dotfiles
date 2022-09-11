@@ -1,6 +1,4 @@
-# macos
-
-#### keyboard
+## keyboard
 
 Keyboard layout was generated using SIL Language Technology's Ukelele
 
