@@ -1,5 +1,3 @@
-# linux
-
 ## nvidia
 
 Install [proprietary Nvidia drivers](https://rpmfusion.org/Howto/NVIDIA) and follow [optimus setup instructions](https://rpmfusion.org/Howto/Optimus). Check that processes are using the Nvidia card with `nvidia-smi`
