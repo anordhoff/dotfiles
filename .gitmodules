@@ -37,6 +37,9 @@
 [submodule "nvim/package/start/vim-unimpaired"]
 	path = nvim/package/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "nvim/package/start/vim-vinegar"]
+	path = nvim/package/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar
 
 # vim (opt)
 [submodule "nvim/package/opt/vim-startuptime"]
@@ -72,6 +75,3 @@
 [submodule "nvim/package/start/telescope-fzf-native.nvim"]
 	path = nvim/package/start/telescope-fzf-native.nvim
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim.git
-[submodule "nvim/package/start/vim-vinegar"]
-	path = nvim/package/start/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar
