@@ -37,11 +37,6 @@
 [submodule "nvim/package/start/vim-unimpaired"]
 	path = nvim/package/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "nvim/package/start/vim-vinegar"]
-	path = nvim/package/start/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar.git
-
-# vim (opt)
 [submodule "nvim/package/opt/vim-startuptime"]
 	path = nvim/package/opt/vim-startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
