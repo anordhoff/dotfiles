@@ -3,12 +3,27 @@
 yabai -m config layout bsp
 yabai -m config auto_balance on
 
-# TODO: do these work with a mouse?
-yabai -m config mouse_modifier alt
+yabai -m config mouse_modifier cmd
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 
+# TODO: look into this when I'm on monterey
+# yabai -m config focus_follows_mouse autofocus
+# yabai -m config focus_follows_mouse autoraise
+# yabai -m config window_shadow float
+
+# floating windows are always on top
+yabai -m config window_topmost on
+
+# padding
+yabai -m config top_padding    10
+yabai -m config bottom_padding 10
+yabai -m config left_padding   10
+yabai -m config right_padding  10
+yabai -m config window_gap     10
+
 # applications to ignore
+# TODO: make these float so they are always visible
 yabai -m rule --add app="Docker Desktop" manage=off
 yabai -m rule --add app="Finder" manage=off
 yabai -m rule --add app="System Preferences" manage=off

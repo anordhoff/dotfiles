@@ -37,48 +37,17 @@ bindkey "^[[3~" delete-char
 # delete the line before the cursor, rather than entire line (to mimic bash)
 bindkey '^U' backward-kill-line
 
-# CTRL-X_CTRL-E opens the current command in the editor
+# ctrl-x_ctrl-e opens the current command in the editor
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
-# use 'help' command for zsh built-ins
+# use 'run-help' command for zsh built-ins
 autoload -Uz run-help
 
 # lazyload functions
 typeset -U fpath
-fpath=(~/dotfiles/zsh/functions $fpath)
-autoload ${fpath[1]}/*(:t)
-[ -d ~/jobfiles/zsh/functions ] &&
-	fpath=(~/jobfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
-
-# add completion directories to fpath
-fpath=(~/dotfiles/zsh/completions $fpath)
-[ -d ~/jobfiles/zsh/completions ] &&
-	fpath=(~/jobfiles/zsh/completions $fpath)
-
-# enable fzf (if not a vim/nvim command mode shell)
-if [ -z $VIM ] || ([ $VIM ] && ([ $VIM_TERMINAL ] || [ $NVIM ])); then
-	if [[ $OSTYPE =~ "darwin"* ]]; then
-		[ -r /usr/local/opt/fzf/shell/completion.zsh ] &&
-			source /usr/local/opt/fzf/shell/completion.zsh
-		[ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] &&
-			source /usr/local/opt/fzf/shell/key-bindings.zsh
-	else
-		[ -r /usr/share/fzf/shell/completion.zsh ] &&
-			source /usr/share/fzf/shell/completion.zsh
-		[ -r /usr/share/fzf/shell/key-bindings.zsh ] &&
-			source /usr/share/fzf/shell/key-bindings.zsh
-	fi
-fi
-
-# enable expand-multiple-dots.zsh
-[ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] &&
-	source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
-
-# enable tab-on-empty-line-shows-files.zsh
-[ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] &&
-	source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
+fpath=(~/dotfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
 
 
 # --------------------------------------
@@ -111,30 +80,40 @@ bindkey '^N' down-line-or-beginning-search
 # completion
 # --------------------------------------
 
+# TODO: touch hello-app.yaml; touch hello-app-service.yaml; kubectl apply -f
+# helo<tab>   should result in 'hello-app', rather than resulting in 'hell' and
+# selecting first option in menu
+
 setopt   alwaystoend    # completion in a word will move cursor to end of word
 setopt   completeinword # completion takes place at the cursor position in word
 unsetopt listtypes      # don't show filetypes in completion menu
 
+# add completion directories to fpath
+fpath=(~/dotfiles/zsh/completions $fpath)
+
 # load the completion module
-autoload -Uz compinit; compinit
-zmodload -i zsh/complist
+autoload -Uz compinit
+zmodload zsh/complist
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
 
+# run compinit if ~/jobfiles/zsh does not exist
+[ ! -d ~/jobfiles/zsh ] && compinit
+
 # go backwards in completion menu using shift-tab
 bindkey -M menuselect '^[[Z' reverse-menu-complete
-
-# complete *. with extensions; standard; one error; case insensitive completion
-zstyle ':completion:*' completer \
-	_extensions _complete _approximate _complete:-extended
 
 # allow one error
 zstyle ':completion:*' max-errors 1
 
 # smart case completion; complete partial words
 zstyle ':completion:*:complete-extended:*' \
-	matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+  matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# complete *. with extensions; standard; one error; case insensitive completion
+zstyle ':completion:*' completer \
+  _extensions _complete _approximate _complete:-extended
 
 # cache completions
 zstyle ':completion:*' use-cache true
@@ -143,26 +122,9 @@ zstyle ':completion:*' cache-path ~/.zcompcache
 # use a completion menu
 zstyle ':completion:*' menu select
 
-# group matches based on type
-# zstyle ':completion:*' group-name ''
-
-# list directories first when completing
-# zstyle ':completion:*' list-dirs-first true
-
-# improve the style of the completion menu
-# zstyle ':completion:*' select-prompt '-- scrolling active (%p) --'
-# zstyle ':completion:*:descriptions' format '%F{magenta}-- %d --%f'
-# zstyle ':completion:*:messages' format '-- %d --'
-# zstyle ':completion:*:warnings' format '-- no matches found --'
-
-# use colors in completion menu; set directory color to white
-# LS_COLORS_COMPLETION=$(echo $LS_COLORS | sed "s/di=[0-9]\{2\}/di=37/")
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS_COMPLETION}
-# unset LS_COLORS_COMPLETION
-
 # show help and warning messages
 zstyle ':completion:*:messages' format '-- %d --'
-# zstyle ':completion:*:warnings' format '-- no matches found --'
+zstyle ':completion:*:warnings' format '-- no matches found --'
 
 # use colors in completion menu
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -176,19 +138,19 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
 
-# refresh watch every second
+# refresh watch every second; work with aliases
 alias watch='watch -n 1 '
 
 # diff files in an editor
 alias ediff='nvim --noplugin -R -d'
 
 # open the notes dir
-alias n='nvim ~/notes'
+alias n='nvim ~/notes/misc.md'
 
 # directory stack
 alias dirs='dirs -v'
 for i in {0..9}; do
-	alias d${i}="cd +${i}"
+  alias d${i}="cd +${i}"
 done
 
 # grep colors
@@ -198,26 +160,24 @@ alias fgrep='fgrep --color=auto'
 
 # use gnu ls on bsd (bsd ls does not have --group-directories-first)
 if [[ $OSTYPE =~ "darwin"* ]]; then
-	alias l='gls -lhA --color=auto --group-directories-first'
-	alias ll='gls -lh --color=auto --group-directories-first'
-	alias ls='gls --color=auto --group-directories-first'
+  alias l='gls -lhA --color=auto --group-directories-first'
+  alias ll='gls -lh --color=auto --group-directories-first'
+  alias ls='gls --color=auto --group-directories-first'
 else
-	alias l='ls -lhA --color=auto --group-directories-first'
-	alias ll='ls -lh --color=auto --group-directories-first'
-	alias ls='ls --color=auto --group-directories-first'
+  alias l='ls -lhA --color=auto --group-directories-first'
+  alias ll='ls -lh --color=auto --group-directories-first'
+  alias ls='ls --color=auto --group-directories-first'
 fi
 
-# cd
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
+# global cd shorthand
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 
 # git
 alias    g='git'
 alias   ga='git add'
-alias  gap='git add -p'
 alias   gb='git branch'
 alias  gbl='git blame'
 alias   gc='git commit -v'
@@ -236,20 +196,50 @@ alias   gp='git pull'
 alias  gpu='git push'
 alias   gr='git reset'
 alias  grb='git rebase'
-alias  grm='git rm'
 alias  grv='git remote --verbose'
 alias   gs='git status'
 alias  gst='git stash'
 alias  gsh='git show'
 
 # kubernetes
-alias     k='kubectl'
-alias    kg='kubectl get'
-alias   kgj='kubectl get -o json'
-alias   kgy='kubectl get -o yaml'
-alias   kgw='kubectl get -o wide'
-alias  kgsc='kubectl get --sort-by metadata.creationTimestamp'
-alias    kd='kubectl describe'
+alias  k='kubectl'
+alias ka='kubectl apply'
+alias kd='kubectl describe'
+alias ke='kubectl explain'
+alias kg='kubectl get'
+alias kl='kubectl logs'
+
+# krew plugins
+alias kctx='kubectl ctx'
+alias  kns='kubectl ns'
+
+
+# --------------------------------------
+# extensions
+# --------------------------------------
+
+# enable fzf (except in vim)
+if [ -z $VIM ]; then
+  if [[ $OSTYPE =~ "darwin"* ]]; then
+    [ -r /usr/local/opt/fzf/shell/completion.zsh ] \
+      && source /usr/local/opt/fzf/shell/completion.zsh
+    [ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] \
+      && source /usr/local/opt/fzf/shell/key-bindings.zsh
+  else
+    [ -r /usr/share/fzf/shell/completion.zsh ] \
+      && source /usr/share/fzf/shell/completion.zsh
+    [ -r /usr/share/fzf/shell/key-bindings.zsh ] \
+      && source /usr/share/fzf/shell/key-bindings.zsh
+  fi
+fi
+
+# enable expand-multiple-dots.zsh
+[ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] \
+  && source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
+
+# enable tab-on-empty-line-shows-files.zsh
+[ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] \
+  && source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
 
 # --------------------------------------

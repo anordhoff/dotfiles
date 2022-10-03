@@ -11,7 +11,6 @@ telescope.setup {
         flip_columns = 160,
       },
     },
-    prompt_prefix = ' $ ',
     preview = {
       treesitter = false,
     },
@@ -31,6 +30,8 @@ telescope.setup {
       '.git',
       'vendor',
       'node_modules',
+      'package/opt',
+      'package/start',
     },
     vimgrep_arguments = {
       'rg',
@@ -70,13 +71,14 @@ vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations)
 vim.keymap.set('n', '<leader>ft', builtin.tags)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps)
+vim.keymap.set('n', '<leader>fa', builtin.autocommands)
 
 -- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
    callback = function()
       vim.api.nvim_create_autocmd('BufWinEnter', {
          once = true,
-         command = 'normal! zx'
+         command = 'normal! zx',
       })
    end
 })

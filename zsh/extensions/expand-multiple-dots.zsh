@@ -2,20 +2,20 @@
 # https://github.com/parkercoates/dotfiles/blob/master/.zsh/expand-multiple-dots.zsh
 
 function expand-multiple-dots() {
-	local MATCH
-	if [[ $LBUFFER =~ '(^| )\.\.\.+' ]]; then
-		LBUFFER=$LBUFFER:fs%\.\.\.%../..%
-	fi
+  local MATCH
+  if [[ $LBUFFER =~ '(^| )\.\.\.+' ]]; then
+    LBUFFER=$LBUFFER:fs%\.\.\.%../..%
+  fi
 }
 
 function expand-multiple-dots-then-expand-or-complete() {
-	zle expand-multiple-dots
-	zle expand-or-complete
+  zle expand-multiple-dots
+  zle expand-or-complete
 }
 
 function expand-multiple-dots-then-accept-line() {
-	zle expand-multiple-dots
-	zle accept-line
+  zle expand-multiple-dots
+  zle accept-line
 }
 
 zle -N expand-multiple-dots

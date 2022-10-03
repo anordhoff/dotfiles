@@ -8,16 +8,18 @@ set ignorecase         " case-insensitive searching...
 set smartcase          " ...but not if the search contains a capital letter
 set splitright         " split vertical windows to the right of current window
 set splitbelow         " split horizontal windows below current window
+set foldnestmax=1      " limit to 1 nested fold
+set foldlevel=1        " don't automatically close folds
 set fillchars=vert:\|  " use the pipe symbol as a vertical separator
 set textwidth=79       " wrap lines at 79 characters when formatting
 set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
 set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
 set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
 
-" use tabs by default
-set tabstop=4
-set shiftwidth=4
-set noexpandtab
+" use spaces by default
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
 " make line wrapping look nicer, but don't wrap by default
 set nowrap
@@ -35,23 +37,6 @@ set wildoptions=tagfile
 set wildmode=longest:full,full
 set wildignorecase
 
-" folds are managed manually unless foldmethod is set in after/ftplugin/
-" TODO: FoldText is broken if folded text is indented
-set foldnestmax=1
-set foldlevel=1
-set fillchars=fold:\  " trailing whitespace
-set foldtext=FoldText()
-function FoldText()
-  let l:line = getline(v:foldstart)
-  let l:numlines = v:foldend - v:foldstart
-  let l:fillcount = winwidth('%') - len(line) - len(numlines) - 9
-  if l:fillcount > 0
-    return l:line . ' ' . repeat('.', l:fillcount) . ' (' . l:numlines . ')'
-  else
-    return l:line . ' ' . repeat('.', l:fillcount + 5)
-  endif
-endfunction
-
 " load custom colorscheme
 colorscheme colorscheme
 
@@ -63,49 +48,33 @@ augroup formatoptions
   autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal fo-=t fo-=r fo-=o
 augroup END
 
-" TODO: git mergetool starts in merged file
-
-" enable the cursorline when in diff mode
-" TODO: randomly stopped working?
-" if &diff | set cursorline | endif
-" augroup diff
-"   autocmd!
-"   autocmd BufNewFile,BufRead * if &diff | let &cursorline=1 | endif
-"   autocmd OptionSet diff let &cursorline=v:option_new
-"   autocmd BufHidden * set nocursorline
-" augroup END
-
 " enable spellchecking for text files, markdown, and git commit messages
 augroup spellcheck
   autocmd!
   autocmd FileType text,markdown,gitcommit setlocal spell
 augroup END
 
-" TODO: remove once neovim v0.8 is live
-let g:do_filetype_lua = 1
-let g:did_load_filetypes = 0
-
-
-" TODO: vim dispatch (i.e. m<space> to run make "something" has zle errors)
-
 " --------------------------------------
 " keymaps
 " --------------------------------------
 
 " leader key
-let mapleader = "\<Space>"
+let mapleader = "\<space>"
 
 " prevent clipboard hijacking
 inoremap <C-r>+ <C-r><C-r>+
 inoremap <C-r>* <C-r><C-r>*
 
-" quickly run a command
-nnoremap <leader><space> :!
-nnoremap <leader>t :terminal<space>
+" quickly run a command in a new terminal buffer
+nnoremap z<space> :term<space>
 
-" vimgrep
-nnoremap <leader>gq :vimgrep<space>
-nnoremap <leader>gl :lvimgrep  %<left><left>
+" lvimgrep (simply use :vim for vimgrep)
+nnoremap g<space> :lvimgrep  %<left><left>
+
+" edit
+set wildcharm=<C-z>
+nnoremap <leader>e :e **/*<C-z><S-Tab>
+nnoremap <leader>b :ls<CR>:b<Space>
 
 " toggle the quickfix list window
 nnoremap <silent> <leader>q :call init#togglequickfixlist()<CR>
@@ -113,24 +82,19 @@ nnoremap <silent> <leader>q :call init#togglequickfixlist()<CR>
 " toggle the location list window
 nnoremap <silent> <leader>l :call init#togglelocationlist()<CR>
 
-" maximize (toggle) the current window (NOTE: overrides :pclose mapping)
-nnoremap <silent> <C-w>z :call init#togglemaximizewindow()<CR>
-nnoremap <silent> <C-w><C-z> :call init#togglemaximizewindow()<CR>
+" maximize (toggle) the current window (NOTE: overrides default mappings)
+nnoremap <silent> <C-w>z <C-w>\|<C-w>_
+nnoremap <silent> <C-w><C-z> <C-w>\|<C-w>_
 
 " toggle sharing mode (turns on cursorline/cursorcolumn for active buffer)
-let g:sharing = 0
-command Share :call init#togglesharing()
-augroup sharing
-  autocmd!
-  autocmd WinEnter * if g:sharing | execute 'set cursorline cursorcolumn' | endif
-  autocmd WinLeave * if g:sharing | execute 'set nocursorline nocursorcolumn' | endif
-augroup END
+command Share :call init#sharing(1)
+command Noshare :call init#sharing(0)
 
 " get highlight group under the cursor
 command Hi :call init#syngroup()
 
 " clear the specified register (:wshada! to persist changes)
-nnoremap <leader>cr :call setreg('', [])<Left><Left><Left><Left><Left><Left>
+command! -nargs=1 Clear :call init#clearregisters(<q-args>)
 
 " trigger omni completion
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
@@ -154,7 +118,8 @@ set statusline+=%{Filetype()}                " filetype
 
 augroup statusline
   autocmd!
-  autocmd Filetype qf setlocal statusline=\ \[%n\]\ \ %l/%L\ lines%=%q\ 
+  autocmd Filetype qf setlocal statusline=\ \[%n\]\ \ %l/%L\ lines%=%q\  " trailing whitespace
+  autocmd Filetype netrw setlocal statusline=\ \[%n\]\ \ %l/%L\ lines%=\[netrw\]\  " trailing whitespace
   autocmd TermOpen * setlocal statusline=\ \[%n\]\ \ terminal\ \ %{NopluginFlag()}%{PasteFlag()}%H%W%R%M\ \ %{TerminalMode()}
 augroup END
 
@@ -221,12 +186,14 @@ function TabLabel(n)
   let l:buflist = tabpagebuflist(a:n)
   let l:bufname = bufname(l:buflist[l:winnr - 1])
   let l:filetype = getbufvar(l:buflist[l:winnr - 1], '&filetype')
-  if l:filetype == 'dirvish'
-    return 'dirvish'
-  elseif l:bufname == ''
+  if l:bufname == ''
     return '[No Name]'
   elseif l:bufname =~ '/nvim/runtime/doc/'
     return 'help'
+  elseif l:filetype == 'netrw'
+    return 'netrw'
+  elseif l:filetype == 'dirvish'
+    return 'dirvish'
   elseif l:bufname =~ '^term://'
     return 'terminal'
   else
@@ -236,13 +203,33 @@ endfunction
 
 
 " --------------------------------------
+" netrw
+" --------------------------------------
+
+if &loadplugins
+  " set the absolute size of netrw windows
+  let g:netrw_winsize = -30
+
+  " hide the informational banner
+  let g:netrw_banner = 0
+
+  " tree style listing
+  let g:netrw_liststyle = 3
+
+  " toggle netrw as a project drawer
+  nnoremap <silent> <leader>t :Lexplore<CR>
+endif
+
+
+" --------------------------------------
 " notes
 " --------------------------------------
 
-let g:notesdir = '~/notes'
+" notes directory
+let g:notesdir = '~/notes/misc.md'
 
 " toggle the notebook
-nnoremap <silent> <leader>n :call note#togglenotes(g:notesdir)<CR>
+nnoremap <silent> <leader>n :call init#togglenotes(g:notesdir)<CR>
 
 " prevent notes from being added to the buffer list
 augroup notes
@@ -255,28 +242,24 @@ augroup END
 " terminal
 " --------------------------------------
 
-" TODO: 1. return to same :term when closing nested nvim session (ie <C-x><C-e>)
-"       2. git mergetool with --remote
-"       3. implement i_CTRL-O command for terminal insert mode
-
 " set the preferred editor to use the current session's RPC server
 let $VISUAL="nvim --server " . v:servername . " --remote"
 let $EDITOR="nvim --server " . v:servername . " --remote"
 
-" exit to normal mode using ctrl-[ / esc
+" exit to normal mode using ctrl-[ or escape
 tnoremap <C-[> <C-\><C-n>
 tnoremap <esc> <C-\><C-n>
 
 " open terminal in a horizontal or vertical split
-nnoremap <silent> <A-s> :call term#toggleterm(0)<CR>
-nnoremap <silent> <A-v> :call term#toggleterm(1)<CR>
+nnoremap <silent> <A-s> :call init#toggleterm(0)<CR>
+nnoremap <silent> <A-v> :call init#toggleterm(1)<CR>
 
 " toggle terminal without leaving terminal insert mode
-tnoremap <silent> <A-s> <C-\><C-n>:call term#toggleterm(0)<CR>
-tnoremap <silent> <A-v> <C-\><C-n>:call term#toggleterm(1)<CR>
+tnoremap <silent> <A-s> <C-\><C-n>:call init#toggleterm(0)<CR>
+tnoremap <silent> <A-v> <C-\><C-n>:call init#toggleterm(1)<CR>
 
-" use <A-r> to access registers in terminal insert mode
-tnoremap <expr> <A-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+" use ctrl-r to access registers in terminal insert mode
+tnoremap <expr> <C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
 augroup terminal
   autocmd!
@@ -303,7 +286,7 @@ runtime job.vim
 " --------------------------------------
 
 if &loadplugins
-  " native vim plugins
+  " native plugins
   packadd cfilter
 
   " neovim plugins

@@ -4,12 +4,12 @@ local airpods='98:DD:60:D4:9E:5E'
 
 case $@ in
 'c')
-	bluetoothctl connect $airpods
-	;;
+  bluetoothctl connect $airpods
+  ;;
 'd')
-	bluetoothctl disconnect $airpods
-	;;
+  bluetoothctl disconnect $airpods
+  ;;
 *)
-	bluetoothctl $@
-	;;
+  bluetoothctl $@
+  ;;
 esac

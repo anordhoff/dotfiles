@@ -15,19 +15,11 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = false,
   },
-  -- TODO: what is incremental_selection even for
   incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
+    enable = false,
   },
-  -- TODO: created indent when adding newline from first column
   indent = {
-    enable = false
+    enable = false,
   },
 
   textobjects = {
@@ -43,7 +35,7 @@ require('nvim-treesitter.configs').setup {
         ['ac'] = '@conditional.outer',
         ['il'] = '@loop.inner',
         ['al'] = '@loop.outer',
-      },
+      }
     },
     swap = {
       enable = true,
