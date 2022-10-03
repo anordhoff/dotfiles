@@ -1,18 +1,3 @@
-" maximize (toggle) the current window
-function init#togglemaximizewindow()
-  if !exists('t:maximized')
-    let t:maximized = 0
-  endif
-  if t:maximized
-    execute "normal! \<C-w>="
-    let t:maximized = 0
-  else
-    resize
-    vertical-resize
-    let t:maximized = 1
-  endif
-endfunction
-
 " toggle the quickfix list window
 function init#togglequickfixlist()
   if getqflist({'winid': 0}).winid
@@ -35,16 +20,24 @@ function init#togglelocationlist()
   endtry
 endfunction
 
-" toggle sharing mode
-function init#togglesharing()
-  if g:sharing
-    setlocal nocursorline
-    setlocal nocursorcolumn
-    let g:sharing = 0
-  else
+" enable or disable sharing mode
+" TODO: opening netrw after enabling sharing mode breaks cursorline/cursorcolumn
+" TODO: dirvish?
+function init#sharing(enable)
+  if a:enable
     setlocal cursorline
     setlocal cursorcolumn
-    let g:sharing = 1
+    augroup sharing
+      autocmd!
+      autocmd WinEnter * if &ft != 'netrw' | setlocal cursorline cursorcolumn | endif
+      autocmd WinLeave * if &ft != 'netrw' | setlocal nocursorline nocursorcolumn | endif
+    augroup END
+  else
+    setlocal nocursorline
+    setlocal nocursorcolumn
+    augroup sharing
+      autocmd!
+    augroup END
   endif
 endfunction
 
@@ -54,4 +47,69 @@ function init#syngroup()
     let l:i2 = synIDtrans(l:i1)
     echo synIDattr(l:i1, 'name') '->' synIDattr(l:i2, 'name')
   endfor
+endfunction
+
+" clear registers
+function init#clearregisters(chars)
+  for l:char in split(a:chars, '\zs')
+    :call setreg(l:char, [])
+  endfor
+  echo "Successfully cleared registers '" . a:chars .
+    \ "'. Execute :wshada! to persist changes"
+endfunction
+
+" toggle the notebook
+function init#togglenotes(dir)
+  if !exists('t:notesbuf')
+    let t:notesbuf = 0
+  endif
+  if !exists('t:noteswin')
+    let t:noteswin = 0
+  endif
+
+  " toggle the notes window, saving the currently open buffer
+  if win_gotoid(t:noteswin)
+    let t:notesbuf = bufnr('%')
+    hide
+  else
+    try
+      exec 'sbuffer ' . t:notesbuf
+    catch
+      exec 'split ' . a:dir
+      let t:notesbuf = bufnr('%')
+    endtry
+    let t:noteswin = win_getid()
+  endif
+endfunction
+
+" toggle a horizontal/vertical terminal split
+function init#toggleterm(vsplit)
+  if !exists('t:termbuf')
+    let t:termbuf = 0
+  endif
+  if !exists('t:termwin')
+    let t:termwin = 0
+  endif
+
+  " if a terminal window is open, hide it; else, (re)open a terminal window
+  if bufname(winbufnr(t:termwin)) =~ '^term://' && win_gotoid(t:termwin)
+    hide
+  else
+    try
+      if a:vsplit
+        exec 'vertical sbuffer ' . t:termbuf
+      else
+        exec 'sbuffer ' . t:termbuf
+      endif
+      startinsert!
+    catch
+      if a:vsplit
+        exec 'vsplit +term'
+      else
+        exec 'split +term'
+      endif
+      let t:termbuf = bufnr('%')
+    endtry
+    let t:termwin = win_getid()
+  endif
 endfunction

@@ -1,6 +1,6 @@
 -- TODO: use synchronous omnifunc when merged:
---         https://github.com/neovim/neovim/issues/12390
---         https://github.com/neovim/neovim/pull/16225
+--   https://github.com/neovim/neovim/issues/12390
+--   https://github.com/neovim/neovim/pull/16225
 
 -- synchronous omnifunc that supports completeopt=longest
 local omnifunc_cache

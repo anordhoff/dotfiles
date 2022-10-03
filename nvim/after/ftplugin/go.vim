@@ -11,8 +11,8 @@ augroup END
 " enable automatic folding
 setlocal foldmethod=syntax
 
-" edit the current file's alternate file
-nnoremap <silent> <buffer> <leader>ee :call go#alternate('edit')<CR>
-nnoremap <silent> <buffer> <leader>es :call go#alternate('split')<CR>
-nnoremap <silent> <buffer> <leader>ev :call go#alternate('vsplit')<CR>
-nnoremap <silent> <buffer> <leader>et :call go#alternate('tabnew')<CR>
+" edit the current file's alternate file (TODO)
+" nnoremap <silent> <buffer> <leader>ee :call go#alternate('edit')<CR>
+" nnoremap <silent> <buffer> <leader>es :call go#alternate('split')<CR>
+" nnoremap <silent> <buffer> <leader>ev :call go#alternate('vsplit')<CR>
+" nnoremap <silent> <buffer> <leader>et :call go#alternate('tabnew')<CR>

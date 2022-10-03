@@ -1,11 +1,11 @@
 # vim: ft=zsh
 
 local answer
-echo -ne "zsh: sure you want to run '$*' [yN]? "
+echo -ne "zsh: sure you want to run '$*' [yn]? "
 read -q answer
-	echo
+echo
 if [[ $answer =~ ^[Yy]$ ]]; then
-	command $@
+  command $@
 else
-	return 1
+  return 1
 fi

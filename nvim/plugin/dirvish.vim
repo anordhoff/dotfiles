@@ -1,30 +1,23 @@
-" disable netrw
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_netrwSettings = 1
-let g:loaded_netrwFileHandlers = 1
-
 " replace netrw `Explore` commands
 command! -nargs=? -complete=dir Explore Dirvish <args>
 command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
 
-" use relative directories; sort directories first
-let g:dirvish_relative_paths = 1
-let g:dirvish_mode = ':sort | sort ,^\v(.*[\/])|\ze,'
+" sort directories first
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
-" open the current directory
+" TODO: better mappints for dirvish_(v)split_up
+" open the current working directory
 nnoremap <silent> _ :Dirvish<CR>
+nnoremap <silent> <leader>a <Plug>(dirvish_split_up)
+nnoremap <silent> <leader>r <Plug>(dirvish_vsplit_up)
 
-" TODO: show preview with `p` in a preview window
-" TODO: argslist is buggy when g:dirvish_relative_paths = 1
 augroup dirvish_config
   autocmd!
-  autocmd Filetype dirvish setlocal signcolumn=no
 
-  " unmap default dirvish_arglist mapping
-  autocmd Filetype dirvish silent! unmap <buffer> x
-  autocmd Filetype dirvish silent! unmap <buffer> dax
+  " use dirvish instead of netrw when opening a directory with vim
+  " NOTE: dirvish should handle this without explicitly adding an autocmd
+  autocmd VimEnter * if exists('#FileExplorer') | exe 'au! FileExplorer *' | endif
 
   " unmap default reload mapping
   autocmd Filetype dirvish silent! unmap <buffer> R
@@ -37,23 +30,21 @@ augroup dirvish_config
   autocmd Filetype dirvish silent! unmap <buffer> a
   autocmd Filetype dirvish silent! unmap <buffer> A
 
+  " map `gc` to toggle conceal (<nowait> overrides vim-commentary mappings)
+  autocmd Filetype dirvish nnoremap <silent><buffer><expr><nowait> gc &cole ? ':setl cole=0<CR>' : ':setl cole=2<CR>'
+
   " map `gf` to autopopulated filter command
   autocmd Filetype dirvish nnoremap <buffer> gf :g//d<left><left>
+
+  " map `gh` to hide dot-prefixed files
+  autocmd Filetype dirvish nnoremap <silent><buffer> gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<CR>
 
   " map `gr` to reload
   autocmd Filetype dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
 
-  " map `gh` to hide dot-prefixed files
-  autocmd Filetype dirvish nnoremap <silent><buffer> gh :silent keeppatterns g/^\..*/d<CR>
-
-  " map `a` to dirvish_arg
-  autocmd Filetype dirvish nnoremap <silent><buffer> a <Plug>(dirvish_arg)
-  autocmd Filetype dirvish xnoremap <silent><buffer> a <Plug>(dirvish_arg)
-  autocmd Filetype dirvish nnoremap <silent><buffer> da :arglocal<Bar>silent! argdelete *<Bar>echo 'arglist: cleared'<CR>
-
-  " map `t` to open file at cursor
-  autocmd Filetype dirvish nnoremap <silent><buffer> t :call dirvish#open('edit', 0)<CR>
-  autocmd Filetype dirvish xnoremap <silent><buffer> t :call dirvish#open('edit', 0)<CR>
+  " map `a` to open file at cursor
+  autocmd Filetype dirvish nnoremap <silent><buffer> a :call dirvish#open('edit', 0)<CR>
+  autocmd Filetype dirvish xnoremap <silent><buffer> a :call dirvish#open('edit', 0)<CR>
 
   " map `<C-s>` to open in new split
   autocmd Filetype dirvish nnoremap <silent><buffer> <C-s> :call dirvish#open('split', 0)<CR>

@@ -1,17 +1,16 @@
 local leap = require('leap')
 
 leap.setup {
-  labels = {'n', 't', 'e', 's', 'i', 'r', 'o', 'a', 'h', 'd', 'u', 'f', 'y', 'w'},
+  labels = {'n', 't', 'e', 's', 'i', 'r', 'o', 'a', 'h', 'd', 'u', 'f', 'y', 'w', 'l', 'p', 'm', 'g', ',', 'c', '.', 'x', '/', 'z', 'k', 'v'},
   safe_labels = {},
 }
 
-function leap_bidirectional()
-  leap.leap { ['target_windows'] = { vim.api.nvim_get_current_win() } }
+function bidirectional()
+  leap.leap { target_windows = { vim.fn.win_getid() } }
 end
 
--- TODO: leap doesn't respect `<leader>` mappings
 local opts = { silent = true }
-vim.keymap.set('n', 'x', leap_bidirectional, opts)
-vim.keymap.set('x', 'x', leap_bidirectional, opts)
-vim.keymap.set('o', 'x', leap_bidirectional, opts)
+vim.keymap.set('n', 'x', bidirectional, opts)
+vim.keymap.set('x', 'x', bidirectional, opts)
+vim.keymap.set('o', 'x', bidirectional, opts)
 vim.keymap.set('n', 'X', '<Plug>(leap-cross-window)', opts)

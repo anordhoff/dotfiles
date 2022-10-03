@@ -2,16 +2,16 @@
 
 case $@ in
 'c')
-	protonvpn-cli connect --fastest
-	;;
+  protonvpn-cli connect --fastest
+  ;;
 'd')
-	protonvpn-cli disconnect
-	;;
+  protonvpn-cli disconnect
+  ;;
 'r')
-	protonvpn-cli disconnect
-	protonvpn-cli reconnect
-	;;
+  protonvpn-cli disconnect
+  protonvpn-cli reconnect
+  ;;
 *)
-	protonvpn-cli $@
-	;;
+  protonvpn-cli $@
+  ;;
 esac

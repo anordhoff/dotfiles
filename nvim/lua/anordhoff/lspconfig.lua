@@ -6,12 +6,12 @@ local home_dir = os.getenv('HOME') .. '/'
 
 -- add a border to floating windows
 -- TODO: enable borders on pmenu / :LspInfo
--- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
--- function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
---   opts = opts or {}
---   opts.border = opts.border or 'single'
---   return orig_util_open_floating_preview(contents, syntax, opts, ...)
--- end
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or 'single'
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 -- customize how diagnostics are displayed
 vim.diagnostic.config({
@@ -69,7 +69,7 @@ end
 local servers = { 'bashls', 'cssls', 'eslint', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'vimls' }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach
+    on_attach = on_attach,
   }
 end
 
@@ -90,9 +90,9 @@ lspconfig.gopls.setup {
         unusedparams = true,
         shadow = true,
       },
-      staticcheck = true
-    }
-  }
+      staticcheck = true,
+    },
+  },
 }
 
 -- run the goimports command
@@ -170,11 +170,11 @@ local cloudformation = 'https://s3.amazonaws.com/cfn-resource-specifications-us-
 local patterns = {
   cloudformation = {
     '**/{cloudformation,cfn,aws}/**/*.{yml,yaml}',
-    '**/{cfn,cloudformation,template}.{yml,yaml}'
+    '**/{cfn,cloudformation,template}.{yml,yaml}',
   },
   kubernetes = {
     '**/{kubernetes,kube,k8s}/**/*.{yml,yaml}',
-  }
+  },
 }
 
 -- read work specific schema patterns from jobfiles. Each schema should have a
@@ -207,7 +207,7 @@ lspconfig.yamlls.setup {
       completion = true,
       schemas = {
         [cloudformation] = patterns['cloudformation'],
-        ['kubernetes'] = patterns['kubernetes']
+        ['kubernetes'] = patterns['kubernetes'],
       },
       customTags = {
         -- cloudformation custom tags
@@ -258,8 +258,8 @@ lspconfig.yamlls.setup {
         '!Split sequence',
         '!Sub mapping',
         '!Sub scalar',
-        '!Sub sequence'
-      }
-    }
-  }
+        '!Sub sequence',
+      },
+    },
+  },
 }
