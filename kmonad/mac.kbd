@@ -1,4 +1,5 @@
 ;; TODO: find better fix for hyper+, and hyper+.
+;;       ctrl/win/shift/alt on join and adjust layers (for ctrl+print, etc.)
 
 (defcfg
   ;; For MacOS
