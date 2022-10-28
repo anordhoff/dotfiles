@@ -4,8 +4,11 @@ shift + ctrl + alt - return : /Applications/kitty.app/Contents/MacOS/kitty
 # close current window
 shift + ctrl + alt - q : yabai -m window --close
 
+# toggle float
+shift + ctrl + alt - z : yabai -m window --toggle float
+
 # toggle window zoom
-shift + ctrl + alt - z : yabai -m window --toggle zoom-fullscreen
+shift + ctrl + alt + cmd - z : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
 shift + ctrl + alt - g : yabai -m window --toggle split
@@ -19,7 +22,7 @@ shift + ctrl + alt - e : yabai -m window --focus south
 shift + ctrl + alt - i : yabai -m window --focus north
 shift + ctrl + alt - o : yabai -m window --focus east
 
-# swap managed window
+# swap focused window
 shift + ctrl + alt + cmd - n : yabai -m window --swap west
 shift + ctrl + alt + cmd - e : yabai -m window --swap south
 shift + ctrl + alt + cmd - i : yabai -m window --swap north
@@ -47,6 +50,7 @@ shift + ctrl + alt - 0x18 : yabai -m display --focus next # 0x18 = equal
 
 # move window to adjacent monitor
 # NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped comma, period to minus, equal
+# TODO: any fix to using minus and equal?
 shift + ctrl + alt + cmd - 0x1B : yabai -m window --display prev # 0x1B = minus
 shift + ctrl + alt + cmd - 0x18 : yabai -m window --display next # 0x18 = equal
 

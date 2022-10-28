@@ -1,3 +1,17 @@
+# macos
+
+tools:
+
+- [Change Menu Bar Color](https://github.com/igorkulman/ChangeMenuBarColor)
+- [Bartender](https://www.macbartender.com)
+- [Linear Mouse](https://linearmouse.org/)
+- [SpotMenu v1.8](https://github.com/kmikiy/SpotMenu)
+- [Space ID](https://github.com/dshnkao/SpaceId)
+
+
+
+# old
+
 ## keyboard
 
 Keyboard layout was generated using SIL Language Technology's Ukelele

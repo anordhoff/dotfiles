@@ -16,6 +16,7 @@
 
 // home row mods / mod taps
 #define MT_ESC  MT(MOD_LGUI, KC_ESC)
+#define MT_Z    MT(MOD_LALT, KC_Z)
 #define MT_R    LT(_LAYER_R, KC_R)
 #define MT_S    LT(_LAYER_S, KC_S)
 #define MT_T    LT(_LAYER_T, KC_T)
@@ -23,7 +24,6 @@
 #define MT_N    LT(_LAYER_N, KC_N)
 #define MT_E    LT(_LAYER_E, KC_E)
 #define MT_I    LT(_LAYER_I, KC_I)
-#define MT_ENT  MT(MOD_LALT, KC_ENT)
 
 // right meh layer keys
 #define RM_A    RCTL(RSFT(RALT(KC_A)))
@@ -62,11 +62,16 @@
 #define RM_8    RCTL(RSFT(RALT(KC_8)))
 #define RM_9    RCTL(RSFT(RALT(KC_9)))
 #define RM_0    RCTL(RSFT(RALT(KC_0)))
-#define RM_ENT  RCTL(RSFT(RALT(KC_ENT)))
 #define RM_ESC  RCTL(RSFT(RALT(KC_ESC)))
-#define RM_BSPC RCTL(RSFT(RALT(KC_BSPC)))
 #define RM_TAB  RCTL(RSFT(RALT(KC_TAB)))
+#define RM_BSPC RCTL(RSFT(RALT(KC_BSPC)))
+#define RM_DEL  RCTL(RSFT(RALT(KC_DEL)))
+#define RM_ENT  RCTL(RSFT(RALT(KC_ENT)))
 #define RM_SPC  RCTL(RSFT(RALT(KC_SPC)))
+#define RM_UP   RCTL(RSFT(RALT(KC_UP)))
+#define RM_LEFT RCTL(RSFT(RALT(KC_LEFT)))
+#define RM_DOWN RCTL(RSFT(RALT(KC_DOWN)))
+#define RM_RGHT RCTL(RSFT(RALT(KC_RGHT)))
 #define RM_MINS RCTL(RSFT(RALT(KC_MINS)))
 #define RM_EQL  RCTL(RSFT(RALT(KC_EQL)))
 #define RM_LBRC RCTL(RSFT(RALT(KC_LBRC)))
@@ -78,11 +83,7 @@
 #define RM_COMM RCTL(RSFT(RALT(KC_COMM)))
 #define RM_DOT  RCTL(RSFT(RALT(KC_DOT)))
 #define RM_SLSH RCTL(RSFT(RALT(KC_SLSH)))
-#define RM_RGHT RCTL(RSFT(RALT(KC_RGHT)))
-#define RM_LEFT RCTL(RSFT(RALT(KC_LEFT)))
-#define RM_DOWN RCTL(RSFT(RALT(KC_DOWN)))
-#define RM_UP   RCTL(RSFT(RALT(KC_UP)))
-#define RM_DEL  RCTL(RSFT(RALT(KC_DEL)))
+#define RM_RGUI RCTL(RSFT(RALT(KC_RGUI)))
 
 // layers enum
 enum layers {
@@ -105,9 +106,8 @@ enum layers {
 // per key tapping term value
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		case MT_ESC:
-		case MT_ENT:
-			return TAPPING_TERM - 20;
+		/* case MT_ESC: */
+		/* 	return TAPPING_TERM - 20; */
 		default:
 			return TAPPING_TERM;
 	}
@@ -124,7 +124,7 @@ const key_override_t semicolon_key_override = ko_make_with_layers(MOD_MASK_SHIFT
 const key_override_t equal_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_EQL, KC_EQL, 1 << _LAYER_T);
 const key_override_t grave_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_GRV, KC_GRV, 1 << _LAYER_T);
 
-// layer_n overrides (TODO: numpad math keys)
+// layer_n overrides
 const key_override_t zero_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_0, KC_0, 1 << _LAYER_N);
 const key_override_t one_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_1, KC_1, 1 << _LAYER_N);
 const key_override_t two_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_2, KC_2, 1 << _LAYER_N);
@@ -135,6 +135,9 @@ const key_override_t six_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_6
 const key_override_t seven_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_7, KC_7, 1 << _LAYER_N);
 const key_override_t eight_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_8, KC_8, 1 << _LAYER_N);
 const key_override_t nine_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_9, KC_9, 1 << _LAYER_N);
+const key_override_t comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_COMM, 1 << _LAYER_N);
+const key_override_t dot_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_DOT, 1 << _LAYER_N);
+const key_override_t slash_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_SLSH, KC_SLSH, 1 << _LAYER_N);
 
 // globally define all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
@@ -157,6 +160,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 	&seven_key_override,
 	&eight_key_override,
 	&nine_key_override,
+	&comma_key_override,
+	&dot_key_override,
+	&slash_key_override,
 	NULL
 };
 
@@ -168,15 +174,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
 	   KC_TAB     , KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,KC_LBRC, KC_J  , KC_L  , KC_U  , KC_Y  ,KC_QUOT,KC_BSPC,     KC_DEL,
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
-	   MT_ESC       , KC_A  , MT_R  , MT_S  , MT_T  , KC_G  ,KC_RBRC, KC_M  , MT_N  , MT_E  , MT_I  , KC_O  ,XXXXXXX,   MT_ENT,
+	   MT_ESC       , KC_A  , MT_R  , MT_S  , MT_T  , KC_G  ,KC_RBRC, KC_M  , MT_N  , MT_E  , MT_I  , KC_O  ,XXXXXXX,   KC_ENT,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
-	   KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,  KC_UP,
+	   KC_LSFT, MT_Z  , KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,  KC_UP,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , KC_LGUI , KC_LALT , KC_LCTL ,        KC_SPC         , KC_LSFT ,  RMEH   ,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT
 	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
-	// NOTE: macos reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped RM_COMM -> RM_MINS, RM_DOT -> RM_EQL
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped RM_COMM -> RM_MINS, RM_DOT -> RM_EQL
 	[_COLEMAK_MEH] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 	   RM_GRV , RM_1  , RM_2  , RM_3  , RM_4  , RM_5  , RM_6  , RM_7  , RM_8  , RM_9  , RM_0  ,RM_MINS,RM_EQL ,XXXXXXX,RM_BSPC,
@@ -187,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
 	   XXXXXXX, RM_Z  , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,RM_BSLS, RM_K  , RM_H  ,RM_MINS,RM_EQL ,XXXXXXX,RM_SLSH,  RM_UP,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
-	   XXXXXXX      , XXXXXXX ,  JOIN   , ADJUST  ,        KC_RGUI        , XXXXXXX , _______ ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
+	   XXXXXXX      , XXXXXXX ,  JOIN   , ADJUST  ,        RM_RGUI        , XXXXXXX , _______ ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
 	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
@@ -237,9 +243,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 	   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
-	   _______    ,XXXXXXX, KC_7  , KC_8  , KC_9  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_MINS,KC_PLUS,XXXXXXX,_______,    _______,
+	   _______    ,XXXXXXX, KC_7  , KC_8  , KC_9  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,    _______,
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
-	   _______      , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,XXXXXXX,XXXXXXX,_______,KC_LPRN,KC_RPRN,KC_ASTR,XXXXXXX,  _______,
+	   _______      , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  _______,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
 	   _______,XXXXXXX, KC_1  , KC_2  , KC_3  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,_______,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤

@@ -1,189 +1,284 @@
-(defcfg
-	;; For MacOS
-	input  (iokit-name "Apple Internal Keyboard / Trackpad")
-	output (kext)
+;; TODO: find better fix for hyper+, and hyper+.
 
-	fallthrough true
-	allow-cmd   false
+(defcfg
+  ;; For MacOS
+  input  (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+
+  fallthrough true
+  allow-cmd   false
 )
 
 (defalias
-	;; base layers
-	qwe (layer-switch qwerty)
-	col (layer-switch colemak)
-	gme (layer-switch game)
+  ;; base layers
+  qwe (layer-switch qwerty)
+  col (layer-switch colemak)
+  gme (layer-switch game)
 
-	;; additional layers
-	sft (layer-toggle colemak-shift)
-	meh (around rctl (around rsft (around ralt (layer-toggle colemak-meh))))
-	joi (layer-toggle join)
-	adj (layer-toggle adjust)
+  ;; additional layers
+  sft (layer-toggle colemak-shift)
+  meh (layer-toggle colemak-meh)
+  joi (layer-toggle join)
+  adj (layer-toggle adjust)
 
-	;; switch out of qwerty using shifts
-	qls (layer-toggle qwerty-lsft)
-	qrs (layer-toggle qwerty-rsft)
+  ;; using 'around' ensures fn keypress actually gets emitted
+  fn  (around (layer-toggle function) fn)
 
-	;; home row mods / mod taps
-	mtesc (tap-hold-next-release 140 esc lmet)
-	mtr   (tap-hold-next-release 160 r (layer-toggle layer-r))
-	mts   (tap-hold-next-release 160 s (layer-toggle layer-s))
-	mtt   (tap-hold-next-release 160 t (layer-toggle layer-t))
+  ;; switch out of qwerty using shifts
+  qls (layer-toggle qwerty-lsft)
+  qrs (layer-toggle qwerty-rsft)
 
-	mtn   (tap-hold-next-release 160 n (layer-toggle layer-n))
-	mte   (tap-hold-next-release 160 e (layer-toggle layer-e))
-	mti   (tap-hold-next-release 160 i (layer-toggle layer-i))
-	mtret (tap-hold-next-release 140 ret lalt)
+  ;; home row mods / mod taps
+  ;; TODO: tapping term 140 or 160 for esc
+  ;; mtesc (tap-hold-next-release 140 esc lmet)
+  mtesc (tap-hold-next-release 160 esc lmet)
+  mtz   (tap-hold-next-release 160 z lalt)
+  mtr   (tap-hold-next-release 160 r (layer-toggle layer-r))
+  mts   (tap-hold-next-release 160 s (layer-toggle layer-s))
+  mtt   (tap-hold-next-release 160 t (layer-toggle layer-t))
 
-	mtESC (tap-hold-next-release 140 (around lsft esc) (around lsft lmet))
-	mtR   (tap-hold-next-release 160 R (around lsft (layer-toggle layer-r)))
-	mtS   (tap-hold-next-release 160 S (layer-toggle layer-s))
-	mtT   (tap-hold-next-release 160 T (layer-toggle layer-t))
+  mtn   (tap-hold-next-release 160 n (layer-toggle layer-n))
+  mte   (tap-hold-next-release 160 e (layer-toggle layer-e))
+  mti   (tap-hold-next-release 160 i (layer-toggle layer-i))
 
-	mtN   (tap-hold-next-release 160 N (layer-toggle layer-n))
-	mtE   (tap-hold-next-release 160 E (layer-toggle layer-e))
-	mtI   (tap-hold-next-release 160 I (around lsft (layer-toggle layer-i)))
-	mtRET (tap-hold-next-release 140 (around lsft ret) (around lsft lalt))
+  ;; TODO: tapping term 140 or 160 for esc
+  ;; mtESC (tap-hold-next-release 140 (around lsft esc) (around lsft lmet))
+  mtESC (tap-hold-next-release 160 (around lsft esc) (around lsft lmet))
+  mtZ   (tap-hold-next-release 160 Z (around lsft lalt))
+  mtR   (tap-hold-next-release 160 R (around lsft (layer-toggle layer-r)))
+  mtS   (tap-hold-next-release 160 S (layer-toggle layer-s))
+  mtT   (tap-hold-next-release 160 T (layer-toggle layer-t))
 
-	;; media keys
-	bdn (around rctl (around rsft (around ralt (around rmet 1))))
-	bup (around rctl (around rsft (around ralt (around rmet 2))))
-	kdn (around rctl (around rsft (around ralt (around rmet 3))))
-	kup (around rctl (around rsft (around ralt (around rmet 4))))
-	prv (around rctl (around rsft (around ralt (around rmet 5))))
-	ply (around rctl (around rsft (around ralt (around rmet 6))))
-	nxt (around rctl (around rsft (around ralt (around rmet 7))))
-	mut (around rctl (around rsft (around ralt (around rmet 8))))
-	vdn (around rctl (around rsft (around ralt (around rmet 9))))
-	vup (around rctl (around rsft (around ralt (around rmet 0))))
+  mtN   (tap-hold-next-release 160 N (layer-toggle layer-n))
+  mtE   (tap-hold-next-release 160 E (layer-toggle layer-e))
+  mtI   (tap-hold-next-release 160 I (around lsft (layer-toggle layer-i)))
+
+  ;; right meh layer keys
+  ma    (around rctl (around rsft (around ralt a)))
+  mb    (around rctl (around rsft (around ralt b)))
+  mc    (around rctl (around rsft (around ralt c)))
+  md    (around rctl (around rsft (around ralt d)))
+  me    (around rctl (around rsft (around ralt e)))
+  mf    (around rctl (around rsft (around ralt f)))
+  mg    (around rctl (around rsft (around ralt g)))
+  mh    (around rctl (around rsft (around ralt h)))
+  mi    (around rctl (around rsft (around ralt i)))
+  mj    (around rctl (around rsft (around ralt j)))
+  mk    (around rctl (around rsft (around ralt k)))
+  ml    (around rctl (around rsft (around ralt l)))
+  mm    (around rctl (around rsft (around ralt m)))
+  mn    (around rctl (around rsft (around ralt n)))
+  mo    (around rctl (around rsft (around ralt o)))
+  mp    (around rctl (around rsft (around ralt p)))
+  mq    (around rctl (around rsft (around ralt q)))
+  mr    (around rctl (around rsft (around ralt r)))
+  ms    (around rctl (around rsft (around ralt s)))
+  mt    (around rctl (around rsft (around ralt t)))
+  mu    (around rctl (around rsft (around ralt u)))
+  mv    (around rctl (around rsft (around ralt v)))
+  mw    (around rctl (around rsft (around ralt w)))
+  mx    (around rctl (around rsft (around ralt x)))
+  my    (around rctl (around rsft (around ralt y)))
+  mz    (around rctl (around rsft (around ralt z)))
+  m1    (around rctl (around rsft (around ralt 1)))
+  m2    (around rctl (around rsft (around ralt 2)))
+  m3    (around rctl (around rsft (around ralt 3)))
+  m4    (around rctl (around rsft (around ralt 4)))
+  m5    (around rctl (around rsft (around ralt 5)))
+  m6    (around rctl (around rsft (around ralt 6)))
+  m7    (around rctl (around rsft (around ralt 7)))
+  m8    (around rctl (around rsft (around ralt 8)))
+  m9    (around rctl (around rsft (around ralt 9)))
+  m0    (around rctl (around rsft (around ralt 0)))
+  mf1   (around rctl (around rsft (around ralt f1)))
+  mf2   (around rctl (around rsft (around ralt f2)))
+  mf3   (around rctl (around rsft (around ralt f3)))
+  mf4   (around rctl (around rsft (around ralt f4)))
+  mf5   (around rctl (around rsft (around ralt f5)))
+  mf6   (around rctl (around rsft (around ralt f6)))
+  mf7   (around rctl (around rsft (around ralt f7)))
+  mf8   (around rctl (around rsft (around ralt f8)))
+  mf9   (around rctl (around rsft (around ralt f9)))
+  mf10  (around rctl (around rsft (around ralt f10)))
+  mf11  (around rctl (around rsft (around ralt f11)))
+  mf12  (around rctl (around rsft (around ralt f12)))
+  mesc  (around rctl (around rsft (around ralt esc)))
+  mtab  (around rctl (around rsft (around ralt tab)))
+  mbspc (around rctl (around rsft (around ralt bspc)))
+  mdel  (around rctl (around rsft (around ralt del)))
+  mret  (around rctl (around rsft (around ralt ret)))
+  mspc  (around rctl (around rsft (around ralt spc)))
+  mup   (around rctl (around rsft (around ralt up)))
+  mleft (around rctl (around rsft (around ralt left)))
+  mdown (around rctl (around rsft (around ralt down)))
+  mrght (around rctl (around rsft (around ralt rght)))
+  m-    (around rctl (around rsft (around ralt -)))
+  m=    (around rctl (around rsft (around ralt =)))
+  m[    (around rctl (around rsft (around ralt [)))
+  m]    (around rctl (around rsft (around ralt ])))
+  m\    (around rctl (around rsft (around ralt \\)))
+  m;    (around rctl (around rsft (around ralt ;)))
+  m'    (around rctl (around rsft (around ralt ')))
+  mgrv  (around rctl (around rsft (around ralt grv)))
+  m,    (around rctl (around rsft (around ralt ,)))
+  m.    (around rctl (around rsft (around ralt .)))
+  m/    (around rctl (around rsft (around ralt /)))
+  mrmet (around rctl (around rsft (around ralt rmet)))
+
+  ;; macos
+  spt (around rctl (around rsft (around ralt esc)))
 )
 
 (defsrc
-	grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
-	caps      a    s    d    f    g    h    j    k    l    ;    '    ret
-	lsft      z    x    c    v    b    n    m    ,    .    /    rsft      up
-	fn        lctl lalt lmet           spc       rmet ralt           left down rght
+  esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps      a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft      up
+  fn        lctl lalt lmet           spc       rmet ralt           left down rght
 )
 
 (deflayer colemak
-	grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-	@mtesc    a    @mtr @mts @mtt g    ]    m    @mtn @mte @mti o    @mtret
-	z         x    c    d    v    ;    \    k    h    ,    .    /         up
-	fn        lmet lalt lctl           spc       @sft @meh           left down rght
+  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
+  @mtesc    a    @mtr @mts @mtt g    ]    m    @mtn @mte @mti o    ret
+  @mtz      x    c    d    v    ;    \    k    h    ,    .    /         up
+  @fn       lmet lalt lctl           spc       @sft @meh           left down rght
+)
+
+(deflayer function
+  _         f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _         _
+  _         _    _    _              _         _    _              _    _    _
 )
 
 (deflayer colemak-shift
-	S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +    S-bspc
-	S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-	@mtESC    A    @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI O    @mtRET
-	Z         X    C    D    V    :    |    K    H    <    >    ?         S-up
-	S-fn      S-lmet S-lalt S-lctl     S-spc     _    XX           S-left S-down S-rght
+  S-esc     S-f1 S-f2 S-f3 S-f4 S-f5 S-f6 S-f7 S-f8 S-f9 S-f10 S-f11 S-f12
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +    S-bspc
+  S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
+  @mtESC    A    @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI O    S-ret
+  @mtZ      X    C    D    V    :    |    K    H    <    >    ?         S-up
+  XX        S-lmet S-lalt S-lctl     S-spc     _    XX           S-left S-down S-rght
 )
 
-;; NOTE: macos reserves `hyper + ,` and `hyper + .` for sysdiagnose.
-;;       Remapped comma -> minus, dot -> equal
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
 (deflayer colemak-meh
-	grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-	esc       a    r    s    t    g    ]    m    n    e    i    o    ret
-	z         x    c    d    v    ;    \    k    h    -    =    /         up
-	fn        XX   @joi @adj           rmet      XX   _              left down rght
+  @mesc     @mf1 @mf2 @mf3 @mf4 @mf5 @mf6 @mf7 @mf8 @mf9 @mf10 @mf11 @mf12
+  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0   @m-   @m=    @mbspc
+  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my   @m'   @mbspc @mdel
+  @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi   @mo   @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=   @m/        @mup
+  XX        XX   @joi @adj           @mrmet    XX   _              @mleft @mdown @mrght
 )
 
 (deflayer layer-r
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
-	_         XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   _    _
-	_         XX   _    XX   XX   XX   XX   XX   left down up   rght _
-	XX        XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        _
-	_         _    _    _              _         lsft XX             _    _    _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
+  _         XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   _    _
+  _         XX   _    XX   XX   XX   XX   XX   left down up   rght _
+  XX        XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        _
+  XX        _    _    _              _         lsft XX             _    _    _
 )
 
 (deflayer layer-s
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
-	_         XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   _    _
-	_         XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    _
-	XX        XX   XX   XX   XX   XX   XX   XX   +    {    }    XX        _
-	_         _    _    _              _         XX   XX             _    _    _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
+  _         XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   _    _
+  _         XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    _
+  XX        XX   XX   XX   XX   XX   XX   XX   +    {    }    XX        _
+  XX        _    _    _              _         XX   XX             _    _    _
 )
 
 (deflayer layer-t
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
-	_         XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   _    _
-	_         XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    _
-	XX        XX   XX   XX   XX   XX   XX   XX   =    XX   XX   XX        _
-	_         _    _    _              _         XX   XX             _    _    _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
+  _         XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   _    _
+  _         XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    _
+  XX        XX   XX   XX   XX   XX   XX   XX   =    XX   XX   XX        _
+  XX        _    _    _              _         XX   XX             _    _    _
 )
 
 (deflayer layer-n
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
-	_         XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   _    _
-	_         0    4    5    6    XX   XX   XX   _    XX   XX   XX   _
-	XX        1    2    3    XX   XX   XX   XX   XX   XX   XX   XX        _
-	_         _    _    _              _         XX   XX             _    _    _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
+  _         XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   _    _
+  _         0    4    5    6    XX   XX   XX   _    XX   XX   XX   _
+  XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /         _
+  XX        _    _    _              _         XX   XX             _    _    _
 )
 
 (deflayer layer-e
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
-	_         XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   _    _
-	_         \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   _
-	XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX        _
-	_         _    _    _              _         XX   XX             _    _    _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
+  _         XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   _    _
+  _         \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   _
+  XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX        _
+  XX        _    _    _              _         XX   XX             _    _    _
 )
 
 (deflayer layer-i
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
-	_         f12  f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   _    _
-	_         f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   _
-	f11       f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        _
-	_         _    _    _              _         lsft XX             _    _    _
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   _
+  _         f12  f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   _    _
+  _         f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   _
+  f11       f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        _
+  XX        _    _    _              _         lsft XX             _    _    _
 )
 
 (deflayer game
-	grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-	esc       a    r    s    t    g    ]    m    n    e    i    o    ret
-	z         x    c    d    v    ;    \    k    h    ,    .    /         up
-	fn        lmet lalt lctl           spc       lsft @meh           left down rght
-)
-
-;; meh is not released when switching to join layer
-(deflayer join
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-	XX        f12  f7   f8   f9   XX   XX   XX   ins  home pgup XX   XX   XX
-	XX        f10  f4   f5   f6   XX   XX   XX   left down up   rght XX
-	f11       f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX        XX
-	XX        XX   _    XX             XX        XX   _              XX   XX   XX
+  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
+  esc       a    r    s    t    g    ]    m    n    e    i    o    ret
+  z         x    c    d    v    ;    \    k    h    ,    .    /         up
+  @fn       lmet lalt lctl           spc       lsft @meh           left down rght
 )
 
 (deflayer adjust
-	XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-	XX        XX   @qwe @col @gme XX   XX   XX   f13  f14  f15  nlck XX   XX
-	caps      @kdn @bdn @bup @kup XX   XX   XX   @prv @vdn @vup @nxt XX
-	XX        XX   XX   XX   XX   XX   XX   XX   @ply @mut XX   XX        XX
-	XX        XX   XX   _              XX        XX   _              XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   @qwe @col @gme XX   XX   XX   f13  f14  f15  nlck XX   XX
+  caps      bldn brdn brup blup XX   XX   XX   prev vold volu next XX
+  XX        XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX        XX
+  XX        XX   XX   _              XX        XX   _              XX   XX   XX
+)
+
+(deflayer join
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        f12  f7   f8   f9   XX   XX   XX   ins  home pgup XX   XX   XX
+  XX        f10  f4   f5   f6   XX   XX   XX   left down up   rght XX
+  f11       f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX        XX
+  XX        XX   _    XX             XX        XX   _              XX   XX   XX
 )
 
 (deflayer qwerty
-	grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
-	esc       a    s    d    f    g    h    j    k    l    ;    '    ret
-	@qls      z    x    c    v    b    n    m    ,    .    /    @qrs      up
-	fn        lctl lalt lmet           spc       rmet ralt           left down rght
+  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  esc       a    s    d    f    g    h    j    k    l    ;    '    ret
+  @qls      z    x    c    v    b    n    m    ,    .    /    @qrs      up
+  @fn       lctl lalt lmet           spc       rmet ralt           left down rght
 )
 
 (deflayer qwerty-lsft
-	S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +    S-bspc
-	S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }    |
-	S-esc     A    S    D    F    G    H    J    K    L    :    "    S-ret
-	_         Z    X    C    V    B    N    M    <    >    ?    @col      S-up
-	S-fn      S-lctl  S-lalt  S-lmet   S-spc     S-rmet  S-ralt    S-left S-down S-rght
+  S-esc     S-f1 S-f2 S-f3 S-f4 S-f5 S-f6 S-f7 S-f8 S-f9 S-f10 S-f11 S-f12
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +    S-bspc
+  S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }    |
+  S-esc     A    S    D    F    G    H    J    K    L    :    "    S-ret
+  _         Z    X    C    V    B    N    M    <    >    ?    @col      S-up
+  XX        S-lctl  S-lalt  S-lmet   S-spc     S-rmet  S-ralt    S-left S-down S-rght
 )
 
 (deflayer qwerty-rsft
-	RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +    RS-bspc
-	RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }    |
-	RS-esc    A    S    D    F    G    H    J    K    L    :    "    RS-ret
-	@col      Z    X    C    V    B    N    M    <    >    ?    _         RS-up
-	RS-fn     RS-lctl RS-lalt RS-lmet  RS-spc    RS-rmet RS-ralt  RS-left RS-down RS-rght
+  RS-esc    RS-f1 RS-f2 RS-f3 RS-f4 RS-f5 RS-f6 RS-f7 RS-f8 RS-f9 RS-f10 RS-f11 RS-f12
+  RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +    RS-bspc
+  RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }    |
+  RS-esc    A    S    D    F    G    H    J    K    L    :    "    RS-ret
+  @col      Z    X    C    V    B    N    M    <    >    ?    _         RS-up
+  XX        RS-lctl RS-lalt RS-lmet  RS-spc    RS-rmet RS-ralt  RS-left RS-down RS-rght
 )

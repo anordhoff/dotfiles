@@ -61,7 +61,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<leader>F', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<leader>F', vim.lsp.buf.format, opts)
 end
 
 -- use a loop to conveniently call 'setup' on multiple servers and
@@ -115,7 +115,7 @@ end
 local gopls_group = vim.api.nvim_create_augroup('gopls', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
-    vim.lsp.buf.formatting()
+    vim.lsp.buf.format()
     goimports(1000)
   end,
   group = gopls_group,
@@ -127,23 +127,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- sumneko_lua
 ----------------------------------------
 
--- path to binary
-local path_to_binary = home_dir .. 'lua-language-server/bin/lua-language-server'
-
--- setup lua path
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 -- setup configuration
 lspconfig.sumneko_lua.setup {
   on_attach = on_attach,
-  cmd = { path_to_binary },
   settings = {
     Lua = {
       runtime = {
         version = 'LuaJIT',
-        path = runtime_path,
       },
       diagnostics = {
         globals = { 'vim', 'use' },
