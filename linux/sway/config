@@ -129,8 +129,14 @@ bindsym $meh+q kill
 # start launcher
 bindsym $meh+escape exec $menu
 
+# toggle float
+bindsym $meh+z floating toggle
+
+# swap focus between the tiling area and the floating area
+bindsym $meh+apostrophe focus mode_toggle
+
 # enter fullscreen mode for the focused container
-bindsym $meh+z fullscreen
+bindsym $hyper+z fullscreen
 
 # change container layout
 bindsym $meh+b layout tabbed
