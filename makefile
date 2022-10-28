@@ -11,11 +11,16 @@ endif
 add: validate-submodule validate-path
 	git submodule add $(submodule) $(path)
 
+# TODO: https://stackoverflow.com/questions/18770545/why-is-my-git-submodule-head-detached-from-master
 update:
-	git submodule update --remote --merge
+	# git submodule update --remote --merge
+	# --- OR ---
+	# git submodule update
+	# git submodule foreach git checkout master
+	# git submodule foreach git pull origin master
 
 init:
-	git submodule update --init --remote --merge
+	git submodule update --init
 
 rm: validate-path
 	git rm $(path)

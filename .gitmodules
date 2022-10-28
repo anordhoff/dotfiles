@@ -53,3 +53,6 @@
 [submodule "vim/pack/package/start/targets"]
 	path = vim/pack/package/start/targets
 	url = https://github.com/wellle/targets.vim.git
+[submodule "vim/pack/package/start/cool"]
+	path = vim/pack/package/start/cool
+	url = https://github.com/romainl/vim-cool.git

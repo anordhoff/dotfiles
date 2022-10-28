@@ -1,6 +1,10 @@
-" NOTE: not leveraging substitute over range motion commands
-" TODO: xmap S doesn't work
-nmap s <Plug>(SubversiveSubstitute)
+" substitute
+nmap s <plug>(SubversiveSubstitute)
 xmap s <Plug>(SubversiveSubstitute)
-nmap ss <Plug>(SubversiveSubstituteLine)
-nmap S <Plug>(SubversiveSubstituteToEndOfLine)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+" substitute over range
+nmap gs <plug>(SubversiveSubstituteRange)
+xmap gs <plug>(SubversiveSubstituteRange)
+nmap gss <plug>(SubversiveSubstituteWordRange)

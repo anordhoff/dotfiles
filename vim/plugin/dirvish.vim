@@ -1,27 +1,17 @@
-" replace netrw `Explore` commands
-command! -nargs=? -complete=dir Explore Dirvish <args>
-command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
-
 " sort directories first
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " open the current working directory
-" TODO: doesn't work
-nnoremap <silent> _ :Dirvish<CR>
+nnoremap <silent> _ :Dirvish .<CR>
 
-" TODO: take a count
 " open the [count]th parent directory in a new window
-nnoremap <silent> <leader>f :<c-u>execute v:count1 . 'YY'<CR>
-" nnoremap <silent> <leader>s <Plug>(dirvish_split_up)
-" nnoremap <silent> <leader>s :<C-U>execute v:count . <Plug>(dirvish_split_up)<CR>
+nnoremap <silent> <leader>s <Plug>(dirvish_split_up)
 nnoremap <silent> <leader>v <Plug>(dirvish_vsplit_up)
 
 augroup dirvish_config
   autocmd!
 
   " use dirvish instead of netrw when opening a directory with vim
-  " NOTE: dirvish should handle this without explicitly adding an autocmd
   autocmd VimEnter * if exists('#FileExplorer') | exe 'au! FileExplorer *' | endif
 
   " unmap default reload mapping

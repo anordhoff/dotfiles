@@ -63,7 +63,7 @@ fpath=(~/dotfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
 # history
 # --------------------------------------
 
-HISTFILE=~/.zhistory
+HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
