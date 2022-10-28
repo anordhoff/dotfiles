@@ -37,6 +37,15 @@ bindkey "^[[3~" delete-char
 # delete the line before the cursor, rather than entire line (to mimic bash)
 bindkey '^U' backward-kill-line
 
+# delete the word behind cursor up to the next whitespace
+# https://unix.stackexchange.com/questions/572439/make-ctrl-w-and-ctrl-alt-h-in-zsh-behave-the-same-as-in-bash
+zle -N backward-kill-space-word
+backward-kill-space-word() {
+  zle -f kill
+  WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle .backward-kill-word
+}
+bindkey '^W' backward-kill-space-word
+
 # ctrl-x_ctrl-e opens the current command in the editor
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -129,6 +138,9 @@ zstyle ':completion:*:warnings' format '-- no matches found --'
 # use colors in completion menu
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+# enable improved git-completion
+zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.bash
+
 
 # --------------------------------------
 # alias
@@ -142,10 +154,12 @@ alias help=run-help
 alias watch='watch -n 1 '
 
 # diff files in an editor
-alias ediff='nvim --noplugin -R -d'
+# alias ediff='nvim --noplugin -R -d'
+alias ediff='vim -d'
 
 # open the notes dir
-alias n='nvim ~/notes/misc.md'
+# alias n='nvim ~/notes/misc.md'
+alias n='vim ~/notes/misc.md'
 
 # directory stack
 alias dirs='dirs -v'
@@ -167,6 +181,11 @@ else
   alias l='ls -lhA --color=auto --group-directories-first'
   alias ll='ls -lh --color=auto --group-directories-first'
   alias ls='ls --color=auto --group-directories-first'
+fi
+
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  alias python="$BREW_PREFIX/bin/python3"
+  alias pip="$BREW_PREFIX/bin/pip3"
 fi
 
 # global cd shorthand
@@ -218,21 +237,6 @@ alias  kns='kubectl ns'
 # extensions
 # --------------------------------------
 
-# enable fzf (except in vim)
-if [ -z $VIM ]; then
-  if [[ $OSTYPE =~ "darwin"* ]]; then
-    [ -r /usr/local/opt/fzf/shell/completion.zsh ] \
-      && source /usr/local/opt/fzf/shell/completion.zsh
-    [ -r /usr/local/opt/fzf/shell/key-bindings.zsh ] \
-      && source /usr/local/opt/fzf/shell/key-bindings.zsh
-  else
-    [ -r /usr/share/fzf/shell/completion.zsh ] \
-      && source /usr/share/fzf/shell/completion.zsh
-    [ -r /usr/share/fzf/shell/key-bindings.zsh ] \
-      && source /usr/share/fzf/shell/key-bindings.zsh
-  fi
-fi
-
 # enable expand-multiple-dots.zsh
 [ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] \
   && source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
@@ -240,6 +244,21 @@ fi
 # enable tab-on-empty-line-shows-files.zsh
 [ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] \
   && source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
+
+# enable fzf (except in vim)
+if [ -z $VIM ]; then
+  if [[ $OSTYPE =~ "darwin"* ]]; then
+    [ -r $BREW_PREFIX/opt/fzf/shell/completion.zsh ] \
+      && source $BREW_PREFIX/opt/fzf/shell/completion.zsh
+    [ -r $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh ] \
+      && source $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh
+  else
+    [ -r /usr/share/fzf/shell/completion.zsh ] \
+      && source /usr/share/fzf/shell/completion.zsh
+    [ -r /usr/share/fzf/shell/key-bindings.zsh ] \
+      && source /usr/share/fzf/shell/key-bindings.zsh
+  fi
+fi
 
 
 # --------------------------------------

@@ -14,6 +14,7 @@ set fillchars=vert:\|  " use the pipe symbol as a vertical separator
 set textwidth=79       " wrap lines at 79 characters when formatting
 set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
 set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
+set mouse=             " disable mouse support
 set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
 
 " use spaces by default
@@ -39,6 +40,10 @@ set wildignorecase
 
 " load custom colorscheme
 colorscheme colorscheme
+
+" restore cursor to previous location when opening a file
+autocmd BufRead * autocmd FileType <buffer> ++once
+  \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
 
 " disable automatic line wrapping for non-comment text; disable insertion of
 " the current comment leader when creating a new line

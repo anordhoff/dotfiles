@@ -10,7 +10,7 @@ require('nvim-treesitter.configs').setup {
   auto_install = true,
 
   -- List of parsers to ignore installing
-  ignore_install = {},
+  ignore_install = { 'phpdoc', 'tree-sitter-phpdoc' },
 
   highlight = {
     enable = false,

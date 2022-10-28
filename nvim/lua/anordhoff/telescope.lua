@@ -60,18 +60,19 @@ telescope.setup {
 }
 telescope.load_extension('fzf')
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files)
-vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-vim.keymap.set('n', '<leader>fb', builtin.buffers)
-vim.keymap.set('n', '<leader>fq', builtin.quickfix)
-vim.keymap.set('n', '<leader>fl', builtin.loclist)
-vim.keymap.set('n', '<leader>fd', builtin.diagnostics)
-vim.keymap.set('n', '<leader>fr', builtin.lsp_references)
-vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations)
-vim.keymap.set('n', '<leader>ft', builtin.tags)
-vim.keymap.set('n', '<leader>fh', builtin.help_tags)
-vim.keymap.set('n', '<leader>fm', builtin.keymaps)
-vim.keymap.set('n', '<leader>fa', builtin.autocommands)
+local opts = { silent = true }
+vim.keymap.set('n', '<space>ff', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
+vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
+vim.keymap.set('n', '<leader>fq', builtin.quickfix, opts)
+vim.keymap.set('n', '<leader>fl', builtin.loclist, opts)
+vim.keymap.set('n', '<leader>fd', builtin.diagnostics, opts)
+vim.keymap.set('n', '<leader>fr', builtin.lsp_references, opts)
+vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, opts)
+vim.keymap.set('n', '<leader>ft', builtin.tags, opts)
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
+vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
+vim.keymap.set('n', '<leader>fa', builtin.autocommands, opts)
 
 -- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
