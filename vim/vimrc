@@ -1,63 +1,78 @@
-" make vim less vi-compatible
-set nocompatible
-set nolangremap
+" " make vim less vi-compatible
+" set nocompatible
+" set nolangremap
 
-" cursor shape
-let &t_SI = "\e[6 q"
-let &t_SR = "\e[4 q"
-let &t_EI = "\e[2 q"
+" " cursor shape
+" let &t_SI = "\e[6 q"
+" let &t_SR = "\e[4 q"
+" let &t_EI = "\e[2 q"
 
-" minimal delay for escape key press
-set ttimeoutlen=1
+" " minimal delay for escape key press
+" set ttimeoutlen=1
 
-" swap directory, viminfo path
-set directory=$HOME/.local/state/vim/swap//
-set viminfofile=$HOME/.local/state/vim/.viminfo
+" " swap directory, viminfo path
+" set directory=$HOME/.local/state/vim/swap//
+" set viminfofile=$HOME/.local/state/vim/.viminfo
 
-" enable filetype detection; load indent/plugin files
-filetype plugin indent on
+" " enable filetype detection; load indent/plugin files
+" filetype plugin indent on
 
-" allow backspacing everything in insert mode
-set backspace=indent,eol,start
+" " allow backspacing everything in insert mode
+" set backspace=indent,eol,start
 
-set showcmd      " show partial commands
-set autoindent   " copy indent from current line
-set shortmess-=S " show search count message when searching
+" set showcmd      " show partial commands
+" set autoindent   " copy indent from current line
+" set shortmess-=S " show search count message when searching
+" set autoread     " pull in changes to unedited files
+" set laststatus=2 " always show the status line
+
+" " tmux integration (see :help tmux-integration)
+" if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+"   " enable bracketed paste mode
+"   let &t_BE = "\e[?2004h"
+"   let &t_BD = "\e[?2004l"
+"   let &t_PS = "\e[200~"
+"   let &t_PE = "\e[201~"
+
+"   " enable focus event tracking
+"   let &t_fe = "\e[?1004h"
+"   let &t_fd = "\e[?1004l"
+"   execute "set <FocusGained>=\e[I"
+"   execute "set <FocusLost>=\e[O"
+" endif
 
 " TODO
-set autoread
-set belloff=all
-set cmdheight=1
-set complete=.,w,b,u,t
-set cscopeverbose
-set diffopt=internal,filler
-set display=lastline
-set formatoptions=tcqj
-set nofsync
-set hidden
-set history=10000
-set nojoinspaces
-set laststatus=2
-set listchars=tab:>\ ,trail:-,nbsp:+
-set maxcombine=6
-set sessionoptions-=options
-set sidescroll=1
-set smarttab
-set nostartofline
-set tabpagemax=50
-" set tags=./tags;,tags
-set notitle
-set switchbuf=uselast
-set titleold=
-set ttyfast
+" set belloff=all
+" set cmdheight=1
+" set complete=.,w,b,u,t
+" set cscopeverbose
+" set diffopt=internal,filler
+" set display=lastline
+" set formatoptions=tcqj
+" set nofsync
+" set hidden
+" set history=10000
+" set nojoinspaces
+" set listchars=tab:>\ ,trail:-,nbsp:+
+" set maxcombine=6
+" set sessionoptions-=options
+" set sidescroll=1
+" set smarttab
+" set nostartofline
+" set tabpagemax=50
+" " set tags=./tags;,tags
+" set notitle
+" set switchbuf=uselast
+" set titleold=
+" set ttyfast
 " TODO: set viewoptions+=unix,slash
 " set viewoptions-=options
 " let &wildoptions="pum,tagfile"
 
-nnoremap Y y$
-nnoremap <C-L> <Cmd>nohlsearch<Bar>diffupdate<CR><C-L>
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
+" nnoremap Y y$
+" nnoremap <C-L> <Cmd>nohlsearch<Bar>diffupdate<CR><C-L>
+" inoremap <C-U> <C-G>u<C-U>
+" inoremap <C-W> <C-G>u<C-W>
 
 
 
@@ -71,7 +86,7 @@ endif
 
 set number             " line numbers
 set incsearch          " immediately find next search hit
-set nohlsearch         " don't highlight search matches
+set hlsearch           " highlight search matches
 set noshowmode         " hide the mode from the bottom row
 set ignorecase         " case-insensitive searching...
 set smartcase          " ...but not if the search contains a capital letter
@@ -107,7 +122,7 @@ set wildmode=longest:full,full
 set wildignorecase
 
 " load custom colorscheme
-syntax on
+syntax enable
 colorscheme colorscheme
 
 " restore cursor to previous location when opening a file
@@ -151,24 +166,74 @@ nnoremap <leader>e :e **/*<C-z><S-Tab>
 nnoremap <leader>b :ls<CR>:b<Space>
 
 " toggle the quickfix list window
-nnoremap <silent> <leader>q :call vim#togglequickfixlist()<CR>
+" nnoremap <silent> <leader>q :call ToggleQuickfixList()<CR>
+" function ToggleQuickfixList()
+"   if getqflist({'winid': 0}).winid
+"     cclose
+"   else
+"     copen
+"   endif
+" endfunction
 
 " toggle the location list window
-nnoremap <silent> <leader>l :call vim#togglelocationlist()<CR>
+" nnoremap <silent> <leader>l :call ToggleLocationList()<CR>
+" function ToggleLocationList()
+"   try
+"     if getloclist(0, {'winid': 0}).winid
+"       lclose
+"     else
+"       lopen
+"     endif
+"   catch 'E776'
+"     echohl ErrorMsg | echo 'E776: No location list' | echohl None
+"   endtry
+" endfunction
 
 " maximize (toggle) the current window (NOTE: overrides default mappings)
 nnoremap <silent> <C-w>z <C-w>\|<C-w>_
 nnoremap <silent> <C-w><C-z> <C-w>\|<C-w>_
 
 " toggle sharing mode (turns on cursorline/cursorcolumn for active buffer)
-command Share :call vim#sharing(1)
-command Noshare :call vim#sharing(0)
+command Share :call Sharing(1)
+command Noshare :call Sharing(0)
+" TODO: opening netrw after enabling sharing mode breaks cursorline/cursorcolumn
+" TODO: dirvish?
+function Sharing(enable)
+  if a:enable
+    setlocal cursorline
+    setlocal cursorcolumn
+    augroup sharing
+      autocmd!
+      autocmd WinEnter * if &ft != 'netrw' | setlocal cursorline cursorcolumn | endif
+      autocmd WinLeave * if &ft != 'netrw' | setlocal nocursorline nocursorcolumn | endif
+    augroup END
+  else
+    setlocal nocursorline
+    setlocal nocursorcolumn
+    augroup sharing
+      autocmd!
+    augroup END
+  endif
+endfunction
 
 " get highlight group under the cursor
-command Hi :call vim#syngroup()
+command Hi :call Syngroup()
+function Syngroup()
+  for l:i1 in synstack(line('.'), col('.'))
+    let l:i2 = synIDtrans(l:i1)
+    echo synIDattr(l:i1, 'name') '->' synIDattr(l:i2, 'name')
+  endfor
+endfunction
 
 " clear the specified register (:wshada! to persist changes)
-command! -nargs=1 Clear :call vim#clearregisters(<q-args>)
+command! -nargs=1 Clear :call ClearRegisters(<q-args>)
+function ClearRegisters(chars)
+  for l:char in split(a:chars, '\zs')
+    :call setreg(l:char, [])
+  endfor
+  echo "Successfully cleared registers '" . a:chars .
+    \ "'. Execute :wshada! to persist changes"
+endfunction
 
 " trigger omni completion
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
@@ -307,7 +372,29 @@ endif
 let g:notesdir = '~/notes/misc.md'
 
 " toggle the notebook
-nnoremap <silent> <leader>n :call vim#togglenotes(g:notesdir)<CR>
+nnoremap <silent> <leader>n :call ToggleNotes(g:notesdir)<CR>
+function ToggleNotes(dir)
+  if !exists('t:notesbuf')
+    let t:notesbuf = 0
+  endif
+  if !exists('t:noteswin')
+    let t:noteswin = 0
+  endif
+
+  " toggle the notes window, saving the currently open buffer
+  if win_gotoid(t:noteswin)
+    let t:notesbuf = bufnr('%')
+    hide
+  else
+    try
+      exec 'sbuffer ' . t:notesbuf
+    catch
+      exec 'split ' . a:dir
+      let t:notesbuf = bufnr('%')
+    endtry
+    let t:noteswin = win_getid()
+  endif
+endfunction
 
 " prevent notes from being added to the buffer list
 augroup notes
@@ -321,23 +408,56 @@ augroup END
 " --------------------------------------
 
 " set the preferred editor to use the current session's RPC server
-let $VISUAL="nvim --server " . v:servername . " --remote"
-let $EDITOR="nvim --server " . v:servername . " --remote"
+" TODO
+" let $VISUAL="nvim --server " . v:servername . " --remote"
+" let $EDITOR="nvim --server " . v:servername . " --remote"
 
 " exit to normal mode using ctrl-[ or escape
 tnoremap <C-[> <C-\><C-n>
 tnoremap <esc> <C-\><C-n>
 
 " open terminal in a horizontal or vertical split
-nnoremap <silent> <A-s> :call vim#toggleterm(0)<CR>
-nnoremap <silent> <A-v> :call vim#toggleterm(1)<CR>
+nnoremap <silent> <A-s> :call ToggleTerm(0)<CR>
+nnoremap <silent> <A-v> :call ToggleTerm(1)<CR>
 
 " toggle terminal without leaving terminal insert mode
-tnoremap <silent> <A-s> <C-\><C-n>:call vim#toggleterm(0)<CR>
-tnoremap <silent> <A-v> <C-\><C-n>:call vim#toggleterm(1)<CR>
+tnoremap <silent> <A-s> <C-\><C-n>:call ToggleTerm(0)<CR>
+tnoremap <silent> <A-v> <C-\><C-n>:call ToggleTerm(1)<CR>
 
 " use ctrl-r to access registers in terminal insert mode
 tnoremap <expr> <C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
+" toggle a horizontal/vertical terminal split
+function ToggleTerm(vsplit)
+  if !exists('t:termbuf')
+    let t:termbuf = 0
+  endif
+  if !exists('t:termwin')
+    let t:termwin = 0
+  endif
+
+  " if a terminal window is open, hide it; else, (re)open a terminal window
+  if bufname(winbufnr(t:termwin)) =~ '^term://' && win_gotoid(t:termwin)
+    hide
+  else
+    try
+      if a:vsplit
+        exec 'vertical sbuffer ' . t:termbuf
+      else
+        exec 'sbuffer ' . t:termbuf
+      endif
+      startinsert!
+    catch
+      if a:vsplit
+        exec 'vsplit +term'
+      else
+        exec 'split +term'
+      endif
+      let t:termbuf = bufnr('%')
+    endtry
+    let t:termwin = win_getid()
+  endif
+endfunction
 
 "TODO
 " augroup terminal
@@ -358,3 +478,12 @@ tnoremap <expr> <C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " --------------------------------------
 
 runtime job.vim
+
+if &loadplugins
+  " native vim plugins
+  " packadd cfilter
+
+  " neovim plugins
+  lua require('anordhoff.lspconfig')
+  " lua require('anordhoff.hello')
+endif

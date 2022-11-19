@@ -27,8 +27,9 @@
 
 {
 	"^u"      = "deleteToBeginningOfLine:";
-	"^w"      = "deleteWordBackward:";
+	"^w"      = "deleteWordBackward:"; /* TODO: should delete entire word, not just to WORDCHAR */
 	"^_"      = ("undo:", "moveForward:");
+	"^x^u"      = ("undo:", "moveForward:"); /* TODO: does this work? */
 
 	"~b"      = "moveWordBackward:";
 	"~d"      = "deleteWordForward:";

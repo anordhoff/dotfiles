@@ -72,7 +72,7 @@ hi Folded                        cterm=none        ctermfg=11       ctermbg=none
 " --------------------------------------
 " window/tab delimiters
 " --------------------------------------
-hi VertSplit                     cterm=none        ctermfg=8       ctermbg=none
+hi VertSplit                     cterm=none        ctermfg=8        ctermbg=none
 hi TabLine                       cterm=none        ctermfg=7        ctermbg=10
 hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=10
 hi TabLineSel                    cterm=none        ctermfg=5        ctermbg=10
@@ -166,9 +166,9 @@ hi FloatBorder                   cterm=none        ctermfg=8        ctermbg=none
 " --------------------------------------
 " go
 " --------------------------------------
-" hi goFormatSpecifier             cterm=none        ctermfg=2        ctermbg=none
-" hi goEscapeC                     cterm=none        ctermfg=2        ctermbg=none
-" hi goEscapeError                 cterm=none        ctermfg=2        ctermbg=none
+hi goFormatSpecifier             cterm=none        ctermfg=2        ctermbg=none
+hi goEscapeC                     cterm=none        ctermfg=2        ctermbg=none
+hi goEscapeError                 cterm=none        ctermfg=2        ctermbg=none
 
 " --------------------------------------
 " json
@@ -223,16 +223,9 @@ hi LeapLabelSecondary            cterm=none        ctermfg=5        ctermbg=none
 hi LeapBackdrop                  cterm=none        ctermfg=11       ctermbg=none
 
 " --------------------------------------
-" nvim-lspconfig
+" signature
 " --------------------------------------
-" hi DiagnosticError               cterm=none        ctermfg=7        ctermbg=none
-" hi DiagnosticWarn                cterm=none        ctermfg=7        ctermbg=none
-" hi DiagnosticInfo                cterm=none        ctermfg=7        ctermbg=none
-" hi DiagnosticHint                cterm=none        ctermfg=7        ctermbg=none
-" hi DiagnosticSignError           cterm=none        ctermfg=1        ctermbg=none
-" hi DiagnosticSignWarn            cterm=none        ctermfg=3        ctermbg=none
-" hi DiagnosticSignInfo            cterm=none        ctermfg=4        ctermbg=none
-" hi DiagnosticSignHint            cterm=none        ctermfg=2        ctermbg=none
+hi SignatureMarkText             cterm=none        ctermfg=7        ctermbg=none
 
 " --------------------------------------
 " telescope.nvim

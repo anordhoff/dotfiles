@@ -1,15 +1,11 @@
 #!/bin/sh
 
+# auto balance windows
 yabai -m config layout bsp
 yabai -m config auto_balance on
 
-# padding
-# yabai -m config top_padding    5
-# yabai -m config bottom_padding 6
-# yabai -m config left_padding   6
-# yabai -m config right_padding  6
-# yabai -m config window_gap     2
-yabai -m config window_gap     1
+# padding between windows
+yabai -m config window_gap 2
 
 # border
 yabai -m config window_border              on
@@ -17,7 +13,7 @@ yabai -m config window_border_hidpi        on
 yabai -m config window_border_width        2
 yabai -m config window_border_radius       11
 yabai -m config active_window_border_color 0xff8ec07c
-yabai -m config normal_window_border_color 0x00555555
+yabai -m config normal_window_border_color 0xff727272
 
 # applications to ignore
 yabai -m rule --add app="Finder"             manage=off

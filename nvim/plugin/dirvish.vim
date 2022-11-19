@@ -1,22 +1,17 @@
-" replace netrw `Explore` commands
-command! -nargs=? -complete=dir Explore Dirvish <args>
-command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
-
 " sort directories first
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
-" TODO: better mappints for dirvish_(v)split_up
 " open the current working directory
-nnoremap <silent> _ :Dirvish<CR>
-nnoremap <silent> <leader>a <Plug>(dirvish_split_up)
-nnoremap <silent> <leader>r <Plug>(dirvish_vsplit_up)
+nnoremap <silent> _ :Dirvish .<cr>
+
+" open the [count]th parent directory in a new window
+nmap <silent> <leader>s <plug>(dirvish_split_up)
+nmap <silent> <leader>v <plug>(dirvish_vsplit_up)
 
 augroup dirvish_config
   autocmd!
 
   " use dirvish instead of netrw when opening a directory with vim
-  " NOTE: dirvish should handle this without explicitly adding an autocmd
   autocmd VimEnter * if exists('#FileExplorer') | exe 'au! FileExplorer *' | endif
 
   " unmap default reload mapping
@@ -31,30 +26,30 @@ augroup dirvish_config
   autocmd Filetype dirvish silent! unmap <buffer> A
 
   " map `gc` to toggle conceal (<nowait> overrides vim-commentary mappings)
-  autocmd Filetype dirvish nnoremap <silent><buffer><expr><nowait> gc &cole ? ':setl cole=0<CR>' : ':setl cole=2<CR>'
+  autocmd Filetype dirvish nnoremap <silent><buffer><expr><nowait> gc &cole ? ':setl cole=0<cr>' : ':setl cole=2<cr>'
 
   " map `gf` to autopopulated filter command
   autocmd Filetype dirvish nnoremap <buffer> gf :g//d<left><left>
 
   " map `gh` to hide dot-prefixed files
-  autocmd Filetype dirvish nnoremap <silent><buffer> gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<CR>
+  autocmd Filetype dirvish nnoremap <silent><buffer> gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>
 
   " map `gr` to reload
-  autocmd Filetype dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
+  autocmd Filetype dirvish nnoremap <silent><buffer> gr :<c-u>Dirvish %<cr>
 
   " map `a` to open file at cursor
-  autocmd Filetype dirvish nnoremap <silent><buffer> a :call dirvish#open('edit', 0)<CR>
-  autocmd Filetype dirvish xnoremap <silent><buffer> a :call dirvish#open('edit', 0)<CR>
+  autocmd Filetype dirvish nnoremap <silent><buffer> a :call dirvish#open('edit', 0)<cr>
+  autocmd Filetype dirvish xnoremap <silent><buffer> a :call dirvish#open('edit', 0)<cr>
 
-  " map `<C-s>` to open in new split
-  autocmd Filetype dirvish nnoremap <silent><buffer> <C-s> :call dirvish#open('split', 0)<CR>
-  autocmd Filetype dirvish xnoremap <silent><buffer> <C-s> :call dirvish#open('split', 0)<CR>
+  " map `<c-s>` to open in new split
+  autocmd Filetype dirvish nnoremap <silent><buffer> <c-s> :call dirvish#open('split', 0)<cr>
+  autocmd Filetype dirvish xnoremap <silent><buffer> <c-s> :call dirvish#open('split', 0)<cr>
 
-  " map `<C-v>` to open in new vertical split
-  autocmd Filetype dirvish nnoremap <silent><buffer> <C-v> :call dirvish#open('vsplit', 0)<CR>
-  autocmd Filetype dirvish xnoremap <silent><buffer> <C-v> :call dirvish#open('vsplit', 0)<CR>
+  " map `<c-v>` to open in new vertical split
+  autocmd Filetype dirvish nnoremap <silent><buffer> <c-v> :call dirvish#open('vsplit', 0)<cr>
+  autocmd Filetype dirvish xnoremap <silent><buffer> <c-v> :call dirvish#open('vsplit', 0)<cr>
 
-  " map `<C-t>` to open in new tab
-  autocmd Filetype dirvish nnoremap <silent><buffer> <C-t> :call dirvish#open('tabedit', 0)<CR>
-  autocmd Filetype dirvish xnoremap <silent><buffer> <C-t> :call dirvish#open('tabedit', 0)<CR>
+  " map `<c-t>` to open in new tab
+  autocmd Filetype dirvish nnoremap <silent><buffer> <c-t> :call dirvish#open('tabedit', 0)<cr>
+  autocmd Filetype dirvish xnoremap <silent><buffer> <c-t> :call dirvish#open('tabedit', 0)<cr>
 augroup END

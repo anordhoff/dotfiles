@@ -13,4 +13,4 @@ local opts = { silent = true }
 vim.keymap.set('n', 'x', bidirectional, opts)
 vim.keymap.set('x', 'x', bidirectional, opts)
 vim.keymap.set('o', 'x', bidirectional, opts)
-vim.keymap.set('n', 'X', '<Plug>(leap-cross-window)', opts)
+vim.keymap.set('n', 'X', '<plug>(leap-cross-window)', opts)

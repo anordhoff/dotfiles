@@ -1,3 +1,3 @@
-" implement readline C-k (overrides builtin C-k)
-inoremap <C-k> <C-o>D
-cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+" implement readline ctrl-k (overrides builtin ctrl-k)
+inoremap <c-k> <c-o>D
+cnoremap <c-k> <c-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<cr>

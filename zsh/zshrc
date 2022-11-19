@@ -267,3 +267,7 @@ fi
 
 # source work zshrc
 [ -r ~/jobfiles/zsh/zshrc ] && source ~/jobfiles/zsh/zshrc
+
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/openssl@3/bin $path)
+fi

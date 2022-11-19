@@ -1,8 +1,8 @@
 # open terminal
-shift + ctrl + alt - return : /Applications/kitty.app/Contents/MacOS/kitty
+shift + ctrl + alt - return : kitty
 
-# close current window
-shift + ctrl + alt - q : yabai -m window --close
+# minimize current window
+shift + ctrl + alt - q : yabai -m window --minimize
 
 # toggle float
 shift + ctrl + alt - z : yabai -m window --toggle float
@@ -49,8 +49,6 @@ shift + ctrl + alt - 0x1B : yabai -m display --focus prev # 0x1B = minus
 shift + ctrl + alt - 0x18 : yabai -m display --focus next # 0x18 = equal
 
 # move window to adjacent monitor
-# NOTE: macOS reserves `hyper + ,` and `hyper + .` for sysdiagnose. Remapped comma, period to minus, equal
-# TODO: any fix to using minus and equal?
 shift + ctrl + alt + cmd - 0x1B : yabai -m window --display prev # 0x1B = minus
 shift + ctrl + alt + cmd - 0x18 : yabai -m window --display next # 0x18 = equal
 
