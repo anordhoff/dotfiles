@@ -1,0 +1,44 @@
+# vim: ft=zsh
+# PATH environment variable is managed by .zprofile; see
+# https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
+
+# set PATH, MANPATH, etc., for homebrew
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# prepend ~/.local/bin to PATH
+typeset -U path
+path=(~/.local/bin $path)
+
+# go
+path=($GOPATH/bin $path)
+
+# rust
+path=(~/.cargo/bin $path)
+
+# kubectl plugins
+path=(~/.krew/bin $path)
+
+# npm global dependencies
+path=(~/.npm/global/bin $path)
+
+# python
+path=(~/Library/Python/3.10/bin $path)
+
+# ruby
+path=($BREW_PREFIX/opt/ruby/bin $path)
+
+# symlink keg-only packages
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/avr-gcc@8/bin $path)
+  path=($BREW_PREFIX/opt/arm-none-eabi-gcc@9/bin $path)
+fi
+
+# prefer openssl over libressl on macos
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/openssl@3/bin $path)
+fi
+
+# source work zprofile
+[ -r ~/jobfiles/zsh/zprofile ] && source ~/jobfiles/zsh/zprofile

@@ -1,6 +1,13 @@
-" NOTE: not leveraging substitute over range motion commands
-" TODO: xmap S doesn't work
-nmap s <Plug>(SubversiveSubstitute)
-xmap s <Plug>(SubversiveSubstitute)
-nmap ss <Plug>(SubversiveSubstituteLine)
-nmap S <Plug>(SubversiveSubstituteToEndOfLine)
+" TODO: repeat doesn't work for visual substitute
+" TODO: highlight flash when using substitute over range
+
+" substitute
+nmap s <plug>(SubversiveSubstitute)
+xmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+" substitute over range
+nmap gs <plug>(SubversiveSubstituteRange)
+xmap gs <plug>(SubversiveSubstituteRange)
+nmap gss <plug>(SubversiveSubstituteWordRange)

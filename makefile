@@ -5,7 +5,7 @@ endif
 
 validate-path:
 ifndef path
-	$(error path is undefined (eg path=vim/pack/package/start/vim-repeat))
+	$(error path is undefined (eg path=vim/pack/package/start/repeat))
 endif
 
 add: validate-submodule validate-path

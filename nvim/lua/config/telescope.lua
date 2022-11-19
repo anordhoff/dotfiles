@@ -2,6 +2,8 @@ local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 
+telescope.load_extension('fzf')
+
 telescope.setup {
   defaults = {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
@@ -18,10 +20,10 @@ telescope.setup {
     mappings = {
       i = {
         ['<esc>'] = actions.close,
-        ['<Tab>'] = actions.toggle_selection + actions.move_selection_next,
-        ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_previous,
-        ['<C-x>'] = false,
-        ['<C-s>'] = actions.select_horizontal,
+        ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
+        ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
+        ['<c-x>'] = false,
+        ['<c-s>'] = actions.select_horizontal,
       },
       n = {},
     },
@@ -58,10 +60,20 @@ telescope.setup {
     },
   },
 }
-telescope.load_extension('fzf')
 
+-- add line numbers to telescope preview buffers
+local telescope_group = vim.api.nvim_create_augroup('telescope', { clear = true })
+vim.api.nvim_create_autocmd('User', {
+  callback = function()
+    vim.opt_local.number = true
+  end,
+  group = telescope_group,
+  pattern = 'TelescopePreviewerLoaded'
+})
+
+-- mappings
 local opts = { silent = true }
-vim.keymap.set('n', '<space>ff', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 vim.keymap.set('n', '<leader>fq', builtin.quickfix, opts)
@@ -72,9 +84,10 @@ vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, opts)
 vim.keymap.set('n', '<leader>ft', builtin.tags, opts)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
+vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 vim.keymap.set('n', '<leader>fa', builtin.autocommands, opts)
 
--- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
+-- NOTE: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
    callback = function()
       vim.api.nvim_create_autocmd('BufWinEnter', {

@@ -1,37 +1,11 @@
-# prepend ~/.local/bin to PATH
-typeset -U path
-path=(~/.local/bin $path)
-
-# set GOPATH and prepend to PATH
-export GOPATH="$HOME/go"
-path=($GOPATH/bin $path)
-
-# rust
-path=(~/.cargo/bin $path)
-
-# kubectl plugins
-path=(~/.krew/bin $path)
-
-# npm global dependencies
-path=(~/.npm/global/bin $path)
-
-# python
-path=(~/Library/Python/3.10/bin $path)
-
 # faster than $(brew --prefix)
-BREW_PREFIX='/opt/homebrew'
-
-# symlink keg-only packages
-if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=($BREW_PREFIX/opt/avr-gcc@8/bin $path)
-  path=($BREW_PREFIX/opt/arm-none-eabi-gcc@9/bin $path)
-fi
+export BREW_PREFIX='/opt/homebrew'
 
 # set help directory for zsh built-ins
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  HELPDIR="$BREW_PREFIX/share/zsh/help"
+  export HELPDIR="$BREW_PREFIX/share/zsh/help"
 else
-  HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
+  export HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
 fi
 
 # set the preferred editor to vim if not already set
@@ -44,9 +18,6 @@ export GPG_TTY=$(tty)
 # less options
 export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5'
 
-# do not paginate awscli responses
-export AWS_PAGER=''
-
 # ls colors (gnu)
 export LS_COLORS="rs=0:di=34:ln=36:mh=00:pi=40;33:so=35:do=35:bd=40;33:cd=40;\
 33:or=40;31:mi=00:su=30;41:sg=30;43:ca=30;41:tw=30;42:ow=30;42:st=30;44:ex=32"
@@ -55,8 +26,18 @@ export LS_COLORS="rs=0:di=34:ln=36:mh=00:pi=40;33:so=35:do=35:bd=40;33:cd=40;\
 export GREP_COLORS='ms=0;35'
 export GREP_COLOR='0;35'
 
+# set GOPATH
+export GOPATH="$HOME/go"
+
+# do not paginate awscli responses
+export AWS_PAGER=''
+
 # jq colors (update field color: https://github.com/stedolan/jq/pull/1791)
 export JQ_COLORS='0;37:0;37:0;37:0;37:0;37:0;37:0;37'
+
+# kubectx / kubens colors
+export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
+export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
 
 # fzf flags and colors
 export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file \
@@ -80,10 +61,6 @@ export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ \
 --color pointer:7:regular \
 --color prompt:7:regular \
 --color query:7:regular"
-
-# kubectx / kubens colors
-export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
-export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
 
 # source work zshenv
 [ -r ~/jobfiles/zsh/zshenv ] && source ~/jobfiles/zsh/zshenv

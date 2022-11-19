@@ -1,3 +1,4 @@
+-- TODO: currently broken
 -- TODO: use synchronous omnifunc when merged:
 --   https://github.com/neovim/neovim/issues/12390
 --   https://github.com/neovim/neovim/pull/16225
@@ -23,8 +24,8 @@ function _G.omnifunc_sync(findstart, base)
   end
 
   -- Restore cursor line and position to the state of first call
-  vim.api.nvim_set_current_line(omnifunc_cache.line)
-  vim.api.nvim_win_set_cursor(0, omnifunc_cache.pos)
+  -- vim.api.nvim_set_current_line(omnifunc_cache.line)
+  -- vim.api.nvim_win_set_cursor(0, omnifunc_cache.pos)
 
   -- Make request
   local bufnr = vim.api.nvim_get_current_buf()
@@ -43,8 +44,8 @@ function _G.omnifunc_sync(findstart, base)
 
   -- Restore back cursor line and position to the state of this call's start
   -- (avoids outcomes of Vim's internal line postprocessing)
-  vim.api.nvim_set_current_line(line)
-  vim.api.nvim_win_set_cursor(0, pos)
+  -- vim.api.nvim_set_current_line(line)
+  -- vim.api.nvim_win_set_cursor(0, pos)
 
   return items
 end

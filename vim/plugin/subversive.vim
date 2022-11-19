@@ -1,10 +1,10 @@
 " substitute
-nmap s <plug>(SubversiveSubstitute)
+nmap s <Plug>(SubversiveSubstitute)
 xmap s <Plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
+nmap ss <Plug>(SubversiveSubstituteLine)
+nmap S <Plug>(SubversiveSubstituteToEndOfLine)
 
 " substitute over range
-nmap gs <plug>(SubversiveSubstituteRange)
-xmap gs <plug>(SubversiveSubstituteRange)
-nmap gss <plug>(SubversiveSubstituteWordRange)
+nmap gs <Plug>(SubversiveSubstituteRange)
+xmap gs <Plug>(SubversiveSubstituteRange)
+nmap gss <Plug>(SubversiveSubstituteWordRange)

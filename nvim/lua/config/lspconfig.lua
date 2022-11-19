@@ -42,7 +42,7 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist)
 local on_attach = function(_, bufnr)
   -- enable completion (NOTE: onminfunc_sync.lua func for synchronous omnifunc)
   -- https://github.com/neovim/neovim/pull/17218
-  require('anordhoff.omnifunc_sync')
+  require('config.omnifunc_sync')
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.omnifunc_sync')
 
   -- keymaps
@@ -51,7 +51,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, opts)
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wl', function()
