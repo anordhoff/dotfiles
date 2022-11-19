@@ -31,15 +31,19 @@
 [submodule "nvim/package/start/surround"]
 	path = nvim/package/start/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "nvim/package/start/unimpaired"]
-	path = nvim/package/start/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "nvim/package/opt/startuptime"]
-	path = nvim/package/opt/startuptime
-	url = https://github.com/dstein64/vim-startuptime.git
 [submodule "nvim/package/start/targets"]
 	path = nvim/package/start/targets
 	url = https://github.com/wellle/targets.vim.git
+[submodule "nvim/package/start/unimpaired"]
+	path = nvim/package/start/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+
+# vim (opt)
+[submodule "nvim/package/opt/startuptime"]
+	path = nvim/package/opt/startuptime
+	url = https://github.com/dstein64/vim-startuptime.git
+
+# neovim
 [submodule "nvim/package/start/impatient"]
 	path = nvim/package/start/impatient
 	url = https://github.com/lewis6991/impatient.nvim.git
@@ -49,6 +53,8 @@
 [submodule "nvim/package/start/lspconfig"]
 	path = nvim/package/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
+
+# telescope
 [submodule "nvim/package/start/plenary"]
 	path = nvim/package/start/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
@@ -58,6 +64,8 @@
 [submodule "nvim/package/start/telescope-fzf-native"]
 	path = nvim/package/start/telescope-fzf-native
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
+
+# treesitter
 [submodule "nvim/package/start/treesitter"]
 	path = nvim/package/start/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
