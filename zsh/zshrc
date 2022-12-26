@@ -63,7 +63,7 @@ fpath=(~/dotfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
 # history
 # --------------------------------------
 
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -154,12 +154,10 @@ alias help=run-help
 alias watch='watch -n 1 '
 
 # diff files in an editor
-# alias ediff='nvim --noplugin -R -d'
-alias ediff='vim -d'
+alias ediff='nvim -d'
 
 # open the notes dir
-# alias n='nvim ~/notes/misc.md'
-alias n='vim ~/notes/misc.md'
+alias n='nvim ~/notes/misc.md'
 
 # directory stack
 alias dirs='dirs -v'

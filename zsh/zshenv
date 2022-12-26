@@ -1,5 +1,7 @@
 # faster than $(brew --prefix)
-export BREW_PREFIX='/opt/homebrew'
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  export BREW_PREFIX='/opt/homebrew'
+fi
 
 # set help directory for zsh built-ins
 if [[ $OSTYPE =~ "darwin"* ]]; then
@@ -8,9 +10,9 @@ else
   export HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
 fi
 
-# set the preferred editor to vim if not already set
-[ -z $EDITOR ] && export EDITOR='vim'
-[ -z $VISUAL ] && export VISUAL='vim'
+# set the preferred editor to neovim if not already set
+[ -z $EDITOR ] && export EDITOR='nvim'
+[ -z $VISUAL ] && export VISUAL='nvim'
 
 # set to the path of the tty device for gpg
 export GPG_TTY=$(tty)

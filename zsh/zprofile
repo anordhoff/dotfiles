@@ -24,10 +24,14 @@ path=(~/.krew/bin $path)
 path=(~/.npm/global/bin $path)
 
 # python
-path=(~/Library/Python/3.10/bin $path)
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=(~/Library/Python/3.10/bin $path)
+fi
 
 # ruby
-path=($BREW_PREFIX/opt/ruby/bin $path)
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/ruby/bin $path)
+fi
 
 # symlink keg-only packages
 if [[ $OSTYPE =~ "darwin"* ]]; then
