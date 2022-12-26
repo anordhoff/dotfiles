@@ -46,7 +46,7 @@ gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
 
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left '["<Shift><Control><Alt><Super>n"]'
 gsettings set org.gnome.mutter.keybindings toggle-tiled-right '["<Shift><Control><Alt><Super>o"]'
-gsettings set org.gnome.desktop.wm.keybindings toggle-maximized '["<Shift><Control><Alt>z"]'
+gsettings set org.gnome.desktop.wm.keybindings toggle-maximized '["<Shift><Control><Alt><Super>z"]'
 
 # key bindings
 gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Control><Alt><Super>q"]'

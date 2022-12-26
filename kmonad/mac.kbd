@@ -1,5 +1,5 @@
 (defcfg
-  ;; For MacOS
+  ;; for macOS
   input  (iokit-name "Apple Internal Keyboard / Trackpad")
   output (kext)
 
@@ -15,6 +15,7 @@
 
   ;; additional layers
   sft (layer-toggle colemak-shift)
+  cgs (layer-toggle colemak-game-shift)
   meh (layer-toggle colemak-meh)
   adj (layer-toggle adjust)
   joi (layer-toggle join)
@@ -25,8 +26,8 @@
   RS-FN (around (around rsft (layer-toggle function)) (around rsft fn))
 
   ;; switch out of qwerty using shifts
-  qls (layer-toggle qwerty-lsft)
-  qrs (layer-toggle qwerty-rsft)
+  qls (layer-toggle qwerty-left-shift)
+  qrs (layer-toggle qwerty-right-shift)
 
   ;; home row mods / mod taps
   mtesc (tap-hold-next-release 150 esc lmet)
@@ -162,7 +163,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
   @mtz-game x    c    d    v    ;    \    k    h    ,    .    /         up
-  lctl      lctl lalt lmet           spc       lsft @meh           left down rght
+  lctl      lctl lalt lmet           spc       @cgs @meh           left down rght
 )
 
 (deflayer colemak-game-shift
@@ -274,7 +275,7 @@
   @fn       lctl lalt lmet           spc       rmet ralt           left down rght
 )
 
-(deflayer qwerty-lsft
+(deflayer qwerty-left-shift
   S-esc     S-brdn S-brup S-mctl XX S-bldn S-blup S-prev S-pp S-next S-mute S-vold S-volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +    S-bspc
   S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }    |
@@ -283,7 +284,7 @@
   @FN       S-lctl  S-lalt  S-lmet   S-spc     S-rmet  S-ralt    S-left S-down S-rght
 )
 
-(deflayer qwerty-rsft
+(deflayer qwerty-right-shift
   RS-esc    RS-brdn RS-brup RS-mctl XX RS-bldn RS-blup RS-prev RS-pp RS-next RS-mute RS-vold RS-volu
   RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +    RS-bspc
   RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }    |

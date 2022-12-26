@@ -7,10 +7,10 @@ set $term kitty
 
 # preferred application launcher
 set $menu j4-dmenu-desktop --dmenu='bemenu -i -H 24 --ch 16 -p ">" \
-	--fn "SF Pro Display 11" --tf "#83a598" --ff "#ebdbb2" --cf "#a89984" \
-	--nf "#ebdbb2" --af "#ebdbb2" --hf "#83a598" --sf "#ebdbb2" \
-	--tb "#000000" --fb "#000000" --cb "#000000" --nb "#000000" \
-	--ab "#000000" --hb "#000000" --sb "#000000"'
+  --fn "SF Pro Display 11" --tf "#83a598" --ff "#ebdbb2" --cf "#a89984" \
+  --nf "#ebdbb2" --af "#ebdbb2" --hf "#83a598" --sf "#ebdbb2" \
+  --tb "#000000" --fb "#000000" --cb "#000000" --nb "#000000" \
+  --ab "#000000" --hb "#000000" --sb "#000000"'
 
 # wallpaper
 set $wallpaper ~/.config/sway/wallpaper
@@ -39,31 +39,27 @@ exec nm-applet
 
 # TODO: reduce tapping sensitivity
 input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
-	# tap enabled
-	dwt enabled
-	click_method clickfinger
-	natural_scroll enabled
+  pointer_accel 0.2
+  dwt enabled
+  click_method clickfinger
+  natural_scroll enabled
+  # calibration_matrix 0 0 0 0 0 0
 }
 
 input 4661:22137:kmonad_output {
-	repeat_delay 200
-	repeat_rate 35
-}
-
-input 51984:16982:Keebio_Keebio_Iris_Rev._4 {
-	repeat_delay 200
-	repeat_rate 35
+  repeat_delay 200
+  repeat_rate 35
 }
 
 input 22861:24653:YMDK_YD60MQ {
-	repeat_delay 200
-	repeat_rate 35
+  repeat_delay 200
+  repeat_rate 35
 }
 
 # TODO: mouse is still too fast
 input 1739:31251:SYNA2393:00_06CB:7A13_Mouse {
-	accel_profile flat
-	pointer_accel -1.0
+  accel_profile flat
+  pointer_accel -1.0
 }
 
 # volume (prevent pulseaudio from increasing volume beyond 100%)
@@ -92,15 +88,15 @@ bindsym Mod4+Print exec grim -o $(swaymsg -t get_outputs | jq -r ".[] | select(.
 # --------------------------------------
 
 output eDP-1 {
-	position 0 520
-	resolution 1920x1080
-	background $wallpaper fill
+  position 0 520
+  resolution 1920x1080
+  background $wallpaper fill
 }
 
 output DP-1 {
-	position 1920 0
-	resolution 3840x1600
-	background $wallpaper center
+  position 1920 0
+  resolution 3840x1600
+  background $wallpaper center
 }
 
 

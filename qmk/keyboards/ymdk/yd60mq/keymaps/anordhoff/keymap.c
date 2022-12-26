@@ -11,8 +11,8 @@
 #define JOIN    MO(_JOIN)
 
 // switch out of qwerty using shifts
-#define QWRT_LS LM(_QWERTY_LSFT, MOD_LSFT)
-#define QWRT_RS LM(_QWERTY_RSFT, MOD_RSFT)
+#define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
+#define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
 
 // home row mods / mod taps
 #define MT_ESC  MT(MOD_LGUI, KC_ESC)
@@ -102,8 +102,8 @@ enum layers {
 	_ADJUST,
 	_JOIN,
 	_QWERTY,
-	_QWERTY_LSFT,
-	_QWERTY_RSFT,
+	_QWERTY_LEFT_SHIFT,
+	_QWERTY_RIGHT_SHIFT,
 };
 
 // per key tapping term value
@@ -340,7 +340,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
-	[_QWERTY_LSFT] = LAYOUT(
+	[_QWERTY_LEFT_SHIFT] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 	   KC_GRV , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  , KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,KC_EQL ,XXXXXXX,KC_BSPC,
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
@@ -354,7 +354,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
-	[_QWERTY_RSFT] = LAYOUT(
+	[_QWERTY_RIGHT_SHIFT] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 	   KC_GRV , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  , KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,KC_EQL ,XXXXXXX,KC_BSPC,
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
