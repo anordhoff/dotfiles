@@ -27,6 +27,12 @@ To prevent wayland from dropping unfocused windows to 1 fps, launch google chrom
 --args --disable-gpu-vsync --disable-frame-rate-limit
 ```
 
+## gestures
+
+Change `GESTURE_FINGER_COUNT` from 3 to 4 in `/usr/lib64/gnome-shell/libgnome-shell.so`
+
+https://www.reddit.com/r/gnome/comments/qrhu0e/guide_to_customize_gnome_40_touchpad_gestures_on
+
 ## audio
 
 with headphones disconnected:

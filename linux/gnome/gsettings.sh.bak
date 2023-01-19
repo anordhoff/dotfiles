@@ -45,14 +45,11 @@ gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
 
 
 # --------------------------------------
-# keybindings
+# keymaps
 # --------------------------------------
 
 # unset conflicting key bindings
 gsettings set org.gnome.shell.keybindings show-screen-recording-ui '[]'
-
-# disable default launcher key
-gsettings set org.gnome.mutter overlay-key ''
 
 # disable alternate characters key by setting to menu key
 gsettings set org.gnome.desktop.input-sources xkb-options '["lv3:menu_switch"]'
@@ -72,7 +69,7 @@ gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Control><Alt>q"]
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '["<Shift><Control><Alt>question"]'
 
 # TODO: these two are sort of clunky
-# switch window
+# siwtch window
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Shift><Control><Alt>n"]'
 gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Shift><Control><Alt>o"]'
 

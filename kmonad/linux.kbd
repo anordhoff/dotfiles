@@ -25,29 +25,30 @@
   qrs (layer-toggle qwerty-right-shift)
 
   ;; home row mods / mod taps
-  mtesc (tap-hold-next-release 150 esc lmet)
-  mtz   (tap-hold-next-release 150 z lalt)
-  mtr   (tap-hold-next-release 150 r (layer-toggle layer-r))
-  mts   (tap-hold-next-release 150 s (layer-toggle layer-s))
-  mtt   (tap-hold-next-release 150 t (layer-toggle layer-t))
+  ;; note: see https://github.com/kmonad/kmonad/issues/624
+  mtesc (tap-hold-next-release 155 esc lmet)
+  mtz   (tap-hold-next-release 155 z lalt)
+  mtr   (tap-hold-next-release 155 r (layer-toggle layer-r))
+  mts   (tap-hold-next-release 155 s (layer-toggle layer-s))
+  mtt   (tap-hold-next-release 155 t (layer-toggle layer-t))
 
-  mtn   (tap-hold-next-release 150 n (layer-toggle layer-n))
-  mte   (tap-hold-next-release 150 e (layer-toggle layer-e))
-  mti   (tap-hold-next-release 150 i (layer-toggle layer-i))
+  mtn   (tap-hold-next-release 155 n (layer-toggle layer-n))
+  mte   (tap-hold-next-release 155 e (layer-toggle layer-e))
+  mti   (tap-hold-next-release 155 i (layer-toggle layer-i))
 
-  mtESC (tap-hold-next-release 150 (around lsft esc) (around lsft lmet))
-  mtZ   (tap-hold-next-release 150 Z (around lsft lalt))
-  mtR   (tap-hold-next-release 150 R (around lsft (layer-toggle layer-r)))
-  mtS   (tap-hold-next-release 150 S (layer-toggle layer-s))
-  mtT   (tap-hold-next-release 150 T (layer-toggle layer-t))
+  mtESC (tap-hold-next-release 155 (around (around lsft esc) P5) (around lsft lmet))
+  mtZ   (tap-hold-next-release 155 (around Z P5) (around lsft lalt))
+  mtR   (tap-hold-next-release 155 (around R P5) (around lsft (layer-toggle layer-r)))
+  mtS   (tap-hold-next-release 155 (around S P5) (layer-toggle layer-s))
+  mtT   (tap-hold-next-release 155 (around T P5) (layer-toggle layer-t))
 
-  mtN   (tap-hold-next-release 150 N (layer-toggle layer-n))
-  mtE   (tap-hold-next-release 150 E (layer-toggle layer-e))
-  mtI   (tap-hold-next-release 150 I (around lsft (layer-toggle layer-i)))
+  mtN   (tap-hold-next-release 155 (around N P5) (layer-toggle layer-n))
+  mtE   (tap-hold-next-release 155 (around E P5) (layer-toggle layer-e))
+  mtI   (tap-hold-next-release 155 (around I P5) (around lsft (layer-toggle layer-i)))
 
   ;; colemak-game mod taps
-  mtz-game (tap-hold-next-release 150 z lsft)
-  mtZ-game (tap-hold-next-release 150 Z lsft)
+  mtz-game (tap-hold-next-release 155 z lsft)
+  mtZ-game (tap-hold-next-release 155 (around Z P5) lsft)
 
   ;; right meh layer keys
   ma    (around rctl (around rsft (around ralt a)))
@@ -122,6 +123,7 @@
   mrmet (around rctl (around rsft (around ralt rmet)))
 
   ;; media keys
+  ;; todo: make these work on gnome
   bdn (cmd-button "exec light -U 5")
   bup (cmd-button "exec light -A 5")
   kdn (cmd-button "exec light -Ss sysfs/leds/dell::kbd_backlight 0")

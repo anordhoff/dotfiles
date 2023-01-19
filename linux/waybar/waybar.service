@@ -1,9 +1,0 @@
-[Unit]
-PartOf=graphical-session.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/waybar
-
-[Install]
-WantedBy=sway-session.target
