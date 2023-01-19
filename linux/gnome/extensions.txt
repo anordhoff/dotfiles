@@ -1,3 +1,0 @@
-https://extensions.gnome.org/extension/4290/disable-workspace-switch-animation-for-gnome-40/
-
-Disable gnome gestures: https://discourse.gnome.org/t/how-to-disable-edit-touchpad-gestures-in-gnome-40/6081

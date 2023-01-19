@@ -1,7 +1,7 @@
 [Service]
 Restart=always
 RestartSec=3
-ExecStart=/home/anordhoff/.local/bin/kmonad /home/anordhoff/dotfiles/kmonad/linux.kbd
+ExecStart=/home/aaron/.local/bin/kmonad /home/aaron/dotfiles/kmonad/linux.kbd
 Nice=-20
 
 [Install]
