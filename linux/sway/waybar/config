@@ -1,0 +1,57 @@
+{
+  "layer": "bottom",
+  "height": 24,
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-right": ["tray", "custom/spotify", "custom/vpn", "network", "pulseaudio", "backlight", "battery", "clock"],
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+  "custom/spotify": {
+    "interval": 1,
+    "return-type": "json",
+    "exec": "~/.config/linux/sway/waybar/modules/spotify.sh",
+    "exec-if": "pgrep spotify",
+  },
+  "custom/vpn": {
+    "interval": 5,
+    "return-type": "json",
+    "exec": "~/.config/linux/sway/waybar/modules/vpn.sh"
+  },
+  "network": {
+    "tooltip": false,
+    "interval": 1,
+    "format": "{ifname}",
+    "format-wifi": "Wifi: {essid}",
+    "format-ethernet": "Ethernet: {ifname}",
+    "format-linked": "Linked: {ifname}",
+    "format-disconnected": "Disconnected"
+  },
+  "pulseaudio": {
+    "format": "Volume: {volume}%",
+    "format-muted": "Volume (muted): {volume}%",
+    "format-bluetooth": "Bluetooth: {volume}%",
+    "format-bluetooth-muted": "Bluetooth (muted): {volume}%"
+  },
+  "backlight": {
+    "tooltip": false,
+    "device": "intel_backlight",
+    "states": {
+      "on": 1,
+      "off": 0
+    },
+    "format": "Brightness: {percent}%"
+  },
+  "battery": {
+    "tooltip": false,
+    "states": {
+      "critical": 10
+    },
+    "format": "Battery: {capacity}%",
+  "format-charging": "Charging: {capacity}%"
+  },
+  "clock": {
+    "tooltip": false,
+  "format": "{:%a %b %e  %I:%M %p}"
+  }
+}

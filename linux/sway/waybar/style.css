@@ -1,0 +1,46 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: San Francisco Display;
+  font-size: 15px;
+  font-weight: 500;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #000000;
+  color: #ebdbb2;
+}
+
+#workspaces button {
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0px 0px 0px 6px;
+  color: #a89984;
+}
+
+#workspaces button.focused {
+  color: #ebdbb2;
+}
+
+#workspaces button:hover {
+  background: #000000;
+}
+
+#tray, #custom-spotify, #custom-vpn, #network, #pulseaudio, #backlight.on, #battery {
+  margin: 0px 12px;
+}
+
+#backlight.off {
+  margin: 0px 0px;
+  font-size: 0px;
+}
+
+#battery.critical {
+  color: #fb4934;
+}
+
+/* https://github.com/Alexays/Waybar/issues/1469 */
+#clock {
+  margin: 0px 12px 0px 12px;
+}
