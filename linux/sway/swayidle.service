@@ -4,9 +4,9 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/swayidle -w \
-	timeout 1200 'swaylock -f -i ~/.config/sway/wallpaper' \
+	timeout 1200 'swaylock -f -i ~/.config/linux/sway/wallpaper' \
 	timeout 1500 'systemctl suspend' \
-	before-sleep 'swaylock -f -i ~/.config/sway/wallpaper'
+	before-sleep 'swaylock -f -i ~/.config/linux/sway/wallpaper'
 
 [Install]
 WantedBy=sway-session.target
