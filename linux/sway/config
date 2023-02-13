@@ -13,7 +13,7 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i -H 24 --ch 16 -p ">" \
   --ab "#000000" --hb "#000000" --sb "#000000"'
 
 # wallpaper
-set $wallpaper ~/.config/sway/wallpaper
+set $wallpaper ~/.config/linux/sway/wallpaper
 
 # font
 font San Francisco Display Medium 11
