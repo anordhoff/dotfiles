@@ -1,17 +1,17 @@
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
-
--- get home dir for use in local filepaths
-local home_dir = os.getenv('HOME') .. '/'
+local windows = require('lspconfig.ui.windows')
 
 -- add a border to floating windows
--- TODO: enable borders on pmenu / :LspInfo
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
   opts.border = opts.border or 'single'
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+
+-- add a border to LspInfo window
+windows.default_options.border = 'single'
 
 -- customize how diagnostics are displayed
 vim.diagnostic.config({
@@ -32,36 +32,37 @@ vim.fn.sign_define('DiagnosticSignInfo', { numhl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { numhl = 'DiagnosticSignHint' })
 
 -- diagnostic keymaps
-vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist)
+local opts = { silent = true }
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, opts)
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
 
 -- lsp settings
-local on_attach = function(_, bufnr)
-  -- enable completion (NOTE: onminfunc_sync.lua func for synchronous omnifunc)
+local on_attach = function(client, bufnr)
+  -- enable completion (onminfunc_sync.lua func for synchronous omnifunc)
   -- https://github.com/neovim/neovim/pull/17218
   require('config.omnifunc_sync')
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.omnifunc_sync')
 
   -- keymaps
-  local opts = { buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, opts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+  local bufopts = { silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<leader>F', vim.lsp.buf.format, opts)
+  end, bufopts)
+  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<leader>F', vim.lsp.buf.format, bufopts)
 end
 
 -- use a loop to conveniently call 'setup' on multiple servers and
@@ -140,6 +141,7 @@ lspconfig.sumneko_lua.setup {
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
       telemetry = {
         enable = false,
@@ -152,6 +154,9 @@ lspconfig.sumneko_lua.setup {
 ----------------------------------------
 -- yamlls
 ----------------------------------------
+
+-- get home dir for use in local filepaths
+local home_dir = os.getenv('HOME') .. '/'
 
 -- path to schemas
 local cloudformation = 'https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json'

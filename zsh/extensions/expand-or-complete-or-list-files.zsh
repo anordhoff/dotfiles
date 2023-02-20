@@ -7,7 +7,9 @@ function expand-or-complete-or-list-files() {
     zle list-choices
     zle backward-kill-word
   else
-    zle expand-or-complete
+    # NOTE: extend expand-multiple-dots.zsh
+    # zle expand-or-complete
+    zle expand-multiple-dots-then-expand-or-complete
   fi
 }
 

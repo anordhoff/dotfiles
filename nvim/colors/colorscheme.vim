@@ -56,7 +56,8 @@ hi! link Debug                   Special
 hi Cursor                        cterm=reverse     ctermfg=8        ctermbg=none
 hi! link TermCursor              Cursor
 hi TermCursorNC                  cterm=reverse     ctermfg=11       ctermbg=none
-hi CursorLine                    cterm=none        ctermfg=none     ctermbg=10
+" hi CursorLine                    cterm=none        ctermfg=none     ctermbg=10
+hi CursorLine                    cterm=none        ctermfg=none     ctermbg=0
 hi CursorLineNr                  cterm=none        ctermfg=11       ctermbg=none
 hi! link CursorColumn            CursorLine
 hi! link ColorColumn             CursorLine

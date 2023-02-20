@@ -2,6 +2,12 @@
 " settings
 " --------------------------------------
 
+" TODO: yo(something) which enables/disables tab lines, example:
+" test:
+" | test2:
+" | | test3: test4
+" | | test4: test3
+
 " load internal packages
 if &loadplugins
   packadd cfilter
@@ -26,7 +32,7 @@ set mouse=             " disable mouse support
 set ttimeoutlen=1      " minimal delay for escape key presses
 set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
 
-" use spaces by default
+" use spaces by default (NOTE: vim-sleuth sets softtabstop=-1)
 set tabstop=2
 set softtabstop=0
 set shiftwidth=2
@@ -44,6 +50,7 @@ set completeopt=menu,longest
 set pumheight=10
 
 " use a wildmenu for command line completion
+" TODO: :hi Statusline ctermbg=0, which makes commandline completion look bad
 set wildoptions=tagfile
 set wildmode=longest:full,full
 set wildignorecase
@@ -52,8 +59,11 @@ set wildignorecase
 set wildignore+=tags,.git/**,vendor/**,node_modules/**,package/opt/**,package/start/**
 
 " show tabs and trailing whitespace
+" TODO: should I use listchars for all files, or only specific? Show tabs or
+" just spaces?
 set list
-set listchars=tab:<->,trail:-
+" set listchars=tab:<->,trail:-
+set listchars=tab:\ \ ,trail:-
 
 " don't show trailing spaces while in insert mode
 augroup listchars
@@ -151,7 +161,7 @@ function LocationList()
   endtry
 endfunction
 
-" maximize (toggle) the current window (NOTE: overrides default mappings)
+" maximize (toggle) the current window (NOTE: overrides default :pc mapping)
 nnoremap <silent> <c-w>z <c-w>\|<c-w>_
 nnoremap <silent> <c-w><c-z> <c-w>\|<c-w>_
 
@@ -199,6 +209,11 @@ function s:share(bang)
   endif
 endfunction
 
+augroup cursorline
+  autocmd!
+  autocmd BufEnter,WinEnter * setlocal cursorline
+  autocmd BufLeave,WinLeave * setlocal nocursorline
+augroup END
 
 " --------------------------------------
 " statusline
@@ -231,17 +246,14 @@ function Statusline(winid)
   return l:statusline
 endfunction
 
-" quickfix list/location list/netrw/terminal buffer status lines
+" quickfix list / location list / netrw / terminal buffer status lines
 augroup statusline
   autocmd!
-  autocmd Filetype qf setlocal statusline=%!QuickfixStatusline(g:statusline_winid)
+  autocmd Filetype qf setlocal statusline=%!QuickfixListStatusline(g:statusline_winid)
   autocmd Filetype netrw setlocal statusline=%!NetrwStatusline(g:statusline_winid)
   autocmd TermOpen * setlocal statusline=%!TermStatusline(g:statusline_winid)
 augroup END
-
-" TODO: can these functions be 'cleaned up'? (Are they needed, or can I do
-" statusline= inline in the augroup)
-function QuickfixStatusline(winid)
+function QuickfixListStatusline(winid)
   return ' ' . Background(a:winid) . ' [%n]  %l/%L lines%=%q %* '
 endfunction
 function NetrwStatusline(winid)
@@ -270,10 +282,10 @@ endfunction
 function PasteFlag()
   if !&paste
     return ''
-  elseif !&loadplugins
-    return ',P'
-  else
+  elseif &loadplugins
     return 'P'
+  else
+    return ',P'
   endif
 endfunction
 

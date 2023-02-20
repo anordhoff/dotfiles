@@ -7,5 +7,5 @@ echo
 if [[ $answer =~ ^[Yy]$ ]]; then
   command $@
 else
-  return 1
+  return 125
 fi
