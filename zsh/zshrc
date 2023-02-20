@@ -2,8 +2,8 @@
 # general
 # --------------------------------------
 
-# start tmux on shell launch, attaching to (or creating a) session 'dotfiles'
-[ -z $TMUX ] && tmux new-session -A -s dotfiles
+# start tmux on launch, attaching to an existing (or creating a new) session
+[ -z $TMUX ] && (tmux attach || tmux new-session -A -s dotfiles)
 
 # options
 setopt   dotglob      # include hidden files in expansion and completion
@@ -97,15 +97,20 @@ setopt   alwaystoend    # completion in a word will move cursor to end of word
 setopt   completeinword # completion takes place at the cursor position in word
 unsetopt listtypes      # don't show filetypes in completion menu
 
-# add completion directories to fpath
-fpath=(~/dotfiles/zsh/completions $fpath)
-
 # load the completion module
 autoload -Uz compinit
 zmodload zsh/complist
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
+
+# add completion directory to fpath
+fpath=(~/dotfiles/zsh/completions $fpath)
+
+# add completion for brew packages
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  fpath=($BREW_PREFIX/share/zsh/site-functions $fpath)
+fi
 
 # run compinit if ~/jobfiles/zsh does not exist
 [ ! -d ~/jobfiles/zsh ] && compinit
@@ -120,9 +125,11 @@ zstyle ':completion:*' max-errors 1
 zstyle ':completion:*:complete-extended:*' \
   matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+bindkey "^Xb" _alias_expand_line
+
 # complete *. with extensions; standard; one error; case insensitive completion
 zstyle ':completion:*' completer \
-  _extensions _complete _approximate _complete:-extended
+  _expand_alias _extensions _complete _approximate _complete:-extended
 
 # cache completions
 zstyle ':completion:*' use-cache true
@@ -153,9 +160,6 @@ alias help=run-help
 # refresh watch every second; work with aliases
 alias watch='watch -n 1 '
 
-# diff files in an editor
-alias ediff='nvim -d'
-
 # open the notes dir
 alias n='nvim ~/notes/misc.md'
 
@@ -185,12 +189,6 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
   alias python="$BREW_PREFIX/bin/python3"
   alias pip="$BREW_PREFIX/bin/pip3"
 fi
-
-# global cd shorthand
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
 
 # git
 alias    g='git'
@@ -239,24 +237,24 @@ alias  kns='kubectl ns'
 [ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] \
   && source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
 
-# enable tab-on-empty-line-shows-files.zsh
+# enable expand-or-complete-or-list-files.zsh
 [ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] \
   && source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
 # enable fzf (except in vim)
-if [ -z $VIM ]; then
-  if [[ $OSTYPE =~ "darwin"* ]]; then
-    [ -r $BREW_PREFIX/opt/fzf/shell/completion.zsh ] \
-      && source $BREW_PREFIX/opt/fzf/shell/completion.zsh
-    [ -r $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh ] \
-      && source $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh
-  else
-    [ -r /usr/share/fzf/shell/completion.zsh ] \
-      && source /usr/share/fzf/shell/completion.zsh
-    [ -r /usr/share/fzf/shell/key-bindings.zsh ] \
-      && source /usr/share/fzf/shell/key-bindings.zsh
-  fi
-fi
+# if [ -z $VIM ]; then
+#   if [[ $OSTYPE =~ "darwin"* ]]; then
+#     [ -r $BREW_PREFIX/opt/fzf/shell/completion.zsh ] \
+#       && source $BREW_PREFIX/opt/fzf/shell/completion.zsh
+#     [ -r $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh ] \
+#       && source $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh
+#   else
+#     [ -r /usr/share/fzf/shell/completion.zsh ] \
+#       && source /usr/share/fzf/shell/completion.zsh
+#     [ -r /usr/share/fzf/shell/key-bindings.zsh ] \
+#       && source /usr/share/fzf/shell/key-bindings.zsh
+#   fi
+# fi
 
 
 # --------------------------------------
