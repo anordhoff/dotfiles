@@ -190,25 +190,7 @@ function s:clear_register(chars)
     \ "'. Execute :wshada! to persist changes"
 endfunction
 
-" toggle sharing mode (turns on cursorline/cursorcolumn for active buffer)
-command! -bang Share call s:share(<bang>0)
-function s:share(bang)
-  if a:bang
-    setlocal nocursorline nocursorcolumn
-    augroup sharing
-      autocmd!
-    augroup END
-  else
-    setlocal cursorline
-    setlocal cursorcolumn
-    augroup sharing
-      autocmd!
-      autocmd BufEnter,WinEnter * setlocal cursorline cursorcolumn
-      autocmd BufLeave,WinLeave * setlocal nocursorline nocursorcolumn
-    augroup END
-  endif
-endfunction
-
+" only the active window has cursorline
 augroup cursorline
   autocmd!
   autocmd BufEnter,WinEnter * setlocal cursorline
@@ -221,15 +203,15 @@ augroup END
 
 " copy StatusLine and StatusLineNC highlight groups
 exec 'highlight StatusLineActive' .
-  \ ' ctermfg=' . synIDattr(synIDtrans(hlID("StatusLine")), "fg") .
-  \ ' ctermbg=' . synIDattr(synIDtrans(hlID("StatusLine")), "bg")
+  \ ' ctermfg=' . nvim_get_hl(0, {"name": "StatusLine"})["ctermfg"] .
+  \ ' ctermbg=' . nvim_get_hl(0, {"name": "StatusLine"})["ctermbg"]
 exec 'highlight StatusLineInactive' .
-  \ ' ctermfg=' . synIDattr(synIDtrans(hlID("StatusLineNC")), "fg") .
-  \ ' ctermbg=' . synIDattr(synIDtrans(hlID("StatusLineNC")), "bg")
+  \ ' ctermfg=' . nvim_get_hl(0, {"name": "StatusLineNC"})["ctermfg"] .
+  \ ' ctermbg=' . nvim_get_hl(0, {"name": "StatusLineNC"})["ctermbg"]
 
 " set StatusLine and StatusLineNC backgrounds to the terminal background
-highlight StatusLine ctermfg=7 ctermbg=none
-highlight StatusLineNC ctermfg=7 ctermbg=none
+highlight StatusLine ctermbg=none
+highlight StatusLineNC ctermbg=none
 
 " custom status line
 set statusline=%!Statusline(g:statusline_winid)
