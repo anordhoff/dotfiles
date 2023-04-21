@@ -50,6 +50,9 @@
 [submodule "nvim/package/start/impatient"]
 	path = nvim/package/start/impatient
 	url = https://github.com/lewis6991/impatient.nvim.git
+[submodule "nvim/package/start/indent-blankline"]
+	path = nvim/package/start/indent-blankline
+	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
 [submodule "nvim/package/start/leap"]
 	path = nvim/package/start/leap
 	url = https://github.com/ggandor/leap.nvim.git
