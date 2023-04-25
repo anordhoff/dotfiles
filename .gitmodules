@@ -16,9 +16,6 @@
 [submodule "nvim/package/start/dispatch"]
 	path = nvim/package/start/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "nvim/package/start/go"]
-	path = nvim/package/start/go
-	url = https://github.com/fatih/vim-go.git
 [submodule "nvim/package/start/repeat"]
 	path = nvim/package/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
@@ -78,3 +75,6 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "nvim/package/opt/go"]
+	path = nvim/package/opt/go
+	url = https://github.com/fatih/vim-go.git
