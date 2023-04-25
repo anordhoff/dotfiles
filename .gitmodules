@@ -39,6 +39,9 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 
 # vim (opt)
+[submodule "nvim/package/opt/go"]
+	path = nvim/package/opt/go
+	url = https://github.com/fatih/vim-go.git
 [submodule "nvim/package/opt/startuptime"]
 	path = nvim/package/opt/startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
@@ -75,6 +78,3 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
-[submodule "nvim/package/opt/go"]
-	path = nvim/package/opt/go
-	url = https://github.com/fatih/vim-go.git
