@@ -5,8 +5,9 @@
 [core]
 	pager = less -FRX
 	excludesFile = ~/.config/git/ignore
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+[init]
+	defaultBranch = main
+	templatedir = ~/.config/git/template
 [commit]
 	gpgsign = true
 [pull]
@@ -15,8 +16,9 @@
 	tool = nvimdiff2
 [mergetool]
 	keepBackup = false
-[init]
-	defaultBranch = main
-	templatedir = ~/.config/git/template
+[submodule]
+	recurse = true
 [alias]
 	ctags = !.git/hooks/ctags
+[url "git@github.com:"]
+	insteadOf = https://github.com/
