@@ -8,11 +8,10 @@ update:
 add: validate-submodule validate-path
 	git submodule add $(submodule) $(path)
 
-# make add path=nvim/package/start/repeat
+# make rm path=nvim/package/start/repeat
 rm: validate-path
 	git rm $(path) -f
 	rm -rf .git/modules/$(path)
-
 
 validate-submodule:
 ifndef submodule
