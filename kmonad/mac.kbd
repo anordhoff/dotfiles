@@ -130,7 +130,7 @@
   m/    (around rctl (around rsft (around ralt /)))
   mrmet (around rctl (around rsft (around ralt rmet)))
 
-  ;; macos (note: using 'around' ensures fn keypress actually gets emitted)
+  ;; media keys (note: using 'around' ensures fn keypress actually gets emitted)
   spt   (around rctl (around rsft (around ralt esc)))
   fn    (around (layer-toggle function) fn)
   FN    (around (around lsft (layer-toggle function)) (around lsft fn))

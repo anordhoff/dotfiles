@@ -26,29 +26,35 @@
 
   ;; home row mods / mod taps
   ;; note: see https://github.com/kmonad/kmonad/issues/624
-  mtesc (tap-hold-next-release 155 esc lmet)
-  mtz   (tap-hold-next-release 155 z lalt)
-  mtr   (tap-hold-next-release 155 r (layer-toggle layer-r))
-  mts   (tap-hold-next-release 155 s (layer-toggle layer-s))
-  mtt   (tap-hold-next-release 155 t (layer-toggle layer-t))
+  mtesc (tap-hold-next-release 170 esc lmet)
+  mtz   (tap-hold-next-release 170 z lalt)
+  mta   (tap-hold-next-release 170 a X)
+  mtr   (tap-hold-next-release 150 r (layer-toggle layer-r))
+  mts   (tap-hold-next-release 150 s (layer-toggle layer-s))
+  mtt   (tap-hold-next-release 150 t (layer-toggle layer-t))
 
-  mtn   (tap-hold-next-release 155 n (layer-toggle layer-n))
-  mte   (tap-hold-next-release 155 e (layer-toggle layer-e))
-  mti   (tap-hold-next-release 155 i (layer-toggle layer-i))
+  mtn   (tap-hold-next-release 150 n (layer-toggle layer-n))
+  mte   (tap-hold-next-release 150 e (layer-toggle layer-e))
+  mti   (tap-hold-next-release 150 i (layer-toggle layer-i))
+  mto   (tap-hold-next-release 170 o X)
+  mt/   (tap-hold-next-release 170 / X)
 
-  mtESC (tap-hold-next-release 155 (around (around lsft esc) P4) (around lsft lmet))
-  mtZ   (tap-hold-next-release 155 (around Z P4) (around lsft lalt))
-  mtR   (tap-hold-next-release 155 (around R P4) (around lsft (layer-toggle layer-r)))
-  mtS   (tap-hold-next-release 155 (around S P4) (layer-toggle layer-s))
-  mtT   (tap-hold-next-release 155 (around T P4) (layer-toggle layer-t))
+  mtESC (tap-hold-next-release 170 (around (around lsft esc) P4) (around lsft lmet))
+  mtZ   (tap-hold-next-release 170 (around Z P4) (around lsft lalt))
+  mtA   (tap-hold-next-release 170 (around A P4) X)
+  mtR   (tap-hold-next-release 150 (around R P4) (around lsft (layer-toggle layer-r)))
+  mtS   (tap-hold-next-release 150 (around S P4) (layer-toggle layer-s))
+  mtT   (tap-hold-next-release 150 (around T P4) (layer-toggle layer-t))
 
-  mtN   (tap-hold-next-release 155 (around N P4) (layer-toggle layer-n))
-  mtE   (tap-hold-next-release 155 (around E P4) (layer-toggle layer-e))
-  mtI   (tap-hold-next-release 155 (around I P4) (around lsft (layer-toggle layer-i)))
+  mtN   (tap-hold-next-release 150 (around N P4) (layer-toggle layer-n))
+  mtE   (tap-hold-next-release 150 (around E P4) (layer-toggle layer-e))
+  mtI   (tap-hold-next-release 150 (around I P4) (around lsft (layer-toggle layer-i)))
+  mtO   (tap-hold-next-release 170 (around O P4) X)
+  mt?   (tap-hold-next-release 170 (around ? P4) X)
 
   ;; colemak-game mod taps
-  mtz-game (tap-hold-next-release 155 z lsft)
-  mtZ-game (tap-hold-next-release 155 (around Z P5) lsft)
+  mtz-game (tap-hold-next-release 170 z lsft)
+  mtZ-game (tap-hold-next-release 170 (around Z P5) lsft)
 
   ;; right meh layer keys
   ma    (around rctl (around rsft (around ralt a)))
@@ -146,16 +152,16 @@
 (deflayer colemak
   grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc del
-  @mtesc    a    @mtr @mts @mtt g    ]    m    @mtn @mte @mti o    ret
-  @mtz      x    c    d    v    ;    \    k    h    ,    .    /         up
+  @mtesc    @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
+  @mtz      x    c    d    v    ;    \    k    h    ,    .    @mt/      up
             lmet lalt lctl           spc       @sft @meh           left down rght
 )
 
 (deflayer colemak-shift
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +    S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  @mtESC    A    @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI O    S-ret
-  @mtZ      X    C    D    V    :    |    K    H    <    >    ?         S-up
+  @mtESC    @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
+  @mtZ      X    C    D    V    :    |    K    H    <    >    @mt?      S-up
             S-lmet S-lalt S-lctl     S-spc     _    XX           S-left S-down S-rght
 )
 
