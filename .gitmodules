@@ -22,9 +22,6 @@
 [submodule "nvim/package/start/rsi"]
 	path = nvim/package/start/rsi
 	url = https://github.com/tpope/vim-rsi.git
-[submodule "nvim/package/start/sleuth"]
-	path = nvim/package/start/sleuth
-	url = https://github.com/tpope/vim-sleuth.git
 [submodule "nvim/package/start/subversive"]
 	path = nvim/package/start/subversive
 	url = https://github.com/svermeulen/vim-subversive.git
@@ -39,12 +36,21 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 
 # vim (opt)
-[submodule "nvim/package/opt/go"]
-	path = nvim/package/opt/go
-	url = https://github.com/fatih/vim-go.git
 [submodule "nvim/package/opt/startuptime"]
 	path = nvim/package/opt/startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
+[submodule "nvim/package/opt/vim-go"]
+	path = nvim/package/opt/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "nvim/package/opt/nvim-go"]
+	path = nvim/package/opt/nvim-go
+	url = https://github.com/crispgm/nvim-go.git
+[submodule "nvim/package/opt/go.nvim"]
+	path = nvim/package/opt/go.nvim
+	url = https://github.com/ray-x/go.nvim.git
+[submodule "nvim/package/opt/gopher.nvim"]
+	path = nvim/package/opt/gopher.nvim
+	url = https://github.com/olexsmir/gopher.nvim.git
 
 # neovim
 [submodule "nvim/package/start/impatient"]
@@ -56,6 +62,9 @@
 [submodule "nvim/package/start/leap"]
 	path = nvim/package/start/leap
 	url = https://github.com/ggandor/leap.nvim.git
+[submodule "nvim/package/start/lint"]
+	path = nvim/package/start/lint
+	url = https://github.com/mfussenegger/nvim-lint.git
 [submodule "nvim/package/start/lspconfig"]
 	path = nvim/package/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
