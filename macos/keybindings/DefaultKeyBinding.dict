@@ -6,6 +6,7 @@
  *   M-t does not swap current word with previous
  *   M-u prints quotes instead of uppercasing word
  *   lowercases/uppercase/capitalize from cursor, not entire word
+ *   Ctrl-w should delete entire word, not just to WORDCHAR
  */
 
 /* macos defaults:
