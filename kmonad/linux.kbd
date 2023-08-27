@@ -36,15 +36,15 @@
   mte   (tap-hold-next-release 155 e (layer-toggle layer-e))
   mti   (tap-hold-next-release 155 i (layer-toggle layer-i))
 
-  mtESC (tap-hold-next-release 155 (around (around lsft esc) P5) (around lsft lmet))
-  mtZ   (tap-hold-next-release 155 (around Z P5) (around lsft lalt))
-  mtR   (tap-hold-next-release 155 (around R P5) (around lsft (layer-toggle layer-r)))
-  mtS   (tap-hold-next-release 155 (around S P5) (layer-toggle layer-s))
-  mtT   (tap-hold-next-release 155 (around T P5) (layer-toggle layer-t))
+  mtESC (tap-hold-next-release 155 (around (around lsft esc) P4) (around lsft lmet))
+  mtZ   (tap-hold-next-release 155 (around Z P4) (around lsft lalt))
+  mtR   (tap-hold-next-release 155 (around R P4) (around lsft (layer-toggle layer-r)))
+  mtS   (tap-hold-next-release 155 (around S P4) (layer-toggle layer-s))
+  mtT   (tap-hold-next-release 155 (around T P4) (layer-toggle layer-t))
 
-  mtN   (tap-hold-next-release 155 (around N P5) (layer-toggle layer-n))
-  mtE   (tap-hold-next-release 155 (around E P5) (layer-toggle layer-e))
-  mtI   (tap-hold-next-release 155 (around I P5) (around lsft (layer-toggle layer-i)))
+  mtN   (tap-hold-next-release 155 (around N P4) (layer-toggle layer-n))
+  mtE   (tap-hold-next-release 155 (around E P4) (layer-toggle layer-e))
+  mtI   (tap-hold-next-release 155 (around I P4) (around lsft (layer-toggle layer-i)))
 
   ;; colemak-game mod taps
   mtz-game (tap-hold-next-release 155 z lsft)
@@ -123,14 +123,13 @@
   mrmet (around rctl (around rsft (around ralt rmet)))
 
   ;; media keys
-  ;; todo: make these work on gnome
   bdn (cmd-button "exec light -U 5")
   bup (cmd-button "exec light -A 5")
   kdn (cmd-button "exec light -Ss sysfs/leds/dell::kbd_backlight 0")
   kup (cmd-button "exec light -Ss sysfs/leds/dell::kbd_backlight 50")
-  prv (cmd-button "playerctl previous")
-  ply (cmd-button "playerctl play-pause")
-  nxt (cmd-button "playerctl next")
+  prv (cmd-button "playerctl previous --player=spotify")
+  ply (cmd-button "playerctl play-pause --player=spotify")
+  nxt (cmd-button "playerctl next --player=spotify")
   mut (cmd-button "pactl set-sink-mute @DEFAULT_SINK@ toggle")
   vdn (cmd-button "pactl set-sink-volume @DEFAULT_SINK@ -5%")
   vup (cmd-button "[ $(pactl get-sink-volume @DEFAULT_SINK@ | grep 'Volume:' | sed 's/.*\\ \\([0-9]*\\)%\\ .*/\\1/') -lt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ +5%")
