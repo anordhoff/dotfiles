@@ -3,7 +3,7 @@
 # --------------------------------------
 
 # start tmux on launch, attaching to an existing (or creating a new) session
-[ -z $TMUX ] && (tmux attach || tmux new-session -A -s dotfiles)
+[ -z $TMUX ] && (tmux attach || tmux new-session -A -s default)
 
 # options
 setopt   dotglob      # include hidden files in expansion and completion
@@ -11,7 +11,7 @@ setopt   extendedglob # treat '#', '~', and '^' as part of patterns
 setopt   nomatch      # print an error if no filename matches pattern
 unsetopt flowcontrol  # disable suspending terminal with ctrl-s
 
-# directory stack options 
+# directory stack options
 setopt autopushd       # make cd push the old directory onto the dir stack
 setopt pushdignoredups # do not push copies of the same dir onto the dir stack
 setopt pushdsilent     # do not print the dir stack after pushd or popd
@@ -34,10 +34,10 @@ select-word-style bash
 # delete key
 bindkey "^[[3~" delete-char
 
-# delete the line before the cursor, rather than entire line (to mimic bash)
+# delete the line before the cursor, rather than entire line (like bash)
 bindkey '^U' backward-kill-line
 
-# delete the word behind cursor up to the next whitespace
+# delete the word behind cursor up to the next whitespace (like bash)
 # https://unix.stackexchange.com/questions/572439/make-ctrl-w-and-ctrl-alt-h-in-zsh-behave-the-same-as-in-bash
 zle -N backward-kill-space-word
 backward-kill-space-word() {
@@ -46,7 +46,7 @@ backward-kill-space-word() {
 }
 bindkey '^W' backward-kill-space-word
 
-# ctrl-x_ctrl-e opens the current command in the editor
+# ctrl-x_ctrl-e opens the current command in the editor (like bash)
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
@@ -67,12 +67,13 @@ HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
 
-setopt extendedhistory   # save start time and length of time commands run
-setopt histignorealldups # keep only the most recently added duplicate command
-setopt histignorespace   # commands that start with a space are not written
-setopt histnostore       # history and fc commands are not written to history
-setopt histreduceblanks  # remove excess spaces before writing a comman
-setopt incappendhistory  # update the history file after each executed command
+setopt extendedhistory  # save start time and length of time commands run
+setopt histfindnodups   # skip duplicates when using reverse history search
+setopt histignorespace  # commands that start with a space are not written
+setopt histignoredups   # ignore consecutive duplicates
+setopt histnostore      # history and fc commands are not written to history
+setopt histreduceblanks # remove excess spaces before writing a command
+setopt incappendhistory # update the history file after each executed command
 
 # match typed command and arguments when moving through history
 autoload -Uz up-line-or-beginning-search
@@ -83,6 +84,13 @@ bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
+
+# allow patterns in reverse history search
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+# highlight reverse history search matches
+zle_highlight=(isearch:fg=black,bg=white)
 
 
 # --------------------------------------
@@ -153,7 +161,7 @@ zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.b
 # alias
 # --------------------------------------
 
-# unalias default run-help alias to man; alias help to run-help
+# unalias default run-help alias to man; alias help to run-help (for builtins)
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
 
@@ -185,6 +193,7 @@ else
   alias ls='ls --color=auto --group-directories-first'
 fi
 
+# python3
 if [[ $OSTYPE =~ "darwin"* ]]; then
   alias python="$BREW_PREFIX/bin/python3"
   alias pip="$BREW_PREFIX/bin/pip3"
@@ -195,30 +204,24 @@ alias    g='git'
 alias   ga='git add'
 alias   gb='git branch'
 alias  gbl='git blame'
-alias   gc='git commit -v'
+alias   gc='git commit'
 alias  gcl='git clone'
-alias  gcm='git commit -m'
 alias  gco='git checkout'
-alias gcob='git checkout -b'
 alias   gd='git diff'
 alias   gf='git fetch'
-alias gfom='git fetch origin master:master'
 alias   gl='git log'
-alias  glo='git log --oneline'
 alias   gm='git merge'
 alias  gmt='git mergetool'
 alias   gp='git pull'
-alias  gpu='git push'
 alias   gr='git reset'
 alias  grb='git rebase'
-alias  grv='git remote --verbose'
+alias  grm='git remote'
 alias   gs='git status'
 alias  gst='git stash'
 alias  gsh='git show'
 
 # kubernetes
 alias  k='kubectl'
-alias ka='kubectl apply'
 alias kd='kubectl describe'
 alias ke='kubectl explain'
 alias kg='kubectl get'
@@ -241,21 +244,6 @@ alias  kns='kubectl ns'
 [ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] \
   && source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
-# enable fzf (except in vim)
-# if [ -z $VIM ]; then
-#   if [[ $OSTYPE =~ "darwin"* ]]; then
-#     [ -r $BREW_PREFIX/opt/fzf/shell/completion.zsh ] \
-#       && source $BREW_PREFIX/opt/fzf/shell/completion.zsh
-#     [ -r $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh ] \
-#       && source $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh
-#   else
-#     [ -r /usr/share/fzf/shell/completion.zsh ] \
-#       && source /usr/share/fzf/shell/completion.zsh
-#     [ -r /usr/share/fzf/shell/key-bindings.zsh ] \
-#       && source /usr/share/fzf/shell/key-bindings.zsh
-#   fi
-# fi
-
 
 # --------------------------------------
 # misc
@@ -263,7 +251,3 @@ alias  kns='kubectl ns'
 
 # source work zshrc
 [ -r ~/jobfiles/zsh/zshrc ] && source ~/jobfiles/zsh/zshrc
-
-if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=($BREW_PREFIX/opt/openssl@3/bin $path)
-fi

@@ -10,7 +10,7 @@ add: validate-submodule validate-path
 
 # make add path=nvim/package/start/repeat
 rm: validate-path
-	git rm $(path)
+	git rm $(path) -f
 	rm -rf .git/modules/$(path)
 
 

@@ -2,27 +2,30 @@ local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local windows = require('lspconfig.ui.windows')
 
+-- border style
+local border = 'single'
+
 -- add a border to floating windows
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
-  opts.border = opts.border or 'single'
+  opts.border = opts.border or border
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
--- add a border to LspInfo window
-windows.default_options.border = 'single'
+-- add a border to :LspInfo window
+windows.default_options.border = border
 
 -- customize how diagnostics are displayed
 vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  underline = false,
-  update_in_insert = false,
-  severity_sort = true,
   float = {
-    source = false,
+    source = true,
   },
+  severity_sort = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  virtual_text = false,
 })
 
 -- highlight line numbers when there are diagnostics to display
@@ -30,6 +33,25 @@ vim.fn.sign_define('DiagnosticSignError', { numhl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { numhl = 'DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignInfo', { numhl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { numhl = 'DiagnosticSignHint' })
+
+-- TODO: fill out code_action_utils.lua
+-- show a sign when a code action is available
+-- vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+--   group = vim.api.nvim_create_augroup('codeactions', { clear = true }),
+--   callback = function()
+--     require('config.code_action_utils').code_action_listener()
+--   end,
+--   pattern = '*'
+-- })
+
+-- print client information
+vim.api.nvim_create_user_command(
+  'LspInspect',
+  function()
+    print(vim.inspect(vim.lsp.buf_get_clients()))
+  end,
+  {}
+)
 
 -- diagnostic keymaps
 local opts = { silent = true }
@@ -40,38 +62,44 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, opts)
 vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
 
 -- lsp settings
-local on_attach = function(client, bufnr)
-  -- enable completion (onminfunc_sync.lua func for synchronous omnifunc)
-  -- https://github.com/neovim/neovim/pull/17218
-  require('config.omnifunc_sync')
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.omnifunc_sync')
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('lspconfig', { clear = true }),
+  callback = function(ev)
+    -- enable completion (onminfunc_sync.lua func for synchronous omnifunc)
+    -- https://github.com/neovim/neovim/pull/17218
+    require('config.omnifunc_sync')
+    vim.bo[ev.buf].omnifunc = 'v:lua.omnifunc_sync'
 
-  -- keymaps
-  local bufopts = { silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>F', vim.lsp.buf.format, bufopts)
-end
+    -- keymaps
+    local bufopts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('i', '<c-k>', function()
+      if vim.fn.col('.') > vim.fn.strlen(vim.fn.getline('.')) then
+        return vim.lsp.buf.signature_help() else
+        return vim.cmd.normal('D') and vim.fn.cursor(vim.fn.line('.'), vim.fn.col('.') + 1) end
+    end, bufopts)
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<leader>F', function()
+      vim.lsp.buf.format { async = true }
+    end, bufopts)
+  end,
+})
 
--- use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
+-- use a loop to call 'setup' on multiple servers
 local servers = { 'bashls', 'cssls', 'eslint', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'vimls' }
 for _, lsp in pairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-  }
+  lspconfig[lsp].setup {}
 end
 
 
@@ -81,46 +109,41 @@ end
 
 -- setup configuration
 lspconfig.gopls.setup {
-  on_attach = on_attach,
-  cmd = { 'gopls', 'serve' },
-  filetypes = { 'go', 'gomod' },
+  cmd = { 'gopls', '-remote=auto' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
   root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
   settings = {
     gopls = {
       analyses = {
-        unusedparams = true,
+        fieldalignment = false,
+        nilness = true,
         shadow = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+        unusedvariable = true,
       },
+      linksInHover = false,
       staticcheck = true,
     },
   },
 }
 
--- run the goimports command
-local function goimports(wait_ms)
-  local params = vim.lsp.util.make_range_params()
-  params.context = { only = { 'source.organizeImports' }}
-  local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
-  for _, res in pairs(result or {}) do
-    for _, r in pairs(res.result or {}) do
-      if r.edit then
-        vim.lsp.util.apply_workspace_edit(r.edit, 'utf-16')
-      else
-        vim.lsp.buf.execute_command(r.command)
-      end
-    end
-  end
-end
+-- TODO: hide "no code actions available" when no changes are made to imports
+-- TODO: async code_actions can cause goimports to run after saving the file
+--       (https://github.com/neovim/neovim/issues/24168)
+-- TODO: running format AFTER async code_actions blows up imports
+-- NOTE: formatting extra tabs will delete the tab and three extra characters
+--       set sts=0 fixes this
 
--- autoformat code when writing the buffer
-local gopls_group = vim.api.nvim_create_augroup('gopls', { clear = true })
+-- format code and organize imports when writing the buffer
 vim.api.nvim_create_autocmd('BufWritePre', {
+  group = vim.api.nvim_create_augroup('gopls', { clear = true }),
   callback = function()
-    vim.lsp.buf.format()
-    goimports(1000)
+    vim.lsp.buf.format{ async = false }
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
   end,
-  group = gopls_group,
-  pattern = '*.go'
+  pattern = '*.go',
 })
 
 
@@ -130,7 +153,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 -- setup configuration
 lspconfig.lua_ls.setup {
-  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -193,7 +215,6 @@ end
 
 -- setup configuration
 lspconfig.yamlls.setup {
-  on_attach = on_attach,
   settings = {
     yaml = {
       format = { enable = true, singleQuote = true },

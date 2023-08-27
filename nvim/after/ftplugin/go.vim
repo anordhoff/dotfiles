@@ -1,4 +1,5 @@
-setlocal listchars=tab:\ \ ,trail:-,lead:-
+" prevent editorconfig from setting softtabstop=-1
+let b:editorconfig = v:false
 
 " edit the current file's alternate file
 nnoremap <silent> <buffer> <leader>aa :call AlternateFile('edit')<cr>

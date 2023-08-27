@@ -2,11 +2,12 @@
 " settings
 " --------------------------------------
 
-" TODO: yo(something) which enables/disables tab lines, example:
-" test:
-" | test2:
-" | | test3: test4
-" | | test4: test3
+" TODO: when opening file with swap file, colors do not follow
+" colorscheme/terminal colors
+
+" TODO: errorformat for 'make test' and 'go test ./controllers' when using
+" kubernetes envtest (incorrect lines are highlighted on make test, expected
+" lines are not highlighted on go test ./controllers)
 
 " load internal packages
 if &loadplugins
@@ -15,29 +16,30 @@ endif
 
 " basic settings
 set number             " enable line numbers
-set noincsearch        " do not immediately jump to first search hit
 set noshowmode         " hide the mode from the bottom row
+set noincsearch        " do not immediately jump to first search hit
 set ignorecase         " case-insensitive searching...
 set smartcase          " ...but not if the search contains a capital letter
 set splitright         " split vertical windows to the right of current window
 set splitbelow         " split horizontal windows below current window
+set textwidth=80       " wrap lines at 80 characters when formatting
+set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
+set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursora
 set foldmethod=syntax  " fold based on syntax highlighting items
 set foldnestmax=1      " limit to 1 nested fold
 set foldlevel=1        " don't automatically close folds
-set fillchars=vert:\|  " use the pipe symbol as a vertical separator
-set textwidth=79       " wrap lines at 79 characters when formatting
-set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
-set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursora
 set mouse=             " disable mouse support
 set ttimeoutlen=1      " minimal delay for escape key presses
 set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
 
-" use spaces by default (NOTE: vim-sleuth sets softtabstop=-1)
+" use two spaces instead of tabs by default
 set tabstop=2
-set softtabstop=0
 set shiftwidth=2
+set softtabstop=0
 set expandtab
 set smarttab
+set autoindent
+set smartindent
 
 " make line wrapping look nicer, but don't wrap by default
 set nowrap
@@ -46,23 +48,31 @@ set breakindent
 set showbreak=\ ..\  " trailing whitespace
 
 " show possible completions in a pmenu; insert longest common text of matches
-set completeopt=menu,longest
+set completeopt=menu,longest,preview
 set pumheight=10
 
+" wrap text in the preview window
+augroup preview
+  autocmd!
+  autocmd WinEnter * if &previewwindow | setlocal wrap | endif
+augroup END
+
+" close the preview window when done completing
+augroup completion
+  autocmd!
+  autocmd CompleteDone * pclose
+augroup END
+
 " use a wildmenu for command line completion
-" TODO: :hi Statusline ctermbg=0, which makes commandline completion look bad
-set wildoptions=tagfile
+set wildoptions=pum,tagfile
 set wildmode=longest:full,full
 set wildignorecase
 
 " list of file patterns to ignore
-set wildignore+=tags,.git/**,vendor/**,node_modules/**,package/opt/**,package/start/**
+set wildignore+=tags,.git/**,bin/**,vendor/**,node_modules/**,package/opt/**,package/start/**
 
-" show tabs and trailing whitespace
-" TODO: should I use listchars for all files, or only specific? Show tabs or
-" just spaces?
+" show trailing whitespace
 set list
-" set listchars=tab:<->,trail:-
 set listchars=tab:\ \ ,trail:-
 
 " don't show trailing spaces while in insert mode
@@ -76,7 +86,6 @@ augroup END
 " the current comment leader when creating a new line
 augroup formatoptions
   autocmd!
-  " autocmd BufNewFile,BufRead,FileType,OptionSet * set fo-=t fo-=r fo-=o
   autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal fo-=t fo-=r fo-=o
 augroup END
 
@@ -84,6 +93,13 @@ augroup END
 augroup spellcheck
   autocmd!
   autocmd FileType text,markdown,gitcommit setlocal spell
+augroup END
+
+" enable the cursorline on the active window
+augroup cursorline
+  autocmd!
+  autocmd BufEnter,WinEnter * setlocal cursorline
+  autocmd BufLeave,WinLeave * setlocal nocursorline
 augroup END
 
 " restore cursor to previous location when opening a file
@@ -106,7 +122,6 @@ colorscheme colorscheme
 " source work init.vim
 runtime job.vim
 
-
 " --------------------------------------
 " keymaps
 " --------------------------------------
@@ -118,31 +133,50 @@ let mapleader = "\<space>"
 inoremap <c-r>+ <c-r><c-r>+
 inoremap <c-r>* <c-r><c-r>*
 
-" make [[, ][, ]], and [] less useless for most languages (see :h section)
+" ctrl-p and ctrl-n match the current command-line
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
+
+" <left> and <right> move the cursor instead of selecting wildmenu matches
+cnoremap <left> <space><bs><left>
+cnoremap <right> <space><bs><right>
+
+" [[, ][, ]], and [] useful (overwrites existing search) (see :h section)
 map <silent> [[ ?{<cr><c-l>w99[{0
 map <silent> ][ /}<cr><c-l>b99]}0
 map <silent> ]] j0?{<cr><c-l>w99[{%/{<cr><c-l>0
 map <silent> [] k$/}<cr><c-l>b99]}%?}<cr><c-l>0
 
-" quickly run a command in a new terminal buffer
-nnoremap z<space> :term<space>
-
 " grep current file or directory
 nnoremap g<space> :lvimgrep  %<left><left>
-nnoremap <leader>g :vimgrep  **/*<left><left><left><left><left>
+nnoremap gp<space> :vimgrep  **/*<left><left><left><left><left>
 
-" edit
+" file and buffer navigation
 nnoremap <leader>e :e **/*
 nnoremap <leader>b :ls<cr>:b<space>
 
-" toggle the quickfix list window
+" run a command in a split terminal buffer
+nnoremap z<space> :Term<space>
+command! -nargs=1 Term call s:termcmd(<q-args>)
+function s:termcmd(cmd)
+  let l:expandedcmd = join(map(split(a:cmd, '\ze[<%#]'), 'expand(v:val)'), '')
+  new botright split
+  call termopen(l:expandedcmd)
+  startinsert!
+endfunction
+
+" maximize the current window (overwrites default :pclose mapping)
+nnoremap <silent> <c-w>z <c-w>\|<c-w>_
+nnoremap <silent> <c-w><c-z> <c-w>\|<c-w>_
+
+" toggle the quickfix list window and maximize window to the width of vim
 nnoremap <silent> <leader>q :call QuickfixList()<cr>
 function QuickfixList()
   if getqflist({'winid': 0}).winid
     cclose
   else
-    copen
-    exec 'normal! <c-w><c-w>'
+    botright copen
+    wincmd p
   endif
 endfunction
 
@@ -154,18 +188,16 @@ function LocationList()
       lclose
     else
       lopen
-      exec 'normal! <c-w><c-w>'
+      wincmd p
     endif
   catch 'E776'
     echohl ErrorMsg | echo 'E776: No location list' | echohl None
   endtry
 endfunction
 
-" maximize (toggle) the current window (NOTE: overrides default :pc mapping)
-nnoremap <silent> <c-w>z <c-w>\|<c-w>_
-nnoremap <silent> <c-w><c-z> <c-w>\|<c-w>_
-
-" trigger omni completion
+" trigger omni completion using <tab>
+" TODO: use ctrl-i to insert tab character; not supported by tmux
+"       (https://github.com/tmux/tmux/issues/2705, https://github.com/neovim/neovim/issues/17867)
 inoremap <expr> <tab> pumvisible() ? '<c-n>' :
   \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<tab>'
 inoremap <expr> <s-tab> pumvisible() ? '<c-p>' :
@@ -180,7 +212,7 @@ function s:syngroup()
   endfor
 endfunction
 
-" clear the specified register (:wshada! to persist changes)
+" clear the specified register
 command! -nargs=1 Clear call s:clear_register(<q-args>)
 function s:clear_register(chars)
   for l:char in split(a:chars, '\zs')
@@ -190,30 +222,28 @@ function s:clear_register(chars)
     \ "'. Execute :wshada! to persist changes"
 endfunction
 
-" only the active window has cursorline
-augroup cursorline
-  autocmd!
-  autocmd BufEnter,WinEnter * setlocal cursorline
-  autocmd BufLeave,WinLeave * setlocal nocursorline
-augroup END
+" source init.vim
+command So :source ~/.config/nvim/init.vim
+
 
 " --------------------------------------
 " statusline
 " --------------------------------------
 
 " copy StatusLine and StatusLineNC highlight groups
-exec 'highlight StatusLineActive' .
-  \ ' ctermfg=' . nvim_get_hl(0, {"name": "StatusLine"})["ctermfg"] .
-  \ ' ctermbg=' . nvim_get_hl(0, {"name": "StatusLine"})["ctermbg"]
-exec 'highlight StatusLineInactive' .
-  \ ' ctermfg=' . nvim_get_hl(0, {"name": "StatusLineNC"})["ctermfg"] .
-  \ ' ctermbg=' . nvim_get_hl(0, {"name": "StatusLineNC"})["ctermbg"]
+" exec 'highlight StatusLineActive' .
+"   \ ' ctermfg=' . nvim_get_hl(0, {'name': 'StatusLine'})['ctermfg'] .
+"   \ ' ctermbg=' . nvim_get_hl(0, {'name': 'StatusLine'})['ctermbg']
+" exec 'highlight StatusLineInactive' .
+"   \ ' ctermfg=' . nvim_get_hl(0, {'name': 'StatusLineNC'})['ctermfg'] .
+"   \ ' ctermbg=' . nvim_get_hl(0, {'name': 'StatusLineNC'})['ctermbg']
 
 " set StatusLine and StatusLineNC backgrounds to the terminal background
-highlight StatusLine ctermbg=none
-highlight StatusLineNC ctermbg=none
+" highlight StatusLine ctermbg=none
+" highlight StatusLineNC ctermbg=none
 
-" custom status line
+" custom status line (requires additional StatusLineActive and
+" StatusLineInactive highlight groups)
 set statusline=%!Statusline(g:statusline_winid)
 function Statusline(winid)
   let l:statusline  = ' ' . Background(a:winid) " left padding; set status line background color
@@ -228,7 +258,7 @@ function Statusline(winid)
   return l:statusline
 endfunction
 
-" quickfix list / location list / netrw / terminal buffer status lines
+" quickfix and location list / netrw / terminal buffer status lines
 augroup statusline
   autocmd!
   autocmd Filetype qf setlocal statusline=%!QuickfixListStatusline(g:statusline_winid)
@@ -364,9 +394,9 @@ function ToggleNotes(dir)
     hide
   else
     try
-      exec 'sbuffer ' . t:notesbuf
+      exec 'botright sbuffer ' . t:notesbuf
     catch
-      exec 'split ' . a:dir
+      exec 'botright split ' . a:dir
       let t:notesbuf = bufnr('%')
     endtry
     let t:noteswin = win_getid()
@@ -403,6 +433,9 @@ tnoremap <silent> <a-v> <c-\><c-n>:call ToggleTerm(1)<cr>
 " use ctrl-r to access registers in terminal insert mode
 tnoremap <expr> <c-r> '<c-\><c-n>"' . nr2char(getchar()) . 'pi'
 
+" use ctrl-r ctrl-r to reverse-history search
+tnoremap <c-r><c-r> <c-r>
+
 " toggle a horizontal/vertical terminal split
 function ToggleTerm(vsplit)
   if !exists('t:termbuf')
@@ -415,20 +448,22 @@ function ToggleTerm(vsplit)
   " if a terminal window is open, hide it; else, (re)open a terminal window
   if bufname(winbufnr(t:termwin)) =~ '^term://' && win_gotoid(t:termwin)
     hide
+    wincmd p
   else
     try
       if a:vsplit
-        exec 'vertical sbuffer ' . t:termbuf
+        exec 'botright vertical sbuffer ' . t:termbuf
       else
-        exec 'sbuffer ' . t:termbuf
+        exec 'botright sbuffer ' . t:termbuf
       endif
       startinsert!
     catch
       if a:vsplit
-        exec 'vsplit +term'
+        exec 'botright vsplit +term'
       else
-        exec 'split +term'
+        exec 'botright split +term'
       endif
+      startinsert!
       let t:termbuf = bufnr('%')
     endtry
     let t:termwin = win_getid()
@@ -438,8 +473,6 @@ endfunction
 augroup terminal
   autocmd!
 
-  " enter insert mode automatically
-  autocmd TermOpen * startinsert
   " disable line numbers
   autocmd TermOpen * setlocal nonumber norelativenumber
   " hide the sign column
@@ -456,7 +489,9 @@ augroup END
 if &loadplugins
 lua << EOT
 require('impatient')
+require('config.indent-blankline')
 require('config.leap')
+require('config.lint')
 require('config.lspconfig')
 require('config.telescope')
 require('config.treesitter')
