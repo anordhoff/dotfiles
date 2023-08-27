@@ -1,68 +1,37 @@
 # macos
 
-tools:
+### tmux-256color
 
-- [Change Menu Bar Color](https://github.com/igorkulman/ChangeMenuBarColor)
+macOS has ncurses version 5.7 which does not ship the terminfo description for tmux. Compile the latest ncurses terminal descriptions for tmux-256color: https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95
+
+### tools:
+
 - [Bartender](https://www.macbartender.com)
 - [Linear Mouse](https://linearmouse.org/)
 - [SpotMenu v1.8](https://github.com/kmikiy/SpotMenu)
 - [Space ID](https://github.com/dshnkao/SpaceId)
+- [BetterTouchTool](https://folivora.ai/)
 
+### less distracting wallpaper
 
+- [Change Menu Bar Color](https://github.com/igorkulman/ChangeMenuBarColor)
+- [Wallpapper](https://github.com/mczachurski/wallpapper)
 
-# old
+### shortcuts
 
-## keyboard
-
-Keyboard layout was generated using SIL Language Technology's Ukelele
-
-Swap Control and Command keys: `System Preferences > Keyboard > Modifier Keys > Apple Internal Keyboard`
-
-```
-$ tar -C ~/.dotfiles/macos/keyboard -xzf ~/.dotfiles/macos/keyboard/custom.bundle.tar.gz
-$ ln -s ~/.dotfiles/macos/keyboard/custom.bundle ~/Library/Keyboard\ Layouts/.
-$ chmod +x ~/.dotfiles/macos/keyboard/options.sh
-$ sudo defaults write com.apple.loginwindow LoginHook ~/.dotfiles/macos/keyboard/options.sh
-```
-
-## Karabiner Elements
-
-Symbolic link: [https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link](https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link)
-
-Reboot for the changes to take effect
-
-#### tools
-
-[WhichSpace](https://github.com/gechr/WhichSpace)
-
-[Bearded Spice](https://github.com/beardedspice/beardedspice)
-
-[Scroll Reverser](https://github.com/pilotmoon/Scroll-Reverser)
-
-[autokbisw](https://github.com/jeantil/autokbisw)
-
-[SpotMenu](https://github.com/kmikiy/SpotMenu) (install v1.8 to disable scrolling text)
-
-[f.lux](https://justgetflux.com)
-
-[BetterTouchTool](https://folivora.ai/)
-
-#### yabai/skhd
-
-Change mission control shortcuts: `System Preferences > Keyboard > Shortcuts > Mission Control`
-
-```
-Switch to Desktop 1:  Command-1
-Switch to Desktop 2:  Command-2
-...
-Switch to Desktop 10: Command-0
-```
-
-Add a shortcut under `App Shortcuts`:
-```
-Lock Screen: Command-l
-```
-
-https://github.com/universal-ctags/ctags
-
-https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95
+| category | shortcut | keybinding |
+| -- | -- | -- |
+| Mission Control | Move left a space | meh-u |
+| Mission Control | Move right a space | meh-u |
+| Mission Control | Switch to Desktop 1 | meh-x |
+| Mission Control | Switch to Desktop 2 | meh-c |
+| Mission Control | ... | ... |
+| Mission Control | Switch to Desktop 9 | meh-p |
+| Mission Control | Switch to Desktop 10 | meh-a |
+| Screenshots | Save a picture of screen as a file | opt-cmd-F13 |
+| Screenshots | Copy picture of screen to the clipboard | opt-F13 |
+| Screenshots | Save picture of selected area as a file | cmd-F13 |
+| Screenshots | Copy picture of selected area to the clipboard | F13 |
+| Screenshots | Screenshot and recording options | ctrl-F13 |
+| Spotlight | Show Spotlight search | meh-esc |
+| App Shortcuts | All Applications > Lock Screen | meh-/ |

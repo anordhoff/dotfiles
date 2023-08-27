@@ -11,21 +11,21 @@ fi
 typeset -U path
 path=(~/.local/bin $path)
 
-# go
+# go packages
 path=($GOPATH/bin $path)
 
-# rust
+# rust binaries
 path=(~/.cargo/bin $path)
 
 # kubectl plugins
 path=(~/.krew/bin $path)
 
-# npm global dependencies
+# npm global packages
 path=(~/.npm/global/bin $path)
 
-# python
+# python packages
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=(~/Library/Python/3.10/bin $path)
+  path=(~/Library/Python/3.11/bin $path)
 fi
 
 # ruby
@@ -34,6 +34,9 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
 fi
 
 # symlink keg-only packages
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/curl/bin $path)
+fi
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($BREW_PREFIX/opt/avr-gcc@8/bin $path)
   path=($BREW_PREFIX/opt/arm-none-eabi-gcc@9/bin $path)

@@ -46,12 +46,12 @@ export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
 export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
 
 # fzf flags and colors
-export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file \
--E tags -E .git -E vendor -E node_modules -E package/opt -E package/start"
-export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory \
--E tags -E .git -E vendor -E node_modules -E package/opt -E package/start"
-export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix \
--E tags -E .git -E vendor -E node_modules -E package/opt -E package/start"
+export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file -E tags \
+-E .git -E bin -E vendor -E node_modules -E package/opt -E package/start"
+export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory -E tags \
+-E .git -E bin -E vendor -E node_modules -E package/opt -E package/start"
+export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix -E tags \
+-E .git -E bin -E vendor -E node_modules -E package/opt -E package/start"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ \
 --border=horizontal \
 --color border:8 \

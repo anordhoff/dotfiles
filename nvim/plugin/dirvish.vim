@@ -1,3 +1,5 @@
+" TODO: change dirvish mapping 'x' to something else so I can use leap
+
 " sort directories first
 let g:dirvish_mode = ':sort ,^.*[\/],'
 

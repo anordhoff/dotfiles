@@ -1,8 +1,10 @@
 # vim: ft=zsh
 # nvim alias with support for nested nvim sessions
 
-if [[ -n $NVIM ]]; then
+if [ -n "$NVIM" ]; then
   nvim --server $NVIM --remote $@
+elif [ $# -eq 0 ]; then
+  nvim .
 else
   nvim $@
 fi
