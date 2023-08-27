@@ -4,9 +4,6 @@
 # settings
 # --------------------------------------
 
-# dark mode
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-
 # night shift
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 3000
@@ -57,6 +54,12 @@ gsettings set org.gnome.mutter overlay-key ''
 # disable alternate characters key by setting to menu key
 gsettings set org.gnome.desktop.input-sources xkb-options '["lv3:menu_switch"]'
 
+# toggle dark mode
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'toggle-theme'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal -- /bin/sh -c "$HOME/dotfiles/linux/gnome/toggle-theme.sh"'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Shift><Control><Alt><Super>m'
+
 # open the application launcher
 gsettings set org.gnome.settings-daemon.plugins.media-keys search '["<Shift><Control><Alt>escape"]'
 
@@ -71,7 +74,6 @@ gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Control><Alt>q"]
 # lock screen
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '["<Shift><Control><Alt>question"]'
 
-# TODO: these two are sort of clunky
 # switch window
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Shift><Control><Alt>n"]'
 gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Shift><Control><Alt>o"]'
