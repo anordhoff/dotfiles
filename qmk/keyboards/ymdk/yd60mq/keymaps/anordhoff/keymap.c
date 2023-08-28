@@ -1,203 +1,4 @@
-#include QMK_KEYBOARD_H
-
-// base layers
-#define QWERTY  DF(_QWERTY)
-#define COLEMAK DF(_COLEMAK)
-#define GAME    DF(_COLEMAK_GAME)
-
-// additional layers
-#define RMEH    MO(_COLEMAK_MEH)
-#define JOIN    MO(_JOIN)
-#define ADJUST  MO(_ADJUST)
-
-// switch out of qwerty using shifts
-#define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
-#define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
-
-// home row mods / mod taps
-#define MT_ESC  MT(MOD_LGUI, KC_ESC)
-#define MT_Z    MT(MOD_LALT, KC_Z)
-#define MT_R    LT(_LAYER_R, KC_R)
-#define MT_S    LT(_LAYER_S, KC_S)
-#define MT_T    LT(_LAYER_T, KC_T)
-
-#define MT_N    LT(_LAYER_N, KC_N)
-#define MT_E    LT(_LAYER_E, KC_E)
-#define MT_I    LT(_LAYER_I, KC_I)
-
-// colemak-game mod taps
-#define MT_Z_GM MT(MOD_LSFT, KC_Z)
-
-// right meh layer keys
-#define RM_A    RCTL(RSFT(RALT(KC_A)))
-#define RM_B    RCTL(RSFT(RALT(KC_B)))
-#define RM_C    RCTL(RSFT(RALT(KC_C)))
-#define RM_D    RCTL(RSFT(RALT(KC_D)))
-#define RM_E    RCTL(RSFT(RALT(KC_E)))
-#define RM_F    RCTL(RSFT(RALT(KC_F)))
-#define RM_G    RCTL(RSFT(RALT(KC_G)))
-#define RM_H    RCTL(RSFT(RALT(KC_H)))
-#define RM_I    RCTL(RSFT(RALT(KC_I)))
-#define RM_J    RCTL(RSFT(RALT(KC_J)))
-#define RM_K    RCTL(RSFT(RALT(KC_K)))
-#define RM_L    RCTL(RSFT(RALT(KC_L)))
-#define RM_M    RCTL(RSFT(RALT(KC_M)))
-#define RM_N    RCTL(RSFT(RALT(KC_N)))
-#define RM_O    RCTL(RSFT(RALT(KC_O)))
-#define RM_P    RCTL(RSFT(RALT(KC_P)))
-#define RM_Q    RCTL(RSFT(RALT(KC_Q)))
-#define RM_R    RCTL(RSFT(RALT(KC_R)))
-#define RM_S    RCTL(RSFT(RALT(KC_S)))
-#define RM_T    RCTL(RSFT(RALT(KC_T)))
-#define RM_U    RCTL(RSFT(RALT(KC_U)))
-#define RM_V    RCTL(RSFT(RALT(KC_V)))
-#define RM_W    RCTL(RSFT(RALT(KC_W)))
-#define RM_X    RCTL(RSFT(RALT(KC_X)))
-#define RM_Y    RCTL(RSFT(RALT(KC_Y)))
-#define RM_Z    RCTL(RSFT(RALT(KC_Z)))
-#define RM_1    RCTL(RSFT(RALT(KC_1)))
-#define RM_2    RCTL(RSFT(RALT(KC_2)))
-#define RM_3    RCTL(RSFT(RALT(KC_3)))
-#define RM_4    RCTL(RSFT(RALT(KC_4)))
-#define RM_5    RCTL(RSFT(RALT(KC_5)))
-#define RM_6    RCTL(RSFT(RALT(KC_6)))
-#define RM_7    RCTL(RSFT(RALT(KC_7)))
-#define RM_8    RCTL(RSFT(RALT(KC_8)))
-#define RM_9    RCTL(RSFT(RALT(KC_9)))
-#define RM_0    RCTL(RSFT(RALT(KC_0)))
-#define RM_ESC  RCTL(RSFT(RALT(KC_ESC)))
-#define RM_TAB  RCTL(RSFT(RALT(KC_TAB)))
-#define RM_BSPC RCTL(RSFT(RALT(KC_BSPC)))
-#define RM_DEL  RCTL(RSFT(RALT(KC_DEL)))
-#define RM_ENT  RCTL(RSFT(RALT(KC_ENT)))
-#define RM_SPC  RCTL(RSFT(RALT(KC_SPC)))
-#define RM_UP   RCTL(RSFT(RALT(KC_UP)))
-#define RM_LEFT RCTL(RSFT(RALT(KC_LEFT)))
-#define RM_DOWN RCTL(RSFT(RALT(KC_DOWN)))
-#define RM_RGHT RCTL(RSFT(RALT(KC_RGHT)))
-#define RM_MINS RCTL(RSFT(RALT(KC_MINS)))
-#define RM_EQL  RCTL(RSFT(RALT(KC_EQL)))
-#define RM_LBRC RCTL(RSFT(RALT(KC_LBRC)))
-#define RM_RBRC RCTL(RSFT(RALT(KC_RBRC)))
-#define RM_BSLS RCTL(RSFT(RALT(KC_BSLS)))
-#define RM_SCLN RCTL(RSFT(RALT(KC_SCLN)))
-#define RM_QUOT RCTL(RSFT(RALT(KC_QUOT)))
-#define RM_GRV  RCTL(RSFT(RALT(KC_GRV)))
-#define RM_COMM RCTL(RSFT(RALT(KC_COMM)))
-#define RM_DOT  RCTL(RSFT(RALT(KC_DOT)))
-#define RM_SLSH RCTL(RSFT(RALT(KC_SLSH)))
-#define RM_RGUI RCTL(RSFT(RALT(KC_RGUI)))
-
-// layers enum
-enum layers {
-	_COLEMAK,
-	_COLEMAK_GAME,
-	_COLEMAK_MEH,
-	_LAYER_R,
-	_LAYER_S,
-	_LAYER_T,
-	_LAYER_N,
-	_LAYER_E,
-	_LAYER_I,
-	_JOIN,
-	_ADJUST,
-	_QWERTY,
-	_QWERTY_LEFT_SHIFT,
-	_QWERTY_RIGHT_SHIFT,
-};
-
-// custom keycodes
-enum my_keycodes {
-	TOG_SUP = SAFE_RANGE,
-	SLSH_UP
-};
-
-// toggle right shift between KC_SLSH and KC_UP
-bool kc_up_toggled = false;
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		case QWERTY: case COLEMAK: case GAME:
-			if (record->event.pressed) {
-				kc_up_toggled = false;
-			}
-			return true;
-		case TOG_SUP:
-			if (record->event.pressed) {
-				kc_up_toggled = !kc_up_toggled;
-			}
-			return true;
-		case SLSH_UP:
-			if (kc_up_toggled) {
-				if (record->event.pressed) {
-					register_code(KC_UP);
-				} else {
-					unregister_code(KC_UP);
-				}
-			} else {
-				if (record->event.pressed) {
-					register_code(KC_SLSH);
-				} else {
-					unregister_code(KC_SLSH);
-				}
-			}
-			return true;
-		default:
-			return true;
-	}
-}
-
-// layer_s overrides
-const key_override_t left_bracket_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_LBRC, KC_LBRC, 1 << _LAYER_S);
-const key_override_t right_bracket_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_RBRC, KC_RBRC, 1 << _LAYER_S);
-const key_override_t backslash_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_BSLS, KC_BSLS, 1 << _LAYER_S);
-
-// layer_t overrides
-const key_override_t minus_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_MINS, KC_MINS, 1 << _LAYER_T);
-const key_override_t semicolon_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_SCLN, KC_SCLN, 1 << _LAYER_T);
-const key_override_t equal_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_EQL, KC_EQL, 1 << _LAYER_T);
-const key_override_t grave_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_GRV, KC_GRV, 1 << _LAYER_T);
-
-// layer_n overrides
-const key_override_t zero_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_0, KC_0, 1 << _LAYER_N);
-const key_override_t one_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_1, KC_1, 1 << _LAYER_N);
-const key_override_t two_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_2, KC_2, 1 << _LAYER_N);
-const key_override_t three_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_3, KC_3, 1 << _LAYER_N);
-const key_override_t four_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_4, KC_4, 1 << _LAYER_N);
-const key_override_t five_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_5, KC_5, 1 << _LAYER_N);
-const key_override_t six_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_6, KC_6, 1 << _LAYER_N);
-const key_override_t seven_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_7, KC_7, 1 << _LAYER_N);
-const key_override_t eight_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_8, KC_8, 1 << _LAYER_N);
-const key_override_t nine_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_9, KC_9, 1 << _LAYER_N);
-const key_override_t comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_COMM, 1 << _LAYER_N);
-const key_override_t dot_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_DOT, 1 << _LAYER_N);
-const key_override_t slash_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_SLSH, KC_SLSH, 1 << _LAYER_N);
-
-// globally define all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-	&left_bracket_key_override,
-	&right_bracket_key_override,
-	&backslash_key_override,
-
-	&minus_key_override,
-	&semicolon_key_override,
-	&equal_key_override,
-	&grave_key_override,
-
-	&zero_key_override,
-	&one_key_override,
-	&two_key_override,
-	&three_key_override,
-	&four_key_override,
-	&five_key_override,
-	&six_key_override,
-	&seven_key_override,
-	&eight_key_override,
-	&nine_key_override,
-	&comma_key_override,
-	&dot_key_override,
-	&slash_key_override,
-	NULL
-};
+#include "anordhoff.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -209,10 +10,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
 	   MT_ESC       , KC_A  , MT_R  , MT_S  , MT_T  , KC_G  ,KC_RBRC, KC_M  , MT_N  , MT_E  , MT_I  , KC_O  ,XXXXXXX,   KC_ENT,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
-	   KC_LSFT, MT_Z  , KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,SLSH_UP,TOG_SUP,
+	   KC_LSFT, MT_Z  , KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,MT_SLSH,TOG_SUP,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , KC_LGUI , KC_LALT , KC_LCTL ,        KC_SPC         , KC_LSFT ,  RMEH   ,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_COLEMAK_GAME] = LAYOUT(
@@ -223,10 +24,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
 	   KC_ESC       , KC_A  , KC_R  , KC_S  , KC_T  , KC_G  ,KC_RBRC, KC_M  , KC_N  , KC_E  , KC_I  , KC_O  ,XXXXXXX,   KC_ENT,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
-	   KC_LSFT,MT_Z_GM, KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,SLSH_UP,TOG_SUP,
+	   KC_LSFT,MT_Z_GM, KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,MT_SLSH,TOG_SUP,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , KC_LGUI , KC_LALT , KC_SPC  ,        KC_SPC         , KC_LSFT ,  RMEH   ,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_MINS, RM_DOT -> RM_EQL)
@@ -241,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   XXXXXXX, RM_Z  , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,RM_BSLS, RM_K  , RM_H  ,RM_MINS,RM_EQL ,XXXXXXX,RM_SLSH,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   XXXXXXX      , XXXXXXX ,  JOIN   , ADJUST  ,        RM_RGUI        , XXXXXXX , _______ ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_LAYER_R] = LAYOUT(
@@ -255,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_DEL ,KC_END ,KC_PGDN,XXXXXXX,XXXXXXX,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , KC_LCTL ,        KC_SPC         , KC_LSFT , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_LAYER_S] = LAYOUT(
@@ -269,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_PLUS,KC_LCBR,KC_RCBR,XXXXXXX,XXXXXXX,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , KC_LCTL ,        KC_SPC         , XXXXXXX , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_LAYER_T] = LAYOUT(
@@ -283,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_EQL ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , KC_LCTL ,        KC_SPC         , XXXXXXX , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_LAYER_N] = LAYOUT(
@@ -297,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT, KC_1  , KC_2  , KC_3  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , KC_LCTL ,        KC_SPC         , XXXXXXX , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_LAYER_E] = LAYOUT(
@@ -311,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT,KC_EXLM, KC_AT ,KC_HASH,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , KC_LCTL ,        KC_SPC         , XXXXXXX , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_LAYER_I] = LAYOUT(
@@ -325,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT, KC_F1 , KC_F2 , KC_F3 ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,XXXXXXX,KC_SLSH,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , KC_LCTL ,        KC_SPC         , KC_LSFT , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_JOIN] = LAYOUT(
@@ -339,21 +140,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   KC_LSFT,KC_LALT, KC_F1 , KC_F2 , KC_F3 ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_DEL ,KC_END ,KC_PGDN,XXXXXXX,XXXXXXX,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , _______ , XXXXXXX ,        XXXXXXX        , KC_LSFT , _______ ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_ADJUST] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-	   RESET  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+	   QK_BOOT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
-	   XXXXXXX    ,XXXXXXX,QWERTY ,COLEMAK, GAME  ,XXXXXXX,XXXXXXX,XXXXXXX,KC_PSCR,KC_SLCK,KC_PAUS,KC_NLCK,XXXXXXX,    XXXXXXX,
+	   XXXXXXX    ,XXXXXXX,QWERTY ,COLEMAK, GAME  ,XXXXXXX,XXXXXXX,XXXXXXX,KC_PSCR,KC_SCRL,KC_PAUS,KC_NUM ,XXXXXXX,    XXXXXXX,
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
 	   KC_LGUI      ,RGB_VAD,KC_BRID,KC_BRIU,RGB_VAI,RGB_TOG,XXXXXXX,KC_CAPS,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,XXXXXXX,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
 	   KC_LSFT,KC_LALT,RGB_HUI,RGB_SAI,RGB_MOD,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_MPLY,KC_MUTE,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , XXXXXXX , XXXXXXX , _______ ,        XXXXXXX        , KC_LSFT , _______ ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_QWERTY] = LAYOUT(
@@ -367,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   QWRT_LS,KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  , KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,XXXXXXX,KC_RSFT,QWRT_RS,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , KC_LGUI , KC_LALT , KC_SPC  ,        KC_SPC         , KC_SPC  , KC_RALT ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_QWERTY_LEFT_SHIFT] = LAYOUT(
@@ -381,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   _______,KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  , KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,XXXXXXX,KC_RSFT,COLEMAK,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , KC_LGUI , KC_LALT , KC_SPC  ,        KC_SPC         , KC_SPC  , KC_RALT ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
 	[_QWERTY_RIGHT_SHIFT] = LAYOUT(
@@ -395,6 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	   COLEMAK,KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  , KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,XXXXXXX,KC_RSFT,_______,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
 	   KC_LCTL      , KC_LGUI , KC_LALT , KC_SPC  ,        KC_SPC         , KC_SPC  , KC_RALT ,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT
-	//├─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
+	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	)
+
 };

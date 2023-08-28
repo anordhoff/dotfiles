@@ -2,6 +2,12 @@
 # qmk compile/flash commands
 
 case $@ in
+'compile cepstrum')
+  command qmk compile -kb keebio/cepstrum/rev1 -km anordhoff
+  ;;
+'flash cepstrum')
+  command qmk flash -kb keebio/cepstrum/rev1 -km anordhoff
+  ;;
 'compile yd60')
   command qmk compile -kb ymdk/yd60mq/16led -km anordhoff
   ;;
