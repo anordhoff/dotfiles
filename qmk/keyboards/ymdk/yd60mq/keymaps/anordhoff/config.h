@@ -1,4 +1,0 @@
-#define TAPPING_TERM 155         /* Configure the global tapping term (default: 200ms) */
-#define PERMISSIVE_HOLD          /* Apply the modifier on keys that are tapped during a short hold of a modtap */
-#define IGNORE_MOD_TAP_INTERRUPT /* Prevent normal rollover on alphas from accidentally triggering mods */
-#define TAPPING_FORCE_HOLD       /* Enable rapid switch from tap to hold, disables double tap hold auto-repeat */
