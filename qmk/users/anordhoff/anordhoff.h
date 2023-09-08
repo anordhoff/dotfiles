@@ -28,9 +28,10 @@ enum layers {
 #define GAME    DF(_COLEMAK_GAME)
 
 // additional layers
-#define RMEH    MO(_COLEMAK_MEH)
 #define JOIN    MO(_JOIN)
 #define ADJUST  MO(_ADJUST)
+#define RMEH    MO(_COLEMAK_MEH)
+#define RHYP    KC_RGUI
 
 // switch out of qwerty using shifts
 #define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
@@ -38,20 +39,19 @@ enum layers {
 
 // home row mods / mod taps
 #define MT_ESC  MT(MOD_LGUI, KC_ESC)
-#define MT_Z    MT(MOD_LALT, KC_Z)
+
+#define MT_A    LT(_COLEMAK_MEH, KC_A)
 #define MT_R    LT(_LAYER_R, KC_R)
 #define MT_S    LT(_LAYER_S, KC_S)
 #define MT_T    LT(_LAYER_T, KC_T)
-
 #define MT_N    LT(_LAYER_N, KC_N)
 #define MT_E    LT(_LAYER_E, KC_E)
 #define MT_I    LT(_LAYER_I, KC_I)
-// TODO: mod tap with SLSH_UP sends 9~ instead of slash
-// #define MT_SLSH MT(MOD_RALT, SLSH_UP)
-#define MT_SLSH SLSH_UP
+#define MT_O    LT(_COLEMAK_MEH, KC_O)
 
-// colemak-game mod taps
-#define MT_Z_GM MT(MOD_LSFT, KC_Z)
+#define MT_SPC  MT(MOD_LCTL, KC_SPC)
+
+#define MT_Z    MT(MOD_LSFT, KC_Z)
 
 // right meh layer keys
 #define RM_A    RCTL(RSFT(RALT(KC_A)))

@@ -38,8 +38,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case MT_Z:
-    case MT_SLSH:
-			return TAPPING_TERM + 20;
+		case MT_A:
+		case MT_R:
+    case MT_I:
+    case MT_O:
+      return 220;
+    case MT_SPC:
+      return 160;
 		default:
 			return TAPPING_TERM;
 	}
@@ -74,18 +79,18 @@ const key_override_t slash_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC
 // globally define all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
 
-  // layer_s
+	// layer_s
 	&left_bracket_key_override,
 	&right_bracket_key_override,
 	&backslash_key_override,
 
-  // layer_t
+	// layer_t
 	&minus_key_override,
 	&semicolon_key_override,
 	&equal_key_override,
 	&grave_key_override,
 
-  // layer_n
+	// layer_n
 	&zero_key_override,
 	&one_key_override,
 	&two_key_override,
