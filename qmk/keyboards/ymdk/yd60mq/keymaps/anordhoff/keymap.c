@@ -8,11 +8,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───────┤
 	   KC_TAB     , KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,KC_LBRC, KC_J  , KC_L  , KC_U  , KC_Y  ,KC_QUOT,KC_BSPC,     KC_DEL,
 	//├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────────┤
-	   MT_ESC       , KC_A  , MT_R  , MT_S  , MT_T  , KC_G  ,KC_RBRC, KC_M  , MT_N  , MT_E  , MT_I  , KC_O  ,XXXXXXX,   KC_ENT,
+	   MT_ESC       , MT_A  , MT_R  , MT_S  , MT_T  , KC_G  ,KC_RBRC, KC_M  , MT_N  , MT_E  , MT_I  , MT_O  ,XXXXXXX,   KC_ENT,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
 	   KC_LSFT, MT_Z  , KC_X  , KC_C  , KC_D  , KC_V  ,KC_SCLN,KC_BSLS, KC_K  , KC_H  ,KC_COMM,KC_DOT ,XXXXXXX,MT_SLSH,TOG_SUP,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
-	   KC_LCTL      , KC_LGUI , KC_LALT , KC_LCTL ,        KC_SPC         , KC_LSFT ,  RMEH   ,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT
+	   KC_LCTL      , KC_LGUI , KC_LALT , KC_LCTL ,        KC_SPC         , KC_LSFT , ADJUST  ,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT
 	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬───────┤
 	   XXXXXXX, RM_Z  , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,RM_BSLS, RM_K  , RM_H  ,RM_MINS,RM_EQL ,XXXXXXX,RM_SLSH,XXXXXXX,
 	//├───────┴─────┬─┴───────┼───────┴─┬─────┴───┬───┴───────┴───────┴───┬───┴─────┬─┴───────┼───────┼───────┼───────┼───────┤
-	   XXXXXXX      , XXXXXXX ,  JOIN   , ADJUST  ,        RM_RGUI        , XXXXXXX , _______ ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
+	   XXXXXXX      , XXXXXXX ,  JOIN   , ADJUST  ,        RM_RGUI        , RM_RGUI , ADJUST  ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
 	//└─────────────┴─────────┴─────────┴─────────┴───────────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
