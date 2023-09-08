@@ -238,7 +238,7 @@
   tab       q    w    e    r    t    y    u    i    o    p    [    ]      \
   caps      a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft      z    x    c    v    b    n    m    ,    .    /    rsft        up
-  fn        lctl lalt lmet           spc            rmet ralt        left down rght
+  fn        lctl lalt lmet           spc       rmet ralt             left down rght
 )
 
 (deflayer colemak
@@ -247,7 +247,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           @mtspc         @sft lalt        left down rght
+  @fn       lctl lalt lmet           @mtspc    @sft lalt             left down rght
 )
 
 (deflayer colemak-shift
@@ -256,7 +256,7 @@
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
   @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
-  @FN       S-lctl S-lalt S-lmet     @mtSPC         _    S-lalt    S-left S-down S-rght
+  @FN       S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
@@ -266,16 +266,7 @@
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
   @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
-  @mfn      XX   XX   @adj           @hyp           @hyp @adj      @mleft @mdown @mrght
-)
-
-(deflayer function
-  _         f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  _         _    _    _    _    _    _    _    _    _    _    _    _      _
-  _         _    _    _    _    _    _    _    _    _    _    _    _      _
-  _         _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    _    _    _    _    _    _    _    _    _    _           _
-  _         _    _    _              _              _    _           _    _    _
+  @mfn      XX   XX   @adj           @hyp      @hyp @adj           @mleft @mdown @mrght
 )
 
 (deflayer layer-r
@@ -284,7 +275,7 @@
   @ttab     XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup XX     @tbspc @tdel
   @tesc     XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @tdel  @tend  @tpgdn XX            XX
-  XX        XX   XX   lmet           lctl             lsft   lalt            XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft   lalt                   XX   XX   XX
 )
 
 (deflayer layer-s
@@ -293,7 +284,7 @@
   @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t(  @tpa XX   @tbspc @tdel
   @tesc     XX   XX   _    XX   XX   XX   XX   @t\  @t[  @t]  @t|  @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @t+  @t{  @t}  XX          XX
-  XX        XX   XX   lmet           lctl           lsft lalt        XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-t
@@ -302,7 +293,7 @@
   @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   @tbspc @tdel
   @tesc     XX   XX   XX   _    XX   XX   XX   @t-  @t_  @t;  @t:  @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @t=  XX   XX   XX          XX
-  XX        XX   XX   lmet           lctl           lsft lalt        XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-n
@@ -311,7 +302,7 @@
   @ttab     XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   @tbspc @tdel
   @tesc     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  @tret
   XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
-  XX        XX   XX   lmet           lctl           lsft lalt        XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-e
@@ -320,7 +311,7 @@
   @ttab     XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   @tbspc @tdel
   @tesc     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   @tret
   XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX          XX
-  XX        XX   XX   lmet           lctl           lsft lalt        XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-i
@@ -329,7 +320,7 @@
   @ttab     @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   @tbspc @tdel
   @tesc     @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   @tret
   XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX          XX
-  XX        XX    XX   lmet            lctl           lsft lalt        XX   XX   XX
+  XX        XX    XX   lmet            lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer game
@@ -338,7 +329,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
   @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           spc            @gms @meh        left down rght
+  @fn       lctl lalt lmet           spc       @gms @meh             left down rght
 )
 
 (deflayer game-shift
@@ -347,7 +338,7 @@
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     a    R    S    T    G    }    M    N    E    I    O    S-ret
   @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
-  @FN       S-lctl S-lalt S-lmet     S-spc          _    XX        S-left S-down S-rght
+  @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
@@ -357,7 +348,7 @@
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
   @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
-  @mfn      XX   @gmx @adj           @hyp           XX   _         @mleft @mdown @mrght
+  @mfn      XX   @gmx @adj           @hyp      XX   _              @mleft @mdown @mrght
 )
 
 (deflayer game-extend
@@ -366,7 +357,7 @@
   tab       f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   bspc   del
   esc       f10  f4   f5   f6   XX   XX   XX   left down up   rght ret
   XX        f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX          XX
-  XX        XX   _    XX             XX             XX   _           XX   XX   XX
+  XX        XX   _    XX             XX        XX   _                XX   XX   XX
 )
 
 (deflayer adjust
@@ -375,7 +366,7 @@
   XX        XX   @qwe @col @gme XX   XX   XX   f13  f14  f15  nlck XX     XX
   caps      bldn brdn brup blup XX   XX   XX   prev vold volu next XX
   XX        XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX          XX
-  XX        XX   XX   _              XX             XX   _           XX   XX   XX
+  XX        XX   XX   _              XX        XX   _                XX   XX   XX
 )
 
 (deflayer qwerty
@@ -384,7 +375,7 @@
   tab       q    w    e    r    t    y    u    i    o    p    [    ]      \
   esc       a    s    d    f    g    h    j    k    l    ;    '    ret
   @qls      z    x    c    v    b    n    m    ,    .    /    @qrs        up
-  @fn       lctl lalt lmet           spc            rmet ralt        left down rght
+  @fn       lctl lalt lmet           spc       rmet ralt             left down rght
 )
 
 (deflayer qwerty-left-shift
@@ -393,7 +384,7 @@
   S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }      |
   S-esc     A    S    D    F    G    H    J    K    L    :    "    S-ret
   _         Z    X    C    V    B    N    M    <    >    ?    @col        S-up
-  @FN       S-lctl  S-lalt  S-lmet   S-spc     S-rmet  S-ralt      S-left S-down S-rght
+  @FN       S-lctl  S-lalt  S-lmet   S-spc     S-rmet S-ralt       S-left S-down S-rght
 )
 
 (deflayer qwerty-right-shift
@@ -403,4 +394,13 @@
   RS-esc    A    S    D    F    G    H    J    K    L    :    "    RS-ret
   @col      Z    X    C    V    B    N    M    <    >    ?    _           RS-up
   @RS-FN    RS-lctl RS-lalt RS-lmet  RS-spc    RS-rmet RS-ralt    RS-left RS-down RS-rght
+
+  (deflayer function
+    _       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+    _       _    _    _    _    _    _    _    _    _    _    _    _      _
+    _       _    _    _    _    _    _    _    _    _    _    _    _      _
+    _       _    _    _    _    _    _    _    _    _    _    _    _
+    _       _    _    _    _    _    _    _    _    _    _    _           _
+    _       _    _    _              _         _    _                _    _    _
+  )
 )
