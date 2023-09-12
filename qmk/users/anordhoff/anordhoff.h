@@ -7,7 +7,6 @@ enum custom_keycodes {
 
 enum layers {
 	_COLEMAK,
-	_COLEMAK_GAME,
 	_COLEMAK_MEH,
 	_LAYER_R,
 	_LAYER_S,
@@ -15,7 +14,9 @@ enum layers {
 	_LAYER_N,
 	_LAYER_E,
 	_LAYER_I,
-	_JOIN,
+	_GAME,
+	_GAME_MEH,
+	_GAME_EXTEND,
 	_ADJUST,
 	_QWERTY,
 	_QWERTY_LEFT_SHIFT,
@@ -25,21 +26,25 @@ enum layers {
 // base layers
 #define QWERTY  DF(_QWERTY)
 #define COLEMAK DF(_COLEMAK)
-#define GAME    DF(_COLEMAK_GAME)
+#define GAME    DF(_GAME)
+
+// colemak layers
+#define RMEH    MO(_COLEMAK_MEH)
+#define RHYPER  KC_RGUI
+
+// gaming layers
+#define GME_EXT MO(_GAME_EXTEND)
+#define GME_MEH MO(_GAME_MEH)
+#define GME_HYP KC_RGUI
 
 // additional layers
-#define JOIN    MO(_JOIN)
 #define ADJUST  MO(_ADJUST)
-#define RMEH    MO(_COLEMAK_MEH)
-#define RHYP    KC_RGUI
 
 // switch out of qwerty using shifts
 #define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
 #define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
 
-// home row mods / mod taps
-#define MT_ESC  MT(MOD_LGUI, KC_ESC)
-
+// mod taps
 #define MT_A    LT(_COLEMAK_MEH, KC_A)
 #define MT_R    LT(_LAYER_R, KC_R)
 #define MT_S    LT(_LAYER_S, KC_S)
@@ -49,9 +54,8 @@ enum layers {
 #define MT_I    LT(_LAYER_I, KC_I)
 #define MT_O    LT(_COLEMAK_MEH, KC_O)
 
-#define MT_SPC  MT(MOD_LCTL, KC_SPC)
-
 #define MT_Z    MT(MOD_LSFT, KC_Z)
+#define MT_SPC  MT(MOD_LCTL, KC_SPC)
 
 // right meh layer keys
 #define RM_A    RCTL(RSFT(RALT(KC_A)))
@@ -90,16 +94,6 @@ enum layers {
 #define RM_8    RCTL(RSFT(RALT(KC_8)))
 #define RM_9    RCTL(RSFT(RALT(KC_9)))
 #define RM_0    RCTL(RSFT(RALT(KC_0)))
-#define RM_ESC  RCTL(RSFT(RALT(KC_ESC)))
-#define RM_TAB  RCTL(RSFT(RALT(KC_TAB)))
-#define RM_BSPC RCTL(RSFT(RALT(KC_BSPC)))
-#define RM_DEL  RCTL(RSFT(RALT(KC_DEL)))
-#define RM_ENT  RCTL(RSFT(RALT(KC_ENT)))
-#define RM_SPC  RCTL(RSFT(RALT(KC_SPC)))
-#define RM_UP   RCTL(RSFT(RALT(KC_UP)))
-#define RM_LEFT RCTL(RSFT(RALT(KC_LEFT)))
-#define RM_DOWN RCTL(RSFT(RALT(KC_DOWN)))
-#define RM_RGHT RCTL(RSFT(RALT(KC_RGHT)))
 #define RM_MINS RCTL(RSFT(RALT(KC_MINS)))
 #define RM_EQL  RCTL(RSFT(RALT(KC_EQL)))
 #define RM_LBRC RCTL(RSFT(RALT(KC_LBRC)))
@@ -111,4 +105,13 @@ enum layers {
 #define RM_COMM RCTL(RSFT(RALT(KC_COMM)))
 #define RM_DOT  RCTL(RSFT(RALT(KC_DOT)))
 #define RM_SLSH RCTL(RSFT(RALT(KC_SLSH)))
-#define RM_RGUI RCTL(RSFT(RALT(KC_RGUI)))
+#define RM_ESC  RCTL(RSFT(RALT(KC_ESC)))
+#define RM_TAB  RCTL(RSFT(RALT(KC_TAB)))
+#define RM_BSPC RCTL(RSFT(RALT(KC_BSPC)))
+#define RM_ENT  RCTL(RSFT(RALT(KC_ENT)))
+#define RM_SPC  RCTL(RSFT(RALT(KC_SPC)))
+#define RM_UP   RCTL(RSFT(RALT(KC_UP)))
+#define RM_LEFT RCTL(RSFT(RALT(KC_LEFT)))
+#define RM_DOWN RCTL(RSFT(RALT(KC_DOWN)))
+#define RM_RGHT RCTL(RSFT(RALT(KC_RGHT)))
+#define RM_DEL  RCTL(RSFT(RALT(KC_DEL)))
