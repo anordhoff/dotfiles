@@ -277,7 +277,7 @@
   @ttab     XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup XX     @tbspc @tdel
   @tesc     XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @tdel  @tend  @tpgdn XX            XX
-  XX        XX   XX   lmet           lctl      lsft   lalt                   XX   XX   XX
+            XX   XX   lmet           lctl      lsft   lalt                   XX   XX   XX
 )
 
 (deflayer layer-s
@@ -286,7 +286,7 @@
   @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t(  @tpa XX   @tbspc @tdel
   @tesc     XX   XX   _    XX   XX   XX   XX   @t\  @t[  @t]  @t|  @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @t+  @t{  @t}  XX          XX
-  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-t
@@ -295,7 +295,7 @@
   @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   @tbspc @tdel
   @tesc     XX   XX   XX   _    XX   XX   XX   @t-  @t_  @t;  @t:  @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @t=  XX   XX   XX          XX
-  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-n
@@ -304,7 +304,7 @@
   @ttab     XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   @tbspc @tdel
   @tesc     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  @tret
   XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
-  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-e
@@ -313,7 +313,7 @@
   @ttab     XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   @tbspc @tdel
   @tesc     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   @tret
   XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX          XX
-  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-i
@@ -322,7 +322,7 @@
   @ttab     @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   @tbspc @tdel
   @tesc     @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   @tret
   XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX          XX
-  XX        XX    XX   lmet            lctl      lsft lalt             XX   XX   XX
+            XX    XX   lmet            lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer game
