@@ -235,7 +235,7 @@
 )
 
 (defsrc
-  ;; esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    e    r    t    y    u    i    o    p    [    ]      \
   caps      a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -244,7 +244,7 @@
 )
 
 (deflayer colemak
-  ;; esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
@@ -253,7 +253,7 @@
 )
 
 (deflayer colemak-shift
-  ;; S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
@@ -263,7 +263,7 @@
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
 (deflayer colemak-meh
-  ;; @mesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  @mesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
@@ -272,7 +272,7 @@
 )
 
 (deflayer layer-r
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tbspc
   @ttab     XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup XX     @tbspc @tdel
   @tesc     XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
@@ -281,7 +281,7 @@
 )
 
 (deflayer layer-s
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
   @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t(  @tpa XX   @tbspc @tdel
   @tesc     XX   XX   _    XX   XX   XX   XX   @t\  @t[  @t]  @t|  @tret
@@ -290,7 +290,7 @@
 )
 
 (deflayer layer-t
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
   @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   @tbspc @tdel
   @tesc     XX   XX   XX   _    XX   XX   XX   @t-  @t_  @t;  @t:  @tret
@@ -299,7 +299,7 @@
 )
 
 (deflayer layer-n
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
   @ttab     XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   @tbspc @tdel
   @tesc     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  @tret
@@ -308,7 +308,7 @@
 )
 
 (deflayer layer-e
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
   @ttab     XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   @tbspc @tdel
   @tesc     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   @tret
@@ -317,7 +317,7 @@
 )
 
 (deflayer layer-i
-  ;; XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
   XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @tbspc
   @ttab     @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   @tbspc @tdel
   @tesc     @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   @tret
@@ -326,7 +326,7 @@
 )
 
 (deflayer game
-  ;; esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
@@ -335,7 +335,7 @@
 )
 
 (deflayer game-shift
-  ;; S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     a    R    S    T    G    }    M    N    E    I    O    S-ret
@@ -345,7 +345,7 @@
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
 (deflayer game-meh
-  ;; @mesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  @mesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
@@ -354,7 +354,7 @@
 )
 
 (deflayer game-extend
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
   tab       f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   bspc   del
   esc       f10  f4   f5   f6   XX   XX   XX   left down up   rght ret
@@ -363,7 +363,7 @@
 )
 
 (deflayer adjust
-  ;; XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   @qwe @col @gme XX   XX   XX   f13  f14  f15  nlck XX     XX
   caps      bldn brdn brup blup XX   XX   XX   prev vold volu next XX
@@ -372,7 +372,7 @@
 )
 
 (deflayer qwerty
-  ;; esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    e    r    t    y    u    i    o    p    [    ]      \
   esc       a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -381,7 +381,7 @@
 )
 
 (deflayer qwerty-left-shift
-  ;; S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }      |
   S-esc     A    S    D    F    G    H    J    K    L    :    "    S-ret
