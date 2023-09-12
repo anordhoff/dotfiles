@@ -32,28 +32,31 @@
   qls (layer-toggle qwerty-left-shift)
   qrs (layer-toggle qwerty-right-shift)
 
-  ;; mod taps (see https://github.com/kmonad/kmonad/issues/624)
-  mtz   (tap-hold-next-release 220 z lsft)
-  mta   (tap-hold-next-release 220 a (layer-toggle colemak-meh))
-  mtr   (tap-hold-next-release 220 r (layer-toggle layer-r))
-  mts   (tap-hold-next-release 150 s (layer-toggle layer-s))
-  mtt   (tap-hold-next-release 150 t (layer-toggle layer-t))
-  mtn   (tap-hold-next-release 150 n (layer-toggle layer-n))
-  mte   (tap-hold-next-release 150 e (layer-toggle layer-e))
-  mti   (tap-hold-next-release 220 i (layer-toggle layer-i))
-  mto   (tap-hold-next-release 220 o (layer-toggle colemak-meh))
-  mtspc (tap-hold-next-release 160 spc lctl)
+  ;; mod taps
+  mta   (tap-hold-next-release 300 a (layer-toggle colemak-meh))
+  mtr   (tap-hold-next-release 300 r (layer-toggle layer-r))
+  mts   (tap-hold 150 s (layer-toggle layer-s))
+  mtt   (tap-hold 150 t (layer-toggle layer-t))
+  mtn   (tap-hold 150 n (layer-toggle layer-n))
+  mte   (tap-hold 150 e (layer-toggle layer-e))
+  mti   (tap-hold-next-release 300 i (layer-toggle layer-i))
+  mto   (tap-hold-next-release 300 o (layer-toggle colemak-meh))
 
-  mtZ   (tap-hold-next-release 220 (around Z P4) lsft)
-  mtA   (tap-hold-next-release 220 (around A P4) (around lsft (layer-toggle colemak-meh)))
-  mtR   (tap-hold-next-release 220 (around R P4) (around lsft (layer-toggle layer-r)))
-  mtS   (tap-hold-next-release 150 (around S P4) (layer-toggle layer-s))
-  mtT   (tap-hold-next-release 150 (around T P4) (layer-toggle layer-t))
-  mtN   (tap-hold-next-release 150 (around N P4) (layer-toggle layer-n))
-  mtE   (tap-hold-next-release 150 (around E P4) (layer-toggle layer-e))
-  mtI   (tap-hold-next-release 220 (around I P4) (around lsft (layer-toggle layer-i)))
-  mtO   (tap-hold-next-release 220 (around O P4) (around lsft (layer-toggle colemak-meh)))
-  mtSPC (tap-hold-next-release 160 (around (around lsft spc) P4) (around lsft lctl))
+  mtz   (tap-hold 200 z lsft)
+  mtspc (tap-hold-next-release 300 spc lctl)
+
+  ;; linux does not register no-delay taps (see https://github.com/kmonad/kmonad/issues/624)
+  mtA   (tap-hold-next-release 300 (around A P5) (around lsft (layer-toggle colemak-meh)))
+  mtR   (tap-hold-next-release 300 (around R P5) (around lsft (layer-toggle layer-r)))
+  mtS   (tap-hold 150 (around S P5) (layer-toggle layer-s))
+  mtT   (tap-hold 150 (around T P5) (layer-toggle layer-t))
+  mtN   (tap-hold 150 (around N P5) (layer-toggle layer-n))
+  mtE   (tap-hold 150 (around E P5) (layer-toggle layer-e))
+  mtI   (tap-hold-next-release 300 (around I P5) (around lsft (layer-toggle layer-i)))
+  mtO   (tap-hold-next-release 300 (around O P5) (around lsft (layer-toggle colemak-meh)))
+
+  mtZ   (tap-hold 200 (around Z P5) lsft)
+  mtSPC (tap-hold-next-release 300 (around (around lsft spc) P5) (around lsft lctl))
 
   ;; media keys
   bdn (cmd-button "exec light -U 5")
@@ -151,7 +154,7 @@
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
-  @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
+  z         x    c    d    v    ;    \    k    h    ,    .    /           up
             lctl lalt lmet           @mtspc    @sft lalt             left down rght
 )
 
@@ -159,7 +162,7 @@
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
-  @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
+  Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
             S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
 )
 

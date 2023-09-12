@@ -32,21 +32,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		default:
 			return true;
 	}
-}
+};
 
-// per key tapping term value
+// per key tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		case MT_Z:
 		case MT_A:
 		case MT_R:
-    case MT_I:
-    case MT_O:
-      return 220;
-    case MT_SPC:
-      return 160;
+		case MT_I:
+		case MT_O:
+			return 300;
+		case MT_SPC:
+			return 300;
+		case MT_Z:
+			return 200;
 		default:
 			return TAPPING_TERM;
+	}
+};
+
+// per key quick tap term
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		case MT_SPC:
+			return 100;
+		default:
+			return QUICK_TAP_TERM;
+	}
+};
+
+// per key permissive hold
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		case MT_A:
+		case MT_R:
+		case MT_I:
+		case MT_O:
+		case MT_SPC:
+			return true;
+		default:
+			return false;
 	}
 };
 
