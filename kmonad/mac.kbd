@@ -359,7 +359,7 @@
   tab       f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   bspc   del
   esc       f10  f4   f5   f6   XX   XX   XX   left down up   rght ret
   XX        f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX          XX
-  XX        XX   _    XX             XX        XX   _                XX   XX   XX
+            XX   _    XX             XX        XX   _                XX   XX   XX
 )
 
 (deflayer adjust
@@ -368,7 +368,7 @@
   XX        XX   @qwe @col @gme XX   XX   XX   f13  f14  f15  nlck XX     XX
   caps      bldn brdn brup blup XX   XX   XX   prev vold volu next XX
   XX        XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX          XX
-  XX        XX   XX   _              XX        XX   _                XX   XX   XX
+            XX   XX   _              XX        XX   _                XX   XX   XX
 )
 
 (deflayer qwerty
