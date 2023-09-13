@@ -180,23 +180,23 @@
   tab       XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   bspc   del
   esc       XX   _    XX   XX   XX   XX   XX   left down up   rght ret
   XX        XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-s
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   \(   \)   XX   bspc   del
-  esc       XX   XX   _    XX   XX   XX   XX   \    [    ]    |    ret
-  XX        XX   XX   XX   XX   XX   XX   XX   +    {    }    XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX   bspc   del
+  esc       XX   XX   _    XX   XX   XX   XX   `    ~    \    |    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   +    XX   XX   XX          XX
+            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-t
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   bspc   del
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   bspc   del
   esc       XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    ret
-  XX        XX   XX   XX   XX   XX   XX   XX   =    XX   XX   XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   =    !    XX   XX          XX
+            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-n
@@ -204,7 +204,7 @@
   tab       XX   7    8    9    XX   XX   XX   XX   *    XX   XX   bspc   del
   esc       0    4    5    6    XX   XX   XX   _    -    +    :    ret
   XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-e
@@ -212,7 +212,7 @@
   tab       XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   bspc   del
   esc       \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   ret
   XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-i
@@ -220,7 +220,7 @@
   tab       f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   XX   bspc   del
   esc       f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   ret
   XX        f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer game

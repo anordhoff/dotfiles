@@ -425,10 +425,12 @@ tnoremap <esc> <c-\><c-n>
 " open terminal in a horizontal or vertical split
 nnoremap <silent> <a-s> :call ToggleTerm(0)<cr>
 nnoremap <silent> <a-v> :call ToggleTerm(1)<cr>
+nnoremap <silent> <a-w> :call FocusTerm()<cr>
 
 " toggle terminal without leaving terminal insert mode
 tnoremap <silent> <a-s> <c-\><c-n>:call ToggleTerm(0)<cr>
 tnoremap <silent> <a-v> <c-\><c-n>:call ToggleTerm(1)<cr>
+tnoremap <silent> <a-w> <c-\><c-n>:call FocusTerm()<cr>
 
 " use ctrl-r to access registers in terminal insert mode
 tnoremap <expr> <c-r> '<c-\><c-n>"' . nr2char(getchar()) . 'pi'
@@ -467,6 +469,20 @@ function ToggleTerm(vsplit)
       let t:termbuf = bufnr('%')
     endtry
     let t:termwin = win_getid()
+  endif
+endfunction
+
+" switch between open terminal window and previous window
+function FocusTerm()
+  if !exists('t:termbuf') || !exists('t:termwin') || bufwinid(t:termbuf) == -1
+      echohl ErrorMsg | echo 'Error: no terminal window' | echohl None
+      return
+  endif
+  if win_getid() == t:termwin
+    wincmd p
+  else
+    call win_gotoid(t:termwin)
+    startinsert!
   endif
 endfunction
 

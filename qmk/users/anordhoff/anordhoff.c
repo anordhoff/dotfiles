@@ -41,7 +41,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_R:
 		case MT_I:
 		case MT_O:
-			return 300;
 		case MT_SPC:
 			return 300;
 		case MT_Z:
