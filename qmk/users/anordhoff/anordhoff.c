@@ -41,10 +41,11 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_R:
 		case MT_I:
 		case MT_O:
-		case MT_SPC:
 			return 300;
 		case MT_Z:
-			return 200;
+			return 250;
+		case MT_SPC:
+			return 170;
 		default:
 			return TAPPING_TERM;
 	}
@@ -67,7 +68,6 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 		case MT_R:
 		case MT_I:
 		case MT_O:
-		case MT_SPC:
 			return true;
 		default:
 			return false;
