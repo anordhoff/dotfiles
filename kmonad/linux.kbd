@@ -42,8 +42,8 @@
   mti   (tap-hold-next-release 300 i (layer-toggle layer-i))
   mto   (tap-hold-next-release 300 o (layer-toggle colemak-meh))
 
-  mtz   (tap-hold 200 z lsft)
-  mtspc (tap-hold-next-release 300 spc lctl)
+  mtz   (tap-hold 250 z lsft)
+  mtspc (tap-hold 170 spc lctl)
 
   ;; linux does not register no-delay taps (see https://github.com/kmonad/kmonad/issues/624)
   mtA   (tap-hold-next-release 300 (around A P5) (around lsft (layer-toggle colemak-meh)))
@@ -55,8 +55,8 @@
   mtI   (tap-hold-next-release 300 (around I P5) (around lsft (layer-toggle layer-i)))
   mtO   (tap-hold-next-release 300 (around O P5) (around lsft (layer-toggle colemak-meh)))
 
-  mtZ   (tap-hold 200 (around Z P5) lsft)
-  mtSPC (tap-hold-next-release 300 (around (around lsft spc) P5) (around lsft lctl))
+  mtZ   (tap-hold 250 (around Z P5) lsft)
+  mtSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
 
   ;; media keys
   bdn (cmd-button "exec light -U 5")
@@ -185,17 +185,17 @@
 
 (deflayer layer-s
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX   bspc   del
-  esc       XX   XX   _    XX   XX   XX   XX   `    ~    \    |    ret
-  XX        XX   XX   XX   XX   XX   XX   XX   +    XX   XX   XX          XX
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   bspc   del
+  esc       XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX          XX
             XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-t
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   bspc   del
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   `    \    XX   bspc   del
   esc       XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    ret
-  XX        XX   XX   XX   XX   XX   XX   XX   =    !    XX   XX          XX
+  XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
             XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
 )
 
