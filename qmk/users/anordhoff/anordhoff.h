@@ -54,8 +54,12 @@ enum layers {
 #define MT_I    LT(_LAYER_I, KC_I)
 #define MT_O    LT(_COLEMAK_MEH, KC_O)
 
-#define MT_Z    MT(MOD_LSFT, KC_Z)
+#define MT_TAB  MT(MOD_LGUI, KC_TAB)
 #define MT_SPC  MT(MOD_LCTL, KC_SPC)
+#define MT_BSPC MT(MOD_LSFT, KC_BSPC)
+#define MT_ESC  MT(MOD_LALT, KC_ESC)
+
+#define MT_Z    MT(MOD_LSFT, KC_Z)
 
 // right meh layer keys
 #define RM_A    RCTL(RSFT(RALT(KC_A)))
