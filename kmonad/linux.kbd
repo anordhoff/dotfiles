@@ -33,30 +33,45 @@
   qrs (layer-toggle qwerty-right-shift)
 
   ;; mod taps
-  mta   (tap-hold-next-release 300 a (layer-toggle colemak-meh))
-  mtr   (tap-hold-next-release 300 r (layer-toggle layer-r))
+  ;; mta   (tap-hold-next-release 300 a (layer-toggle colemak-meh))
+  ;; mtr   (tap-hold-next-release 300 r (layer-toggle layer-r))
+  mta   (tap-hold 250 a (layer-toggle colemak-meh))
+  mtr   (tap-hold 250 r (layer-toggle layer-r))
   mts   (tap-hold 150 s (layer-toggle layer-s))
   mtt   (tap-hold 150 t (layer-toggle layer-t))
   mtn   (tap-hold 150 n (layer-toggle layer-n))
   mte   (tap-hold 150 e (layer-toggle layer-e))
-  mti   (tap-hold-next-release 300 i (layer-toggle layer-i))
-  mto   (tap-hold-next-release 300 o (layer-toggle colemak-meh))
-
-  mtz   (tap-hold 250 z lsft)
-  mtspc (tap-hold 170 spc lctl)
+  ;; mti   (tap-hold-next-release 300 i (layer-toggle layer-i))
+  ;; mto   (tap-hold-next-release 300 o (layer-toggle colemak-meh))
+  mti   (tap-hold 250 i (layer-toggle layer-i))
+  mto   (tap-hold 250 o (layer-toggle colemak-meh))
 
   ;; linux does not register no-delay taps (see https://github.com/kmonad/kmonad/issues/624)
-  mtA   (tap-hold-next-release 300 (around A P5) (around lsft (layer-toggle colemak-meh)))
-  mtR   (tap-hold-next-release 300 (around R P5) (around lsft (layer-toggle layer-r)))
+  ;; mtA   (tap-hold-next-release 300 (around A P5) (around lsft (layer-toggle colemak-meh)))
+  ;; mtR   (tap-hold-next-release 300 (around R P5) (around lsft (layer-toggle layer-r)))
+  mtA   (tap-hold 250 (around A P5) (around lsft (layer-toggle colemak-meh)))
+  mtR   (tap-hold 250 (around R P5) (around lsft (layer-toggle layer-r)))
   mtS   (tap-hold 150 (around S P5) (layer-toggle layer-s))
   mtT   (tap-hold 150 (around T P5) (layer-toggle layer-t))
   mtN   (tap-hold 150 (around N P5) (layer-toggle layer-n))
   mtE   (tap-hold 150 (around E P5) (layer-toggle layer-e))
-  mtI   (tap-hold-next-release 300 (around I P5) (around lsft (layer-toggle layer-i)))
-  mtO   (tap-hold-next-release 300 (around O P5) (around lsft (layer-toggle colemak-meh)))
+  ;; mtI   (tap-hold-next-release 300 (around I P5) (around lsft (layer-toggle layer-i)))
+  ;; mtO   (tap-hold-next-release 300 (around O P5) (around lsft (layer-toggle colemak-meh)))
+  mtI   (tap-hold 250 (around I P5) (around lsft (layer-toggle layer-i)))
+  mtO   (tap-hold 250 (around O P5) (around lsft (layer-toggle colemak-meh)))
 
-  mtZ   (tap-hold 250 (around Z P5) lsft)
+  mttab (tap-hold-next 170 tab lmet)
+  mtspc (tap-hold 170 spc lctl)
+  mtbsp (tap-hold-next 170 bspc @sft)
+  mtesc (tap-hold-next 170 esc lalt)
+
+  mtTAB (tap-hold-next 170 (around (around lsft tab) P5) (around lsft lmet))
   mtSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  mtBSP (tap-hold-next 170 (around (around lsft bspc) P5) (around lsft @sft))
+  mtESC (tap-hold-next 170 (around (around lsft esc) P5) (around lsft lalt))
+
+  mtz   (tap-hold 250 z lsft)
+  mtZ   (tap-hold 250 (around Z P5) lsft)
 
   ;; media keys
   bdn (cmd-button "exec light -U 5")
@@ -155,7 +170,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   z         x    c    d    v    ;    \    k    h    ,    .    /           up
-            lctl lalt lmet           @mtspc    @sft lalt             left down rght
+            lctl lalt @mttab         @mtspc    @mtbsp @mtesc           left down rght
 )
 
 (deflayer colemak-shift
@@ -163,7 +178,7 @@
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
   Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
-            S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
+            S-lctl S-lalt @mtTAB     @mtSPC    _    @mtESC         S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
@@ -176,51 +191,51 @@
 )
 
 (deflayer layer-r
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   bspc   del
-  esc       XX   _    XX   XX   XX   XX   XX   left down up   rght ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX     XX
+  XX        XX   _    XX   XX   XX   XX   XX   left down up   rght XX
   XX        XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX          XX
-            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-s
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   bspc   del
-  esc       XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   XX     XX
+  XX        XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX          XX
-            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-t
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   `    \    XX   bspc   del
-  esc       XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   `    \    XX   XX     XX
+  XX        XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    XX
   XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
-            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-n
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   7    8    9    XX   XX   XX   XX   *    XX   XX   bspc   del
-  esc       0    4    5    6    XX   XX   XX   _    -    +    :    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   7    8    9    XX   XX   XX   XX   *    XX   XX   XX     XX
+  XX        0    4    5    6    XX   XX   XX   _    -    +    :    XX
   XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
-            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-e
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   bspc   del
-  esc       \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   XX
   XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-i
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   XX   bspc   del
-  esc       f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   XX   XX     XX
+  XX        f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   XX
   XX        f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer game

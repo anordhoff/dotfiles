@@ -7,8 +7,9 @@
   allow-cmd   false
 )
 
-;; TODO: setup hotkey and gestures so that music play/pause/skip/etc only
-;; interact with spotify and not the most recent window
+;; TODO:
+;; - setup hotkey and gestures so that music play/pause/skip/etc only interact with spotify and not the most recent window
+;; - how to do ctrl-_?
 
 (defalias
 
@@ -37,29 +38,44 @@
   qrs (layer-toggle qwerty-right-shift)
 
   ;; mod taps
-  mta   (tap-hold-next-release 300 a (layer-toggle colemak-meh))
-  mtr   (tap-hold-next-release 300 r (layer-toggle layer-r))
+  ;; mta   (tap-hold-next-release 300 a (layer-toggle colemak-meh))
+  ;; mtr   (tap-hold-next-release 300 r (layer-toggle layer-r))
+  mta   (tap-hold 250 a (layer-toggle colemak-meh))
+  mtr   (tap-hold 250 r (layer-toggle layer-r))
   mts   (tap-hold 150 s (layer-toggle layer-s))
   mtt   (tap-hold 150 t (layer-toggle layer-t))
   mtn   (tap-hold 150 n (layer-toggle layer-n))
   mte   (tap-hold 150 e (layer-toggle layer-e))
-  mti   (tap-hold-next-release 300 i (layer-toggle layer-i))
-  mto   (tap-hold-next-release 300 o (layer-toggle colemak-meh))
+  ;; mti   (tap-hold-next-release 300 i (layer-toggle layer-i))
+  ;; mto   (tap-hold-next-release 300 o (layer-toggle colemak-meh))
+  mti   (tap-hold 250 i (layer-toggle layer-i))
+  mto   (tap-hold 250 o (layer-toggle colemak-meh))
 
-  mtz   (tap-hold 250 z lsft)
-  mtspc (tap-hold 170 spc @ctl)
-
-  mtA   (tap-hold-next-release 300 A (around lsft (layer-toggle colemak-meh)))
-  mtR   (tap-hold-next-release 300 R (around lsft (layer-toggle layer-r)))
+  ;; mtA   (tap-hold-next-release 300 A (around lsft (layer-toggle colemak-meh)))
+  ;; mtR   (tap-hold-next-release 300 R (around lsft (layer-toggle layer-r)))
+  mtA   (tap-hold 250 A (around lsft (layer-toggle colemak-meh)))
+  mtR   (tap-hold 250 R (around lsft (layer-toggle layer-r)))
   mtS   (tap-hold 150 S (layer-toggle layer-s))
   mtT   (tap-hold 150 T (layer-toggle layer-t))
   mtN   (tap-hold 150 N (layer-toggle layer-n))
   mtE   (tap-hold 150 E (layer-toggle layer-e))
-  mtI   (tap-hold-next-release 300 I (around lsft (layer-toggle layer-i)))
-  mtO   (tap-hold-next-release 300 O (around lsft (layer-toggle colemak-meh)))
+  ;; mtI   (tap-hold-next-release 300 I (around lsft (layer-toggle layer-i)))
+  ;; mtO   (tap-hold-next-release 300 O (around lsft (layer-toggle colemak-meh)))
+  mtI   (tap-hold 250 I (around lsft (layer-toggle layer-i)))
+  mtO   (tap-hold 250 O (around lsft (layer-toggle colemak-meh)))
 
-  mtZ   (tap-hold 250 Z lsft)
+  mttab (tap-hold-next 170 tab lmet)
+  mtspc (tap-hold 170 spc @ctl)
+  mtbsp (tap-hold-next 170 bspc @sft)
+  mtesc (tap-hold-next 170 esc lalt)
+
+  mtTAB (tap-hold-next 170 (around lsft tab) (around lsft lmet))
   mtSPC (tap-hold 170 (around lsft spc) (around lsft @ctl))
+  mtBSP (tap-hold-next 170 (around lsft bspc) (around lsft @sft))
+  mtESC (tap-hold-next 170 (around lsft esc) (around lsft lalt))
+
+  mtz   (tap-hold 250 z lsft)
+  mtZ   (tap-hold 250 Z lsft)
 
   ;; function keys (using 'around' ensures fn keypress actually gets emitted)
   fn    (around (layer-toggle function) fn)
@@ -319,10 +335,10 @@
 (deflayer colemak
   esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  esc       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
+  XX        q    w    f    p    b    [    j    l    u    y    '    XX     del
+  XX        @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   z         x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           @mtspc    @sft lalt             left down rght
+  @fn       lctl lalt @mttab         @mtspc    @mtbsp @mtesc           left down rght
 )
 
 (deflayer colemak-shift
@@ -331,7 +347,7 @@
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
   Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
-  @FN       S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
+  @FN       S-lctl S-lalt @mtTAB     @mtSPC    _    @mtESC         S-left S-down S-rght
 )
 
 (deflayer colemak-control
@@ -355,56 +371,56 @@
 
 (deflayer layer-r
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tbspc
-  @ttab     XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup XX     @tbspc @tdel
-  @tesc     XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup XX     XX     XX
+  XX        XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght XX
   XX        XX   XX   XX   XX   XX   XX   XX   @tdel  @tend  @tpgdn XX            XX
-  XX        XX   XX   lmet           @mtspc    lsft   lalt                   XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft   lalt                   XX   XX   XX
 )
 
 (deflayer layer-s
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t[  @t]  XX   @tbspc @tdel
-  @tesc     XX   XX   _    XX   XX   XX   XX   @t\  @t(  @tpa @t|  @tret
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t{  @t}  XX          XX
-  XX        XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  XX   XX     XX
+  XX        XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|  XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t{  @t}  XX          XX
+  XX        XX   XX   lmet           lctl      lsft  lalt             XX   XX   XX
 )
 
 (deflayer layer-t
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   @tbspc @tdel
-  @tesc     XX   XX   XX   _    XX   XX   XX   @t-  @t_  @t;  @t:  @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   XX     XX
+  XX        XX   XX   XX   _    XX   XX   XX   @t-  @t_  @t;  @t:  XX
   XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX          XX
-  XX        XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-n
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   @tbspc @tdel
-  @tesc     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   XX     XX
+  XX        @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  XX
   XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
-  XX        XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-e
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   @tbspc @tdel
-  @tesc     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   XX
   XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX          XX
-  XX        XX   XX   lmet           @mtspc    lsft lalt             XX   XX   XX
+  XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-i
   XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   @tbspc @tdel
-  @tesc     @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   @tret
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     XX
+  XX        @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   XX     XX
+  XX        @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   XX
   XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX          XX
-  XX        XX    XX   lmet            @mtspc    lsft lalt             XX   XX   XX
+  XX        XX    XX   lmet            lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer game
