@@ -6,7 +6,7 @@
 	path = tmux/plugins/resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect.git
 
-# vim (start)
+# vim
 [submodule "nvim/package/start/commentary"]
 	path = nvim/package/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -39,9 +39,6 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 
 # vim (opt)
-[submodule "nvim/package/opt/rest"]
-	path = nvim/package/opt/rest
-	url = https://github.com/rest-nvim/rest.nvim.git
 [submodule "nvim/package/opt/startuptime"]
 	path = nvim/package/opt/startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
@@ -71,6 +68,11 @@
 [submodule "nvim/package/start/telescope-fzf-native"]
 	path = nvim/package/start/telescope-fzf-native
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
+
+# neovim (opt)
+[submodule "nvim/package/opt/rest"]
+	path = nvim/package/opt/rest
+	url = https://github.com/rest-nvim/rest.nvim.git
 
 # treesitter
 [submodule "nvim/package/start/treesitter"]
