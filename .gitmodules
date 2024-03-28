@@ -25,9 +25,6 @@
 [submodule "nvim/package/start/rsi"]
 	path = nvim/package/start/rsi
 	url = https://github.com/tpope/vim-rsi.git
-[submodule "nvim/package/start/subversive"]
-	path = nvim/package/start/subversive
-	url = https://github.com/svermeulen/vim-subversive.git
 [submodule "nvim/package/start/surround"]
 	path = nvim/package/start/surround
 	url = https://github.com/tpope/vim-surround.git
@@ -90,3 +87,9 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "nvim/package/start/rest"]
+	path = nvim/package/start/rest
+	url = https://github.com/rest-nvim/rest.nvim.git
+[submodule "nvim/package/start/copilot"]
+	path = nvim/package/start/copilot
+	url = https://github.com/github/copilot.vim.git
