@@ -39,21 +39,12 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 
 # vim (opt)
+[submodule "nvim/package/opt/rest"]
+	path = nvim/package/opt/rest
+	url = https://github.com/rest-nvim/rest.nvim.git
 [submodule "nvim/package/opt/startuptime"]
 	path = nvim/package/opt/startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
-[submodule "nvim/package/opt/vim-go"]
-	path = nvim/package/opt/vim-go
-	url = https://github.com/fatih/vim-go.git
-[submodule "nvim/package/opt/nvim-go"]
-	path = nvim/package/opt/nvim-go
-	url = https://github.com/crispgm/nvim-go.git
-[submodule "nvim/package/opt/go.nvim"]
-	path = nvim/package/opt/go.nvim
-	url = https://github.com/ray-x/go.nvim.git
-[submodule "nvim/package/opt/gopher.nvim"]
-	path = nvim/package/opt/gopher.nvim
-	url = https://github.com/olexsmir/gopher.nvim.git
 
 # neovim
 [submodule "nvim/package/start/impatient"]
@@ -88,6 +79,3 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
-[submodule "nvim/package/opt/rest"]
-	path = nvim/package/opt/rest
-	url = https://github.com/rest-nvim/rest.nvim.git
