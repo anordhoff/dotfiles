@@ -10,6 +10,9 @@
 [submodule "nvim/package/start/commentary"]
 	path = nvim/package/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "nvim/package/start/copilot"]
+	path = nvim/package/start/copilot
+	url = https://github.com/github/copilot.vim.git
 [submodule "nvim/package/start/dirvish"]
 	path = nvim/package/start/dirvish
 	url = https://github.com/justinmk/vim-dirvish.git
@@ -68,6 +71,9 @@
 [submodule "nvim/package/start/lspconfig"]
 	path = nvim/package/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "nvim/package/start/rest"]
+	path = nvim/package/start/rest
+	url = https://github.com/rest-nvim/rest.nvim.git
 
 # telescope
 [submodule "nvim/package/start/plenary"]
@@ -87,9 +93,3 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
-[submodule "nvim/package/start/rest"]
-	path = nvim/package/start/rest
-	url = https://github.com/rest-nvim/rest.nvim.git
-[submodule "nvim/package/start/copilot"]
-	path = nvim/package/start/copilot
-	url = https://github.com/github/copilot.vim.git
