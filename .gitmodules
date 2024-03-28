@@ -71,11 +71,6 @@
 [submodule "nvim/package/start/lspconfig"]
 	path = nvim/package/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
-[submodule "nvim/package/start/rest"]
-	path = nvim/package/start/rest
-	url = https://github.com/rest-nvim/rest.nvim.git
-
-# telescope
 [submodule "nvim/package/start/plenary"]
 	path = nvim/package/start/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
@@ -93,3 +88,6 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "nvim/package/opt/rest"]
+	path = nvim/package/opt/rest
+	url = https://github.com/rest-nvim/rest.nvim.git
