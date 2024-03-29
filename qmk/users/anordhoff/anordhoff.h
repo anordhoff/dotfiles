@@ -54,10 +54,15 @@ enum layers {
 #define MT_I    LT(_LAYER_I, KC_I)
 #define MT_O    LT(_COLEMAK_MEH, KC_O)
 
-#define MT_TAB  MT(MOD_LGUI, KC_TAB)
+/* #define MT_C    MT(MOD_LALT, KC_C) */
+/* #define MT_D    MT(MOD_LSFT, KC_D) */
+/* #define MT_H    MT(MOD_LCTL, KC_H) */
+/* #define MT_COMM MT(MOD_LGUI, KC_COMM) */
+
+/* #define MT_TAB  MT(MOD_LGUI, KC_TAB) */
 #define MT_SPC  MT(MOD_LCTL, KC_SPC)
-#define MT_BSPC MT(MOD_LSFT, KC_BSPC)
-#define MT_ESC  MT(MOD_LALT, KC_ESC)
+#define MT_ESC  MT(MOD_LSFT, KC_ESC)
+/* #define MT_ENT  MT(MOD_LALT, KC_ENT) */
 
 #define MT_Z    MT(MOD_LSFT, KC_Z)
 
