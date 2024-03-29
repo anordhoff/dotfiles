@@ -64,8 +64,8 @@ fpath=(~/dotfiles/zsh/functions $fpath) && autoload ${fpath[1]}/*(:t)
 # --------------------------------------
 
 HISTFILE=~/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 setopt extendedhistory  # save start time and length of time commands run
 setopt histfindnodups   # skip duplicates when using reverse history search

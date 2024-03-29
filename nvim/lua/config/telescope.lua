@@ -45,6 +45,7 @@ telescope.setup {
     file_ignore_patterns = {
       'tags',
       '.git',
+      'coverage.html',
       'bin',
       'vendor',
       'node_modules',

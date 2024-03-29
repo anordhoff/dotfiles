@@ -8,8 +8,5 @@ local function bidirectional()
 end
 
 local opts = { silent = true }
-vim.keymap.set('n', 'x', bidirectional, opts)
-vim.keymap.set('x', 'x', bidirectional, opts)
-vim.keymap.set('o', 'x', bidirectional, opts)
--- vim.keymap.set('n', 'X', '<plug>(leap-from-window)', opts)
-vim.keymap.set('n', 'X', '<plug>(leap-cross-window)', opts)
+vim.keymap.set({'n', 'x', 'o'}, 's', bidirectional, opts)
+vim.keymap.set('n', 'S', '<plug>(leap-from-window)', opts)

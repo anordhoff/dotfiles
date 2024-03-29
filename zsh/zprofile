@@ -11,14 +11,14 @@ fi
 typeset -U path
 path=(~/.local/bin $path)
 
+# kubectl plugins
+path=(~/.krew/bin $path)
+
 # go packages
 path=($GOPATH/bin $path)
 
-# rust binaries
+# rust packages
 path=(~/.cargo/bin $path)
-
-# kubectl plugins
-path=(~/.krew/bin $path)
 
 # npm global packages
 path=(~/.npm/global/bin $path)
@@ -28,18 +28,37 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
   path=(~/Library/Python/3.11/bin $path)
 fi
 
-# ruby
+# ruby packages
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($BREW_PREFIX/opt/ruby/bin $path)
 fi
 
-# symlink keg-only packages
+# lua packages
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=(~/.luarocks/bin $path)
+
+  # eval $(luarocks --local path)
+  LUA_PATH="$BREW_PREFIX/Cellar/luarocks/3.11.0/share/lua/5.4/?.lua;$BREW_PREFIX/share/lua/5.4/?.lua;$BREW_PREFIX/share/lua/5.4/?/init.lua;$BREW_PREFIX/lib/lua/5.4/?.lua;$BREW_PREFIX/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;$HOME/.luarocks/share/lua/5.4/?.lua;$HOME/.luarocks/share/lua/5.4/?/init.lua"
+  LUA_CPATH="$BREW_PREFIX/lib/lua/5.4/?.so;$BREW_PREFIX/lib/lua/5.4/loadall.so;./?.so;$HOME/.luarocks/lib/lua/5.4/?.so"
+
+  # append v5.1 to lua paths
+  export LUA_PATH="$LUA_PATH;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua"
+  export LUA_CPATH="$LUA_CPATH;$HOME/.luarocks/lib/lua/5.1/?.so"
+fi
+
+# use go v1.21
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/go@1.21/bin $path)
+fi
+
+# use node v18
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  path=($BREW_PREFIX/opt/node@18/bin $path)
+fi
+
+# prefer the latest version of curl installed by homebrew
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($BREW_PREFIX/opt/curl/bin $path)
-fi
-if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=($BREW_PREFIX/opt/avr-gcc@8/bin $path)
-  path=($BREW_PREFIX/opt/arm-none-eabi-gcc@9/bin $path)
 fi
 
 # prefer openssl over libressl on macos
@@ -49,3 +68,7 @@ fi
 
 # source work zprofile
 [ -r ~/jobfiles/zsh/zprofile ] && source ~/jobfiles/zsh/zprofile
+
+if [ -f /usr/local/cof/bin/cofproxy ]                                 #source_cofproxy
+  then source /usr/local/cof/bin/cofproxy > /dev/null 2>&1            #source_cofproxy
+fi                                                                    #source_cofproxy

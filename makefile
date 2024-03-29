@@ -35,11 +35,13 @@ rm: validate-path
 	rm -rf .git/modules/$(path)
 
 # make tar files="nvim zsh tmux/tmux.conf"
+# TODO: ignore macos ._* files
 .PHONY: tar
 tar:
-	tar --exclude .git --exclude nvim/package --exclude tmux/plugins -czvf $(filename) $(files)
+	tar --exclude '._*' --exclude .git --exclude nvim/package --exclude tmux/plugins -czvf $(filename) $(files)
 
 # make diff dir1=dotfiles dir2=dotfiles.backup
+# TODO: exclude nvim/package and tmux/plugins
 .PHONY: diff
 diff:
 	diff -r --exclude .git --exclude package --exclude plugins $(dir1) $(dir2)

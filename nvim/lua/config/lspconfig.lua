@@ -19,7 +19,7 @@ windows.default_options.border = border
 -- customize how diagnostics are displayed
 vim.diagnostic.config({
   float = {
-    source = true,
+    source = "if_many",
   },
   severity_sort = true,
   signs = true,
@@ -97,7 +97,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- use a loop to call 'setup' on multiple servers
-local servers = { 'bashls', 'cssls', 'eslint', 'html', 'jsonls', 'pylsp', 'terraformls', 'tsserver', 'vimls' }
+local servers = { 'bashls', 'jsonls', 'pyright', 'terraformls', 'vimls' }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {}
 end
@@ -177,21 +177,27 @@ lspconfig.lua_ls.setup {
 -- yamlls
 ----------------------------------------
 
+local jobfiles = require('config.job')
+
 -- get home dir for use in local filepaths
 local home_dir = os.getenv('HOME') .. '/'
 
 -- path to schemas
-local cloudformation = 'https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json'
+local cloudformation = 'https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/main/server/schema/base.schema.json'
+local kubernetes = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json'
 
 -- schema patterns
 local patterns = {
   cloudformation = {
-    '**/{cloudformation,cfn,aws}/**/*.{yml,yaml}',
+    '**/{cfn,cloudformation,aws}/**/*.{yml,yaml}',
     '**/{cfn,cloudformation,template}.{yml,yaml}',
   },
   kubernetes = {
-    '**/{kubernetes,kube,k8s}/**/*.{yml,yaml}',
+    '**/{kubernetes,kube,k8s,kustomize,base,kind}/**/*.{yml,yaml}',
   },
+  job1 = jobfiles.yamlls.job1.patterns,
+  job2 = jobfiles.yamlls.job2.patterns,
+  job3 = jobfiles.yamlls.job3.patterns,
 }
 
 -- read work specific schema patterns from jobfiles. Each schema should have a
@@ -216,14 +222,22 @@ end
 -- setup configuration
 lspconfig.yamlls.setup {
   settings = {
+    http = {
+      proxy = jobfiles.yamlls.proxy
+    },
     yaml = {
-      format = { enable = true, singleQuote = true },
+      format = {
+        enable = true
+      },
       validate = true,
       hover = true,
       completion = true,
       schemas = {
         [cloudformation] = patterns['cloudformation'],
-        ['kubernetes'] = patterns['kubernetes'],
+        [kubernetes] = patterns['kubernetes'],
+        [jobfiles.yamlls.job1.schema] = patterns['job1'],
+        [jobfiles.yamlls.job2.schema] = patterns['job2'],
+        [jobfiles.yamlls.job3.schema] = patterns['job3'],
       },
       customTags = {
         -- cloudformation custom tags
