@@ -1,6 +1,8 @@
 # TODO: get profile UUID
 # TODO: check red color (might still be using washed out red from material gruvbox)
 # TODO: colors look off?
+# TODO: gnome terminal only supports a 16 color palette. Can this be updated to 24?
+
 # profile=`gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[='=]"`
 profile='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
 
@@ -38,8 +40,9 @@ gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/prof
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" highlight-background-color '#ebdbb2'
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" highlight-foreground-color '#1d2021'
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" palette "[ \
-  '#282828', '#ea6962', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2', \
-  '#a89984', '#32302f', '#3c3836', '#7c6f64', '#494a0f', '#644b12', '#34423c', '#fbf1c7']"
+  '#282828', '#f2594b', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2', \
+  '#928374', '#cc241d', '#98971a', '#d79921', '#458588', '#b16286', '#689d6a', '#a89984', \
+  '#1d2021', '#32302f', '#3c3836', '#7c6f64', '#494a0f', '#644b12', '#34423c', '#54353e']"
 
 # settings
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" audible-bell false
