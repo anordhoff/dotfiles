@@ -342,7 +342,7 @@
   esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  \_        @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
+  tab       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   z         x    c    d    v    ;    \    k    h    ,    .    /           up
   @fn       lctl lalt lmet           @mtspc    @mtesc lalt           left down rght
 )
@@ -351,7 +351,7 @@
   S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  \_        @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
   Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
   @FN       S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
 )
@@ -405,27 +405,27 @@
 (deflayer layer-n
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   XX     XX
-  XX        @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  XX
-  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
+  XX        XX   @t4  @t5  @t6  XX   XX   XX   XX   @t*  XX   XX   XX     XX
+  XX        @t0  @t1  @t2  @t3  XX   XX   XX   _    @t-  @t+  @t:  XX
+  XX        @t7  @t8  @t9  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
   XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-e
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   XX
-  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX          XX
+  XX        XX   @t$  @t%  @t^  XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        @tpa @t!  @t@  @t#  XX   XX   XX   XX   _    XX   XX   XX
+  XX        @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   XX          XX
   XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-i
   XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
   XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     XX
-  XX        @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   XX     XX
-  XX        @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   XX
-  XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX          XX
+  XX        @tf11 @tf4 @tf5 @tf6 @tf12 XX   XX   XX   XX   XX   XX   XX     XX
+  XX        @tf10 @tf1 @tf2 @tf3 XX    XX   XX   XX   XX   _    XX   XX
+  XX        @tf7  @tf8 @tf9 XX   XX    XX   XX   XX   XX   XX   XX          XX
   XX        XX    XX   lmet            lctl      lsft lalt             XX   XX   XX
 )
 
@@ -442,7 +442,7 @@
   S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  S-esc     a    R    S    T    G    }    M    N    E    I    O    S-ret
+  S-esc     A    R    S    T    G    }    M    N    E    I    O    S-ret
   @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
   @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
 )
@@ -460,9 +460,9 @@
 (deflayer game-extend
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   bspc   del
-  esc       f10  f4   f5   f6   XX   XX   XX   left down up   rght ret
-  XX        f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX          XX
+  tab       f11  f4   f5   f6   f12  XX   XX   ins  home pgup XX   bspc   del
+  esc       f10  f1   f2   f3   XX   XX   XX   left down up   rght ret
+  XX        f7   f8   f9   XX   XX   XX   XX   del  end  pgdn XX          XX
   XX        XX   _    XX             XX        XX   _                XX   XX   XX
 )
 

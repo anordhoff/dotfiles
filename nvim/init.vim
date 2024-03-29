@@ -5,9 +5,10 @@
 " TODO: when opening file with swap file, colors do not follow
 " colorscheme/terminal colors
 
-" TODO: errorformat for 'make test' and 'go test ./controllers' when using
-" kubernetes envtest (incorrect lines are highlighted on make test, expected
-" lines are not highlighted on go test ./controllers)
+" TODO: errorformat for 'make test' and 'go test ./controllers'
+" (compliance-advisor) when using kubernetes envtest (incorrect lines are
+" highlighted on make test, expected lines are not highlighted on go test
+" ./controllers)
 
 " load internal packages
 if &loadplugins
@@ -22,9 +23,10 @@ set ignorecase         " case-insensitive searching...
 set smartcase          " ...but not if the search contains a capital letter
 set splitright         " split vertical windows to the right of current window
 set splitbelow         " split horizontal windows below current window
-set textwidth=80       " wrap lines at 80 characters when formatting
+set textwidth=80       " wrap lines at 80 characters
+set formatoptions-=t   " wrap comments, but not text
 set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
-set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursora
+set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
 set foldmethod=syntax  " fold based on syntax highlighting items
 set foldnestmax=1      " limit to 1 nested fold
 set foldlevel=1        " don't automatically close folds
@@ -37,18 +39,16 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=0
 set expandtab
-set smarttab
-set autoindent
-set smartindent
 
 " make line wrapping look nicer, but don't wrap by default
 set nowrap
 set linebreak
 set breakindent
-set showbreak=\ ..\  " trailing whitespace
+let &showbreak=' .. '
 
 " show possible completions in a pmenu; insert longest common text of matches
-set completeopt=menu,longest,preview
+" set completeopt=menu,longest,popup
+set completeopt=menu,longest
 set pumheight=10
 
 " wrap text in the preview window
@@ -69,7 +69,7 @@ set wildmode=longest:full,full
 set wildignorecase
 
 " list of file patterns to ignore
-set wildignore+=tags,.git/**,bin/**,vendor/**,node_modules/**,package/opt/**,package/start/**
+set wildignore+=tags,.git/**,bin/**,vendor/**,node_modules/**,*vim/package/opt/**,*vim/package/start/**,tmux/plugins/**
 
 " show trailing whitespace
 set list
@@ -86,7 +86,7 @@ augroup END
 " the current comment leader when creating a new line
 augroup formatoptions
   autocmd!
-  autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal fo-=t fo-=r fo-=o
+  autocmd FileType * setlocal fo-=t fo-=r fo-=o
 augroup END
 
 " enable spellchecking for text files, markdown, and git commit messages
@@ -148,22 +148,35 @@ map <silent> ]] j0?{<cr><c-l>w99[{%/{<cr><c-l>0
 map <silent> [] k$/}<cr><c-l>b99]}%?}<cr><c-l>0
 
 " grep current file or directory
-nnoremap g<space> :lvimgrep  %<left><left>
+nnoremap gr<space> :lvimgrep  %<left><left>
 nnoremap gp<space> :vimgrep  **/*<left><left><left><left><left>
 
 " file and buffer navigation
 nnoremap <leader>e :e **/*
-nnoremap <leader>b :ls<cr>:b<space>
+nnoremap <leader>s :sp **/*
+nnoremap <leader>v :vs **/*
+nnoremap <leader>b :b **/*
 
 " run a command in a split terminal buffer
-nnoremap z<space> :Term<space>
-command! -nargs=1 Term call s:termcmd(<q-args>)
-function s:termcmd(cmd)
-  let l:expandedcmd = join(map(split(a:cmd, '\ze[<%#]'), 'expand(v:val)'), '')
-  new botright split
-  call termopen(l:expandedcmd)
-  startinsert!
-endfunction
+" nnoremap z<cr>    :Term<cr>
+" nnoremap z<space> :Term<space>
+" nnoremap z!       :Term!
+" nnoremap z?       :echo ':Term ' . &makeprg<cr>
+" command! -nargs=? -bang Term call s:term(<bang>0, <q-args>)
+" function s:term(bang, args)
+"   if len(a:args) == 0
+"     let l:args = &makeprg
+"   else
+"     let l:args = join(map(split(a:args, '\ze[<%#]'), 'expand(v:val)'), '')
+"   endif
+"   new botright split
+"   call termopen(l:args)
+"   if a:bang
+"     wincmd p
+"   else
+"     startinsert!
+"   endif
+" endfunction
 
 " maximize the current window (overwrites default :pclose mapping)
 nnoremap <silent> <c-w>z <c-w>\|<c-w>_
@@ -198,10 +211,10 @@ endfunction
 " trigger omni completion using <tab>
 " TODO: use ctrl-i to insert tab character; not supported by tmux
 "       (https://github.com/tmux/tmux/issues/2705, https://github.com/neovim/neovim/issues/17867)
-inoremap <expr> <tab> pumvisible() ? '<c-n>' :
-  \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<tab>'
-inoremap <expr> <s-tab> pumvisible() ? '<c-p>' :
-  \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<s-tab>'
+" inoremap <expr> <tab> pumvisible() ? '<c-n>' :
+"   \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<tab>'
+" inoremap <expr> <s-tab> pumvisible() ? '<c-p>' :
+"   \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<s-tab>'
 
 " get highlight group under the cursor
 command Hi call s:syngroup()
@@ -223,6 +236,7 @@ function s:clear_register(chars)
 endfunction
 
 " source init.vim
+" TODO: don't reset tabsize when running So
 command So :source ~/.config/nvim/init.vim
 
 
@@ -475,7 +489,7 @@ endfunction
 " switch between open terminal window and previous window
 function FocusTerm()
   if !exists('t:termbuf') || !exists('t:termwin') || bufwinid(t:termbuf) == -1
-      echohl ErrorMsg | echo 'Error: no terminal window' | echohl None
+      echohl ErrorMsg | echo 'No terminal window' | echohl None
       return
   endif
   if win_getid() == t:termwin
@@ -509,6 +523,7 @@ require('config.indent-blankline')
 require('config.leap')
 require('config.lint')
 require('config.lspconfig')
+require('config.rest')
 require('config.telescope')
 require('config.treesitter')
 EOT

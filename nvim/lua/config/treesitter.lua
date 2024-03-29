@@ -28,8 +28,7 @@ require('nvim-treesitter.configs').setup {
     enable = false,
   },
   indent = {
-    -- enable = false,
-    enable = true,
+    enable = false,
   },
 
   -- nvim-treesitter-textobjects
@@ -47,15 +46,11 @@ require('nvim-treesitter.configs').setup {
         ['aC'] = '@conditional.outer',
         ['iL'] = '@loop.inner',
         ['aL'] = '@loop.outer',
-        -- ['iP'] = '@parameter.inner',
-        -- ['aP'] = '@parameter.outer',
-        ['iA'] = '@parameter.inner',
-        ['aA'] = '@parameter.outer',
       },
       selection_modes = {},
     },
     swap = {
-      enable = true,
+      enable = false,
       swap_next = {
         ['<leader>an'] = '@parameter.inner',
       },

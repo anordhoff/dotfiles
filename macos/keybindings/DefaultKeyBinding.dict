@@ -1,4 +1,4 @@
-/* ~/Library/KeyBindings/DefaultKeyBinding.dict */
+/* ~/Library/KeyBindings/DefaultKeyBinding.dict -> . */
 
 /* TODO:
  *   "^x" = { "^x" = Toggle between the start of line and current cursor position };
@@ -29,8 +29,11 @@
 {
 	"^u"      = "deleteToBeginningOfLine:";
 	"^w"      = "deleteWordBackward:"; /* TODO: should delete entire word, not just to WORDCHAR */
+	"^~h"     = "deleteWordBackward:";
 	"^_"      = ("undo:", "moveForward:");
-	"^x^u"      = ("undo:", "moveForward:"); /* TODO: does this work? */
+  "^x"      = {
+	  "^u"    = ("undo:", "moveForward:");
+  };
 
 	"~b"      = "moveWordBackward:";
 	"~d"      = "deleteWordForward:";
@@ -38,10 +41,7 @@
 	"~t"      = "transposeWords:";
 	"~\U007F" = "deleteWordBackward:"; /* M-bksp */
 
-	"~c"      = ("moveWordForward:", "moveWordBackward:",
-	             "capitalizeWord:", "moveForward:");
-	"~l"      = ("moveWordForward:", "moveWordBackward:",
-	             "lowercaseWord:", "moveForward:");
-	"~u"      = ("moveWordForward:", "moveWordBackward:",
-	             "uppercaseWord:", "moveForward:");
+	"~c"      = ("moveWordForward:", "moveWordBackward:", "capitalizeWord:", "moveForward:");
+	"~l"      = ("moveWordForward:", "moveWordBackward:", "lowercaseWord:", "moveForward:");
+	"~u"      = ("moveWordForward:", "moveWordBackward:", "uppercaseWord:", "moveForward:");
 }
