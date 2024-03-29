@@ -8,5 +8,5 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
     nvim $@
   fi
 else
-  nvim --noplugin
+  nvim --noplugin $@
 fi
