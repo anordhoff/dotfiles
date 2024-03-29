@@ -62,6 +62,9 @@
 [submodule "nvim/package/start/plenary"]
 	path = nvim/package/start/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "nvim/package/start/rest"]
+	path = nvim/package/start/rest
+	url = https://github.com/rest-nvim/rest.nvim.git
 [submodule "nvim/package/start/telescope"]
 	path = nvim/package/start/telescope
 	url = https://github.com/nvim-telescope/telescope.nvim.git
@@ -70,11 +73,6 @@
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
 
 # neovim (opt)
-[submodule "nvim/package/opt/rest"]
-	path = nvim/package/opt/rest
-	url = https://github.com/rest-nvim/rest.nvim.git
-
-# treesitter
 [submodule "nvim/package/start/treesitter"]
 	path = nvim/package/start/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
