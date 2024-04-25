@@ -8,6 +8,12 @@ case $@ in
 'flash cepstrum')
   command qmk flash -kb keebio/cepstrum/rev1 -km anordhoff
   ;;
+'compile fourier')
+  command qmk compile -kb keebio/fourier -km anordhoff
+  ;;
+'flash fourier')
+  command qmk flash -kb keebio/fourier -km anordhoff
+  ;;
 'compile yd60')
   command qmk compile -kb ymdk/yd60mq/16led -km anordhoff
   ;;
