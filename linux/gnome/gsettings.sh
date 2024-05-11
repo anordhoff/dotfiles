@@ -54,6 +54,9 @@ gsettings set org.gnome.mutter overlay-key ''
 # disable alternate characters key by setting to menu key
 gsettings set org.gnome.desktop.input-sources xkb-options '["lv3:menu_switch"]'
 
+# disable <super>m shortcut
+gsettings set org.gnome.shell.keybindings toggle-message-tray '["<Super>v"]'
+
 # toggle dark mode
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'toggle-theme'
@@ -66,7 +69,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys search '["<Shift><Con
 # resize window
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left '["<Shift><Control><Alt><Super>n"]'
 gsettings set org.gnome.mutter.keybindings toggle-tiled-right '["<Shift><Control><Alt><Super>o"]'
-gsettings set org.gnome.desktop.wm.keybindings toggle-maximized '["<Shift><Control><Alt><Super>z"]'
+gsettings set org.gnome.desktop.wm.keybindings toggle-maximized '["<Shift><Control><Alt>z"]'
 
 # close window
 gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Control><Alt>q"]'
