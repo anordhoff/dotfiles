@@ -2,7 +2,7 @@
 " general settings
 " ----------------------------------------------------------
 
-highlight clear
+" highlight clear
 if exists('syntax_on')
   syntax reset
 endif
@@ -145,12 +145,11 @@ hi DiffText                      cterm=none        ctermfg=7        ctermbg=21
 " spelling
 " --------------------------------------
 
-" TODO: ctermsp doesn't exist:
-" https://github.com/neovim/neovim/issues/9270#issuecomment-442648178
+" NOTE: ctermsp doesn't exist: https://github.com/neovim/neovim/issues/9270#issuecomment-442648178
 hi SpellBad              cterm=undercurl ctermfg=none ctermbg=none guisp=#cc241d
 hi SpellCap              cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
-hi SpellLocal            cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
-hi SpellRare             cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
+hi SpellLocal            cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
+hi SpellRare             cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
 
 " --------------------------------------
 " netrw
@@ -234,7 +233,6 @@ hi DiffRemoved                   cterm=none        ctermfg=1        ctermbg=none
 " --------------------------------------
 " indent-blankline
 " --------------------------------------
-" hi IblIndent                     cterm=nocombine   ctermfg=19       ctermbg=none
 hi IblIndent                     cterm=none        ctermfg=19       ctermbg=none
 
 " --------------------------------------
@@ -248,13 +246,26 @@ hi LeapBackdrop                  cterm=none        ctermfg=19       ctermbg=none
 " --------------------------------------
 " lsp
 " --------------------------------------
-hi! link DiagnosticUnderlineError  SpellBad
-hi! link DiagnosticUnderlineWarn   SpellCap
-hi! link DiagnosticUnderlineInfo   SpellLocal
-hi! link DiagnosticUnderlineHint   SpellRare
-hi! link DiagnosticUnderlineOk     SpellRare
-hi! link DiagnosticDeprecated      SpellRare
-hi! link DiagnosticUnnecessary     SpellCap
+hi LspInfoTitle                  cterm=none        ctermfg=7        ctermbg=none
+hi LspInfoList                   cterm=none        ctermfg=7        ctermbg=none
+hi LspInfoFiletype               cterm=none        ctermfg=7        ctermbg=none
+hi LspInfoTip                    cterm=none        ctermfg=2        ctermbg=none
+hi! link LspInfoBorder           FloatBorder
+
+hi DiagnosticError               cterm=none        ctermfg=1        ctermbg=none
+hi DiagnosticWarn                cterm=none        ctermfg=3        ctermbg=none
+hi DiagnosticInfo                cterm=none        ctermfg=2        ctermbg=none
+hi DiagnosticHint                cterm=none        ctermfg=4        ctermbg=none
+hi DiagnosticOK                  cterm=none        ctermfg=8        ctermbg=none
+
+" NOTE: ctermsp doesn't exist: https://github.com/neovim/neovim/issues/9270#issuecomment-442648178
+hi DiagnosticUnderlineError      cterm=undercurl ctermfg=none ctermbg=none guisp=#cc241d
+hi DiagnosticUnderlineWarn       cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
+hi DiagnosticUnderlineInfo       cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
+hi DiagnosticUnderlineHint       cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
+hi DiagnosticUnderlineOk         cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
+hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
+hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
 
 " --------------------------------------
 " telescope

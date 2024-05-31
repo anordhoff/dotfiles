@@ -1,11 +1,12 @@
-" enable copilot for specific filetypes
+" disable copilot for certain filetypes
 " let g:copilot_filetypes = {
-"   \ '*': v:false,
-"   \ 'go': v:true,
-"   \ 'json': v:true,
-"   \ 'python': v:true,
-"   \ 'yaml': v:true,
+"   \ 'xml': v:false,
 "   \ }
 
-inoremap <c-n> <Plug>(copilot-next)
-inoremap <c-p> <Plug>(copilot-previous)
+" accept the current suggestion with ctrl-h
+let g:copilot_no_tab_map = v:true
+inoremap <silent><script><expr> <c-h> copilot#Accept("")
+
+" use ctrl-n and ctrl-p to cycle through copilot suggestions
+inoremap <c-n> <plug>(copilot-next)
+inoremap <c-p> <plug>(copilot-previous)

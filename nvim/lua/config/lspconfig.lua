@@ -29,20 +29,14 @@ vim.diagnostic.config({
 })
 
 -- highlight line numbers when there are diagnostics to display
-vim.fn.sign_define('DiagnosticSignError', { numhl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { numhl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { numhl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { numhl = 'DiagnosticSignHint' })
-
--- TODO: fill out code_action_utils.lua
--- show a sign when a code action is available
--- vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
---   group = vim.api.nvim_create_augroup('codeactions', { clear = true }),
---   callback = function()
---     require('config.code_action_utils').code_action_listener()
---   end,
---   pattern = '*'
--- })
+for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+    vim.fn.sign_define("DiagnosticSign" .. diag, {
+        text = "",
+        texthl = "DiagnosticSign" .. diag,
+        linehl = "",
+        numhl = "DiagnosticSign" .. diag,
+    })
+end
 
 -- print client information
 vim.api.nvim_create_user_command(
@@ -53,7 +47,8 @@ vim.api.nvim_create_user_command(
   {}
 )
 
--- diagnostic keymaps
+-- global mappings.
+-- see `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { silent = true }
 vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -61,13 +56,12 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, opts)
 vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
 
--- lsp settings
+-- use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lspconfig', { clear = true }),
   callback = function(ev)
-    -- enable completion (onminfunc_sync.lua func for synchronous omnifunc)
-    -- https://github.com/neovim/neovim/pull/17218
-    require('config.omnifunc_sync')
+    -- enable synchronous completion
     vim.bo[ev.buf].omnifunc = 'v:lua.omnifunc_sync'
 
     -- keymaps
@@ -87,7 +81,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>rn', function()
+      -- vim.lsp.buf.rename() and print("hi")
+      -- vim.cmd('silent! wa')
+      -- while not vim.lsp.buf.rename() do
+      --   print("hi")
+      -- end
+      vim.lsp.buf.rename()
+    end, bufopts)
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>F', function()
@@ -111,7 +113,11 @@ end
 lspconfig.gopls.setup {
   cmd = { 'gopls', '-remote=auto' },
   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-  root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
+  root_dir = function(fname)
+    local primary = util.root_pattern('go.work', 'go.mod')(fname)
+    local fallback = util.find_git_ancestor(fname)
+    return primary or fallback
+  end,
   settings = {
     gopls = {
       analyses = {
@@ -129,21 +135,28 @@ lspconfig.gopls.setup {
   },
 }
 
--- TODO: hide "no code actions available" when no changes are made to imports
--- TODO: async code_actions can cause goimports to run after saving the file
---       (https://github.com/neovim/neovim/issues/24168)
--- TODO: running format AFTER async code_actions blows up imports
--- NOTE: formatting extra tabs will delete the tab and three extra characters
---       set sts=0 fixes this
-
 -- format code and organize imports when writing the buffer
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = vim.api.nvim_create_augroup('gopls', { clear = true }),
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
   callback = function()
-    vim.lsp.buf.format{ async = false }
-    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
-  end,
-  pattern = '*.go',
+    local params = vim.lsp.util.make_range_params()
+    params.context = {only = {"source.organizeImports"}}
+    -- buf_request_sync defaults to a 1000ms timeout. Depending on your
+    -- machine and codebase, you may want longer. Add an additional
+    -- argument after params if you find that you have to write the file
+    -- twice for changes to be saved.
+    -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+    for cid, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+          vim.lsp.util.apply_workspace_edit(r.edit, enc)
+        end
+      end
+    end
+    vim.lsp.buf.format({async = false})
+  end
 })
 
 
@@ -293,3 +306,61 @@ lspconfig.yamlls.setup {
     },
   },
 }
+
+
+----------------------------------------
+-- synchronous omnifunc
+----------------------------------------
+
+-- TODO: use synchronous omnifunc when merged:
+--   https://github.com/neovim/neovim/issues/12390
+--   https://github.com/neovim/neovim/pull/16225
+--   https://github.com/neovim/neovim/pull/17218
+
+-- synchronous omnifunc that supports completeopt=longest
+function _G.omnifunc_sync(findstart, base)
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local line = vim.api.nvim_get_current_line()
+
+  if findstart == 1 then
+    -- Cache state of cursor line and position due to the fact that it will
+    -- change at the second call to this function (with `findstart = 0`). See:
+    -- https://github.com/vim/vim/issues/8510.
+    -- This is needed because request to LSP server is made on second call.
+    -- If not done, server's completion mechanics will operate on different
+    -- document and position.
+    -- omnifunc_cache = {pos = pos, line = line}
+
+    -- On first call return column of completion start
+    local line_to_cursor = line:sub(1, pos[2])
+    return vim.fn.match(line_to_cursor, '\\k*$')
+  end
+
+  -- Restore cursor line and position to the state of first call
+  -- vim.api.nvim_set_current_line(omnifunc_cache.line)
+  -- vim.api.nvim_win_set_cursor(0, omnifunc_cache.pos)
+
+  -- Make request
+  local bufnr = vim.api.nvim_get_current_buf()
+  local params = vim.lsp.util.make_position_params()
+  local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/completion', params, 2000)
+  if not result then return {} end
+
+  -- Transform request answer to list of completion matches
+  local items = {}
+  for _, item in pairs(result) do
+    if not item.err then
+      -- NOTE: text_document_completion_list_to_complete_items() will be removed in 0.11
+      -- local matches = vim.lsp.util.text_document_completion_list_to_complete_items(item.result, base)
+      local matches = vim.lsp._completion._lsp_to_complete_items(item.result, base)
+      vim.list_extend(items, matches)
+    end
+  end
+
+  -- Restore back cursor line and position to the state of this call's start
+  -- (avoids outcomes of Vim's internal line postprocessing)
+  -- vim.api.nvim_set_current_line(line)
+  -- vim.api.nvim_win_set_cursor(0, pos)
+
+  return items
+end

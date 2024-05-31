@@ -2,20 +2,26 @@
 " settings
 " --------------------------------------
 
-" TODO: when opening file with swap file, colors do not follow
-" colorscheme/terminal colors
-
-" TODO: errorformat for 'make test' and 'go test ./controllers'
-" (compliance-advisor) when using kubernetes envtest (incorrect lines are
-" highlighted on make test, expected lines are not highlighted on go test
-" ./controllers)
+" TODO: opening a .md file resets fo to default
+" TODO: compare impatient and loader.enable()
+" TODO: autocomplete with tab shows deprecated warning
+" TODO: look into :h vim.lua_omnifunc()
+" TODO: tab in commandline just prints ^I (:h complete-set-option)
+" TODO: look into :h commenting
+" TODO: completeopt=popup doesn't draw a border
+" TODO: leap highlighting doesn't work if there's only one line in the file
 
 " load internal packages
 if &loadplugins
   packadd cfilter
 endif
 
+" TODO:
+"set mouse=             " disable mouse support
+set mousescroll=ver:1,hor:0
+
 " basic settings
+set notermguicolors    " disable 24-bit colors
 set number             " enable line numbers
 set noshowmode         " hide the mode from the bottom row
 set noincsearch        " do not immediately jump to first search hit
@@ -23,14 +29,16 @@ set ignorecase         " case-insensitive searching...
 set smartcase          " ...but not if the search contains a capital letter
 set splitright         " split vertical windows to the right of current window
 set splitbelow         " split horizontal windows below current window
+set splitkeep=screen   " keep text on the same line when splitting windows
 set textwidth=80       " wrap lines at 80 characters
 set formatoptions-=t   " wrap comments, but not text
 set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
 set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
+set smoothscroll       " scrolling works with screen lines
 set foldmethod=syntax  " fold based on syntax highlighting items
 set foldnestmax=1      " limit to 1 nested fold
 set foldlevel=1        " don't automatically close folds
-set mouse=             " disable mouse support
+set mmp=10000          " prevent memory errors when loading large buffers
 set ttimeoutlen=1      " minimal delay for escape key presses
 set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
 
@@ -47,8 +55,7 @@ set breakindent
 let &showbreak=' .. '
 
 " show possible completions in a pmenu; insert longest common text of matches
-" set completeopt=menu,longest,popup
-set completeopt=menu,longest
+set completeopt=menu,longest,preview
 set pumheight=10
 
 " wrap text in the preview window
@@ -86,13 +93,7 @@ augroup END
 " the current comment leader when creating a new line
 augroup formatoptions
   autocmd!
-  autocmd FileType * setlocal fo-=t fo-=r fo-=o
-augroup END
-
-" enable spellchecking for text files, markdown, and git commit messages
-augroup spellcheck
-  autocmd!
-  autocmd FileType text,markdown,gitcommit setlocal spell
+  autocmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
 augroup END
 
 " enable the cursorline on the active window
@@ -141,12 +142,6 @@ cnoremap <c-n> <down>
 cnoremap <left> <space><bs><left>
 cnoremap <right> <space><bs><right>
 
-" [[, ][, ]], and [] useful (overwrites existing search) (see :h section)
-map <silent> [[ ?{<cr><c-l>w99[{0
-map <silent> ][ /}<cr><c-l>b99]}0
-map <silent> ]] j0?{<cr><c-l>w99[{%/{<cr><c-l>0
-map <silent> [] k$/}<cr><c-l>b99]}%?}<cr><c-l>0
-
 " grep current file or directory
 nnoremap gr<space> :lvimgrep  %<left><left>
 nnoremap gp<space> :vimgrep  **/*<left><left><left><left><left>
@@ -156,27 +151,6 @@ nnoremap <leader>e :e **/*
 nnoremap <leader>s :sp **/*
 nnoremap <leader>v :vs **/*
 nnoremap <leader>b :b **/*
-
-" run a command in a split terminal buffer
-" nnoremap z<cr>    :Term<cr>
-" nnoremap z<space> :Term<space>
-" nnoremap z!       :Term!
-" nnoremap z?       :echo ':Term ' . &makeprg<cr>
-" command! -nargs=? -bang Term call s:term(<bang>0, <q-args>)
-" function s:term(bang, args)
-"   if len(a:args) == 0
-"     let l:args = &makeprg
-"   else
-"     let l:args = join(map(split(a:args, '\ze[<%#]'), 'expand(v:val)'), '')
-"   endif
-"   new botright split
-"   call termopen(l:args)
-"   if a:bang
-"     wincmd p
-"   else
-"     startinsert!
-"   endif
-" endfunction
 
 " maximize the current window (overwrites default :pclose mapping)
 nnoremap <silent> <c-w>z <c-w>\|<c-w>_
@@ -210,11 +184,11 @@ endfunction
 
 " trigger omni completion using <tab>
 " TODO: use ctrl-i to insert tab character; not supported by tmux
-"       (https://github.com/tmux/tmux/issues/2705, https://github.com/neovim/neovim/issues/17867)
-" inoremap <expr> <tab> pumvisible() ? '<c-n>' :
-"   \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<tab>'
-" inoremap <expr> <s-tab> pumvisible() ? '<c-p>' :
-"   \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<s-tab>'
+"   (https://github.com/tmux/tmux/issues/2705, https://github.com/neovim/neovim/issues/17867)
+inoremap <expr> <tab> pumvisible() ? '<c-n>' :
+  \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<tab>'
+inoremap <expr> <s-tab> pumvisible() ? '<c-p>' :
+  \ getline('.')[col('.') - 2] !~ '^\s\?$' ? '<c-x><c-o>' : '<s-tab>'
 
 " get highlight group under the cursor
 command Hi call s:syngroup()
@@ -235,36 +209,23 @@ function s:clear_register(chars)
     \ "'. Execute :wshada! to persist changes"
 endfunction
 
-" source init.vim
-" TODO: don't reset tabsize when running So
-command So :source ~/.config/nvim/init.vim
+" source init.vim and reload the current file
+command So :source ~/.config/nvim/init.vim | :edit
 
 
 " --------------------------------------
 " statusline
 " --------------------------------------
 
-" copy StatusLine and StatusLineNC highlight groups
-" exec 'highlight StatusLineActive' .
-"   \ ' ctermfg=' . nvim_get_hl(0, {'name': 'StatusLine'})['ctermfg'] .
-"   \ ' ctermbg=' . nvim_get_hl(0, {'name': 'StatusLine'})['ctermbg']
-" exec 'highlight StatusLineInactive' .
-"   \ ' ctermfg=' . nvim_get_hl(0, {'name': 'StatusLineNC'})['ctermfg'] .
-"   \ ' ctermbg=' . nvim_get_hl(0, {'name': 'StatusLineNC'})['ctermbg']
-
-" set StatusLine and StatusLineNC backgrounds to the terminal background
-" highlight StatusLine ctermbg=none
-" highlight StatusLineNC ctermbg=none
-
 " custom status line (requires additional StatusLineActive and
 " StatusLineInactive highlight groups)
 set statusline=%!Statusline(g:statusline_winid)
 function Statusline(winid)
   let l:statusline  = ' ' . Background(a:winid) " left padding; set status line background color
-  let l:statusline .= ' [%n]'                   " buffer number
-  let l:statusline .= '  %f  '                  " filepath
+  let l:statusline .= ' [%n]  '                 " buffer number
+  let l:statusline .= '%f'                      " filepath
+  let l:statusline .= '%{GitBranch()}  '        " git branch
   let l:statusline .= '%{NopluginFlag()}'       " plugin flag
-  let l:statusline .= '%{PasteFlag()}'          " paste flag
   let l:statusline .= '%H%W%R%M'                " help/preview/read-only/modified flags
   let l:statusline .= '%=   %c%V  :  %2l/%L'    " byte index, virtual column number; line number
   let l:statusline .= '%{Filetype()}'           " filetype
@@ -286,7 +247,7 @@ function NetrwStatusline(winid)
   return ' ' . Background(a:winid) . ' [%n]  %l/%L lines%=[netrw] %* '
 endfunction
 function TermStatusline(winid)
-  return ' ' . Background(a:winid) . ' [%n]  %{TermShell()}%{TermMode()}  %{NopluginFlag()}%{PasteFlag()}%R%=[term] %* '
+  return ' ' . Background(a:winid) . ' [%n]  %{TermShell()}%{TermMode()}  %{NopluginFlag()}%R%=[term] %* '
 endfunction
 
 " set background depending on whether the window is active
@@ -299,20 +260,14 @@ function Filetype()
   return &filetype == '' ? ' ' : '  [' . &filetype . '] '
 endfunction
 
+" show the git branch if plugins are enabled
+function GitBranch()
+  return !&loadplugins || empty(FugitiveGitDir(bufnr(''))) ? '' : '  ' . FugitiveStatusline()
+endfunction
+
 " noplugin flag if running with --noplugin set
 function NopluginFlag()
   return !&loadplugins ? 'NP' : ''
-endfunction
-
-" set paste flag if paste has been set
-function PasteFlag()
-  if !&paste
-    return ''
-  elseif &loadplugins
-    return 'P'
-  else
-    return ',P'
-  endif
 endfunction
 
 " return shell used by terminal
@@ -322,8 +277,11 @@ endfunction
 
 " set 'insert' flag if terminal buffer is in 'terminal' mode
 function TermMode()
-  return mode() == 't' ? '  (insert)' : ''
+  " TODO: why is one of the spaces being dropped
+  " return mode() == 't' ? '  (insert)' : ''
+  return mode() == 't' ? '   (insert)' : ''
 endfunction
+
 
 " --------------------------------------
 " tabline
@@ -518,6 +476,7 @@ augroup END
 
 if &loadplugins
 lua << EOT
+vim.loader.enable()
 require('impatient')
 require('config.indent-blankline')
 require('config.leap')
