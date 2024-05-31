@@ -71,8 +71,6 @@
 [submodule "nvim/package/start/telescope-fzf-native"]
 	path = nvim/package/start/telescope-fzf-native
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
-
-# neovim (opt)
 [submodule "nvim/package/start/treesitter"]
 	path = nvim/package/start/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
