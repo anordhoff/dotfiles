@@ -38,7 +38,7 @@ rm: validate-path
 # TODO: ignore macos ._* files
 .PHONY: tar
 tar:
-	tar --exclude '._*' --exclude .git --exclude nvim/package --exclude tmux/plugins -czvf $(filename) $(files)
+	tar --exclude '**/._*' --exclude .git --exclude nvim/package --exclude tmux/plugins -czvf $(filename) $(files)
 
 # make diff dir1=dotfiles dir2=dotfiles.backup
 # TODO: exclude nvim/package and tmux/plugins

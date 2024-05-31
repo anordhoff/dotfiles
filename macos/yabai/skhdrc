@@ -4,11 +4,11 @@ shift + ctrl + alt - return : kitty
 # minimize current window
 shift + ctrl + alt - q : yabai -m window --minimize
 
-# toggle float
-shift + ctrl + alt - z : yabai -m window --toggle float
-
 # toggle zoom
-shift + ctrl + alt + cmd - z : yabai -m window --toggle zoom-fullscreen
+shift + ctrl + alt - z : yabai -m window --toggle zoom-fullscreen
+
+# toggle float
+shift + ctrl + alt + cmd - z : yabai -m window --toggle float
 
 # toggle split type
 shift + ctrl + alt - g : yabai -m window --toggle split
@@ -28,17 +28,17 @@ shift + ctrl + alt + cmd - e : yabai -m window --swap south
 shift + ctrl + alt + cmd - i : yabai -m window --swap north
 shift + ctrl + alt + cmd - o : yabai -m window --swap east
 
-# stack the focused window
-shift + ctrl + alt + cmd - h : yabai -m window --stack west
-shift + ctrl + alt + cmd - j : yabai -m window --stack south
-shift + ctrl + alt + cmd - k : yabai -m window --stack north
-shift + ctrl + alt + cmd - l : yabai -m window --stack east
+# stack the focused window (stack.next allows stack.recent to work)
+shift + ctrl + alt + cmd - h : yabai -m window --stack west && yabai -m window --focus stack.next
+shift + ctrl + alt + cmd - j : yabai -m window --stack south && yabai -m window --focus stack.next
+shift + ctrl + alt + cmd - k : yabai -m window --stack north && yabai -m window --focus stack.next
+shift + ctrl + alt + cmd - l : yabai -m window --stack east && yabai -m window --focus stack.next
 
-# focus the next stacked window, or wrap to the beginning of the stack
-shift + ctrl + alt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+# focus the most recently focued window in the stack
+shift + ctrl + alt - a : yabai -m window --focus stack.recent
 
 # break the focused window from stack
-shift + ctrl + alt + cmd - tab : yabai -m window --toggle float && yabai -m window --toggle float
+shift + ctrl + alt + cmd - a : yabai -m window --toggle float && yabai -m window --toggle float
 
 # move window to adjacent space (0x1B = minus, 0x18 = equal)
 shift + ctrl + alt + cmd - 0x1B : yabai -m window --space prev
@@ -54,7 +54,6 @@ shift + ctrl + alt + cmd - t : yabai -m window --space 6
 shift + ctrl + alt + cmd - w : yabai -m window --space 7
 shift + ctrl + alt + cmd - f : yabai -m window --space 8
 shift + ctrl + alt + cmd - p : yabai -m window --space 9
-shift + ctrl + alt + cmd - a : yabai -m window --space 10
 
 # move focus to adjacent monitor
 shift + ctrl + alt - u : yabai -m display --focus next
@@ -70,10 +69,10 @@ shift + ctrl + alt - j : yabai -m window --resize top:0:-100; yabai -m window --
 shift + ctrl + alt - k : yabai -m window --resize top:0:100; yabai -m window --resize bottom:0:-100
 shift + ctrl + alt - l : yabai -m window --resize left:-100:0; yabai -m window --resize right:100:0
 
-# mouse button remappings
+# TODO: mouse button remappings
 f16 : yabai -m window --space prev
 f17 : yabai -m window --space next
 
-# mouse button remappings
+# TODO: mouse button remappings
 f18 : skhd -k "cmd - left"
 f19 : skhd -k "cmd - right"
