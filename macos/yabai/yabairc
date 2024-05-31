@@ -15,7 +15,6 @@ yabai -m config window_border_radius       12
 yabai -m config active_window_border_color 0xffd3869b
 yabai -m config normal_window_border_color 0xff000000
 
-
 # focus another window after closing or minimizing the active window
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
 yabai -m signal --add event=window_minimized active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
