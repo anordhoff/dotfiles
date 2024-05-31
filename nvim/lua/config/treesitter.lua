@@ -1,8 +1,6 @@
 -- install parsers using git instead of curl to prevent proxy issues
 require('nvim-treesitter.install').prefer_git = true
 
--- TODO: [[ and ]] to move between functions (do it better than stock vim)
-
 require('nvim-treesitter.configs').setup {
 
   -- Install parsers to XDG_DATA_HOME, rather than treesitter package
@@ -50,7 +48,7 @@ require('nvim-treesitter.configs').setup {
       selection_modes = {},
     },
     swap = {
-      enable = false,
+      enable = true,
       swap_next = {
         ['<leader>an'] = '@parameter.inner',
       },
@@ -59,7 +57,20 @@ require('nvim-treesitter.configs').setup {
       },
     },
     move = {
-      enable = false,
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]]"] = "@function.outer",
+      },
+      goto_next_end = {
+        ["]["] = "@function.outer",
+      },
+      goto_previous_start = {
+        ["[["] = "@function.outer",
+      },
+      goto_previous_end = {
+        ["[]"] = "@function.outer",
+      },
     },
   },
 }

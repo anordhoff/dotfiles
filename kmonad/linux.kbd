@@ -174,7 +174,7 @@
 (deflayer colemak
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  \_        @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
+  -         @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   z         x    c    d    v    ;    \    k    h    ,    .    /           up
             lctl lalt lmet           @mtspc    @mtesc lalt           left down rght
 )

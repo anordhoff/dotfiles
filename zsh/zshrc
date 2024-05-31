@@ -168,8 +168,12 @@ alias help=run-help
 # refresh watch every second; work with aliases
 alias watch='watch -n 1 '
 
+# disable colors in tldr
+alias tldr='NO_COLOR=true tldr'
+
 # open the notes dir
-alias n='nvim ~/notes/misc.md'
+alias notes='nvim ~/notes/'
+alias todo='nvim ~/notes/todo.md'
 
 # directory stack
 alias dirs='dirs -v'

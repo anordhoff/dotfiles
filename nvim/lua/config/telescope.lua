@@ -34,11 +34,6 @@ telescope.setup {
         ['<esc>'] = actions.close,
         ['<c-x>'] = false,
         ['<c-s>'] = actions.select_horizontal,
-        ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
-        ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
-        ["<m-q>"] = false,
-        ["<c-q>"] = smart_send_to_qflist,
-        ["<c-l>"] = smart_send_to_loclist,
       },
       n = {},
     },
@@ -91,6 +86,7 @@ vim.api.nvim_create_autocmd('User', {
 -- mappings
 local opts = { silent = true }
 vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>fn', function() builtin.find_files({ cwd = '~/notes' }) end, opts)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 vim.keymap.set('n', '<leader>fq', builtin.quickfix, opts)
@@ -103,7 +99,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
 vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 
--- NOTE: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
+-- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
    callback = function()
       vim.api.nvim_create_autocmd('BufWinEnter', {

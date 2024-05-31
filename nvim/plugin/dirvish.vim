@@ -1,5 +1,3 @@
-" TODO: change dirvish mapping 'x' to something else so I can use leap
-
 " sort directories first
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
@@ -7,8 +5,8 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 nnoremap <silent> _ :Dirvish .<cr>
 
 " open the [count]th parent directory in a new window
-" nmap <silent> <leader>s <plug>(dirvish_split_up)
-" nmap <silent> <leader>v <plug>(dirvish_vsplit_up)
+nmap <silent> <leader>S <plug>(dirvish_split_up)
+nmap <silent> <leader>V <plug>(dirvish_vsplit_up)
 
 augroup dirvish_config
   autocmd!
