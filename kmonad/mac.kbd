@@ -9,7 +9,6 @@
 
 ;; TODO:
 ;; - setup hotkey and gestures so that music play/pause/skip/etc only interact with spotify and not the most recent window
-;; - how to do ctrl-_?
 
 (defalias
 
