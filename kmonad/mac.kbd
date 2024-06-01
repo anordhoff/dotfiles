@@ -324,7 +324,7 @@
   @cfn      XX   XX   lmet           _         lsft lalt           @cleft @cdown @crght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( , -> [ , . -> ] )
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer colemak-meh
   @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
@@ -356,7 +356,7 @@
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   XX     XX
-  XX        XX   XX   XX   _    XX   XX   XX   @t-  @t_  @t;  @t:  XX
+  XX        XX   XX   XX   _    XX   XX   XX   XX   XX   @t;  @t:  XX
   XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX          XX
   XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
@@ -364,8 +364,8 @@
 (deflayer layer-n
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   @t*  XX   XX   XX     XX
-  XX        @t0  @t4  @t5  @t6  XX   XX   XX   _    @t-  @t+  @t:  XX
+  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @t-       @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:  XX
   XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
   XX        XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
@@ -408,7 +408,7 @@
   @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( , -> [ , . -> ] )
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer game-meh
   @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc

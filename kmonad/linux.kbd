@@ -161,7 +161,7 @@
             S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( , -> [ , . -> ] )
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer colemak-meh
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
@@ -189,15 +189,15 @@
 (deflayer layer-t
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   XX     XX
-  XX        XX   XX   XX   _    XX   XX   XX   -    \_   ;    :    XX
+  XX        XX   XX   XX   _    XX   XX   XX   XX   XX   ;    :    XX
   XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
             XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
 
 (deflayer layer-n
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   7    8    9    XX   XX   XX   XX   *    XX   XX   XX     XX
-  XX        0    4    5    6    XX   XX   XX   _    -    +    :    XX
+  XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @t-       0    4    5    6    XX   XX   XX   _    *    +    :    XX
   XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
             XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
@@ -234,7 +234,7 @@
             S-lctl S-lmet S-lalt     S-spc     _    XX             S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( , -> [ , . -> ] )
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer game-meh
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
