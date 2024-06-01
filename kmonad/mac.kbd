@@ -291,18 +291,8 @@
   m,    (tap-macro (around rctl (around rsft (around ralt ,    ))) XX)
   m.    (tap-macro (around rctl (around rsft (around ralt .    ))) XX)
   m/    (tap-macro (around rctl (around rsft (around ralt /    ))) XX)
-  mf1   (tap-macro (around rctl (around rsft (around ralt f1   ))) XX)
-  mf2   (tap-macro (around rctl (around rsft (around ralt f2   ))) XX)
-  mf3   (tap-macro (around rctl (around rsft (around ralt f3   ))) XX)
-  mf4   (tap-macro (around rctl (around rsft (around ralt f4   ))) XX)
-  mf5   (tap-macro (around rctl (around rsft (around ralt f5   ))) XX)
-  mf6   (tap-macro (around rctl (around rsft (around ralt f6   ))) XX)
-  mf7   (tap-macro (around rctl (around rsft (around ralt f7   ))) XX)
-  mf8   (tap-macro (around rctl (around rsft (around ralt f8   ))) XX)
-  mf9   (tap-macro (around rctl (around rsft (around ralt f9   ))) XX)
-  mf10  (tap-macro (around rctl (around rsft (around ralt f10  ))) XX)
-  mf11  (tap-macro (around rctl (around rsft (around ralt f11  ))) XX)
-  mf12  (tap-macro (around rctl (around rsft (around ralt f12  ))) XX)
+  mf16  (tap-macro (around rctl (around rsft (around ralt f16  ))) XX)
+  mf17  (tap-macro (around rctl (around rsft (around ralt f16  ))) XX)
   mesc  (tap-macro (around rctl (around rsft (around ralt esc  ))) XX)
   mtab  (tap-macro (around rctl (around rsft (around ralt tab  ))) XX)
   mbspc (tap-macro (around rctl (around rsft (around ralt bspc ))) XX)
@@ -325,7 +315,7 @@
 )
 
 (deflayer colemak
-  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  esc       brdn brup mctl spot bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   -         @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
@@ -334,7 +324,7 @@
 )
 
 (deflayer colemak-shift
-  S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  S-esc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   \_        @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
@@ -343,7 +333,7 @@
 )
 
 (deflayer colemak-control
-  @cesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  @cesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-  @c=    @cbspc
   @ctab     @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @c'  @cbspc @cdel
   @c-       @ca  @cr  @cs  @ct  @cg  @c]  @cm  @cn  @ce  @ci  @co  @cret
@@ -355,11 +345,11 @@
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
 (deflayer colemak-meh
-  @mesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @mf16 @mf17 @m/       @mup
   @mfn      XX   XX   @adj           @hyp      @hyp @adj           @mleft @mdown @mrght
 )
 
@@ -420,7 +410,7 @@
 ;; TODO: in game, replace esc with -, and replace spc with @mtspc (so there's still an esc key)
 
 (deflayer game
-  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  esc       brdn brup mctl spot bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
@@ -429,7 +419,7 @@
 )
 
 (deflayer game-shift
-  S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  S-esc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   S-esc     a    R    S    T    G    }    M    N    E    I    O    S-ret
@@ -439,7 +429,7 @@
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
 (deflayer game-meh
-  @mesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
@@ -466,7 +456,7 @@
 )
 
 (deflayer qwerty
-  esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  esc       brdn brup mctl spot bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    e    r    t    y    u    i    o    p    [    ]      \
   esc       a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -475,7 +465,7 @@
 )
 
 (deflayer qwerty-left-shift
-  S-esc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  S-esc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }      |
   S-esc     A    S    D    F    G    H    J    K    L    :    "    S-ret
@@ -484,7 +474,7 @@
 )
 
 (deflayer qwerty-right-shift
-  RS-esc    brdn brup mctl @spt bldn blup prev pp   next mute vold volu
+  RS-esc    brdn brup mctl spot bldn blup prev pp   next mute vold volu
   RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +      RS-bspc
   RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }      |
   RS-esc    A    S    D    F    G    H    J    K    L    :    "    RS-ret
