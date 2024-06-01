@@ -46,14 +46,14 @@
 
   ;; linux does not register no-delay taps (see https://github.com/kmonad/kmonad/issues/624)
   mtA   (tap-hold 250 (around A P5) (around lsft (layer-toggle colemak-meh)))
-  mtR   (tap-hold 250 (around R P5) (around lsft (layer-toggle layer-r)))
-  mtS   (tap-hold 150 (around S P5) (layer-toggle layer-s))
-  mtT   (tap-hold 150 (around T P5) (layer-toggle layer-t))
+  mtR   (tap-hold 250 (around R P5) (layer-toggle layer-r-shift))
+  mtS   (tap-hold 150 (around S P5) (layer-toggle layer-s-shift))
+  mtT   (tap-hold 150 (around T P5) (layer-toggle layer-t-shift))
   ;; mtD   (tap-hold 250 (around D P5) (around lsft (around lmet lctl)))
   ;; mtH   (tap-hold 250 (around H P5) (around lsft (around lsft lalt)))
-  mtN   (tap-hold 150 (around N P5) (layer-toggle layer-n))
-  mtE   (tap-hold 150 (around E P5) (layer-toggle layer-e))
-  mtI   (tap-hold 250 (around I P5) (around lsft (layer-toggle layer-i)))
+  mtN   (tap-hold 150 (around N P5) (layer-toggle layer-n-shift))
+  mtE   (tap-hold 150 (around E P5) (layer-toggle layer-e-shift))
+  mtI   (tap-hold 250 (around I P5) (layer-toggle layer-i))
   mtO   (tap-hold 250 (around O P5) (around lsft (layer-toggle colemak-meh)))
 
   mtspc (tap-hold 170 spc lctl)
@@ -64,6 +64,31 @@
 
   mtz   (tap-hold 250 z lsft)
   mtZ   (tap-hold 250 (around Z P5) lsft)
+
+  ;; mod-taps on how row layers
+  rtspc (tap-hold 170 spc lctl)
+  rtSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  rtesc (tap-hold-next 170 esc (layer-toggle layer-r-shift))
+
+  stspc (tap-hold 170 spc lctl)
+  stSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  stesc (tap-hold-next 170 esc (layer-toggle layer-s-shift))
+
+  ttspc (tap-hold 170 spc lctl)
+  ttSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  ttesc (tap-hold-next 170 esc (layer-toggle layer-t-shift))
+
+  ntspc (tap-hold 170 spc lctl)
+  ntSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  ntesc (tap-hold-next 170 esc (layer-toggle layer-n-shift))
+
+  etspc (tap-hold 170 spc lctl)
+  etSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  etesc (tap-hold-next 170 esc (layer-toggle layer-e-shift))
+
+  itspc (tap-hold 170 spc lctl)
+  itSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
+  itesc (tap-hold-next 170 esc (layer-toggle layer-i-shift))
 
   ;; media keys
   bdn (cmd-button "exec light -U 5")
@@ -171,51 +196,99 @@
 )
 
 (deflayer layer-r
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX     XX
-  XX        XX   _    XX   XX   XX   XX   XX   left down up   rght XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
+  tab       XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   bspc   del
+  -         XX   _    XX   XX   XX   XX   XX   left down up   rght ret
   XX        XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @rtspc    @rtesc lalt           XX   XX   XX
+)
+
+(deflayer layer-r-shift
+  XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     S-bspc
+  S-tab     XX   XX   XX   XX   XX   XX   XX   S-ins  S-home S-pgup XX     S-bspc S-del
+  \_        XX   _    XX   XX   XX   XX   XX   S-left S-down S-up   S-rght S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   S-del  S-end  S-pgdn XX            XX
+            XX   XX   S-lmet         @rtSPC    _      S-lalt                 XX   XX   XX
 )
 
 (deflayer layer-s
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   XX     XX
-  XX        XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   bspc   del
+  -         XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    ret
   XX        XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @stspc    @stesc lalt             XX   XX   XX
+)
+
+(deflayer layer-s-shift
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  S-tab     XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   S-bspc S-del
+  \_        XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX          XX
+            XX   XX   S-lmet         @stSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-t
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   XX     XX
-  XX        XX   XX   XX   _    XX   XX   XX   XX   XX   ;    :    XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   bspc   del
+  -         XX   XX   XX   _    XX   XX   XX   XX   XX   ;    :    ret
   XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @ttspc    @ttesc lalt             XX   XX   XX
+)
+
+(deflayer layer-t-shift
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  S-tab     XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   S-bspc S-del
+  \_        XX   XX   XX   _    XX   XX   XX   XX   XX   ;    :    S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
+            XX   XX   S-lmet         @ttSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-n
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   XX     XX
-  -         0    4    5    6    XX   XX   XX   _    *    +    :    XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
+  tab       XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   bspc   del
+  -         0    4    5    6    XX   XX   XX   _    *    +    :    ret
   XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @ntspc    @ntesc lalt             XX   XX   XX
+)
+
+(deflayer layer-n-shift
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  S-tab     XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   S-bspc S-del
+  \_        0    4    5    6    XX   XX   XX   _    *    +    :    S-ret
+  XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
+            XX   XX   S-lmet         @ntSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-e
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
+  tab       XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   bspc   del
+  -         \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   ret
   XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @etspc    @etesc lalt             XX   XX   XX
+)
+
+(deflayer layer-e-shift
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  S-tab     XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   S-bspc S-del
+  \_        \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   S-ret
+  XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
+            XX   XX   S-lmet         @etSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-i
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   XX   XX     XX
-  XX        f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
+  tab       f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   XX   bspc   del
+  -         f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   ret
   XX        f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
+            XX   XX   lmet           @itspc    @itesc lalt             XX   XX   XX
+)
+
+(deflayer layer-i-shift
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  S-tab     F11  F7   F8   F9   F12  XX   XX   XX   XX   XX   XX   S-bspc S-del
+  \_        F10  F4   F5   F6   XX   XX   XX   XX   XX   _    XX   S-ret
+  XX        F1   F2   F3   XX   XX   XX   XX   XX   XX   XX   XX          XX
+            XX   XX   S-lmet         @itSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer game
