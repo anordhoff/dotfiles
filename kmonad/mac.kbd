@@ -25,10 +25,10 @@
   hyp rmet
 
   ;; gaming layers
-  gmx (layer-toggle game-extend)
   gms (layer-toggle game-shift)
   gmm (layer-toggle game-meh)
   gmh rmet
+  gmx (layer-toggle game-extend)
 
   ;; additional layers
   adj (layer-toggle adjust)
@@ -346,10 +346,12 @@
   @cesc     brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-  @c=    @cbspc
   @ctab     @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @c'  @cbspc @cdel
-  @cesc     @ca  @cr  @cs  @ct  @cg  @c]  @cm  @cn  @ce  @ci  @co  @cret
+  @c-       @ca  @cr  @cs  @ct  @cg  @c]  @cm  @cn  @ce  @ci  @co  @cret
   @cz       @cx  @cc  @cd  @cv  @c;  @c\  @ck  @ch  @c-  @c=  @c/         @cup
   @cfn      XX   XX   lmet           _         lsft lalt           @cleft @cdown @crght
 )
+
+;; TODO: replace @mesc with @m- after changing @m- and @m= to function keys (f16 f17?)
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
 (deflayer colemak-meh
@@ -423,7 +425,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   esc       a    r    s    t    g    ]    m    n    e    i    o    ret
   @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           spc       @gms @meh             left down rght
+  @fn       lctl lalt lmet           spc       @gms @gmm             left down rght
 )
 
 (deflayer game-shift
@@ -442,7 +444,7 @@
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
   @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
-  @mfn      XX   @gmx @adj           @hyp      XX   _              @mleft @mdown @mrght
+  @mfn      XX   @adj @gmx           @gmh      XX   _              @mleft @mdown @mrght
 )
 
 (deflayer game-extend
@@ -451,7 +453,7 @@
   XX        f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   XX     XX
   XX        f10  f4   f5   f6   XX   XX   XX   left down up   rght XX
   XX        f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX          XX
-  XX        XX   _    XX             XX        XX   _                XX   XX   XX
+  XX        XX   XX   _              XX        XX   _                XX   XX   XX
 )
 
 (deflayer adjust
@@ -459,8 +461,8 @@
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   @qwe @col @gme XX   XX   XX   f13  f14  f15  nlck XX     XX
   caps      bldn brdn brup blup XX   XX   XX   prev vold volu next XX
-  XX        XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX          XX
-  XX        XX   XX   _              XX        XX   _                XX   XX   XX
+  _         XX   XX   XX   XX   XX   XX   XX   pp   mute XX   _           XX
+  XX        XX   _    _              XX        XX   _                XX   XX   XX
 )
 
 (deflayer qwerty
@@ -477,7 +479,7 @@
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    E    R    T    Y    U    I    O    P    {    }      |
   S-esc     A    S    D    F    G    H    J    K    L    :    "    S-ret
-  _         Z    X    C    V    B    N    M    <    >    ?    @col        S-up
+  _         Z    X    C    V    B    N    M    <    >    ?    @adj        S-up
   @FN       S-lctl  S-lalt  S-lmet   S-spc     S-rmet S-ralt       S-left S-down S-rght
 )
 
@@ -486,7 +488,7 @@
   RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +      RS-bspc
   RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }      |
   RS-esc    A    S    D    F    G    H    J    K    L    :    "    RS-ret
-  @col      Z    X    C    V    B    N    M    <    >    ?    _           RS-up
+  @adj      Z    X    C    V    B    N    M    <    >    ?    _           RS-up
   @RS-FN    RS-lctl RS-lalt RS-lmet  RS-spc    RS-rmet RS-ralt    RS-left RS-down RS-rght
 )
 

@@ -33,9 +33,9 @@ enum layers {
 #define RHYPER  KC_RGUI
 
 // gaming layers
-#define GME_EXT MO(_GAME_EXTEND)
 #define GME_MEH MO(_GAME_MEH)
 #define GME_HYP KC_RGUI
+#define GME_EXT MO(_GAME_EXTEND)
 
 // additional layers
 #define ADJUST  MO(_ADJUST)
