@@ -111,6 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_MINS, RM_DOT -> RM_EQL)
 	[_GAME_MEH] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      RM_TAB , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,         RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC, RM_DEL,
