@@ -64,7 +64,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Shift><Control><Alt><Super>m'
 
 # open the application launcher
-gsettings set org.gnome.settings-daemon.plugins.media-keys search '["<Shift><Control><Alt>escape"]'
+gsettings set org.gnome.settings-daemon.plugins.media-keys search '["<Shift><Control><Alt>minus"]'
 
 # resize window
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left '["<Shift><Control><Alt><Super>n"]'
@@ -82,12 +82,12 @@ gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Shift
 gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Shift><Control><Alt>o"]'
 
 # switch workspace
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left '["<Shift><Control><Alt>u"]'
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right '["<Shift><Control><Alt>y"]'
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left '["<Shift><Control><Alt>bracketleft"]'
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right '["<Shift><Control><Alt>bracketright"]'
 
 # move window to workspace
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left '["<Shift><Control><Alt><Super>u"]'
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right '["<Shift><Control><Alt><Super>y"]'
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left '["<Shift><Control><Alt><Super>bracketleft"]'
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right '["<Shift><Control><Alt><Super>bracketright"]'
 
 # switch workspace
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 '["<Shift><Control><Alt>x"]'
@@ -114,5 +114,5 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 '["<Shift><Co
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 '["<Shift><Control><Alt><Super>a"]'
 
 # switch window to monitor
-gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left '["<Shift><Control><Alt><Super>minus"]'
-gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right '["<Shift><Control><Alt><Super>equal"]'
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left '["<Shift><Control><Alt><Super>u"]'
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right '["<Shift><Control><Alt><Super>y"]'

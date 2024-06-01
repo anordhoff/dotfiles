@@ -76,9 +76,6 @@
   cfn   (around (around rctl (layer-toggle function)) (around rctl fn))
   mfn   (around (around rctl (around rsft (around ralt (layer-toggle function)))) (around rctl (around rsft (around ralt fn))))
 
-  ;; media keys
-  spt   (around rctl (around rsft (around ralt esc)))
-
   ;; prevent mod tap keys from getting "stuck"
   ta    (tap-macro a    XX)
   tb    (tap-macro b    XX)
@@ -144,18 +141,6 @@
   t,    (tap-macro ,    XX)
   t.    (tap-macro .    XX)
   t/    (tap-macro /    XX)
-  tf1   (tap-macro f1   XX)
-  tf2   (tap-macro f2   XX)
-  tf3   (tap-macro f3   XX)
-  tf4   (tap-macro f4   XX)
-  tf5   (tap-macro f5   XX)
-  tf6   (tap-macro f6   XX)
-  tf7   (tap-macro f7   XX)
-  tf8   (tap-macro f8   XX)
-  tf9   (tap-macro f9   XX)
-  tf10  (tap-macro f10  XX)
-  tf11  (tap-macro f11  XX)
-  tf12  (tap-macro f12  XX)
   tesc  (tap-macro esc  XX)
   ttab  (tap-macro tab  XX)
   tbspc (tap-macro bspc XX)
@@ -220,18 +205,6 @@
   c,    (tap-macro (around rctl ,    ) XX)
   c.    (tap-macro (around rctl .    ) XX)
   c/    (tap-macro (around rctl /    ) XX)
-  cf1   (tap-macro (around rctl f1   ) XX)
-  cf2   (tap-macro (around rctl f2   ) XX)
-  cf3   (tap-macro (around rctl f3   ) XX)
-  cf4   (tap-macro (around rctl f4   ) XX)
-  cf5   (tap-macro (around rctl f5   ) XX)
-  cf6   (tap-macro (around rctl f6   ) XX)
-  cf7   (tap-macro (around rctl f7   ) XX)
-  cf8   (tap-macro (around rctl f8   ) XX)
-  cf9   (tap-macro (around rctl f9   ) XX)
-  cf10  (tap-macro (around rctl f10  ) XX)
-  cf11  (tap-macro (around rctl f11  ) XX)
-  cf12  (tap-macro (around rctl f12  ) XX)
   cesc  (tap-macro (around rctl esc  ) XX)
   ctab  (tap-macro (around rctl tab  ) XX)
   cbspc (tap-macro (around rctl bspc ) XX)
@@ -291,8 +264,6 @@
   m,    (tap-macro (around rctl (around rsft (around ralt ,    ))) XX)
   m.    (tap-macro (around rctl (around rsft (around ralt .    ))) XX)
   m/    (tap-macro (around rctl (around rsft (around ralt /    ))) XX)
-  mf16  (tap-macro (around rctl (around rsft (around ralt f16  ))) XX)
-  mf17  (tap-macro (around rctl (around rsft (around ralt f17  ))) XX)
   mesc  (tap-macro (around rctl (around rsft (around ralt esc  ))) XX)
   mtab  (tap-macro (around rctl (around rsft (around ralt tab  ))) XX)
   mbspc (tap-macro (around rctl (around rsft (around ralt bspc ))) XX)
@@ -341,15 +312,13 @@
   @cfn      XX   XX   lmet           _         lsft lalt           @cleft @cdown @crght
 )
 
-;; TODO: replace @mesc with @m- after changing @m- and @m= to function keys (f16 f17?)
-
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> lbrc, dot -> rbrc)
 (deflayer colemak-meh
   @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @mf16 @mf17 @m/       @mup
+  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/       @mup
   @mfn      XX   XX   @adj           @hyp      @hyp @adj           @mleft @mdown @mrght
 )
 
@@ -427,13 +396,13 @@
   @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> lbrc, dot -> rbrc)
 (deflayer game-meh
   @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
+  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
   @mfn      XX   @adj @gmx           @gmh      XX   _              @mleft @mdown @mrght
 )
 

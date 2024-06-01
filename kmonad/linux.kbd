@@ -125,18 +125,6 @@
   m,    (around rctl (around rsft (around ralt ,    )))
   m.    (around rctl (around rsft (around ralt .    )))
   m/    (around rctl (around rsft (around ralt /    )))
-  mf1   (around rctl (around rsft (around ralt f1   )))
-  mf2   (around rctl (around rsft (around ralt f2   )))
-  mf3   (around rctl (around rsft (around ralt f3   )))
-  mf4   (around rctl (around rsft (around ralt f4   )))
-  mf5   (around rctl (around rsft (around ralt f5   )))
-  mf6   (around rctl (around rsft (around ralt f6   )))
-  mf7   (around rctl (around rsft (around ralt f7   )))
-  mf8   (around rctl (around rsft (around ralt f8   )))
-  mf9   (around rctl (around rsft (around ralt f9   )))
-  mf10  (around rctl (around rsft (around ralt f10  )))
-  mf11  (around rctl (around rsft (around ralt f11  )))
-  mf12  (around rctl (around rsft (around ralt f12  )))
   mesc  (around rctl (around rsft (around ralt esc  )))
   mtab  (around rctl (around rsft (around ralt tab  )))
   mbspc (around rctl (around rsft (around ralt bspc )))
@@ -173,12 +161,12 @@
             S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> lbrc, dot -> rbrc)
 (deflayer colemak-meh
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
+  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
             XX   XX   @adj           @hyp      @hyp @adj           @mleft @mdown @mrght
 )
 
@@ -246,12 +234,12 @@
             S-lctl S-lmet S-lalt     S-spc     _    XX             S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> minus, dot -> equal)
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> lbrc, dot -> rbrc)
 (deflayer game-meh
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @mesc     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m-  @m=  @m/         @mup
+  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
             XX   @adj @gmx           @gmh      XX   _              @mleft @mdown @mrght
 )
 
