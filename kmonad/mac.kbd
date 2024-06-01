@@ -292,7 +292,7 @@
   m.    (tap-macro (around rctl (around rsft (around ralt .    ))) XX)
   m/    (tap-macro (around rctl (around rsft (around ralt /    ))) XX)
   mf16  (tap-macro (around rctl (around rsft (around ralt f16  ))) XX)
-  mf17  (tap-macro (around rctl (around rsft (around ralt f16  ))) XX)
+  mf17  (tap-macro (around rctl (around rsft (around ralt f17  ))) XX)
   mesc  (tap-macro (around rctl (around rsft (around ralt esc  ))) XX)
   mtab  (tap-macro (around rctl (around rsft (around ralt tab  ))) XX)
   mbspc (tap-macro (around rctl (around rsft (around ralt bspc ))) XX)
