@@ -197,7 +197,7 @@
 (deflayer layer-n
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   XX     XX
-  @t-       0    4    5    6    XX   XX   XX   _    *    +    :    XX
+  -         0    4    5    6    XX   XX   XX   _    *    +    :    XX
   XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
             XX   XX   lmet           lctl      lsft lalt             XX   XX   XX
 )
