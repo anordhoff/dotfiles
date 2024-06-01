@@ -41,17 +41,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_R:
 		case MT_I:
 		case MT_O:
-			// return 300;
 		case MT_Z:
-		// case MT_C:
 		// case MT_D:
 		// case MT_H:
-		// case MT_COMM:
 			return 250;
-		// case MT_TAB:
 		case MT_SPC:
 		case MT_ESC:
-		// case MT_ENT:
 			return 170;
 		default:
 			return TAPPING_TERM;
@@ -61,11 +56,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 // per key permissive hold
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		// case MT_A:
-		// case MT_R:
-		// case MT_I:
-		// case MT_O:
-		// 	return true;
 		default:
 			return false;
 	}
@@ -74,9 +64,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 // per key hold on other key press
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		// case MT_TAB:
 		case MT_ESC:
-		// case MT_ENT:
 			return true;
 		default:
 			return false;

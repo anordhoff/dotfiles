@@ -415,6 +415,8 @@
   XX        XX    XX   lmet            lctl      lsft lalt             XX   XX   XX
 )
 
+;; TODO: in game, replace esc with -, and replace spc with @mtspc (so there's still an esc key)
+
 (deflayer game
   esc       brdn brup mctl @spt bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
@@ -445,9 +447,9 @@
 
 (deflayer game-extend
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   bspc   del
-  esc       f10  f4   f5   f6   XX   XX   XX   left down up   rght ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   XX     XX
+  XX        f10  f4   f5   f6   XX   XX   XX   left down up   rght XX
   XX        f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX          XX
   XX        XX   _    XX             XX        XX   _                XX   XX   XX
 )
