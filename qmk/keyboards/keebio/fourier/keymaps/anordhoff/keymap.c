@@ -14,14 +14,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 
-	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_MINS, RM_DOT -> RM_EQL)
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_LBRC, RM_DOT -> RM_RBRC)
 	[_COLEMAK_MEH] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      RM_TAB , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,         RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC, RM_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   RM_ESC   , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,         RM_M  , RM_N  , RM_E  , RM_I  , RM_O,         RM_ENT,
+	   RM_MINS  , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,         RM_M  , RM_N  , RM_E  , RM_I  , RM_O,         RM_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
-	   RM_Z         , RM_X  , RM_C  , RM_D  , RM_V  ,XXXXXXX,         RM_K  , RM_H  ,RM_MINS,RM_EQL ,RM_SLSH,  XXXXXXX,
+	   RM_Z         , RM_X  , RM_C  , RM_D  , RM_V  ,XXXXXXX,         RM_K  , RM_H  ,RM_LBRC,RM_RBRC,RM_SLSH,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
 	   XXXXXXX,XXXXXXX,ADJUST ,XXXXXXX,     RHYPER      ,             RHYPER      , ADJUST  ,XXXXXXX,XXXXXXX,  XXXXXXX
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
@@ -111,14 +111,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 
-	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_MINS, RM_DOT -> RM_EQL)
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_LBRC, RM_DOT -> RM_RBRC)
 	[_GAME_MEH] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      RM_TAB , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,         RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC, RM_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   RM_ESC   , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,         RM_M  , RM_N  , RM_E  , RM_I  , RM_O,         RM_ENT,
+	   RM_MINS  , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,         RM_M  , RM_N  , RM_E  , RM_I  , RM_O,         RM_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
-	   RM_Z         , RM_X  , RM_C  , RM_D  , RM_V  ,XXXXXXX,         RM_K  , RM_H  ,RM_MINS,RM_EQL ,RM_SLSH,    RM_UP,
+	   RM_Z         , RM_X  , RM_C  , RM_D  , RM_V  ,XXXXXXX,         RM_K  , RM_H  ,RM_LBRC,RM_RBRC,RM_SLSH,    RM_UP,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
 	   XXXXXXX,ADJUST ,GME_EXT,XXXXXXX,     GME_HYP     ,             XXXXXXX     , _______ ,RM_LEFT,RM_DOWN,  RM_RGHT
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘

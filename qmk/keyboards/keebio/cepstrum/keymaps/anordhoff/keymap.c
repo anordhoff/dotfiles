@@ -16,16 +16,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
-	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_MINS, RM_DOT -> RM_EQL)
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_LBRC, RM_DOT -> RM_RBRC)
 	[_COLEMAK_MEH] = LAYOUT_65xt(
 	//┌───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────────────┬───────┐
 	   XXXXXXX,XXXXXXX,    RM_GRV , RM_1  , RM_2  , RM_3  , RM_4  , RM_5  , RM_6  ,         RM_7  , RM_8  , RM_9  , RM_0  ,RM_MINS,RM_EQL ,       RM_BSPC ,XXXXXXX,
 	//├───────┼───────┤   ├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┘   ┌───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───────────┼───────┤
 	   XXXXXXX,XXXXXXX,    RM_TAB     , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,        RM_LBRC, RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC,    RM_DEL ,XXXXXXX,
 	//├───────┼───────┤   ├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────────┼───────┤
-	   XXXXXXX,XXXXXXX,    RM_ESC       , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,        RM_RBRC, RM_M  , RM_N  , RM_E  , RM_I  , RM_O  ,          RM_ENT ,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    RM_MINS      , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,        RM_RBRC, RM_M  , RM_N  , RM_E  , RM_I  , RM_O  ,          RM_ENT ,XXXXXXX,
 	//├───────┼───────┤   ├─────────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴─────────┬───────┼───────┤
-	   XXXXXXX,XXXXXXX,    RM_Z             , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,        RM_BSLS, RM_K  , RM_H  ,RM_MINS,RM_EQL ,   RM_SLSH   , RM_UP ,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    RM_Z             , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,        RM_BSLS, RM_K  , RM_H  ,RM_LBRC,RM_RBRC,   RM_SLSH   , RM_UP ,XXXXXXX,
 	//├───────┼───────┤   ├─────────┬───────┴─┬─────┴───┬───┴─────┬─┴───────┴───────┤       ├───────┴───────┴─┬─────┴───┬───┴─────┬─┴─────┬───────┼───────┼───────┤
 	   XXXXXXX,XXXXXXX,    XXXXXXX  , XXXXXXX , XXXXXXX , ADJUST  ,     RHYPER      ,             RHYPER      , ADJUST  , XXXXXXX ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
@@ -129,16 +129,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
-	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_MINS, RM_DOT -> RM_EQL)
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_LBRC, RM_DOT -> RM_RBRC)
 	[_GAME_MEH] = LAYOUT_65xt(
 	//┌───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────────────┬───────┐
 	   XXXXXXX,XXXXXXX,    RM_GRV , RM_1  , RM_2  , RM_3  , RM_4  , RM_5  , RM_6  ,         RM_7  , RM_8  , RM_9  , RM_0  ,RM_MINS,RM_EQL ,       RM_BSPC ,XXXXXXX,
 	//├───────┼───────┤   ├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┘   ┌───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───────────┼───────┤
 	   XXXXXXX,XXXXXXX,    RM_TAB     , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,        RM_LBRC, RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC,    RM_DEL ,XXXXXXX,
 	//├───────┼───────┤   ├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────────┼───────┤
-	   XXXXXXX,XXXXXXX,    RM_ESC       , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,        RM_RBRC, RM_M  , RM_N  , RM_E  , RM_I  , RM_O  ,          RM_ENT ,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    RM_MINS      , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,        RM_RBRC, RM_M  , RM_N  , RM_E  , RM_I  , RM_O  ,          RM_ENT ,XXXXXXX,
 	//├───────┼───────┤   ├─────────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴─────────┬───────┼───────┤
-	   XXXXXXX,XXXXXXX,    RM_Z             , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,        RM_BSLS, RM_K  , RM_H  ,RM_MINS,RM_EQL ,   RM_SLSH   , RM_UP ,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    RM_Z             , RM_X  , RM_C  , RM_D  , RM_V  ,RM_SCLN,        RM_BSLS, RM_K  , RM_H  ,RM_LBRC,RM_RBRC,   RM_SLSH   , RM_UP ,XXXXXXX,
 	//├───────┼───────┤   ├─────────┬───────┴─┬─────┴───┬───┴─────┬─┴───────┴───────┤       ├───────┴───────┴─┬─────┴───┬───┴─────┬─┴─────┬───────┼───────┼───────┤
 	   XXXXXXX,XXXXXXX,    XXXXXXX  , XXXXXXX , ADJUST  , GME_EXT ,     GME_HYP     ,             XXXXXXX     , _______ , XXXXXXX ,XXXXXXX,RM_LEFT,RM_DOWN,RM_RGHT
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘

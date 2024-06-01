@@ -324,7 +324,7 @@
   @cfn      XX   XX   lmet           _         lsft lalt           @cleft @cdown @crght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> lbrc, dot -> rbrc)
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( , -> [ , . -> ] )
 (deflayer colemak-meh
   @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
@@ -408,7 +408,7 @@
   @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (comma -> lbrc, dot -> rbrc)
+;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( , -> [ , . -> ] )
 (deflayer game-meh
   @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
