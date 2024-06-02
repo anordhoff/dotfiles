@@ -183,7 +183,7 @@
   t;    (tap-macro ;    XX)
   t:    (tap-macro :    XX)
   t'    (tap-macro '    XX)
-  t`    (tap-macro grv  XX)
+  t`    (tap-macro `    XX)
   t~    (tap-macro ~    XX)
   t,    (tap-macro ,    XX)
   t.    (tap-macro .    XX)
@@ -288,7 +288,8 @@
   c\    (tap-macro (around lctl \    ) XX)
   c;    (tap-macro (around lctl ;    ) XX)
   c'    (tap-macro (around lctl '    ) XX)
-  cgrv  (tap-macro (around lctl `    ) XX)
+  c`    (tap-macro (around lctl `    ) XX)
+  cgrv  (tap-macro (around lctl grv  ) XX)
   c,    (tap-macro (around lctl ,    ) XX)
   c.    (tap-macro (around lctl .    ) XX)
   c/    (tap-macro (around lctl /    ) XX)
@@ -365,6 +366,7 @@
   c:    (tap-macro (around lctl (around lsft ;    )) XX)
   cqu   (tap-macro (around lctl (around lsft '    )) XX)
   c~    (tap-macro (around lctl (around lsft `    )) XX)
+  cGRV  (tap-macro (around lctl (around lsft grv  )) XX)
   c<    (tap-macro (around lctl (around lsft ,    )) XX)
   c>    (tap-macro (around lctl (around lsft .    )) XX)
   c?    (tap-macro (around lctl (around lsft /    )) XX)
@@ -494,7 +496,7 @@
 
 (deflayer colemak-control-shift
   @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @c~       @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_  @c+    @cBSPC
+  @cGRV     @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_  @c+    @cBSPC
   @cTAB     @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @cqu @cBSPC @cDEL
   @c_       @cA  @ctR @ctS @ctT @cG  @c}  @cM  @ctN @ctE @ctI @cO  @cRET
   @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c<  @c>  @c?         @cUP
