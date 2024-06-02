@@ -8,6 +8,7 @@
 )
 
 ;; TODO:
+;; - can I replace the colemak-control layer with a macro-tap (@ta, @tb, etc) layer wrapped by lctl?
 ;; - setup hotkey and gestures so that music play/pause/skip/etc only interact with spotify and not the most recent window
 ;; - in game, replace esc with -, and replace spc with @mtspc (so there's still an esc key)
 
@@ -399,7 +400,7 @@
 (deflayer layer-r-shift
   @tESC     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tBSPC
-  @tTAB     XX   XX   XX   XX   XX   XX   XX   @tINT  @tHOME @tPGUP XX     @tBSPC @tDEL
+  @tTAB     XX   XX   XX   XX   XX   XX   XX   @tINS  @tHOME @tPGUP XX     @tBSPC @tDEL
   @t_       XX   _    XX   XX   XX   XX   XX   @tLEFT @tDOWN @tUP   @tRGHT @tRET
   XX        XX   XX   XX   XX   XX   XX   XX   @tDEL  @tEND  @tPGDN XX            XX
   XX        XX   XX   S-lmet         @rtSPC    _      S-lalt                 XX   XX   XX
