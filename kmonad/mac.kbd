@@ -324,7 +324,7 @@
   c}    (tap-macro (around lctl (around lsft ]    )) XX)
   c|    (tap-macro (around lctl (around lsft \    )) XX)
   c:    (tap-macro (around lctl (around lsft ;    )) XX)
-  c"    (tap-macro (around lctl (around lsft '    )) XX)
+  cqu   (tap-macro (around lctl (around lsft '    )) XX)
   c~    (tap-macro (around lctl (around lsft `    )) XX)
   c<    (tap-macro (around lctl (around lsft ,    )) XX)
   c>    (tap-macro (around lctl (around lsft .    )) XX)
@@ -441,7 +441,7 @@
 (deflayer colemak-control-shift
   @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @c~       @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_  @c+    @cBSPC
-  @cTAB     @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @c"  @cBSPC @cDEL
+  @cTAB     @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @cqu @cBSPC @cDEL
   @c_       @cA  @cR  @cS  @cT  @cG  @c}  @cM  @cN  @cE  @cI  @cO  @cRET
   @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c<  @c>  @c?         @cUP
   @cFN      XX   XX   lmet           _         _    lalt           @cLEFT @cDOWN @cRGHT
