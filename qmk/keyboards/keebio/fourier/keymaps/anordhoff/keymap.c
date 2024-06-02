@@ -6,7 +6,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB , KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,         KC_J  , KC_L  , KC_U  , KC_Y  ,KC_QUOT,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  , MT_A  , MT_R  , MT_S  , MT_T  , KC_G  ,         KC_M  , MT_N  , MT_E  , MT_I  , MT_O,         KC_ENT,
+	   KC_MINS  , MT_A  , MT_R  , MT_S  , MT_T  , KC_G  ,         KC_M  , MT_N  , MT_E  , MT_I  , MT_O  ,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   KC_Z         , KC_X  , KC_C  , KC_D  , KC_V  ,XXXXXXX,         KC_K  , KC_H  ,KC_COMM,KC_DOT ,SLSH_UP,  TOG_SUP,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -14,16 +14,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 
-	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_LBRC, RM_DOT -> RM_RBRC)
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (LM_COMM -> LM_LBRC, LM_DOT -> LM_RBRC)
 	[_COLEMAK_MEH] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-     RM_TAB , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,         RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC, RM_DEL,
+     LM_TAB , LM_Q  , LM_W  , LM_F  , LM_P  , LM_B  ,         LM_J  , LM_L  , LM_U  , LM_Y  ,LM_QUOT,LM_BSPC, LM_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   RM_MINS  , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,         RM_M  , RM_N  , RM_E  , RM_I  , RM_O,         RM_ENT,
+	   LM_MINS  , LM_A  , LM_R  , LM_S  , LM_T  , LM_G  ,         LM_M  , LM_N  , LM_E  , LM_I  , LM_O  ,       LM_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
-	   RM_Z         , RM_X  , RM_C  , RM_D  , RM_V  ,XXXXXXX,         RM_K  , RM_H  ,RM_LBRC,RM_RBRC,RM_SLSH,  XXXXXXX,
+	   LM_Z         , LM_X  , LM_C  , LM_D  , LM_V  ,XXXXXXX,         LM_K  , LM_H  ,LM_LBRC,LM_RBRC,LM_SLSH,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
-	   XXXXXXX,XXXXXXX,ADJUST ,XXXXXXX,     RHYPER      ,             RHYPER      , ADJUST  ,XXXXXXX,XXXXXXX,  XXXXXXX
+	   XXXXXXX,XXXXXXX,ADJUST ,XXXXXXX,     LHYPER      ,             RHYPER      , ADJUST  ,XXXXXXX,XXXXXXX,  XXXXXXX
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,KC_INS ,KC_HOME,KC_PGUP,XXXXXXX,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  ,XXXXXXX,_______,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT        KC_ENT,
+	   KC_MINS  ,XXXXXXX,_______,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,KC_LEFT,KC_DOWN, KC_UP ,KC_RGHT,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   XXXXXXX      ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,KC_DEL ,KC_END ,KC_PGDN,XXXXXXX,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,KC_LBRC,KC_RBRC,XXXXXXX,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  ,XXXXXXX,XXXXXXX,_______,XXXXXXX,XXXXXXX,        XXXXXXX,KC_BSLS,KC_LPRN,KC_RPRN,KC_PIPE        KC_ENT,
+	   KC_MINS  ,XXXXXXX,XXXXXXX,_______,XXXXXXX,XXXXXXX,        XXXXXXX,KC_BSLS,KC_LPRN,KC_RPRN,KC_PIPE,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   XXXXXXX      ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,KC_LCBR,KC_RCBR,XXXXXXX,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,KC_GRV ,KC_TILD,XXXXXXX,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  ,XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,KC_SCLN,KC_COLN        KC_ENT,
+	   KC_MINS  ,XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,KC_SCLN,KC_COLN,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   XXXXXXX      ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,KC_EQL ,KC_PLUS,KC_EXLM,XXXXXXX,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB ,XXXXXXX, KC_7  , KC_8  , KC_9  ,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,        XXXXXXX,_______,KC_ASTR,KC_PLUS,KC_COLN        KC_ENT,
+	   KC_MINS  , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,        XXXXXXX,_______,KC_ASTR,KC_PLUS,KC_COLN,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   XXXXXXX      , KC_1  , KC_2  , KC_3  ,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,KC_SLSH,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB ,XXXXXXX,KC_AMPR,KC_ASTR,KC_LPRN,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  ,KC_RPRN,KC_DLR ,KC_PERC,KC_CIRC,XXXXXXX,        XXXXXXX,XXXXXXX,_______,XXXXXXX,XXXXXXX        KC_ENT,
+	   KC_MINS  ,KC_RPRN,KC_DLR ,KC_PERC,KC_CIRC,XXXXXXX,        XXXXXXX,XXXXXXX,_______,XXXXXXX,XXXXXXX,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   XXXXXXX      ,KC_EXLM, KC_AT ,KC_HASH,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB ,KC_F11 , KC_F7 , KC_F8 , KC_F9 ,KC_F12 ,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_MINS  ,KC_F10 , KC_F4 , KC_F5 , KC_F6 ,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX        KC_ENT,
+	   KC_MINS  ,KC_F10 , KC_F4 , KC_F5 , KC_F6 ,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   XXXXXXX      , KC_F1 , KC_F2 , KC_F3 ,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  XXXXXXX,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
@@ -103,24 +103,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      KC_TAB , KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,         KC_J  , KC_L  , KC_U  , KC_Y  ,KC_QUOT,KC_BSPC, KC_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   KC_ESC   , KC_A  , KC_R  , KC_S  , KC_T  , KC_G  ,         KC_M  , KC_N  , KC_E  , KC_I  , KC_O,         KC_ENT,
+	   KC_MINS  , KC_A  , KC_R  , KC_S  , KC_T  , KC_G  ,         KC_M  , KC_N  , KC_E  , KC_I  , KC_O  ,       KC_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
 	   MT_Z         , KC_X  , KC_C  , KC_D  , KC_V  ,XXXXXXX,         KC_K  , KC_H  ,KC_COMM,KC_DOT ,SLSH_UP,  TOG_SUP,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
-	   KC_LCTL,KC_LGUI,KC_LALT,XXXXXXX,     KC_SPC      ,             KC_LSFT     , GME_MEH ,KC_LEFT,KC_DOWN,  KC_RGHT
+	   KC_LCTL,KC_LGUI,KC_LALT,XXXXXXX,     KC_SPC      ,             MT_ESC      , GME_MEH ,KC_LEFT,KC_DOWN,  KC_RGHT
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 
-	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (RM_COMM -> RM_LBRC, RM_DOT -> RM_RBRC)
+	// macos reserves `hyper + ,` and `hyper + .` for sysdiagnose (LM_COMM -> LM_LBRC, LM_DOT -> LM_RBRC)
 	[_GAME_MEH] = LAYOUT(
 	//┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-     RM_TAB , RM_Q  , RM_W  , RM_F  , RM_P  , RM_B  ,         RM_J  , RM_L  , RM_U  , RM_Y  ,RM_QUOT,RM_BSPC, RM_DEL,
+     LM_TAB , LM_Q  , LM_W  , LM_F  , LM_P  , LM_B  ,         LM_J  , LM_L  , LM_U  , LM_Y  ,LM_QUOT,LM_BSPC, LM_DEL,
 	//├───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┤
-	   RM_MINS  , RM_A  , RM_R  , RM_S  , RM_T  , RM_G  ,         RM_M  , RM_N  , RM_E  , RM_I  , RM_O,         RM_ENT,
+	   LM_MINS  , LM_A  , LM_R  , LM_S  , LM_T  , LM_G  ,         LM_M  , LM_N  , LM_E  , LM_I  , LM_O  ,       LM_ENT,
 	//├─────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬─────────┤
-	   RM_Z         , RM_X  , RM_C  , RM_D  , RM_V  ,XXXXXXX,         RM_K  , RM_H  ,RM_LBRC,RM_RBRC,RM_SLSH,    RM_UP,
+	   LM_Z         , LM_X  , LM_C  , LM_D  , LM_V  ,XXXXXXX,         LM_K  , LM_H  ,LM_LBRC,LM_RBRC,LM_SLSH,    LM_UP,
 	//├───────┬─────┴─┬─────┴─┬─────┴─┬─────┴───────┴───┬───┘   ┌───┴───────┴─────┬─┴───────┼───────┼───────┼─────────┤
-	   XXXXXXX,ADJUST ,GME_EXT,XXXXXXX,     GME_HYP     ,             XXXXXXX     , _______ ,RM_LEFT,RM_DOWN,  RM_RGHT
+	   XXXXXXX,ADJUST ,GME_EXT,XXXXXXX,     GME_HYP     ,             XXXXXXX     , _______ ,LM_LEFT,LM_DOWN,  LM_RGHT
 	//└───────┴───────┴───────┴───────┴─────────────────┘       └─────────────────┴─────────┴───────┴───────┴─────────┘
 	),
 

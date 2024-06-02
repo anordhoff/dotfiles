@@ -8,9 +8,7 @@
 )
 
 ;; TODO:
-;; - can I replace the colemak-control layer with a macro-tap (@ta, @tb, etc) layer wrapped by lctl?
 ;; - setup hotkey and gestures so that music play/pause/skip/etc only interact with spotify and not the most recent window
-;; - in game, replace esc with -, and replace spc with @mtspc (so there's still an esc key)
 
 (defalias
 
@@ -23,12 +21,13 @@
   sft (layer-toggle colemak-shift)
   ctl (layer-toggle colemak-control)
   meh (layer-toggle colemak-meh)
-  hyp rmet
+  lhp lmet
+  rhp rmet
 
   ;; gaming layers
   gms (layer-toggle game-shift)
   gmm (layer-toggle game-meh)
-  gmh rmet
+  gmh lmet
   gmx (layer-toggle game-extend)
 
   ;; additional layers
@@ -63,14 +62,14 @@
 
   mtspc (tap-hold 170 spc @ctl)
   mtSPC (tap-hold 170 (around lsft spc) (around lsft @ctl))
-
   mtesc (tap-hold-next 170 esc @sft)
-  mtESC (tap-hold-next 170 (around lsft esc) (around lsft @sft))
 
+  ;; game layer mod taps
   mtz   (tap-hold 250 z lsft)
   mtZ   (tap-hold 250 Z lsft)
+  gmesc (tap-hold-next 170 esc @gms)
 
-  ;; mod-taps on home row layers
+  ;; mod taps on home row layers
   rtspc (tap-hold 170 spc lctl)
   rtSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
   rtesc (tap-hold-next 170 esc (layer-toggle layer-r-shift))
@@ -99,8 +98,8 @@
   fn    (around (layer-toggle function) fn)
   FN    (around (around lsft (layer-toggle function)) (around lsft fn))
   RS-FN (around (around rsft (layer-toggle function)) (around rsft fn))
-  cfn   (around (around rctl (layer-toggle function)) (around rctl fn))
-  mfn   (around (around rctl (around rsft (around ralt (layer-toggle function)))) (around rctl (around rsft (around ralt fn))))
+  cfn   (around (around lctl (layer-toggle function)) (around lctl fn))
+  mfn   (around (around lctl (around lsft (around lalt (layer-toggle function)))) (around lctl (around lsft (around lalt fn))))
 
   ;; prevent mod tap keys from getting "stuck"
   ta    (tap-macro a    XX)
@@ -224,122 +223,122 @@
   tF12  (tap-macro F12  XX)
 
   ;; right control layer keys
-  ca    (tap-macro (around rctl a    ) XX)
-  cb    (tap-macro (around rctl b    ) XX)
-  cc    (tap-macro (around rctl c    ) XX)
-  cd    (tap-macro (around rctl d    ) XX)
-  ce    (tap-macro (around rctl e    ) XX)
-  cf    (tap-macro (around rctl f    ) XX)
-  cg    (tap-macro (around rctl g    ) XX)
-  ch    (tap-macro (around rctl h    ) XX)
-  ci    (tap-macro (around rctl i    ) XX)
-  cj    (tap-macro (around rctl j    ) XX)
-  ck    (tap-macro (around rctl k    ) XX)
-  cl    (tap-macro (around rctl l    ) XX)
-  cm    (tap-macro (around rctl m    ) XX)
-  cn    (tap-macro (around rctl n    ) XX)
-  co    (tap-macro (around rctl o    ) XX)
-  cp    (tap-macro (around rctl p    ) XX)
-  cq    (tap-macro (around rctl q    ) XX)
-  cr    (tap-macro (around rctl r    ) XX)
-  cs    (tap-macro (around rctl s    ) XX)
-  ct    (tap-macro (around rctl t    ) XX)
-  cu    (tap-macro (around rctl u    ) XX)
-  cv    (tap-macro (around rctl v    ) XX)
-  cw    (tap-macro (around rctl w    ) XX)
-  cx    (tap-macro (around rctl x    ) XX)
-  cy    (tap-macro (around rctl y    ) XX)
-  cz    (tap-macro (around rctl z    ) XX)
-  c1    (tap-macro (around rctl 1    ) XX)
-  c2    (tap-macro (around rctl 2    ) XX)
-  c3    (tap-macro (around rctl 3    ) XX)
-  c4    (tap-macro (around rctl 4    ) XX)
-  c5    (tap-macro (around rctl 5    ) XX)
-  c6    (tap-macro (around rctl 6    ) XX)
-  c7    (tap-macro (around rctl 7    ) XX)
-  c8    (tap-macro (around rctl 8    ) XX)
-  c9    (tap-macro (around rctl 9    ) XX)
-  c0    (tap-macro (around rctl 0    ) XX)
-  c-    (tap-macro (around rctl -    ) XX)
-  c=    (tap-macro (around rctl =    ) XX)
-  c[    (tap-macro (around rctl [    ) XX)
-  c]    (tap-macro (around rctl ]    ) XX)
-  c\    (tap-macro (around rctl \    ) XX)
-  c;    (tap-macro (around rctl ;    ) XX)
-  c'    (tap-macro (around rctl '    ) XX)
-  cgrv  (tap-macro (around rctl `    ) XX)
-  c,    (tap-macro (around rctl ,    ) XX)
-  c.    (tap-macro (around rctl .    ) XX)
-  c/    (tap-macro (around rctl /    ) XX)
-  cesc  (tap-macro (around rctl esc  ) XX)
-  ctab  (tap-macro (around rctl tab  ) XX)
-  cbspc (tap-macro (around rctl bspc ) XX)
-  cret  (tap-macro (around rctl ret  ) XX)
-  cspc  (tap-macro (around rctl spc  ) XX)
-  cup   (tap-macro (around rctl up   ) XX)
-  cleft (tap-macro (around rctl left ) XX)
-  cdown (tap-macro (around rctl down ) XX)
-  crght (tap-macro (around rctl rght ) XX)
-  cdel  (tap-macro (around rctl del  ) XX)
+  ca    (tap-macro (around lctl a    ) XX)
+  cb    (tap-macro (around lctl b    ) XX)
+  cc    (tap-macro (around lctl c    ) XX)
+  cd    (tap-macro (around lctl d    ) XX)
+  ce    (tap-macro (around lctl e    ) XX)
+  cf    (tap-macro (around lctl f    ) XX)
+  cg    (tap-macro (around lctl g    ) XX)
+  ch    (tap-macro (around lctl h    ) XX)
+  ci    (tap-macro (around lctl i    ) XX)
+  cj    (tap-macro (around lctl j    ) XX)
+  ck    (tap-macro (around lctl k    ) XX)
+  cl    (tap-macro (around lctl l    ) XX)
+  cm    (tap-macro (around lctl m    ) XX)
+  cn    (tap-macro (around lctl n    ) XX)
+  co    (tap-macro (around lctl o    ) XX)
+  cp    (tap-macro (around lctl p    ) XX)
+  cq    (tap-macro (around lctl q    ) XX)
+  cr    (tap-macro (around lctl r    ) XX)
+  cs    (tap-macro (around lctl s    ) XX)
+  ct    (tap-macro (around lctl t    ) XX)
+  cu    (tap-macro (around lctl u    ) XX)
+  cv    (tap-macro (around lctl v    ) XX)
+  cw    (tap-macro (around lctl w    ) XX)
+  cx    (tap-macro (around lctl x    ) XX)
+  cy    (tap-macro (around lctl y    ) XX)
+  cz    (tap-macro (around lctl z    ) XX)
+  c1    (tap-macro (around lctl 1    ) XX)
+  c2    (tap-macro (around lctl 2    ) XX)
+  c3    (tap-macro (around lctl 3    ) XX)
+  c4    (tap-macro (around lctl 4    ) XX)
+  c5    (tap-macro (around lctl 5    ) XX)
+  c6    (tap-macro (around lctl 6    ) XX)
+  c7    (tap-macro (around lctl 7    ) XX)
+  c8    (tap-macro (around lctl 8    ) XX)
+  c9    (tap-macro (around lctl 9    ) XX)
+  c0    (tap-macro (around lctl 0    ) XX)
+  c-    (tap-macro (around lctl -    ) XX)
+  c=    (tap-macro (around lctl =    ) XX)
+  c[    (tap-macro (around lctl [    ) XX)
+  c]    (tap-macro (around lctl ]    ) XX)
+  c\    (tap-macro (around lctl \    ) XX)
+  c;    (tap-macro (around lctl ;    ) XX)
+  c'    (tap-macro (around lctl '    ) XX)
+  cgrv  (tap-macro (around lctl `    ) XX)
+  c,    (tap-macro (around lctl ,    ) XX)
+  c.    (tap-macro (around lctl .    ) XX)
+  c/    (tap-macro (around lctl /    ) XX)
+  cesc  (tap-macro (around lctl esc  ) XX)
+  ctab  (tap-macro (around lctl tab  ) XX)
+  cbspc (tap-macro (around lctl bspc ) XX)
+  cret  (tap-macro (around lctl ret  ) XX)
+  cspc  (tap-macro (around lctl spc  ) XX)
+  cup   (tap-macro (around lctl up   ) XX)
+  cleft (tap-macro (around lctl left ) XX)
+  cdown (tap-macro (around lctl down ) XX)
+  crght (tap-macro (around lctl rght ) XX)
+  cdel  (tap-macro (around lctl del  ) XX)
 
   ;; right meh layer keys
-  ma    (tap-macro (around rctl (around rsft (around ralt a    ))) XX)
-  mb    (tap-macro (around rctl (around rsft (around ralt b    ))) XX)
-  mc    (tap-macro (around rctl (around rsft (around ralt c    ))) XX)
-  md    (tap-macro (around rctl (around rsft (around ralt d    ))) XX)
-  me    (tap-macro (around rctl (around rsft (around ralt e    ))) XX)
-  mf    (tap-macro (around rctl (around rsft (around ralt f    ))) XX)
-  mg    (tap-macro (around rctl (around rsft (around ralt g    ))) XX)
-  mh    (tap-macro (around rctl (around rsft (around ralt h    ))) XX)
-  mi    (tap-macro (around rctl (around rsft (around ralt i    ))) XX)
-  mj    (tap-macro (around rctl (around rsft (around ralt j    ))) XX)
-  mk    (tap-macro (around rctl (around rsft (around ralt k    ))) XX)
-  ml    (tap-macro (around rctl (around rsft (around ralt l    ))) XX)
-  mm    (tap-macro (around rctl (around rsft (around ralt m    ))) XX)
-  mn    (tap-macro (around rctl (around rsft (around ralt n    ))) XX)
-  mo    (tap-macro (around rctl (around rsft (around ralt o    ))) XX)
-  mp    (tap-macro (around rctl (around rsft (around ralt p    ))) XX)
-  mq    (tap-macro (around rctl (around rsft (around ralt q    ))) XX)
-  mr    (tap-macro (around rctl (around rsft (around ralt r    ))) XX)
-  ms    (tap-macro (around rctl (around rsft (around ralt s    ))) XX)
-  mt    (tap-macro (around rctl (around rsft (around ralt t    ))) XX)
-  mu    (tap-macro (around rctl (around rsft (around ralt u    ))) XX)
-  mv    (tap-macro (around rctl (around rsft (around ralt v    ))) XX)
-  mw    (tap-macro (around rctl (around rsft (around ralt w    ))) XX)
-  mx    (tap-macro (around rctl (around rsft (around ralt x    ))) XX)
-  my    (tap-macro (around rctl (around rsft (around ralt y    ))) XX)
-  mz    (tap-macro (around rctl (around rsft (around ralt z    ))) XX)
-  m1    (tap-macro (around rctl (around rsft (around ralt 1    ))) XX)
-  m2    (tap-macro (around rctl (around rsft (around ralt 2    ))) XX)
-  m3    (tap-macro (around rctl (around rsft (around ralt 3    ))) XX)
-  m4    (tap-macro (around rctl (around rsft (around ralt 4    ))) XX)
-  m5    (tap-macro (around rctl (around rsft (around ralt 5    ))) XX)
-  m6    (tap-macro (around rctl (around rsft (around ralt 6    ))) XX)
-  m7    (tap-macro (around rctl (around rsft (around ralt 7    ))) XX)
-  m8    (tap-macro (around rctl (around rsft (around ralt 8    ))) XX)
-  m9    (tap-macro (around rctl (around rsft (around ralt 9    ))) XX)
-  m0    (tap-macro (around rctl (around rsft (around ralt 0    ))) XX)
-  m-    (tap-macro (around rctl (around rsft (around ralt -    ))) XX)
-  m=    (tap-macro (around rctl (around rsft (around ralt =    ))) XX)
-  m[    (tap-macro (around rctl (around rsft (around ralt [    ))) XX)
-  m]    (tap-macro (around rctl (around rsft (around ralt ]    ))) XX)
-  m\    (tap-macro (around rctl (around rsft (around ralt \    ))) XX)
-  m;    (tap-macro (around rctl (around rsft (around ralt ;    ))) XX)
-  m'    (tap-macro (around rctl (around rsft (around ralt '    ))) XX)
-  mgrv  (tap-macro (around rctl (around rsft (around ralt `    ))) XX)
-  m,    (tap-macro (around rctl (around rsft (around ralt ,    ))) XX)
-  m.    (tap-macro (around rctl (around rsft (around ralt .    ))) XX)
-  m/    (tap-macro (around rctl (around rsft (around ralt /    ))) XX)
-  mesc  (tap-macro (around rctl (around rsft (around ralt esc  ))) XX)
-  mtab  (tap-macro (around rctl (around rsft (around ralt tab  ))) XX)
-  mbspc (tap-macro (around rctl (around rsft (around ralt bspc ))) XX)
-  mret  (tap-macro (around rctl (around rsft (around ralt ret  ))) XX)
-  mspc  (tap-macro (around rctl (around rsft (around ralt spc  ))) XX)
-  mup   (tap-macro (around rctl (around rsft (around ralt up   ))) XX)
-  mleft (tap-macro (around rctl (around rsft (around ralt left ))) XX)
-  mdown (tap-macro (around rctl (around rsft (around ralt down ))) XX)
-  mrght (tap-macro (around rctl (around rsft (around ralt rght ))) XX)
-  mdel  (tap-macro (around rctl (around rsft (around ralt del  ))) XX)
+  ma    (tap-macro (around lctl (around lsft (around lalt a    ))) XX)
+  mb    (tap-macro (around lctl (around lsft (around lalt b    ))) XX)
+  mc    (tap-macro (around lctl (around lsft (around lalt c    ))) XX)
+  md    (tap-macro (around lctl (around lsft (around lalt d    ))) XX)
+  me    (tap-macro (around lctl (around lsft (around lalt e    ))) XX)
+  mf    (tap-macro (around lctl (around lsft (around lalt f    ))) XX)
+  mg    (tap-macro (around lctl (around lsft (around lalt g    ))) XX)
+  mh    (tap-macro (around lctl (around lsft (around lalt h    ))) XX)
+  mi    (tap-macro (around lctl (around lsft (around lalt i    ))) XX)
+  mj    (tap-macro (around lctl (around lsft (around lalt j    ))) XX)
+  mk    (tap-macro (around lctl (around lsft (around lalt k    ))) XX)
+  ml    (tap-macro (around lctl (around lsft (around lalt l    ))) XX)
+  mm    (tap-macro (around lctl (around lsft (around lalt m    ))) XX)
+  mn    (tap-macro (around lctl (around lsft (around lalt n    ))) XX)
+  mo    (tap-macro (around lctl (around lsft (around lalt o    ))) XX)
+  mp    (tap-macro (around lctl (around lsft (around lalt p    ))) XX)
+  mq    (tap-macro (around lctl (around lsft (around lalt q    ))) XX)
+  mr    (tap-macro (around lctl (around lsft (around lalt r    ))) XX)
+  ms    (tap-macro (around lctl (around lsft (around lalt s    ))) XX)
+  mt    (tap-macro (around lctl (around lsft (around lalt t    ))) XX)
+  mu    (tap-macro (around lctl (around lsft (around lalt u    ))) XX)
+  mv    (tap-macro (around lctl (around lsft (around lalt v    ))) XX)
+  mw    (tap-macro (around lctl (around lsft (around lalt w    ))) XX)
+  mx    (tap-macro (around lctl (around lsft (around lalt x    ))) XX)
+  my    (tap-macro (around lctl (around lsft (around lalt y    ))) XX)
+  mz    (tap-macro (around lctl (around lsft (around lalt z    ))) XX)
+  m1    (tap-macro (around lctl (around lsft (around lalt 1    ))) XX)
+  m2    (tap-macro (around lctl (around lsft (around lalt 2    ))) XX)
+  m3    (tap-macro (around lctl (around lsft (around lalt 3    ))) XX)
+  m4    (tap-macro (around lctl (around lsft (around lalt 4    ))) XX)
+  m5    (tap-macro (around lctl (around lsft (around lalt 5    ))) XX)
+  m6    (tap-macro (around lctl (around lsft (around lalt 6    ))) XX)
+  m7    (tap-macro (around lctl (around lsft (around lalt 7    ))) XX)
+  m8    (tap-macro (around lctl (around lsft (around lalt 8    ))) XX)
+  m9    (tap-macro (around lctl (around lsft (around lalt 9    ))) XX)
+  m0    (tap-macro (around lctl (around lsft (around lalt 0    ))) XX)
+  m-    (tap-macro (around lctl (around lsft (around lalt -    ))) XX)
+  m=    (tap-macro (around lctl (around lsft (around lalt =    ))) XX)
+  m[    (tap-macro (around lctl (around lsft (around lalt [    ))) XX)
+  m]    (tap-macro (around lctl (around lsft (around lalt ]    ))) XX)
+  m\    (tap-macro (around lctl (around lsft (around lalt \    ))) XX)
+  m;    (tap-macro (around lctl (around lsft (around lalt ;    ))) XX)
+  m'    (tap-macro (around lctl (around lsft (around lalt '    ))) XX)
+  mgrv  (tap-macro (around lctl (around lsft (around lalt `    ))) XX)
+  m,    (tap-macro (around lctl (around lsft (around lalt ,    ))) XX)
+  m.    (tap-macro (around lctl (around lsft (around lalt .    ))) XX)
+  m/    (tap-macro (around lctl (around lsft (around lalt /    ))) XX)
+  mesc  (tap-macro (around lctl (around lsft (around lalt esc  ))) XX)
+  mtab  (tap-macro (around lctl (around lsft (around lalt tab  ))) XX)
+  mbspc (tap-macro (around lctl (around lsft (around lalt bspc ))) XX)
+  mret  (tap-macro (around lctl (around lsft (around lalt ret  ))) XX)
+  mspc  (tap-macro (around lctl (around lsft (around lalt spc  ))) XX)
+  mup   (tap-macro (around lctl (around lsft (around lalt up   ))) XX)
+  mleft (tap-macro (around lctl (around lsft (around lalt left ))) XX)
+  mdown (tap-macro (around lctl (around lsft (around lalt down ))) XX)
+  mrght (tap-macro (around lctl (around lsft (around lalt rght ))) XX)
+  mdel  (tap-macro (around lctl (around lsft (around lalt del  ))) XX)
 )
 
 (defsrc
@@ -357,20 +356,20 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   -         @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   z         x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           @mtspc    @mtesc lalt           left down rght
+  @fn       XX   XX   lmet           @mtspc    @mtesc lalt           left down rght
 )
 
 (deflayer colemak-shift
-  S-esc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
+  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   \_        @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
   Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
-  @FN       S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
+  @FN       XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
 )
 
 (deflayer colemak-control
-  @cesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-  @c=    @cbspc
   @ctab     @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @c'  @cbspc @cdel
   @c-       @ca  @cr  @cs  @ct  @cg  @c]  @cm  @cn  @ce  @ci  @co  @cret
@@ -380,12 +379,12 @@
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer colemak-meh
-  @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
+  @mesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
   @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/       @mup
-  @mfn      XX   XX   @adj           @hyp      @hyp @adj           @mleft @mdown @mrght
+  @mfn      XX   XX   @adj           @lhp      @rhp @adj           @mleft @mdown @mrght
 )
 
 (deflayer layer-r
@@ -500,16 +499,16 @@
   esc       brdn brup mctl spot bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  esc       a    r    s    t    g    ]    m    n    e    i    o    ret
+  -         a    r    s    t    g    ]    m    n    e    i    o    ret
   @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           spc       @gms @gmm             left down rght
+  @fn       lctl lalt lmet           spc       @gmesc @gmm             left down rght
 )
 
 (deflayer game-shift
   S-esc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  S-esc     a    R    S    T    G    }    M    N    E    I    O    S-ret
+  \_        a    R    S    T    G    }    M    N    E    I    O    S-ret
   @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
   @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
 )

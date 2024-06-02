@@ -42,8 +42,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_I:
 		case MT_O:
 		case MT_Z:
-		// case MT_D:
-		// case MT_H:
 			return 250;
 		case MT_SPC:
 		case MT_ESC:
@@ -116,7 +114,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 	&backslash_key_override,
 
 	// layer_t
-	&minus_key_override,
+	&minus_key_override, // TODO: should this be removed
 	&semicolon_key_override,
 	&equal_key_override,
 	&grave_key_override,

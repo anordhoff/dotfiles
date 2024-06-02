@@ -17,12 +17,13 @@
   ;; colemak layers
   sft (layer-toggle colemak-shift)
   meh (layer-toggle colemak-meh)
-  hyp rmet
+  lhp lmet
+  rhp lmet
 
   ;; gaming layers
   gms (layer-toggle game-shift)
   gmm (layer-toggle game-meh)
-  gmh rmet
+  gmh lmet
   gmx (layer-toggle game-extend)
 
   ;; additional layers
@@ -58,14 +59,14 @@
 
   mtspc (tap-hold 170 spc lctl)
   mtSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
-
   mtesc (tap-hold-next 170 esc @sft)
-  mtESC (tap-hold-next 170 (around (around lsft esc) P5) (around lsft @sft))
 
+  ;; game layer mod taps
   mtz   (tap-hold 250 z lsft)
   mtZ   (tap-hold 250 (around Z P5) lsft)
+  gmesc (tap-hold-next 170 esc @gms)
 
-  ;; mod-taps on how row layers
+  ;; mod taps on how row layers
   rtspc (tap-hold 170 spc lctl)
   rtSPC (tap-hold 170 (around (around lsft spc) P5) (around lsft lctl))
   rtesc (tap-hold-next 170 esc (layer-toggle layer-r-shift))
@@ -103,63 +104,63 @@
   vup (cmd-button "[ $(pactl get-sink-volume @DEFAULT_SINK@ | grep 'Volume:' | sed 's/.*\\ \\([0-9]*\\)%\\ .*/\\1/') -lt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ +5%")
 
   ;; right meh layer keys
-  ma    (around rctl (around rsft (around ralt a    )))
-  mb    (around rctl (around rsft (around ralt b    )))
-  mc    (around rctl (around rsft (around ralt c    )))
-  md    (around rctl (around rsft (around ralt d    )))
-  me    (around rctl (around rsft (around ralt e    )))
-  mf    (around rctl (around rsft (around ralt f    )))
-  mg    (around rctl (around rsft (around ralt g    )))
-  mh    (around rctl (around rsft (around ralt h    )))
-  mi    (around rctl (around rsft (around ralt i    )))
-  mj    (around rctl (around rsft (around ralt j    )))
-  mk    (around rctl (around rsft (around ralt k    )))
-  ml    (around rctl (around rsft (around ralt l    )))
-  mm    (around rctl (around rsft (around ralt m    )))
-  mn    (around rctl (around rsft (around ralt n    )))
-  mo    (around rctl (around rsft (around ralt o    )))
-  mp    (around rctl (around rsft (around ralt p    )))
-  mq    (around rctl (around rsft (around ralt q    )))
-  mr    (around rctl (around rsft (around ralt r    )))
-  ms    (around rctl (around rsft (around ralt s    )))
-  mt    (around rctl (around rsft (around ralt t    )))
-  mu    (around rctl (around rsft (around ralt u    )))
-  mv    (around rctl (around rsft (around ralt v    )))
-  mw    (around rctl (around rsft (around ralt w    )))
-  mx    (around rctl (around rsft (around ralt x    )))
-  my    (around rctl (around rsft (around ralt y    )))
-  mz    (around rctl (around rsft (around ralt z    )))
-  m1    (around rctl (around rsft (around ralt 1    )))
-  m2    (around rctl (around rsft (around ralt 2    )))
-  m3    (around rctl (around rsft (around ralt 3    )))
-  m4    (around rctl (around rsft (around ralt 4    )))
-  m5    (around rctl (around rsft (around ralt 5    )))
-  m6    (around rctl (around rsft (around ralt 6    )))
-  m7    (around rctl (around rsft (around ralt 7    )))
-  m8    (around rctl (around rsft (around ralt 8    )))
-  m9    (around rctl (around rsft (around ralt 9    )))
-  m0    (around rctl (around rsft (around ralt 0    )))
-  m-    (around rctl (around rsft (around ralt -    )))
-  m=    (around rctl (around rsft (around ralt =    )))
-  m[    (around rctl (around rsft (around ralt [    )))
-  m]    (around rctl (around rsft (around ralt ]    )))
-  m\    (around rctl (around rsft (around ralt \    )))
-  m;    (around rctl (around rsft (around ralt ;    )))
-  m'    (around rctl (around rsft (around ralt '    )))
-  mgrv  (around rctl (around rsft (around ralt `    )))
-  m,    (around rctl (around rsft (around ralt ,    )))
-  m.    (around rctl (around rsft (around ralt .    )))
-  m/    (around rctl (around rsft (around ralt /    )))
-  mesc  (around rctl (around rsft (around ralt esc  )))
-  mtab  (around rctl (around rsft (around ralt tab  )))
-  mbspc (around rctl (around rsft (around ralt bspc )))
-  mret  (around rctl (around rsft (around ralt ret  )))
-  mspc  (around rctl (around rsft (around ralt spc  )))
-  mup   (around rctl (around rsft (around ralt up   )))
-  mleft (around rctl (around rsft (around ralt left )))
-  mdown (around rctl (around rsft (around ralt down )))
-  mrght (around rctl (around rsft (around ralt rght )))
-  mdel  (around rctl (around rsft (around ralt del  )))
+  ma    (around lctl (around lsft (around lalt a    )))
+  mb    (around lctl (around lsft (around lalt b    )))
+  mc    (around lctl (around lsft (around lalt c    )))
+  md    (around lctl (around lsft (around lalt d    )))
+  me    (around lctl (around lsft (around lalt e    )))
+  mf    (around lctl (around lsft (around lalt f    )))
+  mg    (around lctl (around lsft (around lalt g    )))
+  mh    (around lctl (around lsft (around lalt h    )))
+  mi    (around lctl (around lsft (around lalt i    )))
+  mj    (around lctl (around lsft (around lalt j    )))
+  mk    (around lctl (around lsft (around lalt k    )))
+  ml    (around lctl (around lsft (around lalt l    )))
+  mm    (around lctl (around lsft (around lalt m    )))
+  mn    (around lctl (around lsft (around lalt n    )))
+  mo    (around lctl (around lsft (around lalt o    )))
+  mp    (around lctl (around lsft (around lalt p    )))
+  mq    (around lctl (around lsft (around lalt q    )))
+  mr    (around lctl (around lsft (around lalt r    )))
+  ms    (around lctl (around lsft (around lalt s    )))
+  mt    (around lctl (around lsft (around lalt t    )))
+  mu    (around lctl (around lsft (around lalt u    )))
+  mv    (around lctl (around lsft (around lalt v    )))
+  mw    (around lctl (around lsft (around lalt w    )))
+  mx    (around lctl (around lsft (around lalt x    )))
+  my    (around lctl (around lsft (around lalt y    )))
+  mz    (around lctl (around lsft (around lalt z    )))
+  m1    (around lctl (around lsft (around lalt 1    )))
+  m2    (around lctl (around lsft (around lalt 2    )))
+  m3    (around lctl (around lsft (around lalt 3    )))
+  m4    (around lctl (around lsft (around lalt 4    )))
+  m5    (around lctl (around lsft (around lalt 5    )))
+  m6    (around lctl (around lsft (around lalt 6    )))
+  m7    (around lctl (around lsft (around lalt 7    )))
+  m8    (around lctl (around lsft (around lalt 8    )))
+  m9    (around lctl (around lsft (around lalt 9    )))
+  m0    (around lctl (around lsft (around lalt 0    )))
+  m-    (around lctl (around lsft (around lalt -    )))
+  m=    (around lctl (around lsft (around lalt =    )))
+  m[    (around lctl (around lsft (around lalt [    )))
+  m]    (around lctl (around lsft (around lalt ]    )))
+  m\    (around lctl (around lsft (around lalt \    )))
+  m;    (around lctl (around lsft (around lalt ;    )))
+  m'    (around lctl (around lsft (around lalt '    )))
+  mgrv  (around lctl (around lsft (around lalt `    )))
+  m,    (around lctl (around lsft (around lalt ,    )))
+  m.    (around lctl (around lsft (around lalt .    )))
+  m/    (around lctl (around lsft (around lalt /    )))
+  mesc  (around lctl (around lsft (around lalt esc  )))
+  mtab  (around lctl (around lsft (around lalt tab  )))
+  mbspc (around lctl (around lsft (around lalt bspc )))
+  mret  (around lctl (around lsft (around lalt ret  )))
+  mspc  (around lctl (around lsft (around lalt spc  )))
+  mup   (around lctl (around lsft (around lalt up   )))
+  mleft (around lctl (around lsft (around lalt left )))
+  mdown (around lctl (around lsft (around lalt down )))
+  mrght (around lctl (around lsft (around lalt rght )))
+  mdel  (around lctl (around lsft (around lalt del  )))
 )
 
 (defsrc
@@ -175,7 +176,7 @@
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
   -         @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
   z         x    c    d    v    ;    \    k    h    ,    .    /           up
-            lctl lalt lmet           @mtspc    @mtesc lalt           left down rght
+            XX   XX   lmet           @mtspc    @mtesc lalt           left down rght
 )
 
 (deflayer colemak-shift
@@ -183,7 +184,7 @@
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   \_        @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
   Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
-            S-lctl S-lalt S-lmet     @mtSPC    _    S-lalt         S-left S-down S-rght
+            XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
@@ -192,7 +193,7 @@
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
   @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
-            XX   XX   @adj           @hyp      @hyp @adj           @mleft @mdown @mrght
+            XX   XX   @adj           @lhp      @rhp @adj           @mleft @mdown @mrght
 )
 
 (deflayer layer-r
@@ -294,15 +295,15 @@
 (deflayer game
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
   tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  esc       a    r    s    t    g    ]    m    n    e    i    o    ret
+  -         a    r    s    t    g    ]    m    n    e    i    o    ret
   @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-            lctl lmet lalt           spc       @gms @gmm             left down rght
+            lctl lmet lalt           spc       @gmesc @gmm             left down rght
 )
 
 (deflayer game-shift
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  S-esc     a    R    S    T    G    }    M    N    E    I    O    S-ret
+  \_        a    R    S    T    G    }    M    N    E    I    O    S-ret
   @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
             S-lctl S-lmet S-lalt     S-spc     _    XX             S-left S-down S-rght
 )
