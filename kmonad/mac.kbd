@@ -20,6 +20,7 @@
   ;; colemak layers
   sft (layer-toggle colemak-shift)
   ctl (layer-toggle colemak-control)
+  csl (layer-toggle colemak-control-shift)
   meh (layer-toggle colemak-meh)
   lhp lmet
   rhp rmet
@@ -42,8 +43,6 @@
   mtr   (tap-hold 250 r (layer-toggle layer-r))
   mts   (tap-hold 150 s (layer-toggle layer-s))
   mtt   (tap-hold 150 t (layer-toggle layer-t))
-  ;; mtd   (tap-hold 250 d (around lmet lctl))
-  ;; mth   (tap-hold 250 h (around lsft lalt))
   mtn   (tap-hold 150 n (layer-toggle layer-n))
   mte   (tap-hold 150 e (layer-toggle layer-e))
   mti   (tap-hold 250 i (layer-toggle layer-i))
@@ -53,8 +52,6 @@
   mtR   (tap-hold 250 R (layer-toggle layer-r-shift))
   mtS   (tap-hold 150 S (layer-toggle layer-s-shift))
   mtT   (tap-hold 150 T (layer-toggle layer-t-shift))
-  ;; mtD   (tap-hold 250 D (around lsft (around lmet lctl)))
-  ;; mtH   (tap-hold 250 H (around lsft (around lsft lalt)))
   mtN   (tap-hold 150 N (layer-toggle layer-n-shift))
   mtE   (tap-hold 150 E (layer-toggle layer-e-shift))
   mtI   (tap-hold 250 I (layer-toggle layer-i-shift))
@@ -63,10 +60,12 @@
   mtspc (tap-hold 170 spc @ctl)
   mtSPC (tap-hold 170 (around lsft spc) (around lsft @ctl))
   mtesc (tap-hold-next 170 esc @sft)
+  ctesc (tap-hold-next 170 (around lctl esc) @csl)
 
   ;; game layer mod taps
   mtz   (tap-hold 250 z lsft)
   mtZ   (tap-hold 250 Z lsft)
+
   gmesc (tap-hold-next 170 esc @gms)
 
   ;; mod taps on home row layers
@@ -99,6 +98,7 @@
   FN    (around (around lsft (layer-toggle function)) (around lsft fn))
   RS-FN (around (around rsft (layer-toggle function)) (around rsft fn))
   cfn   (around (around lctl (layer-toggle function)) (around lctl fn))
+  cFN   (around (around lctl (around lsft (layer-toggle function))) (around lctl (around lsft fn)))
   mfn   (around (around lctl (around lsft (around lalt (layer-toggle function)))) (around lctl (around lsft (around lalt fn))))
 
   ;; prevent mod tap keys from getting "stuck"
@@ -209,20 +209,20 @@
   tEND  (tap-macro (around lsft end)  XX)
   tPGUP (tap-macro (around lsft pgup) XX)
   tPGDN (tap-macro (around lsft pgdn) XX)
-  tF1   (tap-macro F1   XX)
-  tF2   (tap-macro F2   XX)
-  tF3   (tap-macro F3   XX)
-  tF4   (tap-macro F4   XX)
-  tF5   (tap-macro F5   XX)
-  tF6   (tap-macro F6   XX)
-  tF7   (tap-macro F7   XX)
-  tF8   (tap-macro F8   XX)
-  tF9   (tap-macro F9   XX)
-  tF10  (tap-macro F10  XX)
-  tF11  (tap-macro F11  XX)
-  tF12  (tap-macro F12  XX)
+  tF1   (tap-macro (around lsft f1  ) XX)
+  tF2   (tap-macro (around lsft f2  ) XX)
+  tF3   (tap-macro (around lsft f3  ) XX)
+  tF4   (tap-macro (around lsft f4  ) XX)
+  tF5   (tap-macro (around lsft f5  ) XX)
+  tF6   (tap-macro (around lsft f6  ) XX)
+  tF7   (tap-macro (around lsft f7  ) XX)
+  tF8   (tap-macro (around lsft f8  ) XX)
+  tF9   (tap-macro (around lsft f9  ) XX)
+  tF10  (tap-macro (around lsft f10 ) XX)
+  tF11  (tap-macro (around lsft f11 ) XX)
+  tF12  (tap-macro (around lsft f12 ) XX)
 
-  ;; right control layer keys
+  ;; control layer keys
   ca    (tap-macro (around lctl a    ) XX)
   cb    (tap-macro (around lctl b    ) XX)
   cc    (tap-macro (around lctl c    ) XX)
@@ -281,7 +281,66 @@
   crght (tap-macro (around lctl rght ) XX)
   cdel  (tap-macro (around lctl del  ) XX)
 
-  ;; right meh layer keys
+  ;; control-shift layer keys
+  cA    (tap-macro (around lctl (around lsft a    )) XX)
+  cB    (tap-macro (around lctl (around lsft b    )) XX)
+  cC    (tap-macro (around lctl (around lsft c    )) XX)
+  cD    (tap-macro (around lctl (around lsft d    )) XX)
+  cE    (tap-macro (around lctl (around lsft e    )) XX)
+  cF    (tap-macro (around lctl (around lsft f    )) XX)
+  cG    (tap-macro (around lctl (around lsft g    )) XX)
+  cH    (tap-macro (around lctl (around lsft h    )) XX)
+  cI    (tap-macro (around lctl (around lsft i    )) XX)
+  cJ    (tap-macro (around lctl (around lsft j    )) XX)
+  cK    (tap-macro (around lctl (around lsft k    )) XX)
+  cL    (tap-macro (around lctl (around lsft l    )) XX)
+  cM    (tap-macro (around lctl (around lsft m    )) XX)
+  cN    (tap-macro (around lctl (around lsft n    )) XX)
+  cO    (tap-macro (around lctl (around lsft o    )) XX)
+  cP    (tap-macro (around lctl (around lsft p    )) XX)
+  cQ    (tap-macro (around lctl (around lsft q    )) XX)
+  cR    (tap-macro (around lctl (around lsft r    )) XX)
+  cS    (tap-macro (around lctl (around lsft s    )) XX)
+  cT    (tap-macro (around lctl (around lsft t    )) XX)
+  cU    (tap-macro (around lctl (around lsft u    )) XX)
+  cV    (tap-macro (around lctl (around lsft v    )) XX)
+  cW    (tap-macro (around lctl (around lsft w    )) XX)
+  cX    (tap-macro (around lctl (around lsft x    )) XX)
+  cY    (tap-macro (around lctl (around lsft y    )) XX)
+  cZ    (tap-macro (around lctl (around lsft z    )) XX)
+  c!    (tap-macro (around lctl (around lsft 1    )) XX)
+  c@    (tap-macro (around lctl (around lsft 2    )) XX)
+  c#    (tap-macro (around lctl (around lsft 3    )) XX)
+  c$    (tap-macro (around lctl (around lsft 4    )) XX)
+  c%    (tap-macro (around lctl (around lsft 5    )) XX)
+  c^    (tap-macro (around lctl (around lsft 6    )) XX)
+  c&    (tap-macro (around lctl (around lsft 7    )) XX)
+  c*    (tap-macro (around lctl (around lsft 8    )) XX)
+  c(    (tap-macro (around lctl (around lsft 9    )) XX)
+  c)    (tap-macro (around lctl (around lsft 0    )) XX)
+  c_    (tap-macro (around lctl (around lsft -    )) XX)
+  c+    (tap-macro (around lctl (around lsft =    )) XX)
+  c{    (tap-macro (around lctl (around lsft [    )) XX)
+  c}    (tap-macro (around lctl (around lsft ]    )) XX)
+  c|    (tap-macro (around lctl (around lsft \    )) XX)
+  c:    (tap-macro (around lctl (around lsft ;    )) XX)
+  c"    (tap-macro (around lctl (around lsft '    )) XX)
+  c~    (tap-macro (around lctl (around lsft `    )) XX)
+  c<    (tap-macro (around lctl (around lsft ,    )) XX)
+  c>    (tap-macro (around lctl (around lsft .    )) XX)
+  c?    (tap-macro (around lctl (around lsft /    )) XX)
+  cESC  (tap-macro (around lctl (around lsft esc  )) XX)
+  cTAB  (tap-macro (around lctl (around lsft tab  )) XX)
+  cBSPC (tap-macro (around lctl (around lsft bspc )) XX)
+  cRET  (tap-macro (around lctl (around lsft ret  )) XX)
+  cSPC  (tap-macro (around lctl (around lsft spc  )) XX)
+  cUP   (tap-macro (around lctl (around lsft up   )) XX)
+  cLEFT (tap-macro (around lctl (around lsft left )) XX)
+  cDOWN (tap-macro (around lctl (around lsft down )) XX)
+  cRGHT (tap-macro (around lctl (around lsft rght )) XX)
+  cDEL  (tap-macro (around lctl (around lsft del  )) XX)
+
+  ;; meh layer keys
   ma    (tap-macro (around lctl (around lsft (around lalt a    ))) XX)
   mb    (tap-macro (around lctl (around lsft (around lalt b    ))) XX)
   mc    (tap-macro (around lctl (around lsft (around lalt c    ))) XX)
@@ -368,13 +427,24 @@
   @FN       XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
 )
 
+;; TODO: colemak-control lsft should be a mtesc with ctrl held
+
 (deflayer colemak-control
   @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-  @c=    @cbspc
   @ctab     @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @c'  @cbspc @cdel
   @c-       @ca  @cr  @cs  @ct  @cg  @c]  @cm  @cn  @ce  @ci  @co  @cret
-  @cz       @cx  @cc  @cd  @cv  @c;  @c\  @ck  @ch  @c-  @c=  @c/         @cup
-  @cfn      XX   XX   lmet           _         lsft lalt           @cleft @cdown @crght
+  @cz       @cx  @cc  @cd  @cv  @c;  @c\  @ck  @ch  @c,  @c.  @c/         @cup
+  @cfn      XX   XX   lmet           _         @ctesc lalt         @cleft @cdown @crght
+)
+
+(deflayer colemak-control-shift
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  @c~       @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @c)  @c_  @c+    @cBSPC
+  @cTAB     @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @c"  @cBSPC @cDEL
+  @c_       @cA  @cR  @cS  @cT  @cG  @c}  @cM  @cN  @cE  @cI  @cO  @cRET
+  @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c<  @c>  @c?         @cUP
+  @cFN      XX   XX   lmet           _         _    lalt           @cLEFT @cDOWN @cRGHT
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
@@ -505,7 +575,7 @@
 )
 
 (deflayer game-shift
-  S-esc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
+  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
   S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
   \_        a    R    S    T    G    }    M    N    E    I    O    S-ret
@@ -515,7 +585,7 @@
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer game-meh
-  @mesc     brdn brup mctl spot bldn blup prev pp   next mute vold volu
+  @mesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
   @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
   @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
