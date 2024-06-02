@@ -675,7 +675,7 @@
   XX        XX    XX   S-lmet          @itSPC    _    S-lalt           XX   XX   XX
 )
 
-(deflayer layer-i
+(deflayer layer-i-control
   @cesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
   XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @cbspc
   @ctab     @cf11 @cf7 @cf8 @cf9 @cf12 XX   XX   XX   XX   XX   XX   @cbspc @cdel
@@ -684,7 +684,7 @@
   XX        XX    XX   lmet            _         @icesc lalt             XX   XX   XX
 )
 
-(deflayer layer-i-shift
+(deflayer layer-i-control-shift
   @cESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
   XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @cBSPC
   @cTAB     @cF11 @cF7 @cF8 @cF9 @cF12 XX   XX   XX   XX   XX   XX   @cBSPC @cDEL
