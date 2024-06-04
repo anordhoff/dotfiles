@@ -44,9 +44,6 @@
 	url = https://github.com/dstein64/vim-startuptime.git
 
 # neovim
-[submodule "nvim/package/start/impatient"]
-	path = nvim/package/start/impatient
-	url = https://github.com/lewis6991/impatient.nvim.git
 [submodule "nvim/package/start/indent-blankline"]
 	path = nvim/package/start/indent-blankline
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
