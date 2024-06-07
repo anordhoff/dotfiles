@@ -22,6 +22,9 @@
 [submodule "nvim/package/start/fugitive"]
 	path = nvim/package/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "nvim/package/start/qf"]
+	path = nvim/package/start/qf
+	url = https://github.com/romainl/vim-qf.git
 [submodule "nvim/package/start/repeat"]
 	path = nvim/package/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
@@ -74,6 +77,3 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
-[submodule "nvim/package/start/qf"]
-	path = nvim/package/start/qf
-	url = https://github.com/romainl/vim-qf.git
