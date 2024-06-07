@@ -74,3 +74,6 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "nvim/package/start/qf"]
+	path = nvim/package/start/qf
+	url = https://github.com/romainl/vim-qf.git
