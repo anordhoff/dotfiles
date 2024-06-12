@@ -28,6 +28,9 @@
 [submodule "nvim/package/start/rsi"]
 	path = nvim/package/start/rsi
 	url = https://github.com/tpope/vim-rsi.git
+[submodule "nvim/package/start/sleuth"]
+	path = nvim/package/start/sleuth
+	url = https://github.com/tpope/vim-sleuth.git
 [submodule "nvim/package/start/surround"]
 	path = nvim/package/start/surround
 	url = https://github.com/tpope/vim-surround.git
