@@ -239,8 +239,7 @@ hi IblIndent                     cterm=none        ctermfg=19       ctermbg=none
 " leap
 " --------------------------------------
 hi LeapMatch                     cterm=none        ctermfg=4        ctermbg=none
-hi LeapLabelPrimary              cterm=none        ctermfg=7        ctermbg=none
-hi LeapLabelSecondary            cterm=reverse     ctermfg=7        ctermbg=none
+hi LeapLabel                     cterm=none        ctermfg=7        ctermbg=none
 hi LeapBackdrop                  cterm=none        ctermfg=19       ctermbg=none
 
 " --------------------------------------
