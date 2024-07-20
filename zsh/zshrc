@@ -6,6 +6,7 @@
 [ -z $TMUX ] && (tmux attach || tmux new-session -A -s default)
 
 # options
+setopt   prompt_subst # enable prompt substitution
 setopt   dotglob      # include hidden files in expansion and completion
 setopt   extendedglob # treat '#', '~', and '^' as part of patterns
 setopt   nomatch      # print an error if no filename matches pattern
@@ -21,8 +22,20 @@ unsetopt beep
 unsetopt histbeep
 unsetopt listbeep
 
-# print current working directory and exit code in the prompt
-PS1='%F{blue}%60<...<%~%F{default}%(?.. (%?%)) $ '
+# print the current git branch
+function gitbranch() {
+  branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
+  if [[ $branch != "" ]]; then
+    if [[ ${#branch} -gt 25 ]]; then
+      echo " (${branch:0:22}...)"
+    else
+      echo " (${branch})"
+    fi
+  fi
+}
+
+# print current working directory, git branch, and exit code in the prompt
+PS1='%F{blue}%60<...<%~%F{default}$(gitbranch)%(?.. [%?%\]) $ '
 
 # use emacs mode for zle
 bindkey -e
@@ -71,7 +84,6 @@ setopt extendedhistory  # save start time and length of time commands run
 setopt histfindnodups   # skip duplicates when using reverse history search
 setopt histignorespace  # commands that start with a space are not written
 setopt histignoredups   # ignore consecutive duplicates
-setopt histnostore      # history and fc commands are not written to history
 setopt histreduceblanks # remove excess spaces before writing a command
 setopt incappendhistory # update the history file after each executed command
 
@@ -88,6 +100,13 @@ bindkey '^N' down-line-or-beginning-search
 # allow patterns in reverse history search
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
+
+# undo changes to the line from history
+revert-line() {                          
+  while zle .undo; do done
+}
+zle -N revert-line 
+bindkey '^[r' revert-line 
 
 # highlight reverse history search matches
 zle_highlight=(isearch:fg=black,bg=white)
@@ -227,7 +246,7 @@ alias  gsh='git show'
 # kubernetes
 alias  k='kubectl'
 alias kd='kubectl describe'
-alias ke='kubectl explain'
+alias ke='kubectl events --for'
 alias kg='kubectl get'
 alias kl='kubectl logs'
 
@@ -248,6 +267,16 @@ alias  kns='kubectl ns'
 [ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] \
   && source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
 
+# enable fzf shell integration
+if command -v fzf &>/dev/null; then
+  # prevent "can't change option: zle" errors in neovim when running shell commands
+  source <(fzf --zsh) 2>/dev/null
+
+  # fzf keybindings (^r, ^t, and ^[c are overwritten by fzf)
+  bindkey '^t' transpose-chars
+  # bindkey '^[c' capitalize-word
+  bindkey '^[s' fzf-file-widget
+fi
 
 # --------------------------------------
 # misc

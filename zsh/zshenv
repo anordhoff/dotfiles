@@ -4,6 +4,11 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
   export ROSETTA_BREW_PREFIX='/usr/local'
 fi
 
+# do not auto-update homebrew
+if [[ $OSTYPE =~ "darwin"* ]]; then
+  export HOMEBREW_NO_AUTO_UPDATE=true
+fi
+
 # set help directory for zsh built-ins
 if [[ $OSTYPE =~ "darwin"* ]]; then
   export HELPDIR="$BREW_PREFIX/share/zsh/help"
@@ -47,12 +52,9 @@ export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
 export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
 
 # fzf flags and colors
-export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file -E tags \
--E .git -E bin -E vendor -E node_modules -E package/opt -E package/start"
-export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory -E tags \
--E .git -E bin -E vendor -E node_modules -E package/opt -E package/start"
-export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix -E tags \
--E .git -E bin -E vendor -E node_modules -E package/opt -E package/start"
+export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude bin --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
+export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude bin --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
+export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude bin --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ \
 --border=horizontal \
 --color border:15 \

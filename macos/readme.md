@@ -47,8 +47,8 @@ see [kmonad issue #334](https://github.com/kmonad/kmonad/issues/334#issuecomment
 
 | category | shortcut | keybinding |
 | -- | -- | -- |
-| Mission Control | Move left a space | meh-- |
-| Mission Control | Move right a space | meh-= |
+| Mission Control | Move left a space | meh-[ |
+| Mission Control | Move right a space | meh-] |
 | Mission Control | Switch to Desktop 1 | meh-x |
 | Mission Control | Switch to Desktop 2 | meh-c |
 | Mission Control | ... | ... |
@@ -59,5 +59,5 @@ see [kmonad issue #334](https://github.com/kmonad/kmonad/issues/334#issuecomment
 | Screenshots | Save picture of selected area as a file | cmd-F13 |
 | Screenshots | Copy picture of selected area to the clipboard | F13 |
 | Screenshots | Screenshot and recording options | ctrl-F13 |
-| Spotlight | Show Spotlight search | meh-esc |
+| Spotlight | Show Spotlight search | meh-minus |
 | App Shortcuts | All Applications > Lock Screen | meh-/ |

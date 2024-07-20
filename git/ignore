@@ -1,6 +1,7 @@
 tags
-.tags
-Session.vim
+*.tags
 debug.test*
+__debug*
+Session.vim
 .idea
 .DS_Store

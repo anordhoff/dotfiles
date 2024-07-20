@@ -42,7 +42,7 @@ end
 vim.api.nvim_create_user_command(
   'LspInspect',
   function()
-    print(vim.inspect(vim.lsp.buf_get_clients()))
+    print(vim.inspect(vim.lsp.get_clients()))
   end,
   {}
 )
@@ -199,6 +199,32 @@ local patterns = {
   },
   kubernetes = {
     '**/{kubernetes,kube,k8s,kustomize,base,kind}/**/*.{yml,yaml}',
+    '*-deployment.{yml,yaml}',
+    '*-service.{yml,yaml}',
+    'clusterrole.{yml,yaml}',
+    'clusterrolebinding.{yml,yaml}',
+    'configmap.{yml,yaml}',
+    'cronjob.{yml,yaml}',
+    'daemonset.{yml,yaml}',
+    'deployment-*.{yml,yaml}',
+    'deployment.{yml,yaml}',
+    'hpa.{yml,yaml}',
+    'ingress.{yml,yaml}',
+    'job.{yml,yaml}',
+    'namespace.{yml,yaml}',
+    'pvc.{yml,yaml}',
+    'rbac.{yml,yaml}',
+    'replicaset.{yml,yaml}',
+    'role.{yml,yaml}',
+    'rolebinding.{yml,yaml}',
+    'sa.{yml,yaml}',
+    'secret.{yml,yaml}',
+    'service-*.{yml,yaml}',
+    'service-account.{yml,yaml}',
+    'service.{yml,yaml}',
+    'serviceaccount.{yml,yaml}',
+    'serviceaccounts.{yml,yaml}',
+    'statefulset.{yml,yaml}',
   },
   job1 = jobfiles.yamlls.job1.patterns,
   job2 = jobfiles.yamlls.job2.patterns,
@@ -228,7 +254,11 @@ end
 lspconfig.yamlls.setup {
   settings = {
     http = {
-      proxy = jobfiles.yamlls.proxy
+      proxy = jobfiles.yamlls.proxy,
+      proxyStrictSSL = false
+    },
+    redhat = {
+      telemetry = { enabled = false }
     },
     yaml = {
       format = {

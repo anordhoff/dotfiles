@@ -16,8 +16,8 @@
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/tmp/kmonad.stdout</string>
+    <string>/tmp/kmonad.out</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/kmonad.stderr</string>
+    <string>/tmp/kmonad.err</string>
   </dict>
 </plist>

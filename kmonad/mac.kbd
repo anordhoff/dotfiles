@@ -8,6 +8,7 @@
 )
 
 ;; TODO:
+;; - setup additional mod-taps to enable ctrl-space, cmd-space, shift-esc, and option-esc
 ;; - setup hotkey and gestures so that music play/pause/skip/etc only interact with spotify and not the most recent window
 
 (defalias

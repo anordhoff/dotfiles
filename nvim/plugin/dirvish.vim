@@ -5,8 +5,8 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 nnoremap <silent> _ :Dirvish .<cr>
 
 " open the [count]th parent directory in a new window
-nmap <silent> <leader>S <plug>(dirvish_split_up)
-nmap <silent> <leader>V <plug>(dirvish_vsplit_up)
+nnoremap <silent> <leader>S <plug>(dirvish_split_up)
+nnoremap <silent> <leader>V <plug>(dirvish_vsplit_up)
 
 augroup dirvish_config
   autocmd!

@@ -2,26 +2,12 @@
 " settings
 " --------------------------------------
 
-" TODO: opening a .md file resets fo to default
-" TODO: compare impatient and loader.enable()
-" TODO: autocomplete with tab shows deprecated warning
-" TODO: look into :h vim.lua_omnifunc()
-" TODO: tab in commandline just prints ^I (:h complete-set-option)
-" TODO: look into :h commenting
-" TODO: completeopt=popup doesn't draw a border
-" TODO: leap highlighting doesn't work if there's only one line in the file
-
-" load internal packages
-if &loadplugins
-  packadd cfilter
-endif
-
-" TODO:
-"set mouse=             " disable mouse support
-set mousescroll=ver:1,hor:0
+" TODO: gr<space> keybinding for quick grep conflicts with lspconfig's gr
+" TODO: keep conceal enabled when using leap within dirvish
 
 " basic settings
 set notermguicolors    " disable 24-bit colors
+set cb=unnamedplus     " default to the clipboard register
 set number             " enable line numbers
 set noshowmode         " hide the mode from the bottom row
 set noincsearch        " do not immediately jump to first search hit
@@ -31,7 +17,7 @@ set splitright         " split vertical windows to the right of current window
 set splitbelow         " split horizontal windows below current window
 set splitkeep=screen   " keep text on the same line when splitting windows
 set textwidth=80       " wrap lines at 80 characters
-set formatoptions-=t   " wrap comments, but not text
+set formatoptions=cqjw " don't auto-wrap text; format comments with gq
 set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
 set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
 set smoothscroll       " scrolling works with screen lines
@@ -40,12 +26,29 @@ set foldnestmax=1      " limit to 1 nested fold
 set foldlevel=1        " don't automatically close folds
 set mmp=10000          " prevent memory errors when loading large buffers
 set ttimeoutlen=1      " minimal delay for escape key presses
-set shell=/bin/zsh\ -i " interactive command mode shell (for aliases)
+set shellcmdflag=-ic   " interactive command mode shell (for aliases)
+
+" scrolling with the mouse or trackpad moves the screen instead of the cursor
+set mouse=nvi
+set mousescroll=ver:1,hor:0
+
+" prevent basic mouse clicks from doing anything but scrolling
+map <leftmouse>     <nop>
+map <middlemouse>   <nop>
+map <rightmouse>    <nop>
+map <2-leftmouse>   <nop>
+map <2-middlemouse> <nop>
+map <2-rightmouse>  <nop>
+map <3-leftmouse>   <nop>
+map <3-middlemouse> <nop>
+map <3-rightmouse>  <nop>
+map <4-leftmouse>   <nop>
+map <4-middlemouse> <nop>
+map <4-rightmouse>  <nop>
 
 " use two spaces instead of tabs by default
 set tabstop=2
 set shiftwidth=2
-set softtabstop=0
 set expandtab
 
 " make line wrapping look nicer, but don't wrap by default
@@ -76,24 +79,12 @@ set wildmode=longest:full,full
 set wildignorecase
 
 " list of file patterns to ignore
-set wildignore+=tags,.git/**,bin/**,vendor/**,node_modules/**,*vim/package/opt/**,*vim/package/start/**,tmux/plugins/**
+set wildignore+=tags,*.tags,.git/**,bin/**,vendor/**,node_modules/**,package/opt/**,package/start/**,tmux/plugins/**
 
-" show trailing whitespace
-set list
-set listchars=tab:\ \ ,trail:-
-
-" don't show trailing spaces while in insert mode
-augroup listchars
-  autocmd!
-  autocmd InsertEnter * setlocal listchars-=trail:-
-  autocmd InsertLeave * setlocal listchars+=trail:-
-augroup END
-
-" disable automatic line wrapping for non-comment text; disable insertion of
-" the current comment leader when creating a new line
+" prevent filetypes from overwriting formatoptions
 augroup formatoptions
   autocmd!
-  autocmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
+  autocmd FileType * setlocal formatoptions=cqjw
 augroup END
 
 " enable the cursorline on the active window
@@ -134,6 +125,16 @@ let mapleader = "\<space>"
 inoremap <c-r>+ <c-r><c-r>+
 inoremap <c-r>* <c-r><c-r>*
 
+" prevent delete commands from overwriting the clipboard register
+noremap <expr> d v:register =~ '[\*+]' ? '""d' : 'd'
+noremap <expr> x v:register =~ '[\*+]' ? '""x' : 'x'
+noremap <expr> c v:register =~ '[\*+]' ? '""c' : 'c'
+noremap <expr> s v:register =~ '[\*+]' ? '""s' : 's'
+noremap <expr> D v:register =~ '[\*+]' ? '""D' : 'D'
+noremap <expr> X v:register =~ '[\*+]' ? '""X' : 'X'
+noremap <expr> C v:register =~ '[\*+]' ? '""C' : 'C'
+noremap <expr> S v:register =~ '[\*+]' ? '""S' : 'S'
+
 " ctrl-p and ctrl-n match the current command-line
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
@@ -155,32 +156,6 @@ nnoremap <leader>b :b **/*
 " maximize the current window (overwrites default :pclose mapping)
 nnoremap <silent> <c-w>z <c-w>\|<c-w>_
 nnoremap <silent> <c-w><c-z> <c-w>\|<c-w>_
-
-" toggle the quickfix list window and maximize window to the width of vim
-nnoremap <silent> <leader>q :call QuickfixList()<cr>
-function QuickfixList()
-  if getqflist({'winid': 0}).winid
-    cclose
-  else
-    botright copen
-    wincmd p
-  endif
-endfunction
-
-" toggle the location list window
-nnoremap <silent> <leader>l :call LocationList()<cr>
-function LocationList()
-  try
-    if getloclist(0, {'winid': 0}).winid
-      lclose
-    else
-      lopen
-      wincmd p
-    endif
-  catch 'E776'
-    echohl ErrorMsg | echo 'E776: No location list' | echohl None
-  endtry
-endfunction
 
 " trigger omni completion using <tab>
 " TODO: use ctrl-i to insert tab character; not supported by tmux
@@ -205,12 +180,65 @@ function s:clear_register(chars)
   for l:char in split(a:chars, '\zs')
     call setreg(l:char, [])
   endfor
-  echo "Successfully cleared registers '" . a:chars .
+  echo "Successfully cleared registers '" .. a:chars ..
     \ "'. Execute :wshada! to persist changes"
 endfunction
 
 " source init.vim and reload the current file
 command So :source ~/.config/nvim/init.vim | :edit
+
+
+" --------------------------------------
+" comment and duplicate
+" --------------------------------------
+
+function! Comment(start, end)
+  exec a:start .. ',' .. a:end .. 'normal gcc'
+  exec 'normal! ' .. a:start .. 'G'
+endfunction
+
+" comment a range of lines
+command -range Comment call CommentRange(<line1>, <line2>)
+function! CommentRange(start, end)
+  call Comment(a:start, a:end)
+  exec 'normal! 0'
+endfunction
+
+function! Duplicate(start, end)
+  exec a:start .. ',' .. a:end .. 'copy ' .. a:end
+  exec a:start .. ',' .. a:end .. 'normal gcc'
+  exec 'normal! ' .. a:end .. 'Gj'
+endfunction
+
+" duplicate a count of lines
+nnoremap <silent> gzz :<c-u>call DuplicateLines(v:count1)<cr>
+function! DuplicateLines(count)
+  call Duplicate(line('.'), line('.') + a:count - 1)
+  silent! call repeat#set("gzz", a:count)
+endfunction
+
+" duplicate the highlighted lines
+xnoremap <silent> gz :<c-u>call DuplicateVisual("'<", "'>")<cr>
+function! DuplicateVisual(start, end)
+  let l:start = line(a:start)
+  let l:end = line(a:end)
+  call Duplicate(l:start, l:end)
+  silent! call repeat#set("gzz", l:end - l:start + 1)
+endfunction
+
+" duplicate lines that a motion moves over
+nnoremap <silent> gz :set opfunc=DuplicateOperator<cr>g@
+function! DuplicateOperator(type)
+  call Duplicate(line("'["), line("']"))
+  exec 'normal! 0'
+endfunction
+
+" duplicate a range of lines
+command -range Duplicate call DuplicateRange(<line1>, <line2>)
+function! DuplicateRange(start, end)
+  call Duplicate(a:start, a:end)
+  exec 'normal! 0'
+endfunction
 
 
 " --------------------------------------
@@ -221,15 +249,15 @@ command So :source ~/.config/nvim/init.vim | :edit
 " StatusLineInactive highlight groups)
 set statusline=%!Statusline(g:statusline_winid)
 function Statusline(winid)
-  let l:statusline  = ' ' . Background(a:winid) " left padding; set status line background color
-  let l:statusline .= ' [%n]  '                 " buffer number
-  let l:statusline .= '%f'                      " filepath
-  let l:statusline .= '%{GitBranch()}  '        " git branch
-  let l:statusline .= '%{NopluginFlag()}'       " plugin flag
-  let l:statusline .= '%H%W%R%M'                " help/preview/read-only/modified flags
-  let l:statusline .= '%=   %c%V  :  %2l/%L'    " byte index, virtual column number; line number
-  let l:statusline .= '%{Filetype()}'           " filetype
-  let l:statusline .= '%* '                     " reset background color; right padding
+  let l:statusline  = ' ' .. Background(a:winid) " left padding; set status line background color
+  let l:statusline .= ' [%n]  '                  " buffer number
+  let l:statusline .= '%f'                       " filepath
+  let l:statusline .= '%{GitBranch()}  '         " git branch
+  let l:statusline .= '%{NopluginFlag()}'        " plugin flag
+  let l:statusline .= '%H%W%R%M'                 " help/preview/read-only/modified flags
+  let l:statusline .= '%=   %c%V  :  %2l/%L'     " byte index, virtual column number; line number
+  let l:statusline .= '%{Filetype()}'            " filetype
+  let l:statusline .= '%* '                      " reset background color; right padding
   return l:statusline
 endfunction
 
@@ -241,13 +269,13 @@ augroup statusline
   autocmd TermOpen * setlocal statusline=%!TermStatusline(g:statusline_winid)
 augroup END
 function QuickfixListStatusline(winid)
-  return ' ' . Background(a:winid) . ' [%n]  %l/%L lines%=%q %* '
+  return ' ' .. Background(a:winid) .. " [%l/%L lines]  %{QuickfixTitle()}%=%q %* "
 endfunction
 function NetrwStatusline(winid)
-  return ' ' . Background(a:winid) . ' [%n]  %l/%L lines%=[netrw] %* '
+  return ' ' .. Background(a:winid) .. ' [%n]  %l/%L lines%=[netrw] %* '
 endfunction
 function TermStatusline(winid)
-  return ' ' . Background(a:winid) . ' [%n]  %{TermShell()}%{TermMode()}  %{NopluginFlag()}%R%=[term] %* '
+  return ' ' .. Background(a:winid) .. ' [%n]  %{TermShell()}%{TermMode()}  %{NopluginFlag()}%R%=[term] %* '
 endfunction
 
 " set background depending on whether the window is active
@@ -257,17 +285,30 @@ endfunction
 
 " correct padding when there is no filetype
 function Filetype()
-  return &filetype == '' ? ' ' : '  [' . &filetype . '] '
+  return &filetype == '' ? ' ' : '  [' .. &filetype .. '] '
 endfunction
 
 " show the git branch if plugins are enabled
 function GitBranch()
-  return !&loadplugins || empty(FugitiveGitDir(bufnr(''))) ? '' : '  ' . FugitiveStatusline()
+  if !&loadplugins || empty(FugitiveGitDir(bufnr('')))
+    return ''
+  endif
+  let l:branch = substitute(substitute(FugitiveStatusline(), '^[Git(', '', ''), ')]$', '', '')
+  if strlen(l:branch .. expand('%')) > 56
+    return '  (' .. strpart(l:branch, 0, 53 - strlen(expand('%'))) .. '...)'
+  else
+    return '  (' .. l:branch .. ')'
+  endif
 endfunction
 
 " noplugin flag if running with --noplugin set
 function NopluginFlag()
   return !&loadplugins ? 'NP' : ''
+endfunction
+
+" return the title of the quickfix window
+function QuickfixTitle()
+  return exists('w:quickfix_title') ? w:quickfix_title .. '  ' : ''
 endfunction
 
 " return shell used by terminal
@@ -297,7 +338,7 @@ function TabLine()
     else
       let l:line .= '%#TabLine#'
     endif
-    let l:line .= ' %{TabLabel(' . (l:tab + 1) . ')} '
+    let l:line .= ' %{TabLabel(' .. (l:tab + 1) .. ')} '
   endfor
   let l:line .= '%#TabLineFill#%T'
   return l:line
@@ -366,9 +407,9 @@ function ToggleNotes(dir)
     hide
   else
     try
-      exec 'botright sbuffer ' . t:notesbuf
+      exec 'botright sbuffer ' .. t:notesbuf
     catch
-      exec 'botright split ' . a:dir
+      exec 'botright split ' .. a:dir
       let t:notesbuf = bufnr('%')
     endtry
     let t:noteswin = win_getid()
@@ -387,8 +428,8 @@ augroup END
 " --------------------------------------
 
 " set the preferred editor to use the current session's RPC server
-let $VISUAL="nvim --server " . v:servername . " --remote"
-let $EDITOR="nvim --server " . v:servername . " --remote"
+let $VISUAL="nvim --server " .. v:servername .. " --remote"
+let $EDITOR="nvim --server " .. v:servername .. " --remote"
 
 " exit to normal mode using ctrl-[ or escape
 tnoremap <c-[> <c-\><c-n>
@@ -405,7 +446,7 @@ tnoremap <silent> <a-v> <c-\><c-n>:call ToggleTerm(1)<cr>
 tnoremap <silent> <a-w> <c-\><c-n>:call FocusTerm()<cr>
 
 " use ctrl-r to access registers in terminal insert mode
-tnoremap <expr> <c-r> '<c-\><c-n>"' . nr2char(getchar()) . 'pi'
+tnoremap <expr> <c-r> '<c-\><c-n>"' .. nr2char(getchar()) .. 'pi'
 
 " use ctrl-r ctrl-r to reverse-history search
 tnoremap <c-r><c-r> <c-r>
@@ -426,9 +467,9 @@ function ToggleTerm(vsplit)
   else
     try
       if a:vsplit
-        exec 'botright vertical sbuffer ' . t:termbuf
+        exec 'botright vertical sbuffer ' .. t:termbuf
       else
-        exec 'botright sbuffer ' . t:termbuf
+        exec 'botright sbuffer ' .. t:termbuf
       endif
       startinsert!
     catch
@@ -471,19 +512,19 @@ augroup END
 
 
 " --------------------------------------
-" neovim plugins
+" neovim
 " --------------------------------------
 
-if &loadplugins
 lua << EOT
 vim.loader.enable()
-require('impatient')
-require('config.indent-blankline')
-require('config.leap')
-require('config.lint')
-require('config.lspconfig')
-require('config.rest')
-require('config.telescope')
-require('config.treesitter')
+
+if vim.api.nvim_get_option('loadplugins') then
+  require('config.indent-blankline')
+  require('config.leap')
+  require('config.lint')
+  require('config.lspconfig')
+  require('config.rest')
+  require('config.telescope')
+  require('config.treesitter')
+end
 EOT
-endif

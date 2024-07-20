@@ -16,8 +16,8 @@
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/tmp/keyboard.stdout</string>
+    <string>/tmp/keyboard.out</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/keyboard.stderr</string>
+    <string>/tmp/keyboard.err</string>
   </dict>
 </plist>

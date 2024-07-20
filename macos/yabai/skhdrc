@@ -40,9 +40,9 @@ shift + ctrl + alt - a : yabai -m window --focus stack.recent
 # break the focused window from stack
 shift + ctrl + alt + cmd - a : yabai -m window --toggle float && yabai -m window --toggle float
 
-# move window to adjacent space (0x1B = minus, 0x18 = equal)
-shift + ctrl + alt + cmd - 0x1B : yabai -m window --space prev
-shift + ctrl + alt + cmd - 0x18 : yabai -m window --space next
+# move window to adjacent space ( 0x21 = [ , 0x1E = ] )
+shift + ctrl + alt + cmd - 0x21 : yabai -m window --space prev
+shift + ctrl + alt + cmd - 0x1E : yabai -m window --space next
 
 # move window to specific space
 shift + ctrl + alt + cmd - x : yabai -m window --space 1

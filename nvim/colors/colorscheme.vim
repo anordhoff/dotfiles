@@ -264,7 +264,7 @@ hi DiagnosticUnderlineInfo       cterm=undercurl ctermfg=none ctermbg=none guisp
 hi DiagnosticUnderlineHint       cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
 hi DiagnosticUnderlineOk         cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
 hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
-hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
+hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
 
 " --------------------------------------
 " telescope
