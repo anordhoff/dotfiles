@@ -77,3 +77,6 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "nvim/package/start/copilot-chat"]
+	path = nvim/package/start/copilot-chat
+	url = https://github.com/CopilotC-Nvim/CopilotChat.nvim.git
