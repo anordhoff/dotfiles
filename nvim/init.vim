@@ -7,7 +7,7 @@
 
 " basic settings
 set notermguicolors    " disable 24-bit colors
-set cb=unnamedplus     " default to the clipboard register
+" set cb=unnamedplus     " default to the clipboard register
 set number             " enable line numbers
 set noshowmode         " hide the mode from the bottom row
 set noincsearch        " do not immediately jump to first search hit
@@ -126,14 +126,14 @@ inoremap <c-r>+ <c-r><c-r>+
 inoremap <c-r>* <c-r><c-r>*
 
 " prevent delete commands from overwriting the clipboard register
-noremap <expr> d v:register =~ '[\*+]' ? '""d' : 'd'
-noremap <expr> x v:register =~ '[\*+]' ? '""x' : 'x'
-noremap <expr> c v:register =~ '[\*+]' ? '""c' : 'c'
-noremap <expr> s v:register =~ '[\*+]' ? '""s' : 's'
-noremap <expr> D v:register =~ '[\*+]' ? '""D' : 'D'
-noremap <expr> X v:register =~ '[\*+]' ? '""X' : 'X'
-noremap <expr> C v:register =~ '[\*+]' ? '""C' : 'C'
-noremap <expr> S v:register =~ '[\*+]' ? '""S' : 'S'
+" noremap <expr> d v:register =~ '[\*+]' ? '""d' : 'd'
+" noremap <expr> x v:register =~ '[\*+]' ? '""x' : 'x'
+" noremap <expr> c v:register =~ '[\*+]' ? '""c' : 'c'
+" noremap <expr> s v:register =~ '[\*+]' ? '""s' : 's'
+" noremap <expr> D v:register =~ '[\*+]' ? '""D' : 'D'
+" noremap <expr> X v:register =~ '[\*+]' ? '""X' : 'X'
+" noremap <expr> C v:register =~ '[\*+]' ? '""C' : 'C'
+" noremap <expr> S v:register =~ '[\*+]' ? '""S' : 'S'
 
 " ctrl-p and ctrl-n match the current command-line
 cnoremap <c-p> <up>
