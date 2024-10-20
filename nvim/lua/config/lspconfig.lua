@@ -183,10 +183,7 @@ lspconfig.lua_ls.setup {
 -- yamlls
 ----------------------------------------
 
-local jobfiles = require('config.job')
-
--- get home dir for use in local filepaths
-local home_dir = os.getenv('HOME') .. '/'
+local jobfiles = require('jobfiles.lspconfig')
 
 -- path to schemas
 local cloudformation = 'https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/main/server/schema/base.schema.json'
@@ -236,9 +233,8 @@ local patterns = {
 -- newline separated list of glob patterns in its own file, where the name of
 -- the file matches the name of the schema (.txt). Patterns are appended to the
 -- nested table of the same under the 'patterns' table
-local path_to_schemas = home_dir .. 'jobfiles/nvim/schemas/'
 for schema, _ in pairs(patterns) do
-  local file = io.open(path_to_schemas .. schema .. '.txt', 'r')
+  local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
   if file ~= nil then
     while true do
       local line = file:read()

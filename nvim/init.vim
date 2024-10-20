@@ -53,6 +53,9 @@ set linebreak
 set breakindent
 let &showbreak=' .. '
 
+" add jobfiles to vim's runtimepath
+let &runtimepath.=',~/jobfiles/nvim'
+
 " wrap text in the preview window
 augroup preview
   autocmd!
