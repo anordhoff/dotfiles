@@ -1,5 +1,18 @@
 # macos
 
+### skhd
+
+To improve skhd perfomance, run `skhd --install-service` and add the following
+to the plist
+```
+    <key>EnvironmentVariables</key>
+    <dict>
+        ...
+        <key>SHELL</key>
+        <string>/bin/dash</string>
+    </dict>
+```
+
 ### tmux-256color
 
 macOS has ncurses version 5.7 which does not ship the terminfo description for tmux. Compile the latest ncurses terminal descriptions for tmux-256color: https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95

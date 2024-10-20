@@ -37,6 +37,15 @@ shift + ctrl + alt + cmd - l : yabai -m window --stack east && yabai -m window -
 # focus the most recently focued window in the stack
 shift + ctrl + alt - a : yabai -m window --focus stack.recent
 
+# switch between windows in the stack
+# shift + ctrl + alt - r : yabai -m window --focus stack.1
+# shift + ctrl + alt - s : yabai -m window --focus stack.2
+# shift + ctrl + alt - t : yabai -m window --focus stack.3
+
+# swap windows within the stack
+# yabai -m window --swap stack.next
+# yabai -m window --swap stack.prev
+
 # break the focused window from stack
 shift + ctrl + alt + cmd - a : yabai -m window --toggle float && yabai -m window --toggle float
 
