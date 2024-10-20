@@ -13,7 +13,7 @@ set $menu j4-dmenu-desktop --dmenu='bemenu -i -H 24 --ch 16 -p ">" \
   --ab "#000000" --hb "#000000" --sb "#000000"'
 
 # wallpaper
-set $wallpaper ~/.config/linux/sway/wallpaper
+set $wallpaper ~/Pictures/fedora-gruvbox.png
 
 # font
 font San Francisco Display Medium 11
