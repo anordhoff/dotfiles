@@ -1,1 +1,0 @@
-/Users/qsq854/jobfiles/nvim/job.lua
