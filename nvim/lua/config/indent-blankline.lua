@@ -1,4 +1,6 @@
-require('ibl').setup {
+local ibl = require('ibl')
+
+ibl.setup {
   enabled = false,
   indent = {
     char = "▏",
@@ -9,8 +11,4 @@ require('ibl').setup {
   },
 }
 
--- keymaps (follows vim-unimpaired pattern - yog[uidelines])
-local opts = {}
-vim.keymap.set('n', '[og', ':IBLEnable<CR>', opts)
-vim.keymap.set('n', ']og', ':IBLDisable<CR>', opts)
-vim.keymap.set('n', 'yog', ':IBLToggle<CR>', opts)
+return ibl

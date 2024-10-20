@@ -1,4 +1,5 @@
 " https://github.com/hashivim/vim-terraform/blob/master/indent/hcl.vim
+
 " Only load this file if no other indent file was loaded
 if exists('b:did_indent')
   finish

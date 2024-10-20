@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- use a loop to call 'setup' on multiple servers
-local servers = { 'bashls', 'jsonls', 'pyright', 'terraformls', 'vimls' }
+local servers = { 'bashls', 'jsonls', 'marksman', 'pyright', 'terraformls', 'vimls' }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {}
 end
@@ -129,7 +129,7 @@ lspconfig.gopls.setup {
 
 -- format code and organize imports when writing the buffer
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
+  group = vim.api.nvim_create_augroup('lspconfig_golang', { clear = true }),
   callback = function()
     local params = vim.lsp.util.make_range_params()
     params.context = {only = {"source.organizeImports"}}
@@ -148,7 +148,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       end
     end
     vim.lsp.buf.format({async = false})
-  end
+  end,
+  pattern = "*.go",
 })
 
 

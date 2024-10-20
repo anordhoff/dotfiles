@@ -75,7 +75,7 @@ hi Folded                        cterm=none        ctermfg=19       ctermbg=none
 hi WinSeparator                  cterm=none        ctermfg=15       ctermbg=none
 hi TabLine                       cterm=none        ctermfg=7        ctermbg=18
 hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=18
-hi TabLineSel                    cterm=none        ctermfg=5        ctermbg=18
+hi TabLineSel                    cterm=none        ctermfg=6        ctermbg=18
 
 " --------------------------------------
 " prompt / status
@@ -186,6 +186,29 @@ hi jsonString                    cterm=none        ctermfg=7        ctermbg=none
 " --------------------------------------
 hi makeTarget                    cterm=none        ctermfg=6        ctermbg=none
 hi makeSpecTarget                cterm=none        ctermfg=5        ctermbg=none
+
+" --------------------------------------
+" markdown
+" --------------------------------------
+hi markdownCode                  cterm=none        ctermfg=2        ctermbg=none
+hi markdownCodeBlock             cterm=none        ctermfg=2        ctermbg=none
+hi markdownCodeDelimiter         cterm=none        ctermfg=2        ctermbg=none
+hi markdownBlockquote            cterm=italic      ctermfg=15       ctermbg=none
+hi markdownLinkText              cterm=underline   ctermfg=4        ctermbg=none
+hi markdownListMarker            cterm=none        ctermfg=5        ctermbg=none
+hi markdownOrderedListMarker     cterm=none        ctermfg=5        ctermbg=none
+hi markdownH1                    cterm=none        ctermfg=3        ctermbg=none
+hi markdownH2                    cterm=none        ctermfg=4        ctermbg=none
+hi markdownH3                    cterm=none        ctermfg=2        ctermbg=none
+hi markdownH4                    cterm=none        ctermfg=5        ctermbg=none
+hi markdownH5                    cterm=none        ctermfg=6        ctermbg=none
+hi markdownH6                    cterm=none        ctermfg=15       ctermbg=none
+hi! link markdownH1Delimiter     markdownH1
+hi! link markdownH2Delimiter     markdownH2
+hi! link markdownH3Delimiter     markdownH3
+hi! link markdownH4Delimiter     markdownH4
+hi! link markdownH5Delimiter     markdownH5
+hi! link markdownH6Delimiter     markdownH6
 
 " --------------------------------------
 " shell

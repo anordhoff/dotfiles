@@ -15,6 +15,8 @@
     </array>
     <key>RunAtLoad</key>
     <true/>
+    <key>Nice</key>
+    <integer>-20</integer>
     <key>StandardOutPath</key>
     <string>/tmp/kmonad.out</string>
     <key>StandardErrorPath</key>

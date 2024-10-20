@@ -1,4 +1,5 @@
 " https://github.com/hashivim/vim-terraform/blob/master/syntax/terraform.vim
+
 if exists('b:current_syntax')
   finish
 endif

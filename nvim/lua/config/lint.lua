@@ -20,5 +20,5 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter', 'BufWritePost' }, {
   callback = function()
     lint.try_lint()
   end,
-  pattern = '*.go'
+  pattern = '*.go',
 })

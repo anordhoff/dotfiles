@@ -173,6 +173,7 @@ zstyle ':completion:*:warnings' format '-- no matches found --'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # enable improved git-completion
+# TODO: source extensions/git-completion.bash is deprecated
 zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.bash
 
 
@@ -191,8 +192,8 @@ alias watch='watch -n 1 '
 alias tldr='NO_COLOR=true tldr'
 
 # open the notes dir
-alias notes='nvim ~/notes/'
-alias todo='nvim ~/notes/todo.md'
+alias notes='nvim ~/notes/ -c "cd ~/notes"'
+alias todo='nvim ~/notes/todo.md -c "cd ~/notes"'
 
 # directory stack
 alias dirs='dirs -v'
@@ -248,7 +249,7 @@ alias  k='kubectl'
 alias kd='kubectl describe'
 alias ke='kubectl events --for'
 alias kg='kubectl get'
-alias kl='kubectl logs'
+alias kl='kubectl stern'
 
 # krew plugins
 alias kctx='kubectl ctx'

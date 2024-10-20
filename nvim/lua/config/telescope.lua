@@ -88,9 +88,8 @@ telescope.setup {
 }
 
 -- add line numbers to telescope preview buffers
-local telescope_group = vim.api.nvim_create_augroup('telescope', { clear = true })
 vim.api.nvim_create_autocmd('User', {
-  group = telescope_group,
+  group = vim.api.nvim_create_augroup('telescope', { clear = true }),
   callback = function()
     vim.opt_local.number = true
   end,
@@ -115,10 +114,11 @@ vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 
 -- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
-   callback = function()
-      vim.api.nvim_create_autocmd('BufWinEnter', {
-         once = true,
-         command = 'normal! zx',
-      })
-   end
+  group = vim.api.nvim_create_augroup('telescope_bug', { clear = true }),
+  callback = function()
+    vim.api.nvim_create_autocmd('BufWinEnter', {
+      once = true,
+      command = 'normal! zx',
+    })
+  end,
 })

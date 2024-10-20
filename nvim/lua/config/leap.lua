@@ -1,6 +1,8 @@
 local leap = require('leap')
 
 -- TODO: leap doesn't work if the file only has one line
+-- TODO: leap doesn't work with an operator, such as d<leap>
+-- TODO: keep conceal enabled when using leap within dirvish
 
 leap.opts.labels = {'n', 't', 'e', 's', 'i', 'r', 'o', 'a', 'h', 'd', 'u', 'f', 'y', 'w', 'l', 'p', 'm', 'g', ',', 'c', '.', 'x', '/', 'z', 'k', 'v'}
 leap.opts.safe_labels = {}

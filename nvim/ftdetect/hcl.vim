@@ -1,4 +1,5 @@
 " https://github.com/hashivim/vim-terraform/blob/master/ftdetect/hcl.vim
+
 " vint: -ProhibitAutocmdWithNoGroup
 " By default, Vim associates .tf files with TinyFugue - tell it not to.
 silent! autocmd! filetypedetect BufRead,BufNewFile *.tf
