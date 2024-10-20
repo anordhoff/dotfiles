@@ -71,3 +71,9 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "nvim/package/opt/copilot-chat"]
+	path = nvim/package/opt/copilot-chat
+	url = https://github.com/CopilotC-Nvim/CopilotChat.nvim.git
+[submodule "nvim/package/opt/indent-blankline"]
+	path = nvim/package/opt/indent-blankline
+	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
