@@ -65,9 +65,6 @@
 [submodule "nvim/package/start/plenary"]
 	path = nvim/package/start/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
-[submodule "nvim/package/start/rest"]
-	path = nvim/package/start/rest
-	url = https://github.com/rest-nvim/rest.nvim.git
 [submodule "nvim/package/start/telescope"]
 	path = nvim/package/start/telescope
 	url = https://github.com/nvim-telescope/telescope.nvim.git
