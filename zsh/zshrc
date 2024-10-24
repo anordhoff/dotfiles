@@ -172,8 +172,7 @@ zstyle ':completion:*:warnings' format '-- no matches found --'
 # use colors in completion menu
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# enable improved git-completion
-# TODO: source extensions/git-completion.bash is deprecated
+# enable improved git-completion (required by completions/_git)
 zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.bash
 
 
