@@ -25,9 +25,6 @@
 [submodule "nvim/package/start/repeat"]
 	path = nvim/package/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "nvim/package/start/rsi"]
-	path = nvim/package/start/rsi
-	url = https://github.com/tpope/vim-rsi.git
 [submodule "nvim/package/start/sleuth"]
 	path = nvim/package/start/sleuth
 	url = https://github.com/tpope/vim-sleuth.git
@@ -42,6 +39,9 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 
 # vim (opt)
+[submodule "nvim/package/opt/markdown-preview"]
+	path = nvim/package/opt/markdown-preview
+	url = https://github.com/iamcco/markdown-preview.nvim.git
 [submodule "nvim/package/opt/startuptime"]
 	path = nvim/package/opt/startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
