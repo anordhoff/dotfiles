@@ -176,11 +176,11 @@
 )
 
 (deflayer colemak-shift
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
-  XX        Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
-  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO   S-ret
-  Z         X    C    D    V    :    |    K    H    \_   .    "             S-up
-            XX   XX   lmet           @mtSPC    _    lalt             S-left S-down S-rght
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
+  XX        Q    W    F    P    B    {    J    L    U    Y    del  XX     XX
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
+  Z         X    C    D    V    :    |    K    H    \_   .    "           S-up
+            XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
@@ -202,7 +202,7 @@
 
 (deflayer layer-r-shift
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     S-bspc
-  XX        XX   XX   XX   XX   XX   XX   XX   S-ins  S-home S-pgup S-bspc XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   S-ins  S-home S-pgup del    XX     XX
   S-tab     XX   _    XX   XX   XX   XX   XX   S-left S-down S-up   S-rght S-ret
   XX        XX   XX   XX   XX   XX   XX   XX   S-del  S-end  S-pgdn XX            XX
             XX   XX   S-lmet         @rtSPC    _      S-lalt                 XX   XX   XX
@@ -217,11 +217,11 @@
 )
 
 (deflayer layer-s-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   [    ]    S-bspc XX     XX
-  S-tab     XX   XX   _    XX   XX   XX   XX   \    \(   \)   |      S-ret
-  XX        XX   XX   XX   XX   XX   XX   XX   <    {    }    >             XX
-            XX   XX   S-lmet         @stSPC    _    S-lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   [    ]    del  XX     XX
+  S-tab     XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   <    {    }    >           XX
+            XX   XX   S-lmet         @stSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-t
@@ -233,11 +233,11 @@
 )
 
 (deflayer layer-t-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   `    ~    S-bspc XX     XX
-  S-tab     XX   XX   XX   _    XX   XX   XX   /    ?    ;    :      S-ret
-  XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX            XX
-            XX   XX   S-lmet         @ttSPC    _    S-lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   `    ~    del  XX     XX
+  S-tab     XX   XX   XX   _    XX   XX   XX   /    ?    ;    :    S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
+            XX   XX   S-lmet         @ttSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-n
@@ -249,11 +249,11 @@
 )
 
 (deflayer layer-n-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
-  XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   S-bspc XX     XX
-  S-tab     0    4    5    6    XX   XX   XX   _    *    +    :      S-ret
-  XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /             XX
-            XX   XX   S-lmet         @ntSPC    _    S-lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   del  XX     XX
+  S-tab     0    4    5    6    XX   XX   XX   _    *    +    :    S-ret
+  XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
+            XX   XX   S-lmet         @ntSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-e
@@ -265,11 +265,11 @@
 )
 
 (deflayer layer-e-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
-  XX        XX   &    *    \(   XX   XX   XX   XX   XX   XX   S-bspc XX     XX
-  S-tab     \)   $    %    ^    XX   XX   XX   XX   _    XX   XX     S-ret
-  XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX            XX
-            XX   XX   S-lmet         @etSPC    _    S-lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  XX        XX   &    *    \(   XX   XX   XX   XX   XX   XX   del  XX     XX
+  S-tab     \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   S-ret
+  XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
+            XX   XX   S-lmet         @etSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer layer-i
@@ -281,11 +281,11 @@
 )
 
 (deflayer layer-i-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
-  XX        F11  F7   F8   F9   F12  XX   XX   XX   XX   XX   S-bspc XX     XX
-  S-tab     F10  F4   F5   F6   XX   XX   XX   XX   XX   _    XX     S-ret
-  XX        F1   F2   F3   XX   XX   XX   XX   XX   XX   XX   XX            XX
-            XX   XX   S-lmet         @itSPC    _    S-lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
+  XX        F11  F7   F8   F9   F12  XX   XX   XX   XX   XX   del  XX     XX
+  S-tab     F10  F4   F5   F6   XX   XX   XX   XX   XX   _    XX   S-ret
+  XX        F1   F2   F3   XX   XX   XX   XX   XX   XX   XX   XX          XX
+            XX   XX   S-lmet         @itSPC    _    S-lalt           XX   XX   XX
 )
 
 (deflayer game
