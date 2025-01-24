@@ -1,8 +1,8 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-	TOG_SUP = SAFE_RANGE,
-	SLSH_UP
+	TOG_QUP = SAFE_RANGE,
+	QUOT_UP
 };
 
 enum layers {

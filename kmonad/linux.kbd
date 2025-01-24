@@ -169,148 +169,148 @@
 
 (deflayer colemak
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  -         @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
-  z         x    c    d    v    ;    \    k    h    ,    .    /           up
+  XX        q    w    f    p    b    [    j    l    u    y    bspc XX     XX
+  tab       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
+  z         x    c    d    v    ;    \    k    h    -    ,    '           up
             XX   XX   lmet           @mtspc    @mtesc lalt           left down rght
 )
 
 (deflayer colemak-shift
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
-  S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  \_        @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
-  Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
-            XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
+  XX        Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO   S-ret
+  Z         X    C    D    V    :    |    K    H    \_   .    "             S-up
+            XX   XX   lmet           @mtSPC    _    lalt             S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer colemak-meh
-  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
-  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
-            XX   XX   @adj           @lhp      @rhp @adj           @mleft @mdown @mrght
+  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-    @m=    @mbspc
+  XX        @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @mbspc XX     XX
+  @mtab     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo    @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m'           @mup
+            XX   XX   @adj           @lhp      @rhp @adj             @mleft @mdown @mrght
 )
 
 (deflayer layer-r
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   bspc   del
-  -         XX   _    XX   XX   XX   XX   XX   left down up   rght ret
+  XX        XX   XX   XX   XX   XX   XX   XX   ins  home pgup bspc XX     XX
+  tab       XX   _    XX   XX   XX   XX   XX   left down up   rght ret
   XX        XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX          XX
             XX   XX   lmet           @rtspc    @rtesc lalt           XX   XX   XX
 )
 
 (deflayer layer-r-shift
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     S-bspc
-  S-tab     XX   XX   XX   XX   XX   XX   XX   S-ins  S-home S-pgup XX     S-bspc S-del
-  \_        XX   _    XX   XX   XX   XX   XX   S-left S-down S-up   S-rght S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   S-ins  S-home S-pgup S-bspc XX     XX
+  S-tab     XX   _    XX   XX   XX   XX   XX   S-left S-down S-up   S-rght S-ret
   XX        XX   XX   XX   XX   XX   XX   XX   S-del  S-end  S-pgdn XX            XX
             XX   XX   S-lmet         @rtSPC    _      S-lalt                 XX   XX   XX
 )
 
 (deflayer layer-s
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   bspc   del
-  -         XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    ret
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX          XX
-            XX   XX   lmet           @stspc    @stesc lalt             XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   [    ]    bspc XX     XX
+  tab       XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   <    {    }    >           XX
+            XX   XX   lmet           @stspc    @stesc lalt           XX   XX   XX
 )
 
 (deflayer layer-s-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
-  S-tab     XX   XX   XX   XX   XX   XX   XX   XX   [    ]    XX   S-bspc S-del
-  \_        XX   XX   _    XX   XX   XX   XX   \    \(   \)   |    S-ret
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   {    }    XX          XX
-            XX   XX   S-lmet         @stSPC    _    S-lalt           XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   [    ]    S-bspc XX     XX
+  S-tab     XX   XX   _    XX   XX   XX   XX   \    \(   \)   |      S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   <    {    }    >             XX
+            XX   XX   S-lmet         @stSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-t
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   bspc   del
-  -         XX   XX   XX   _    XX   XX   XX   XX   XX   ;    :    ret
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   `    ~    bspc XX     XX
+  tab       XX   XX   XX   _    XX   XX   XX   /    ?    ;    :    ret
   XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
-            XX   XX   lmet           @ttspc    @ttesc lalt             XX   XX   XX
+            XX   XX   lmet           @ttspc    @ttesc lalt           XX   XX   XX
 )
 
 (deflayer layer-t-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
-  S-tab     XX   XX   XX   XX   XX   XX   XX   XX   `    ~    XX   S-bspc S-del
-  \_        XX   XX   XX   _    XX   XX   XX   XX   XX   ;    :    S-ret
-  XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX          XX
-            XX   XX   S-lmet         @ttSPC    _    S-lalt           XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   `    ~    S-bspc XX     XX
+  S-tab     XX   XX   XX   _    XX   XX   XX   /    ?    ;    :      S-ret
+  XX        XX   XX   XX   XX   XX   XX   XX   =    +    !    XX            XX
+            XX   XX   S-lmet         @ttSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-n
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   bspc   del
-  -         0    4    5    6    XX   XX   XX   _    *    +    :    ret
+  XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   bspc XX     XX
+  tab       0    4    5    6    XX   XX   XX   _    *    +    :    ret
   XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
-            XX   XX   lmet           @ntspc    @ntesc lalt             XX   XX   XX
+            XX   XX   lmet           @ntspc    @ntesc lalt           XX   XX   XX
 )
 
 (deflayer layer-n-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
-  S-tab     XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   S-bspc S-del
-  \_        0    4    5    6    XX   XX   XX   _    *    +    :    S-ret
-  XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /           XX
-            XX   XX   S-lmet         @ntSPC    _    S-lalt           XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
+  XX        XX   7    8    9    XX   XX   XX   XX   XX   XX   S-bspc XX     XX
+  S-tab     0    4    5    6    XX   XX   XX   _    *    +    :      S-ret
+  XX        1    2    3    XX   XX   XX   XX   XX   ,    .    /             XX
+            XX   XX   S-lmet         @ntSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-e
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   bspc   del
-  -         \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   ret
+  XX        XX   &    *    \(   XX   XX   XX   XX   XX   XX   bspc XX     XX
+  tab       \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   ret
   XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           @etspc    @etesc lalt             XX   XX   XX
+            XX   XX   lmet           @etspc    @etesc lalt           XX   XX   XX
 )
 
 (deflayer layer-e-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
-  S-tab     XX   &    *    \(   XX   XX   XX   XX   XX   XX   XX   S-bspc S-del
-  \_        \)   $    %    ^    XX   XX   XX   XX   _    XX   XX   S-ret
-  XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   S-lmet         @etSPC    _    S-lalt           XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
+  XX        XX   &    *    \(   XX   XX   XX   XX   XX   XX   S-bspc XX     XX
+  S-tab     \)   $    %    ^    XX   XX   XX   XX   _    XX   XX     S-ret
+  XX        !    @    #    XX   XX   XX   XX   XX   XX   XX   XX            XX
+            XX   XX   S-lmet         @etSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-i
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
-  tab       f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   XX   bspc   del
-  -         f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   ret
+  XX        f11  f7   f8   f9   f12  XX   XX   XX   XX   XX   bspc XX     XX
+  tab       f10  f4   f5   f6   XX   XX   XX   XX   XX   _    XX   ret
   XX        f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   lmet           @itspc    @itesc lalt             XX   XX   XX
+            XX   XX   lmet           @itspc    @itesc lalt           XX   XX   XX
 )
 
 (deflayer layer-i-shift
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     S-bspc
-  S-tab     F11  F7   F8   F9   F12  XX   XX   XX   XX   XX   XX   S-bspc S-del
-  \_        F10  F4   F5   F6   XX   XX   XX   XX   XX   _    XX   S-ret
-  XX        F1   F2   F3   XX   XX   XX   XX   XX   XX   XX   XX          XX
-            XX   XX   S-lmet         @itSPC    _    S-lalt           XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
+  XX        F11  F7   F8   F9   F12  XX   XX   XX   XX   XX   S-bspc XX     XX
+  S-tab     F10  F4   F5   F6   XX   XX   XX   XX   XX   _    XX     S-ret
+  XX        F1   F2   F3   XX   XX   XX   XX   XX   XX   XX   XX            XX
+            XX   XX   S-lmet         @itSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer game
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  -         a    r    s    t    g    ]    m    n    e    i    o    ret
-  @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-            lctl lmet lalt           spc       @gmesc @gmm             left down rght
+  tab       q    w    f    p    b    [    j    l    u    y    bspc XX     XX
+  tab       a    r    s    t    g    ]    m    n    e    i    o    ret
+  @mtz      x    c    d    v    ;    \    k    h    -    ,    '           up
+            lctl lmet lalt           spc       @gmesc @gmm           left down rght
 )
 
 (deflayer game-shift
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
-  S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  \_        a    R    S    T    G    }    M    N    E    I    O    S-ret
-  @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
-            S-lctl S-lmet S-lalt     S-spc     _    XX             S-left S-down S-rght
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
+  S-tab     Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
+  S-tab     a    R    S    T    G    }    M    N    E    I    O      S-ret
+  @mtZ      X    C    D    V    :    |    K    H    \_   .    "             S-up
+            S-lctl S-lmet S-lalt     S-spc     _    XX               S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer game-meh
-  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
-  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
-            XX   @adj @gmx           @gmh      XX   _              @mleft @mdown @mrght
+  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-    @m=    @mbspc
+  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @mbspc XX     XX
+  @mtab     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo    @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m'           @mup
+            XX   @adj @gmx           @gmh      XX   _                @mleft @mdown @mrght
 )
 
 (deflayer game-extend
@@ -346,9 +346,9 @@
 )
 
 (deflayer qwerty-right-shift
-  RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +      RS-bspc
-  RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }      |
+  RS-grv    !    @    #    $    %    ^    &    *    \(   \)   \_   +       RS-bspc
+  RS-tab    Q    W    E    R    T    Y    U    I    O    P    {    }       |
   RS-esc    A    S    D    F    G    H    J    K    L    :    "    RS-ret
-  @adj      Z    X    C    V    B    N    M    <    >    ?    _           RS-up
-            RS-lctl RS-lmet RS-lalt  RS-spc    RS-ralt RS-rctl    RS-left RS-down RS-rght
+  @adj      Z    X    C    V    B    N    M    <    >    ?    _            RS-up
+            RS-lctl RS-lmet RS-lalt  RS-spc    RS-ralt RS-rctl     RS-left RS-down RS-rght
 )

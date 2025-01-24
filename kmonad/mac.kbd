@@ -472,54 +472,54 @@
 (deflayer colemak
   esc       brdn brup mctl spot bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  -         @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
-  z         x    c    d    v    ;    \    k    h    ,    .    /           up
+  XX        q    w    f    p    b    [    j    l    u    y    bspc XX     XX
+  tab       @mta @mtr @mts @mtt g    ]    m    @mtn @mte @mti @mto ret
+  z         x    c    d    v    ;    \    k    h    -    ,    '           up
   @fn       XX   XX   lmet           @mtspc    @mtesc lalt           left down rght
 )
 
 (deflayer colemak-shift
-  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
-  S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  \_        @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
-  Z         X    C    D    V    :    |    K    H    <    >    ?           S-up
-  @FN       XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
+  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
+  XX        Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO   S-ret
+  Z         X    C    D    V    :    |    K    H    \_   .    "             S-up
+  @FN       XX   XX   lmet           @mtSPC    _    lalt             S-left S-down S-rght
 )
 
 (deflayer colemak-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-  @c=    @cbspc
-  @ctab     @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @c'  @cbspc @cdel
-  @c-       @ca  @ctr @cts @ctt @cg  @c]  @cm  @ctn @cte @cti @co  @cret
-  @cz       @cx  @cc  @cd  @cv  @c;  @c\  @ck  @ch  @c,  @c.  @c/         @cup
-  @cfn      XX   XX   lmet           _         @ctesc lalt         @cleft @cdown @crght
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-    @c=    @cbspc
+  XX        @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @cbspc XX     XX
+  @ctab     @ca  @ctr @cts @ctt @cg  @c]  @cm  @ctn @cte @cti @co    @cret
+  @cz       @cx  @cc  @cd  @cv  @c;  @c\  @ck  @ch  @c-  @c,  @c'           @cup
+  @cfn      XX   XX   lmet           _         @ctesc lalt           @cleft @cdown @crght
 )
 
 (deflayer colemak-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @cGRV     @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_  @c+    @cBSPC
-  @cTAB     @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @cqu @cBSPC @cDEL
-  @c_       @cA  @ctR @ctS @ctT @cG  @c}  @cM  @ctN @ctE @ctI @cO  @cRET
-  @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c<  @c>  @c?         @cUP
-  @cFN      XX   XX   lmet           _         _    lalt           @cLEFT @cDOWN @cRGHT
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @cGRV     @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_    @c+    @cBSPC
+  XX        @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @cBSPC XX     XX
+  @cTAB     @cA  @ctR @ctS @ctT @cG  @c}  @cM  @ctN @ctE @ctI @cO    @cRET
+  @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c_  @c.  @cqu          @cUP
+  @cFN      XX   XX   lmet           _         _    lalt             @cLEFT @cDOWN @cRGHT
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer colemak-meh
-  @mesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
-  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/       @mup
-  @mfn      XX   XX   @adj           @lhp      @rhp @adj           @mleft @mdown @mrght
+  @mesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-    @m=    @mbspc
+  XX        @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @mbspc XX     XX
+  @mtab     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo    @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m'           @mup
+  @mfn      XX   XX   @adj           @lhp      @rhp @adj             @mleft @mdown @mrght
 )
 
 (deflayer layer-r
   @tesc     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tbspc
-  @ttab     XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup XX     @tbspc @tdel
-  @t-       XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup @tbspc XX     XX
+  @ttab     XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @tdel  @tend  @tpgdn XX            XX
   XX        XX   XX   lmet           @rtspc    @rtesc lalt                   XX   XX   XX
 )
@@ -527,8 +527,8 @@
 (deflayer layer-r-shift
   @tESC     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tBSPC
-  @tTAB     XX   XX   XX   XX   XX   XX   XX   @tINS  @tHOME @tPGUP XX     @tBSPC @tDEL
-  @t_       XX   _    XX   XX   XX   XX   XX   @tLEFT @tDOWN @tUP   @tRGHT @tRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @tINS  @tHOME @tPGUP @tBSPC XX     XX
+  @tTAB     XX   _    XX   XX   XX   XX   XX   @tLEFT @tDOWN @tUP   @tRGHT @tRET
   XX        XX   XX   XX   XX   XX   XX   XX   @tDEL  @tEND  @tPGDN XX            XX
   XX        XX   XX   S-lmet         @rtSPC    _      S-lalt                 XX   XX   XX
 )
@@ -536,8 +536,8 @@
 (deflayer layer-r-control
   @cesc     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @cbspc
-  @ctab     XX   XX   XX   XX   XX   XX   XX   @cins  @chome @cpgup XX     @cbspc @cdel
-  @c-       XX   _    XX   XX   XX   XX   XX   @cleft @cdown @cup   @crght @cret
+  XX        XX   XX   XX   XX   XX   XX   XX   @cins  @chome @cpgup @cbspc XX     XX
+  @ctab     XX   _    XX   XX   XX   XX   XX   @cleft @cdown @cup   @crght @cret
   XX        XX   XX   XX   XX   XX   XX   XX   @cdel  @cend  @cpgdn XX            XX
   XX        XX   XX   lmet           _         @rcesc lalt                   XX   XX   XX
 )
@@ -545,218 +545,218 @@
 (deflayer layer-r-control-shift
   @cESC     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @cBSPC
-  @cTAB     XX   XX   XX   XX   XX   XX   XX   @cINS  @cHOME @cPGUP XX     @cBSPC @cDEL
-  @c_       XX   _    XX   XX   XX   XX   XX   @cLEFT @cDOWN @cUP   @cRGHT @cRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @cINS  @cHOME @cPGUP @cBSPC XX     XX
+  @cTAB     XX   _    XX   XX   XX   XX   XX   @cLEFT @cDOWN @cUP   @cRGHT @cRET
   XX        XX   XX   XX   XX   XX   XX   XX   @cDEL  @cEND  @cPGDN XX            XX
   XX        XX   XX   S-lmet         _         _      S-lalt                 XX   XX   XX
 )
 
 (deflayer layer-s
-  @tesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX     @tbspc
-  @ttab     XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  XX   @tbspc @tdel
-  @t-       XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|  @tret
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t{  @t}  XX          XX
-  XX        XX   XX   lmet           @stspc    @stesc lalt             XX   XX   XX
+  @tesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @tbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  @tbspc XX     XX
+  @ttab     XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|    @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   @t<   @t{  @t}  @t>           XX
+  XX        XX   XX   lmet           @stspc    @stesc lalt              XX   XX   XX
 )
 
 (deflayer layer-s-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX     @tBSPC
-  @tTAB     XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  XX   @tBSPC @tDEL
-  @t_       XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|  @tRET
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t{  @t}  XX          XX
-  XX        XX   XX   S-lmet         @stSPC    _     S-lalt           XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @tBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  @tBSPC XX     XX
+  @tTAB     XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|    @tRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @t<   @t{  @t}  @t>           XX
+  XX        XX   XX   S-lmet         @stSPC    _     S-lalt             XX   XX   XX
 )
 
 (deflayer layer-s-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX     @cbspc
-  @ctab     XX   XX   XX   XX   XX   XX   XX   XX    @c[  @c]  XX   @cbspc @cdel
-  @c-       XX   XX   _    XX   XX   XX   XX   @c\   @c(  @cpa @c|  @cret
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c{  @c}  XX          XX
-  XX        XX   XX   lmet           _         @scesc lalt             XX   XX   XX
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @cbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c[  @c]  @cbspc XX     XX
+  @ctab     XX   XX   _    XX   XX   XX   XX   @c\   @c(  @cpa @c|    @cret
+  XX        XX   XX   XX   XX   XX   XX   XX   @c<   @c{  @c}  @c>           XX
+  XX        XX   XX   lmet           _         @scesc lalt              XX   XX   XX
 )
 
 (deflayer layer-s-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX   XX     @cBSPC
-  @cTAB     XX   XX   XX   XX   XX   XX   XX   XX    @c[  @c]  XX   @cBSPC @cDEL
-  @c_       XX   XX   _    XX   XX   XX   XX   @c\   @c(  @cpa @c|  @cRET
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c{  @c}  XX          XX
-  XX        XX   XX   S-lmet         _         _     S-lalt           XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @cBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c[  @c]  @cBSPC XX     XX
+  @cTAB     XX   XX   _    XX   XX   XX   XX   @c\   @c(  @cpa @c|    @cRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @c<   @c{  @c}  @c>           XX
+  XX        XX   XX   S-lmet         _         _     S-lalt             XX   XX   XX
 )
 
 (deflayer layer-t
-  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   @tbspc @tdel
-  @t-       XX   XX   XX   _    XX   XX   XX   XX   XX   @t;  @t:  @tret
-  XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX          XX
+  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  @tbspc XX     XX
+  @ttab     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  @t:    @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX            XX
   XX        XX   XX   lmet           @ttspc    @ttesc lalt             XX   XX   XX
 )
 
 (deflayer layer-t-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tBSPC
-  @tTAB     XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  XX   @tBSPC @tDEL
-  @t_       XX   XX   XX   _    XX   XX   XX   XX   XX   @t;  @t:  @tRET
-  XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX          XX
-  XX        XX   XX   S-lmet         @ttSPC    _    S-lalt           XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  @tBSPC XX     XX
+  @tTAB     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  @t:    @tRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX            XX
+  XX        XX   XX   S-lmet         @ttSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-t-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @cbspc
-  @ctab     XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  XX   @cbspc @cdel
-  @c-       XX   XX   XX   _    XX   XX   XX   XX   XX   @c;  @c:  @cret
-  XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX          XX
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  @cbspc XX     XX
+  @ctab     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  @c:    @cret
+  XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX            XX
   XX        XX   XX   lmet           _         @tcesc lalt             XX   XX   XX
 )
 
 (deflayer layer-t-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @cBSPC
-  @cTAB     XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  XX   @cBSPC @cDEL
-  @c_       XX   XX   XX   _    XX   XX   XX   XX   XX   @c;  @c:  @cRET
-  XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX          XX
-  XX        XX   XX   S-lmet         _         _    S-lalt           XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  @cBSPC XX     XX
+  @cTAB     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  @c:    @cRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX            XX
+  XX        XX   XX   S-lmet         _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-n
-  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   XX   @tbspc @tdel
-  @t-       @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:  @tret
-  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
+  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   @tbspc XX     XX
+  @ttab     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:    @tret
+  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/           XX
   XX        XX   XX   lmet           @ntspc    @ntesc lalt             XX   XX   XX
 )
 
 (deflayer layer-n-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tBSPC
-  @tTAB     XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   XX   @tBSPC @tDEL
-  @t_       @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:  @tRET
-  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/         XX
-  XX        XX   XX   S-lmet         @ntSPC    _    S-lalt           XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   @tBSPC XX     XX
+  @tTAB     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:    @tRET
+  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/           XX
+  XX        XX   XX   S-lmet         @ntSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-n-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @cbspc
-  @ctab     XX   @c7  @c8  @c9  XX   XX   XX   XX   XX   XX   XX   @cbspc @cdel
-  @c-       @c0  @c4  @c5  @c6  XX   XX   XX   _    @c*  @c+  @c:  @cret
-  XX        @c1  @c2  @c3  XX   XX   XX   XX   XX   @c,  @c.  @c/         XX
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        XX   @c7  @c8  @c9  XX   XX   XX   XX   XX   XX   @cbspc XX     XX
+  @ctab     @c0  @c4  @c5  @c6  XX   XX   XX   _    @c*  @c+  @c:    @cret
+  XX        @c1  @c2  @c3  XX   XX   XX   XX   XX   @c,  @c.  @c/           XX
   XX        XX   XX   lmet           _         @ncesc lalt             XX   XX   XX
 )
 
 (deflayer layer-n-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @cBSPC
-  @cTAB     XX   @c7  @c8  @c9  XX   XX   XX   XX   XX   XX   XX   @cBSPC @cDEL
-  @c_       @c0  @c4  @c5  @c6  XX   XX   XX   _    @c*  @c+  @c:  @cRET
-  XX        @c1  @c2  @c3  XX   XX   XX   XX   XX   @c,  @c.  @c/         XX
-  XX        XX   XX   S-lmet         _         _    S-lalt           XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        XX   @c7  @c8  @c9  XX   XX   XX   XX   XX   XX   @cBSPC XX     XX
+  @cTAB     @c0  @c4  @c5  @c6  XX   XX   XX   _    @c*  @c+  @c:    @cRET
+  XX        @c1  @c2  @c3  XX   XX   XX   XX   XX   @c,  @c.  @c/           XX
+  XX        XX   XX   S-lmet         _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-e
-  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   @tbspc @tdel
-  @t-       @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   @tret
-  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX          XX
+  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   @tbspc XX     XX
+  @ttab     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX     @tret
+  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX            XX
   XX        XX   XX   lmet           @etspc    @etesc lalt             XX   XX   XX
 )
 
 (deflayer layer-e-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @tBSPC
-  @tTAB     XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   XX   @tBSPC @tDEL
-  @t_       @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX   @tRET
-  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX          XX
-  XX        XX   XX   S-lmet         @etSPC    _    S-lalt           XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   @tBSPC XX     XX
+  @tTAB     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX     @tRET
+  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   XX   S-lmet         @etSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-e-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @cbspc
-  @ctab     XX   @c&  @c*  @c(  XX   XX   XX   XX   XX   XX   XX   @cbspc @cdel
-  @c-       @cpa @c$  @c%  @c^  XX   XX   XX   XX   _    XX   XX   @cret
-  XX        @c!  @c@  @c#  XX   XX   XX   XX   XX   XX   XX   XX          XX
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        XX   @c&  @c*  @c(  XX   XX   XX   XX   XX   XX   @cbspc XX     XX
+  @ctab     @cpa @c$  @c%  @c^  XX   XX   XX   XX   _    XX   XX     @cret
+  XX        @c!  @c@  @c#  XX   XX   XX   XX   XX   XX   XX   XX            XX
   XX        XX   XX   lmet           _         @ecesc lalt             XX   XX   XX
 )
 
 (deflayer layer-e-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     @cBSPC
-  @cTAB     XX   @c&  @c*  @c(  XX   XX   XX   XX   XX   XX   XX   @cBSPC @cDEL
-  @c_       @cpa @c$  @c%  @c^  XX   XX   XX   XX   _    XX   XX   @cRET
-  XX        @c!  @c@  @c#  XX   XX   XX   XX   XX   XX   XX   XX          XX
-  XX        XX   XX   S-lmet         _         _    S-lalt           XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        XX   @c&  @c*  @c(  XX   XX   XX   XX   XX   XX   @cBSPC XX     XX
+  @cTAB     @cpa @c$  @c%  @c^  XX   XX   XX   XX   _    XX   XX     @cRET
+  XX        @c!  @c@  @c#  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   XX   S-lmet         _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-i
-  @tesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @tbspc
-  @ttab     @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   XX   @tbspc @tdel
-  @t-       @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX   @tret
-  XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX          XX
+  @tesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   @tbspc XX     XX
+  @ttab     @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX     @tret
+  XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX            XX
   XX        XX    XX   lmet            @itspc    @itesc lalt             XX   XX   XX
 )
 
 (deflayer layer-i-shift
-  @tESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @tBSPC
-  @tTAB     @tF11 @tF7 @tF8 @tF9 @tF12 XX   XX   XX   XX   XX   XX   @tBSPC @tDEL
-  @t_       @tF10 @tF4 @tF5 @tF6 XX    XX   XX   XX   XX   _    XX   @tRET
-  XX        @tF1  @tF2 @tF3 XX   XX    XX   XX   XX   XX   XX   XX          XX
-  XX        XX    XX   S-lmet          @itSPC    _    S-lalt           XX   XX   XX
+  @tESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        @tF11 @tF7 @tF8 @tF9 @tF12 XX   XX   XX   XX   XX   @tBSPC XX     XX
+  @tTAB     @tF10 @tF4 @tF5 @tF6 XX    XX   XX   XX   XX   _    XX     @tRET
+  XX        @tF1  @tF2 @tF3 XX   XX    XX   XX   XX   XX   XX   XX            XX
+  XX        XX    XX   S-lmet          @itSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-i-control
-  @cesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @cbspc
-  @ctab     @cf11 @cf7 @cf8 @cf9 @cf12 XX   XX   XX   XX   XX   XX   @cbspc @cdel
-  @c-       @cf10 @cf4 @cf5 @cf6 XX    XX   XX   XX   XX   _    XX   @cret
-  XX        @cf1  @cf2 @cf3 XX   XX    XX   XX   XX   XX   XX   XX          XX
+  @cesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        @cf11 @cf7 @cf8 @cf9 @cf12 XX   XX   XX   XX   XX   @cbspc XX     XX
+  @ctab     @cf10 @cf4 @cf5 @cf6 XX    XX   XX   XX   XX   _    XX     @cret
+  XX        @cf1  @cf2 @cf3 XX   XX    XX   XX   XX   XX   XX   XX            XX
   XX        XX    XX   lmet            _         @icesc lalt             XX   XX   XX
 )
 
 (deflayer layer-i-control-shift
-  @cESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX     @cBSPC
-  @cTAB     @cF11 @cF7 @cF8 @cF9 @cF12 XX   XX   XX   XX   XX   XX   @cBSPC @cDEL
-  @c_       @cF10 @cF4 @cF5 @cF6 XX    XX   XX   XX   XX   _    XX   @cRET
-  XX        @cF1  @cF2 @cF3 XX   XX    XX   XX   XX   XX   XX   XX          XX
-  XX        XX    XX   S-lmet          _         _    S-lalt           XX   XX   XX
+  @cESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        @cF11 @cF7 @cF8 @cF9 @cF12 XX   XX   XX   XX   XX   @cBSPC XX     XX
+  @cTAB     @cF10 @cF4 @cF5 @cF6 XX    XX   XX   XX   XX   _    XX     @cRET
+  XX        @cF1  @cF2 @cF3 XX   XX    XX   XX   XX   XX   XX   XX            XX
+  XX        XX    XX   S-lmet          _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer game
   esc       brdn brup mctl spot bldn blup prev pp   next mute vold volu
   grv       1    2    3    4    5    6    7    8    9    0    -    =      bspc
-  tab       q    w    f    p    b    [    j    l    u    y    '    bspc   del
-  -         a    r    s    t    g    ]    m    n    e    i    o    ret
-  @mtz      x    c    d    v    ;    \    k    h    ,    .    /           up
-  @fn       lctl lalt lmet           spc       @gmesc @gmm             left down rght
+  tab       q    w    f    p    b    [    j    l    u    y    bspc XX     XX
+  tab       a    r    s    t    g    ]    m    n    e    i    o    ret
+  @mtz      x    c    d    v    ;    \    k    h    -    ,    '           up
+  @fn       lctl lalt lmet           spc       @gmesc @gmm           left down rght
 )
 
 (deflayer game-shift
-  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
-  S-tab     Q    W    F    P    B    {    J    L    U    Y    "    S-bspc S-del
-  \_        a    R    S    T    G    }    M    N    E    I    O    S-ret
-  @mtZ      X    C    D    V    :    |    K    H    <    >    ?           S-up
-  @FN       S-lctl S-lalt S-lmet     S-spc     _    XX             S-left S-down S-rght
+  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
+  S-tab     Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
+  S-tab     a    R    S    T    G    }    M    N    E    I    O      S-ret
+  @mtZ      X    C    D    V    :    |    K    H    \_   .    "             S-up
+  @FN       S-lctl S-lalt S-lmet     S-spc     _    XX               S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 (deflayer game-meh
-  @mesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-  @m=    @mbspc
-  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @m'  @mbspc @mdel
-  @m-       @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo  @mret
-  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m/         @mup
-  @mfn      XX   @adj @gmx           @gmh      XX   _              @mleft @mdown @mrght
+  @mesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @mgrv     @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  @m0  @m-    @m=    @mbspc
+  @mtab     @mq  @mw  @mf  @mp  @mb  @m[  @mj  @ml  @mu  @my  @mbspc XX     XX
+  @mtab     @ma  @mr  @ms  @mt  @mg  @m]  @mm  @mn  @me  @mi  @mo    @mret
+  @mz       @mx  @mc  @md  @mv  @m;  @m\  @mk  @mh  @m[  @m]  @m'           @mup
+  @mfn      XX   @adj @gmx           @gmh      XX   _                @mleft @mdown @mrght
 )
 
 (deflayer game-extend

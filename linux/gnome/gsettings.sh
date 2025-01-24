@@ -64,7 +64,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Shift><Control><Alt><Super>m'
 
 # open the application launcher
-gsettings set org.gnome.settings-daemon.plugins.media-keys search '["<Shift><Control><Alt>minus"]'
+gsettings set org.gnome.settings-daemon.plugins.media-keys search '["<Shift><Control><Alt>Tab"]'
 
 # resize window
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left '["<Shift><Control><Alt><Super>n"]'
@@ -75,7 +75,7 @@ gsettings set org.gnome.desktop.wm.keybindings toggle-maximized '["<Shift><Contr
 gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Control><Alt>q"]'
 
 # lock screen
-gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '["<Shift><Control><Alt>question"]'
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '["<Shift><Control><Alt>apostrophe"]'
 
 # switch window
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Shift><Control><Alt>n"]'
