@@ -127,6 +127,8 @@ lspconfig.gopls.setup {
   },
 }
 
+-- NOTE: imports appear to save after saving changes, but if at some point they don't, 
+-- take a look here: https://github.com/neovim/neovim/issues/24168#issuecomment-2601156286
 -- format code and organize imports when writing the buffer
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup('lspconfig_golang', { clear = true }),
