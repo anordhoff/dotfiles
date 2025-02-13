@@ -47,6 +47,10 @@
 	url = https://github.com/dstein64/vim-startuptime.git
 
 # neovim
+[submodule "nvim/package/start/harpoon"]
+	path = nvim/package/start/harpoon
+	url = https://github.com/ThePrimeagen/harpoon.git
+	branch = harpoon2
 [submodule "nvim/package/start/leap"]
 	path = nvim/package/start/leap
 	url = https://github.com/ggandor/leap.nvim.git
