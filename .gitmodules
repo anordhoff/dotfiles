@@ -7,6 +7,9 @@
 	url = https://github.com/tmux-plugins/tmux-resurrect.git
 
 # vim
+[submodule "nvim/package/start/apathy"]
+	path = nvim/package/start/apathy
+	url = https://github.com/tpope/vim-apathy.git
 [submodule "nvim/package/start/copilot"]
 	path = nvim/package/start/copilot
 	url = https://github.com/github/copilot.vim.git
