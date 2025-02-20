@@ -28,6 +28,9 @@
 [submodule "nvim/package/start/repeat"]
 	path = nvim/package/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "nvim/package/start/rhubarb"]
+	path = nvim/package/start/rhubarb
+	url = https://github.com/tpope/vim-rhubarb.git
 [submodule "nvim/package/start/sleuth"]
 	path = nvim/package/start/sleuth
 	url = https://github.com/tpope/vim-sleuth.git
