@@ -53,9 +53,6 @@
 	url = https://github.com/dstein64/vim-startuptime.git
 
 # neovim
-[submodule "nvim/package/start/grapple"]
-	path = nvim/package/start/grapple
-	url = https://github.com/cbochs/grapple.nvim.git
 [submodule "nvim/package/start/harpoon"]
 	path = nvim/package/start/harpoon
 	url = https://github.com/ThePrimeagen/harpoon.git
