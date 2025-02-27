@@ -40,6 +40,9 @@
 [submodule "nvim/package/start/targets"]
 	path = nvim/package/start/targets
 	url = https://github.com/wellle/targets.vim.git
+[submodule "nvim/package/start/test"]
+	path = nvim/package/start/test
+	url = https://github.com/vim-test/vim-test.git
 [submodule "nvim/package/start/unimpaired"]
 	path = nvim/package/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
