@@ -22,6 +22,9 @@
 [submodule "nvim/package/start/fugitive"]
 	path = nvim/package/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "nvim/package/start/git"]
+	path = nvim/package/start/git
+	url = https://github.com/tpope/vim-git.git
 [submodule "nvim/package/start/projectionist"]
 	path = nvim/package/start/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
