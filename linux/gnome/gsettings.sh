@@ -99,7 +99,6 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 '["<Shift><
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-7 '["<Shift><Control><Alt>w"]'
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-8 '["<Shift><Control><Alt>f"]'
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-9 '["<Shift><Control><Alt>p"]'
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 '["<Shift><Control><Alt>a"]'
 
 # move window to workspace
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 '["<Shift><Control><Alt><Super>x"]'
@@ -111,7 +110,6 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 '["<Shift><Co
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 '["<Shift><Control><Alt><Super>w"]'
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 '["<Shift><Control><Alt><Super>f"]'
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 '["<Shift><Control><Alt><Super>p"]'
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 '["<Shift><Control><Alt><Super>a"]'
 
 # switch window to monitor
 gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left '["<Shift><Control><Alt><Super>u"]'
