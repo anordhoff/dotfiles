@@ -30,7 +30,7 @@
 	url = https://github.com/tpope/vim-git.git
 [submodule "nvim/package/start/husk"]
 	path = nvim/package/start/husk
-	url = https://github.com/vim-utils/vim-husk
+	url = https://github.com/vim-utils/vim-husk.git
 [submodule "nvim/package/start/projectionist"]
 	path = nvim/package/start/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
