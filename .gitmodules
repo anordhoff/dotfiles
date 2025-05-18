@@ -19,12 +19,18 @@
 [submodule "nvim/package/start/dispatch"]
 	path = nvim/package/start/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule "nvim/package/start/eunuch"]
+	path = nvim/package/start/eunuch
+	url = https://github.com/tpope/vim-eunuch.git
 [submodule "nvim/package/start/fugitive"]
 	path = nvim/package/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "nvim/package/start/git"]
 	path = nvim/package/start/git
 	url = https://github.com/tpope/vim-git.git
+[submodule "nvim/package/start/husk"]
+	path = nvim/package/start/husk
+	url = https://github.com/vim-utils/vim-husk
 [submodule "nvim/package/start/projectionist"]
 	path = nvim/package/start/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
