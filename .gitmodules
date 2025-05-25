@@ -97,6 +97,7 @@
 [submodule "nvim/package/start/treesitter-textobjects"]
 	path = nvim/package/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+	branch = main
 
 # neovim (opt)
 [submodule "nvim/package/opt/copilot-chat"]
