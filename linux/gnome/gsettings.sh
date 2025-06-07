@@ -18,9 +18,9 @@ gsettings set org.gnome.desktop.interface enable-animations false
 # disable hot corners
 gsettings set org.gnome.desktop.interface enable-hot-corners false
 
-# always have 10 workspaces
+# always have 9 workspaces
 gsettings set org.gnome.mutter dynamic-workspaces false
-gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 9
 
 # disable system sounds
 gsettings set org.gnome.desktop.sound event-sounds false
@@ -78,8 +78,8 @@ gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Control><Alt>q"]
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '["<Shift><Control><Alt>apostrophe"]'
 
 # switch window
-gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Shift><Control><Alt>n"]'
-gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Shift><Control><Alt>o"]'
+gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Shift><Control><Alt>a"]'
+# gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Shift><Control><Alt><Super>a"]'
 
 # switch workspace
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left '["<Shift><Control><Alt>bracketleft"]'
@@ -111,6 +111,6 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 '["<Shift><Co
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 '["<Shift><Control><Alt><Super>f"]'
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 '["<Shift><Control><Alt><Super>p"]'
 
-# switch window to monitor
+# move window to monitor
 gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left '["<Shift><Control><Alt><Super>u"]'
 gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right '["<Shift><Control><Alt><Super>y"]'
