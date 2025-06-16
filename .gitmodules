@@ -90,9 +90,9 @@
 [submodule "nvim/package/start/plenary"]
 	path = nvim/package/start/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
-[submodule "nvim/package/start/telepath"]
-	path = nvim/package/start/telepath
-	url = https://github.com/rasulomaroff/telepath.nvim.git
+[submodule "nvim/package/start/spooky"]
+	path = nvim/package/start/spooky
+	url = https://github.com/ggandor/spooky.nvim.git
 [submodule "nvim/package/start/telescope"]
 	path = nvim/package/start/telescope
 	url = https://github.com/nvim-telescope/telescope.nvim.git
