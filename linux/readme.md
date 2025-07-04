@@ -2,7 +2,7 @@
 
 ## gnome
 
-At some point, look into [pop-os/shell](https://github.com/pop-os/shell) as a way to implement a tiling window manager in gnome.
+At some point, look into [pop-os/shell](https://github.com/pop-os/shell) as a way to implement a tiling window manager in gnome. pop-os/shell [end-of-life is April 2027](https://github.com/pop-os/shell/discussions/1728)
 
 
 ### menu bar
