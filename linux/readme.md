@@ -2,6 +2,11 @@
 
 ## gnome
 
+### menu bar
+
+Install the `gnome-shell-extension-user-theme` package, enable the user-theme extension, and select the `mytheme` theme.
+
+
 ### gestures
 
 Change `GESTURE_FINGER_COUNT` from 3 to 5 in `/usr/lib64/gnome-shell/libshell-16.so` per [this issue](https://www.reddit.com/r/gnome/comments/qrhu0e/guide_to_customize_gnome_40_touchpad_gestures_on).
@@ -9,6 +14,11 @@ Change `GESTURE_FINGER_COUNT` from 3 to 5 in `/usr/lib64/gnome-shell/libshell-16
 ### keybindings
 
 Running `~/dotfiles/linux/gnome/gsettings.sh` will set most keybindings. To switch focus between windows and monitors, install the [focus-changer extension](https://github.com/martinhjartmyr/gnome-shell-extension-focus-changer).
+
+```
+git clone https://github.com/martinhjartmyr/gnome-shell-extension-focus-changer.git $HOME/.local/share/gnome-shell/extensions/focus-changer@heartmire
+gnome-extensions enable focus-changer@heartmire
+```
 
 
 ## suspend

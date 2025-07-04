@@ -1,0 +1,38 @@
+/* 
+  Make the menu bar (panel bar) background black, even when using light mode
+  ln -s ~/dotfiles/linux/gnome/gnome-shell.css ~/.local/share/themes/mytheme/gnome-shell
+*/
+
+#panel {
+  background-color: #000000;
+}
+
+#panel .panel-button {
+  color: #f8f8f8;
+}
+
+#panel .panel-button#panelActivities .workspace-dot {
+  background-color: #fafafa;
+}
+
+#panel .panel-button:active,
+#panel .panel-button:overview,
+#panel .panel-button:focus,
+#panel .panel-button:checked { 
+  background-color: #777777;
+}
+
+#panel .panel-button.clock-display:active .clock,
+#panel .panel-button.clock-display:overview .clock,
+#panel .panel-button.clock-display:focus .clock,
+#panel .panel-button.clock-display:checked .clock { 
+  background-color: #777777;
+}
+
+#panel .panel-button:hover {
+  background-color: #444444;
+}
+
+#panel .panel-button.clock-display:hover .clock {
+  background-color: #444444;
+}
