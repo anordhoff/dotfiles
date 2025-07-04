@@ -6,14 +6,19 @@
 
 Install the `gnome-shell-extension-user-theme` package, enable the user-theme extension, and select the `mytheme` theme.
 
+Useful references:
+- [Reddit thread that helped me get started](https://www.reddit.com/r/gnome/comments/1201ghg/top_bar_customization/)
+- [Gist that lists all available options](https://gist.github.com/lidgnulinux/afa745d81004a051aee4ca93f12ecb6c)
+- [Another custom gnome-shell.css](https://github.com/cmanallen/gnome-shell/blob/master/themes/refined-shell/gnome-shell.css)
+
 
 ### gestures
 
-Change `GESTURE_FINGER_COUNT` from 3 to 5 in `/usr/lib64/gnome-shell/libshell-16.so` per [this issue](https://www.reddit.com/r/gnome/comments/qrhu0e/guide_to_customize_gnome_40_touchpad_gestures_on).
+Change `GESTURE_FINGER_COUNT` from 3 to 5 in `/usr/lib64/gnome-shell/libshell-16.so` per [this issue](https://www.reddit.com/r/gnome/comments/qrhu0e/guide_to_customize_gnome_40_touchpad_gestures_on)
 
 ### keybindings
 
-Running `~/dotfiles/linux/gnome/gsettings.sh` will set most keybindings. To switch focus between windows and monitors, install the [focus-changer extension](https://github.com/martinhjartmyr/gnome-shell-extension-focus-changer).
+Running `~/dotfiles/linux/gnome/gsettings.sh` will set most keybindings. To switch focus between windows and monitors, install the [focus-changer extension](https://github.com/martinhjartmyr/gnome-shell-extension-focus-changer)
 
 ```
 git clone https://github.com/martinhjartmyr/gnome-shell-extension-focus-changer.git $HOME/.local/share/gnome-shell/extensions/focus-changer@heartmire
