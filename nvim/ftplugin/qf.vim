@@ -3,15 +3,6 @@ if exists("b:did_custom_ftplugin")
 endif
 let b:did_custom_ftplugin = 1
 
-nnoremap <buffer> [[ <plug>(qf_older)
-nnoremap <buffer> ]] <plug>(qf_newer)
-
-nnoremap <buffer> gf :Keep<space>
-nnoremap <buffer> g! :Reject<space>
-nnoremap <buffer> gr <cmd>Restore<cr>
-nnoremap <buffer> gdl :Doline<space>
-nnoremap <buffer> gdf :Dofile<space>
-
 " https://github.com/romainl/vim-qf/blob/master/after/ftplugin/qf.vim
 " custom mappings available only in location/quickfix windows
 if exists("g:qf_custom_mappings")
