@@ -26,7 +26,7 @@ hi Function                      cterm=none        ctermfg=7        ctermbg=none
 
 hi Statement                     cterm=none        ctermfg=7        ctermbg=none
 hi Conditional                   cterm=none        ctermfg=6        ctermbg=none
-hi Repeat                        cterm=none        ctermfg=7        ctermbg=none
+hi Repeat                        cterm=none        ctermfg=6        ctermbg=none
 hi Label                         cterm=none        ctermfg=6        ctermbg=none
 hi Operator                      cterm=none        ctermfg=7        ctermbg=none
 hi Keyword                       cterm=none        ctermfg=6        ctermbg=none
@@ -55,7 +55,6 @@ hi! link Debug                   Special
 " --------------------------------------
 hi Cursor                        cterm=reverse     ctermfg=15       ctermbg=none
 hi! link TermCursor              Cursor
-hi TermCursorNC                  cterm=none        ctermfg=none     ctermbg=none
 hi CursorLine                    cterm=none        ctermfg=none     ctermbg=0
 hi! link CursorLIneNr            LineNr
 hi! link CursorColumn            CursorLine
@@ -67,7 +66,8 @@ hi! link ColorColumn             CursorLine
 hi LineNr                        cterm=none        ctermfg=19       ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
-hi Folded                        cterm=none        ctermfg=19       ctermbg=none
+" hi Folded                        cterm=none        ctermfg=19       ctermbg=none
+hi Folded                        cterm=none        ctermfg=6        ctermbg=none
 
 " --------------------------------------
 " window/tab delimiters
@@ -85,6 +85,7 @@ hi StatusLine                    cterm=none        ctermfg=7        ctermbg=none
 hi StatusLineNC                  cterm=none        ctermfg=7        ctermbg=none
 hi StatusLineActive              cterm=none        ctermfg=7        ctermbg=22
 hi StatusLineInactive            cterm=none        ctermfg=7        ctermbg=18
+" hi WildMenu                      cterm=none        ctermfg=none     ctermbg=none
 hi WildMenu                      cterm=none        ctermfg=5        ctermbg=22
 hi Question                      cterm=none        ctermfg=2        ctermbg=none
 hi Title                         cterm=none        ctermfg=3        ctermbg=none
@@ -106,6 +107,8 @@ hi Pmenu                         cterm=none        ctermfg=none     ctermbg=18
 hi PmenuSel                      cterm=none        ctermfg=none     ctermbg=22
 hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=19
 hi PmenuThumb                    cterm=none        ctermfg=none     ctermbg=15
+hi PmenuMatch                    cterm=none        ctermfg=5        ctermbg=18
+hi PmenuMatchSel                 cterm=none        ctermfg=5        ctermbg=22
 
 " --------------------------------------
 " quickfix
@@ -169,6 +172,11 @@ hi FloatBorder                   cterm=none        ctermfg=15       ctermbg=none
 " ----------------------------------------------------------
 
 " --------------------------------------
+" git
+" --------------------------------------
+hi gitcommitOverflow             cterm=none        ctermfg=1        ctermbg=none
+
+" --------------------------------------
 " go
 " --------------------------------------
 hi goFormatSpecifier             cterm=none        ctermfg=2        ctermbg=none
@@ -180,6 +188,7 @@ hi goEscapeError                 cterm=none        ctermfg=2        ctermbg=none
 " --------------------------------------
 hi jsonKeyword                   cterm=none        ctermfg=6        ctermbg=none
 hi jsonString                    cterm=none        ctermfg=7        ctermbg=none
+hi! jsonNoQuotesError            Normal
 
 " --------------------------------------
 " make
@@ -194,14 +203,16 @@ hi markdownCode                  cterm=none        ctermfg=2        ctermbg=none
 hi markdownCodeBlock             cterm=none        ctermfg=2        ctermbg=none
 hi markdownCodeDelimiter         cterm=none        ctermfg=2        ctermbg=none
 hi markdownBlockquote            cterm=italic      ctermfg=15       ctermbg=none
+hi markdownLinkDelimiter         cterm=italic      ctermfg=15       ctermbg=none
 hi markdownLinkText              cterm=underline   ctermfg=4        ctermbg=none
+hi markdownLinkTextDelimiter     cterm=italic      ctermfg=15       ctermbg=none
 hi markdownListMarker            cterm=none        ctermfg=5        ctermbg=none
 hi markdownOrderedListMarker     cterm=none        ctermfg=5        ctermbg=none
 hi markdownH1                    cterm=none        ctermfg=3        ctermbg=none
 hi markdownH2                    cterm=none        ctermfg=4        ctermbg=none
-hi markdownH3                    cterm=none        ctermfg=2        ctermbg=none
-hi markdownH4                    cterm=none        ctermfg=5        ctermbg=none
-hi markdownH5                    cterm=none        ctermfg=6        ctermbg=none
+hi markdownH3                    cterm=none        ctermfg=5        ctermbg=none
+hi markdownH4                    cterm=none        ctermfg=6        ctermbg=none
+hi markdownH5                    cterm=none        ctermfg=2        ctermbg=none
 hi markdownH6                    cterm=none        ctermfg=15       ctermbg=none
 hi! link markdownH1Delimiter     markdownH1
 hi! link markdownH2Delimiter     markdownH2
@@ -240,6 +251,10 @@ hi yamlBlockMappingKey           cterm=none        ctermfg=6        ctermbg=none
 " copilot
 " --------------------------------------
 hi CopilotSuggestion             cterm=none        ctermfg=19       ctermbg=none
+hi CopilotChatSelection          cterm=none        ctermfg=none     ctermbg=23
+hi CopilotChatHeader             cterm=none        ctermfg=5        ctermbg=none
+hi CopilotChatSeparator          cterm=none        ctermfg=5        ctermbg=none
+hi CopilotChatHelp               cterm=none        ctermfg=15       ctermbg=none
 
 " --------------------------------------
 " dirvish
@@ -286,7 +301,7 @@ hi DiagnosticUnderlineWarn       cterm=undercurl ctermfg=none ctermbg=none guisp
 hi DiagnosticUnderlineInfo       cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
 hi DiagnosticUnderlineHint       cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
 hi DiagnosticUnderlineOk         cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
-hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
+hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
 hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
 
 " --------------------------------------

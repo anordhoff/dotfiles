@@ -26,7 +26,6 @@ function term#Toggle(vsplit)
         exec 'botright split +term'
       endif
       startinsert!
-      let t:termbuf = bufnr('%')
     endtry
     let t:termwin = win_getid()
   endif
