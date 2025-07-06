@@ -4,7 +4,7 @@ After installation, cd into the markdown-preview plugin directory and run `npm i
 
 ## treesitter
 
-After installation, launch vim and run `:TSInstall all
+After installation, launch vim and run `:TSInstall all`
 
 ## lspconfig
 

@@ -7,17 +7,17 @@
 " TODO(bug): copilot autosuggestions do not wrap correctly
 " TODO(bug): use ctrl-i to insert tab character (not supported by tmux - https://github.com/tmux/tmux/issues/2705)
 
-" TODO: automatically add the next ordered list value (1. 2. 3.) when hitting enter
-" TODO: format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
-" TODO: when toggling notes, use the name of the directory with `.git/`, rather than just the root of the dir
-" TODO: dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
-" TODO: keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
-" TODO: <m-s>, <m-v>, <m-w> should  toggle the term created by :Start (dispatch) if it exists
-" TODO: :Start, :Spawn should create a horizonal split that uses the full width of the screen
-" TODO: signature help shown with `K` keymap should handle backslashes (escape chars)
-" TODO: should I update dirvish so that it follows tpop file opening conventions (<CR>: edit, o: split, gO: vsplit, O: tab)
-" TODO: conceal can now conceal multiple lines (for example, long links in markdown, code blocks, etc)
-" TODO: look into built in snippets (default keymap is <tab>, which will conflict with completion)
+" TODO(feat): automatically add the next ordered list value (1. 2. 3.) when hitting enter
+" TODO(feat): format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
+" TODO(feat): when toggling notes, use the name of the directory with `.git/`, rather than just the root of the dir
+" TODO(feat): dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
+" TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
+" TODO(feat): <m-s>, <m-v>, <m-w> should  toggle the term created by :Start (dispatch) if it exists
+" TODO(feat): :Start, :Spawn should create a horizonal split that uses the full width of the screen
+" TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
+" TODO(feat): should I update dirvish so that it follows tpop file opening conventions (<CR>: edit, o: split, gO: vsplit, O: tab)
+" TODO(feat): conceal can now conceal multiple lines (for example, long links in markdown, code blocks, etc)
+" TODO(feat): look into built in snippets (default keymap is <tab>, which will conflict with completion)
 
 set notermguicolors   " disable 24-bit colors
 set number            " enable line numbers
@@ -29,7 +29,7 @@ set smartcase         " ...but not if the search contains a capital letter
 set splitright        " split vertical windows to the right of current window
 set splitbelow        " split horizontal windows below current window
 set splitkeep=screen  " keep text on the same line when splitting windows
-set textwidth=120     " wrap lines at 80 characters
+set textwidth=120     " wrap lines at 120 characters
 set formatoptions=qjw " don't auto-wrap text; format comments with gq
 set shortmess+=c      " don't give ins-completion-menu messages
 set scrolloff=2       " keep a minimum of 2 lines above and below the cursor
@@ -76,7 +76,7 @@ set breakindent
 let &showbreak=' .. '
 
 " add jobfiles and jobfiles/after to vim's runtimepath
-set runtimepath-=~/config/nvim
+set runtimepath-=~/.config/nvim
 let &runtimepath='~/.config/nvim,~/jobfiles/nvim,' . &runtimepath . ',~/jobfiles/nvim/after'
 
 " wrap text in the preview window
@@ -91,7 +91,6 @@ augroup completion_config
   autocmd CompleteDone * pclose
 augroup END
 
-" don't auto-wrap text; format comments with gq;
 " prevent filetypes from overwriting formatoptions
 augroup formatoptions_config
   autocmd!
@@ -158,7 +157,7 @@ cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
 " extend vim-husk such that ctrl-y and ctrl-w mimic bash
-cnoremap <expr> <c-y> pumvisible() ? "/<c-y>" : "\<c-r>\""
+cnoremap <expr> <c-y> pumvisible() ? "\<c-y>" : "\<c-r>\""
 cnoremap <c-w> <cmd>let g:iskeyword=&iskeyword<bar>
   \ set iskeyword=
   \ <cr><c-w><cmd>
@@ -199,11 +198,11 @@ inoremap <expr> <s-tab> completion#TabComplete(1)
 augroup completion_config
   autocmd!
   autocmd CompleteDone * :pclose
-  autocmd CompleteDone * setlocal completeopt=menu,noselect,preview
+  autocmd CompleteDone * setlocal completeopt=menuone,noselect,preview
 augroup END
 
 " clear the specified register
-command -nargs=1 Clear call registers#Clear(<q-args>)
+command! -nargs=1 Clear call registers#Clear(<q-args>)
 
 " source init.vim and reload the current file
 command! Source :source ~/.config/nvim/init.vim | :edit
@@ -223,7 +222,7 @@ nnoremap <silent> gzz :<c-u>call comment#DuplicateLines(v:count1)<cr>
 vnoremap <silent> gz :<c-u>call comment#DuplicateVisual("'<", "'>")<cr>
 
 " duplicate lines that a motion moves over
-nnoremap <silent> gz :set opfunc=commentDduplicateOperator<cr>g@
+nnoremap <silent> gz :set opfunc=comment#duplicateOperator<cr>g@
 
 " duplicate a range of lines
 command! -range Duplicate call comment#DuplicateRange(<line1>, <line2>)
@@ -295,7 +294,7 @@ function NetrwStatusline(winid)
   return ' ' .. Background(a:winid) .. ' [%n]  %l/%L lines%=[netrw] %* '
 endfunction
 function CopilotStatusline(winid)
-  return ' ' .. Background(a:winid) .. ' [%n] %{CopilotChatModel()}%=%{Filetype()}%* '
+  return ' ' .. Background(a:winid) .. ' [%n]  %{CopilotChatModel()}%=%{Filetype()}%* '
 endfunction
 function TermStatusline(winid)
   return ' ' .. Background(a:winid) .. ' [%n]  %{TermShell()}%{TermMode()}  %{NopluginFlag()}%R%=[term] %* '
@@ -402,7 +401,7 @@ let g:todofile = '~/notebook/todo.md'
 nnoremap <silent> <m-n> <cmd>call notebook#Project(g:projectsdir)<cr>
 nnoremap <silent> <m-t> <cmd>call notebook#Todo(g:todofile)<cr>
 
-" prevent notes from being added to the buffer list
+" prevent notebook pages from being added to the buffer list
 augroup notebook_config
   autocmd!
   autocmd BufNewFile,BufRead ~/notebook/*.txt,~/notebook/*.md setlocal nobuflisted
@@ -448,6 +447,13 @@ augroup terminal_config
   autocmd TermOpen * let t:termwin = win_getid()
 augroup END
 
+
+" --------------------------------------
+" neovim
+" --------------------------------------
+
+" source lua config
+lua require('config.init')
 
 " --------------------------------------
 " jobfiles

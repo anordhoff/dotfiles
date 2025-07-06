@@ -1,9 +1,9 @@
 function notebook#Project(dir)
-  if !exists('t:notesbuf')
-    let t:notesbuf = 0
+  if !exists('t:projectbuf')
+    let t:projectbuf = 0
   endif
-  if !exists('t:noteswin')
-    let t:noteswin = 0
+  if !exists('t:projectwin')
+    let t:projectwin = 0
   endif
 
   " toggle the project notes window, saving the currently open buffer
@@ -16,9 +16,9 @@ function notebook#Project(dir)
     catch
       let project = split(getcwd(), '/')[-1]
       exec 'botright split ' .. a:dir .. project .. '.md'
-      let t:notesbuf = bufnr('%')
+      let t:projectbuf = bufnr('%')
     endtry
-    let t:noteswin = win_getid()
+    let t:projectwin = win_getid()
   endif
 endfunction
 

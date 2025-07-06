@@ -1,13 +1,13 @@
 let g:projectionist_heuristics = {
   \ '*': {
   \   'Dockerfile': {
-  \     'type': 'dockerfile',
+  \     'type': 'dockerfile'
   \   },
   \   'Makefile': {
-  \     'type': 'makefile',
+  \     'type': 'makefile'
   \   },
   \   'readme.md': {
-  \     'type': 'readme',
+  \     'type': 'readme'
   \   },
   \ },
   \ '*.go': {

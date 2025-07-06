@@ -1,6 +1,5 @@
 -- TODO(bug): lint.nvim is slow (30% of startup time) (should I lazyload?)
 local lint = require('lint')
-local golangci_lint = require('lint.linters.golangcilint')
 local linters = lint.linters
 
 lint.linters_by_ft = {

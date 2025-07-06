@@ -1,5 +1,5 @@
 return {
   cmd = { "vscode-json-language-server", "--stdio" },
-  filetpe = { "json", "jsonc" },
+  filetypes = { "json", "jsonc" },
   root_markers = { ".git" },
 }

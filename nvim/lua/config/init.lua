@@ -28,7 +28,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   end
 
   -- keymaps and commands
-  vim.keymap.set({'n', 'v'}, '<c-m>', function() return ':CopilotChat ' end, { expr = true })
+  vim.keymap.set({'n', 'v'}, '<c-m>', function() load_copilot_chat(); copilot_chat.toggle() end, {})
   vim.keymap.set({'n', 'v'}, '<leader>c', function() load_copilot_chat(); return ':CopilotChat' end, { expr = true })
 
 
@@ -40,7 +40,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   local indent_blankline_conf
   local loaded_indent_blankline
 
-  local function load_indent_blankline(command)
+  local function load_indent_blankline()
     if not loaded_indent_blankline then
       vim.cmd('packadd indent-blankline')
       indent_blankline = require('config.indent-blankline')
@@ -54,24 +54,24 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   vim.keymap.set('n', 'yog', function() load_indent_blankline(); indent_blankline.update { enabled = not indent_blankline_conf.get_config(-1).enabled } end, {})
 
   ----------------------------------------
-  -- lazyload indent-blankline
+  -- lazyload lint
   ----------------------------------------
 
   -- local loaded_lint
-  local function load_lint()
-    if not loaded_lint then
-      vim.cmd('packadd lint')
-      require('config.lint')
-      loaded_lint = true
-    end
-  end
-
-  vim.api.nvim_create_autocmd({ 'BufWinEnter', }, {
-    group = vim.api.nvim_create_augroup('loaded_lint_config', { clear = true }),
-    callback = function()
-      load_lint()
-    end,
-    pattern = '*.go',
-  })
+  -- local function load_lint()
+  --   if not loaded_lint then
+  --     vim.cmd('packadd lint')
+  --     require('config.lint')
+  --     loaded_lint = true
+  --   end
+  -- end
+  --
+  -- vim.api.nvim_create_autocmd({ 'BufWinEnter', }, {
+  --   group = vim.api.nvim_create_augroup('loaded_lint_config', { clear = true }),
+  --   callback = function()
+  --     load_lint()
+  --   end,
+  --   pattern = '*.go',
+  -- })
 
 end
