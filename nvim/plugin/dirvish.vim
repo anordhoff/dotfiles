@@ -1,12 +1,8 @@
-" sort directories first
-let g:dirvish_mode = ':sort ,^.*[\/],'
+" sort directories first; ignore tags file and .git directory
+let g:dirvish_mode = ':sort ,^.*[\/], | :silent keeppatterns g/^tags$\|^.git\/$/d _'
 
 " open the current working directory
 nnoremap <silent> _ <cmd>Dirvish .<cr>
-
-" open the [count]th parent directory in a new window
-nnoremap <silent> <leader>S <plug>(dirvish_split_up)
-nnoremap <silent> <leader>V <plug>(dirvish_vsplit_up)
 
 augroup dirvish_config
   autocmd!
