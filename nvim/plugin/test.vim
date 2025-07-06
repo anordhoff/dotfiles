@@ -5,7 +5,7 @@ let g:test#runner_commands = ['GoTest', 'Delve']
 
 " keymaps
 nnoremap <silent> <leader>tt :TestNearest<cr>
-nnoremap <silent> <leader>T :TestFile<cr>
+nnoremap <silent> <leader>T  :TestFile<cr>
 nnoremap <silent> <leader>tp :TestSuite<cr>
 nnoremap <silent> <leader>tc :TestClass<cr>
 nnoremap <silent> <leader>tl :TestLast<cr>

@@ -30,12 +30,12 @@ vim.api.nvim_create_autocmd('User', {
 -- target the current window
 local leap_current_window = function()
   leap.leap {
-    opt = { safe_labels = {} },
+    opts = { safe_labels = {} },
     target_windows = { vim.api.nvim_get_current_win() },
   }
 end
 
--- target non-current windows in the current tappage
+-- target non-current windows in the current tabpage
 local leap_from_window = function()
   leap.leap {
     opts = { safe_labels = {} },
@@ -60,9 +60,9 @@ local text_objects = {
 for _, tobjs in ipairs(text_objects) do
   for _, tobj in ipairs(tobjs) do
     local current_window_mapping = tobj:sub(1,1) .. current_window_keymap .. tobj:sub(2)
-    spooky.create_text_objects(current_window_mapping, leap_current_window, spooky.selector(tobj))
+    spooky.create_text_object(current_window_mapping, leap_current_window, spooky.selector(tobj))
 
-    local from_window_mappings = tobj:sub(1,1) .. from_window_keymap .. tobj:sub(2)
-    spooky.create_text_object(from_window_mappings, leap_from_window, spooky.selector(tobj))
+    local from_window_mapping = tobj:sub(1,1) .. from_window_keymap .. tobj:sub(2)
+    spooky.create_text_object(from_window_mapping, leap_from_window, spooky.selector(tobj))
   end
 end

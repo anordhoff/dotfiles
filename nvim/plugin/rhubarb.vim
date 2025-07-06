@@ -1,6 +1,6 @@
 " commands follow the vim-fugitive naming convention
 command GCreateWeb call GhPrCreateWeb()
-command -nargs=* GCreate call GhPrCreateu(<q-args>)
+command -nargs=* GCreate call GhPrCreate(<q-args>)
 command -nargs=* GCreateDraft call GhPrCreateDraft(<q-args>)
 
 " launch the Github web client to create a pull request

@@ -98,7 +98,6 @@ vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, opts)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
 vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 
--- TODO: telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 -- TODO(bug): telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
   group = vim.api.nvim_create_augroup('telescope_bug', { clear = true }),

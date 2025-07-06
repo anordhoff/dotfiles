@@ -26,12 +26,12 @@ function comment#DuplicateVisual(start, end)
   silent! call repeat#set("gzz", end - start + 1)
 endfunction
 
-function comment#duplicateOperator(type)
+function comment#DuplicateOperator(type)
   call comment#Duplicate(line("'["), line("']"))
   exec 'normal! 0'
 endfunction
 
-function comment#duplicateRange(start, end)
+function comment#DuplicateRange(start, end)
   call comment#Duplicate(a:start, a:end)
   exec 'normal! 0'
 endfunction

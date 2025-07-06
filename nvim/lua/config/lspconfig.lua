@@ -2,8 +2,6 @@ local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 
 -- border style
--- add a border to floating windows
--- add a border to :LspInfo window
 vim.o.winborder = 'single'
 
 -- customize how diagnostics are displayed
@@ -40,19 +38,17 @@ vim.diagnostic.config({
   },
 })
 
--- print client information
 -- filter out specific diagnostic messages
 local show_yamlls_diagnostic
 local function my_custom_diagnostic_handler(_, result, ctx)
   result.diagnostics = vim.tbl_filter(function(diagnostic)
     return show_yamlls_diagnostic(diagnostic)
-  end, result.diagnostic)
-  vim.lsp.diagnostic.on_publish_diagnostic(_, result, ctx)
+  end, result.diagnostics)
+  vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx)
 end
-vim.lsp.handlers['textDocument/publishDiagnostic'] = my_custom_diagnostic_handler
+vim.lsp.handlers['textDocument/publishDiagnostics'] = my_custom_diagnostic_handler
 
 -- global mappings.
--- see `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { silent = true }
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '<leader>qd', vim.diagnostic.setqflist, opts)
@@ -89,13 +85,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- vim.keymap.set('n', 'grn', vim.lsp.buf.rename, bufopts)
     -- vim.keymap.set('n', 'grr', vim.lsp.buf.references, bufopts)
     -- vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, bufopts)
-    -- vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_actions, bufopts)
+    -- vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, bufopts)
     -- vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, bufopts)
     -- vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, bufopts)
   end,
 })
 
--- use a loop to call 'setup' on multiple servers
 
 ----------------------------------------
 -- gopls
@@ -127,16 +122,13 @@ lspconfig.gopls.setup {
   },
 }
 
--- NOTE: imports appear to save after saving changes, but if at some point they don't, 
--- take a look here: https://github.com/neovim/neovim/issues/24168#issuecomment-2601156286
--- format code and organize imports when writing the buffer
 -- organize impor on save
 -- TODO(bug): save after importing (https://github.com/neovim/neovim/issues/24168)
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup('lspconfig_golang_config', { clear = true }),
   callback = function()
     vim.lsp.buf.format { async = true }
-    vim.lsp.buf.code_action { context = { diagnostic = {}, only = { 'source.organizeImports' } }, apply = true }
+    vim.lsp.buf.code_action { context = { diagnostics = {}, only = { 'source.organizeImports' } }, apply = true }
   end,
   pattern = "*.go",
 })
@@ -207,73 +199,73 @@ local patterns = {
     '/application.{yml,yaml}',
   },
   kubernetes = {
-    '**/{kubernetes,kube,k8s,kustomize,base,kind}/**/*{!kustomization,!application}.{yml,yaml}',
-    '*-deployment.{yml,yaml}',
-    '*-deployments.{yml,yaml}',
-    '*-service.{yml,yaml}',
-    '*-services.{yml,yaml}',
-    'clusterrole.{yml,yaml}',
-    'clusterroles.{yml,yaml}',
-    'cluster-role.{yml,yaml}',
-    'cluster-roles.{yml,yaml}',
-    'clusterrolebinding.{yml,yaml}',
-    'clusterrolebindings.{yml,yaml}',
-    'cluster-rolebinding.{yml,yaml}',
-    'cluster-rolebindings.{yml,yaml}',
-    'cluster-role-binding.{yml,yaml}',
-    'cluster-role-bindings.{yml,yaml}',
-    'configmap.{yml,yaml}',
-    'configmaps.{yml,yaml}',
-    'config-map.{yml,yaml}',
-    'config-maps.{yml,yaml}',
-    'cronjob.{yml,yaml}',
-    'cronjobs.{yml,yaml}',
-    'cron-job.{yml,yaml}',
-    'cron-jobs.{yml,yaml}',
-    'daemonset.{yml,yaml}',
-    'daemonsets.{yml,yaml}',
-    'daemon-set.{yml,yaml}',
-    'daemon-sets.{yml,yaml}',
-    'deployment-*.{yml,yaml}',
-    'deployments-*.{yml,yaml}',
-    'deployment.{yml,yaml}',
-    'deployments.{yml,yaml}',
-    'hpa.{yml,yaml}',
-    'hpas.{yml,yaml}',
-    'ingress.{yml,yaml}',
-    'ingresss.{yml,yaml}',
-    'job.{yml,yaml}',
-    'jobs.{yml,yaml}',
-    'namespace.{yml,yaml}',
-    'namespaces.{yml,yaml}',
-    'pod.{yml,yaml}',
-    'pods.{yml,yaml}',
-    'pvc.{yml,yaml}',
-    'pvcs.{yml,yaml}',
-    'rbac.{yml,yaml}',
-    'rbacs.{yml,yaml}',
-    'replicaset.{yml,yaml}',
-    'replicasets.{yml,yaml}',
-    'replica-set.{yml,yaml}',
-    'replica-sets.{yml,yaml}',
-    'role.{yml,yaml}',
-    'roles.{yml,yaml}',
-    'rolebinding.{yml,yaml}',
-    'rolebindings.{yml,yaml}',
-    'role-binding.{yml,yaml}',
-    'role-bindings.{yml,yaml}',
-    'sa.{yml,yaml}',
-    'sas.{yml,yaml}',
-    'secret.{yml,yaml}',
-    'secrets.{yml,yaml}',
-    'service-*.{yml,yaml}',
-    'services-*.{yml,yaml}',
-    'serviceaccount.{yml,yaml}',
-    'serviceaccounts.{yml,yaml}',
-    'service-account.{yml,yaml}',
-    'service-accounts.{yml,yaml}',
-    'statefulset.{yml,yaml}',
-    'statefulsets.{yml,yaml}',
+    '/**/{kubernetes,kube,k8s,kustomize,base,kind}/**/*{!kustomization,!application}.{yml,yaml}',
+    '/*-deployment.{yml,yaml}',
+    '/*-deployments.{yml,yaml}',
+    '/*-service.{yml,yaml}',
+    '/*-services.{yml,yaml}',
+    '/clusterrole.{yml,yaml}',
+    '/clusterroles.{yml,yaml}',
+    '/cluster-role.{yml,yaml}',
+    '/cluster-roles.{yml,yaml}',
+    '/clusterrolebinding.{yml,yaml}',
+    '/clusterrolebindings.{yml,yaml}',
+    '/cluster-rolebinding.{yml,yaml}',
+    '/cluster-rolebindings.{yml,yaml}',
+    '/cluster-role-binding.{yml,yaml}',
+    '/cluster-role-bindings.{yml,yaml}',
+    '/configmap.{yml,yaml}',
+    '/configmaps.{yml,yaml}',
+    '/config-map.{yml,yaml}',
+    '/config-maps.{yml,yaml}',
+    '/cronjob.{yml,yaml}',
+    '/cronjobs.{yml,yaml}',
+    '/cron-job.{yml,yaml}',
+    '/cron-jobs.{yml,yaml}',
+    '/daemonset.{yml,yaml}',
+    '/daemonsets.{yml,yaml}',
+    '/daemon-set.{yml,yaml}',
+    '/daemon-sets.{yml,yaml}',
+    '/deployment-*.{yml,yaml}',
+    '/deployments-*.{yml,yaml}',
+    '/deployment.{yml,yaml}',
+    '/deployments.{yml,yaml}',
+    '/hpa.{yml,yaml}',
+    '/hpas.{yml,yaml}',
+    '/ingress.{yml,yaml}',
+    '/ingresss.{yml,yaml}',
+    '/job.{yml,yaml}',
+    '/jobs.{yml,yaml}',
+    '/namespace.{yml,yaml}',
+    '/namespaces.{yml,yaml}',
+    '/pod.{yml,yaml}',
+    '/pods.{yml,yaml}',
+    '/pvc.{yml,yaml}',
+    '/pvcs.{yml,yaml}',
+    '/rbac.{yml,yaml}',
+    '/rbacs.{yml,yaml}',
+    '/replicaset.{yml,yaml}',
+    '/replicasets.{yml,yaml}',
+    '/replica-set.{yml,yaml}',
+    '/replica-sets.{yml,yaml}',
+    '/role.{yml,yaml}',
+    '/roles.{yml,yaml}',
+    '/rolebinding.{yml,yaml}',
+    '/rolebindings.{yml,yaml}',
+    '/role-binding.{yml,yaml}',
+    '/role-bindings.{yml,yaml}',
+    '/sa.{yml,yaml}',
+    '/sas.{yml,yaml}',
+    '/secret.{yml,yaml}',
+    '/secrets.{yml,yaml}',
+    '/service-*.{yml,yaml}',
+    '/services-*.{yml,yaml}',
+    '/serviceaccount.{yml,yaml}',
+    '/serviceaccounts.{yml,yaml}',
+    '/service-account.{yml,yaml}',
+    '/service-accounts.{yml,yaml}',
+    '/statefulset.{yml,yaml}',
+    '/statefulsets.{yml,yaml}',
   },
 }
 
@@ -377,7 +369,7 @@ lspconfig.yamlls.setup {
       schemas = {
         [schemas.cloudformation] = patterns['cloudformation'],
         [schemas.kustomize] = patterns['kustomize'],
-        [schemas.argocd_applications] = patterns['argocd_application'],
+        [schemas.argocd_application] = patterns['argocd_application'],
         [schemas.kubernetes] = patterns['kubernetes'],
         [jobfiles.yamlls.job1.schema] = jobfiles.yamlls.job1.patterns,
         [jobfiles.yamlls.job2.schema] = jobfiles.yamlls.job2.patterns,

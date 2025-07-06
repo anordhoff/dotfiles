@@ -188,7 +188,7 @@ hi goEscapeError                 cterm=none        ctermfg=2        ctermbg=none
 " --------------------------------------
 hi jsonKeyword                   cterm=none        ctermfg=6        ctermbg=none
 hi jsonString                    cterm=none        ctermfg=7        ctermbg=none
-hi! jsonNoQuotesError            Normal
+hi! link jsonNoQuotesError       Normal
 
 " --------------------------------------
 " make
@@ -203,9 +203,10 @@ hi markdownCode                  cterm=none        ctermfg=2        ctermbg=none
 hi markdownCodeBlock             cterm=none        ctermfg=2        ctermbg=none
 hi markdownCodeDelimiter         cterm=none        ctermfg=2        ctermbg=none
 hi markdownBlockquote            cterm=italic      ctermfg=15       ctermbg=none
-hi markdownLinkDelimiter         cterm=italic      ctermfg=15       ctermbg=none
+hi markdownURL                   cterm=none        ctermfg=15       ctermbg=none
+hi markdownLinkDelimiter         cterm=none        ctermfg=15       ctermbg=none
 hi markdownLinkText              cterm=underline   ctermfg=4        ctermbg=none
-hi markdownLinkTextDelimiter     cterm=italic      ctermfg=15       ctermbg=none
+hi markdownLinkTextDelimiter     cterm=none        ctermfg=15       ctermbg=none
 hi markdownListMarker            cterm=none        ctermfg=5        ctermbg=none
 hi markdownOrderedListMarker     cterm=none        ctermfg=5        ctermbg=none
 hi markdownH1                    cterm=none        ctermfg=3        ctermbg=none
@@ -276,9 +277,9 @@ hi IblIndent                     cterm=none        ctermfg=19       ctermbg=none
 " --------------------------------------
 " leap
 " --------------------------------------
-hi LeapMatch                     cterm=none        ctermfg=4        ctermbg=none
-hi LeapLabel                     cterm=none        ctermfg=7        ctermbg=none
-hi LeapBackdrop                  cterm=none        ctermfg=19       ctermbg=none
+hi LeapMatch                     cterm=reverse     ctermfg=4        ctermbg=none
+hi LeapLabel                     cterm=reverse     ctermfg=5        ctermbg=none
+hi LeapLabelDimmed               cterm=none        ctermfg=7        ctermbg=7
 
 " --------------------------------------
 " lsp
