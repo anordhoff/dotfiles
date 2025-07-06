@@ -12,6 +12,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
 
   vim.lsp.enable({ 'bashls', 'jsonls', 'marksman', 'pyright', 'vimls' })
 
+
   ----------------------------------------
   -- lazyload copilot-chat
   ----------------------------------------
@@ -53,11 +54,13 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   vim.keymap.set('n', ']og', function() load_indent_blankline(); indent_blankline.update { enabled = false } end, {})
   vim.keymap.set('n', 'yog', function() load_indent_blankline(); indent_blankline.update { enabled = not indent_blankline_conf.get_config(-1).enabled } end, {})
 
+
   ----------------------------------------
   -- lazyload lint
   ----------------------------------------
 
   -- local loaded_lint
+  --
   -- local function load_lint()
   --   if not loaded_lint then
   --     vim.cmd('packadd lint')
