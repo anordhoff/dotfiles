@@ -49,6 +49,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
       loaded_indent_blankline = true
     end
   end
+
   -- keymaps (follows vim-unimpaired pattern - yog[uidelines])
   vim.keymap.set('n', '[og', function() load_indent_blankline(); indent_blankline.update { enabled = true } end, {})
   vim.keymap.set('n', ']og', function() load_indent_blankline(); indent_blankline.update { enabled = false } end, {})
