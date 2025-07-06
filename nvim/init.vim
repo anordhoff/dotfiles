@@ -19,6 +19,7 @@
 " TODO(feat): conceal can now conceal multiple lines (for example, long links in markdown, code blocks, etc)
 " TODO(feat): look into built in snippets (default keymap is <tab>, which will conflict with completion)
 
+
 set notermguicolors   " disable 24-bit colors
 set number            " enable line numbers
 " set relativenumber    " use relative line numbers for all but the current line
@@ -454,6 +455,7 @@ augroup END
 
 " source lua config
 lua require('config.init')
+
 
 " --------------------------------------
 " jobfiles
