@@ -122,7 +122,7 @@ lspconfig.gopls.setup {
   },
 }
 
--- organize impor on save
+-- organize imports on save
 -- TODO(bug): save after importing (https://github.com/neovim/neovim/issues/24168)
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup('lspconfig_golang_config', { clear = true }),
@@ -182,7 +182,7 @@ local jobfiles = require('jobfiles.lspconfig')
 local schemas = {
   cloudformation = 'https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/main/server/schema/base.schema.json',
   kustomize = 'http://json.schemastore.org/kustomization',
-  argocd_applications = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
+  argocd_application = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
   kubernetes = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json',
 }
 
@@ -199,11 +199,13 @@ local patterns = {
     '/application.{yml,yaml}',
   },
   kubernetes = {
-    '/**/{kubernetes,kube,k8s,kustomize,base,kind}/**/*{!kustomization,!application}.{yml,yaml}',
+    '**/{kubernetes,kube,k8s,kustomize,base,kind}/**/*{!kustomization,!application}.{yml,yaml}',
     '/*-deployment.{yml,yaml}',
     '/*-deployments.{yml,yaml}',
     '/*-service.{yml,yaml}',
     '/*-services.{yml,yaml}',
+    '/*-operator.{yml,yaml}',
+    '/*-operators.{yml,yaml}',
     '/clusterrole.{yml,yaml}',
     '/clusterroles.{yml,yaml}',
     '/cluster-role.{yml,yaml}',
@@ -233,11 +235,13 @@ local patterns = {
     '/hpa.{yml,yaml}',
     '/hpas.{yml,yaml}',
     '/ingress.{yml,yaml}',
-    '/ingresss.{yml,yaml}',
+    '/ingresses.{yml,yaml}',
     '/job.{yml,yaml}',
     '/jobs.{yml,yaml}',
     '/namespace.{yml,yaml}',
     '/namespaces.{yml,yaml}',
+    '/operator.{yml,yaml}',
+    '/operators.{yml,yaml}',
     '/pod.{yml,yaml}',
     '/pods.{yml,yaml}',
     '/pvc.{yml,yaml}',
@@ -258,6 +262,8 @@ local patterns = {
     '/sas.{yml,yaml}',
     '/secret.{yml,yaml}',
     '/secrets.{yml,yaml}',
+    '/service.{yml,yaml}',
+    '/services.{yml,yaml}',
     '/service-*.{yml,yaml}',
     '/services-*.{yml,yaml}',
     '/serviceaccount.{yml,yaml}',
