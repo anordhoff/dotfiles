@@ -5,8 +5,8 @@
 "                    O -> ctrl-t
 "                 <CR> -> a (maybe)
 "   - navigation:    o -> ctrl-s
-"                    o -> ctrl-v
-"                    o -> ctrl-t
+"                   gO -> ctrl-v
+"                    O -> ctrl-t
 "                 <CR> -> a (maybe)
 
 nnoremap g<space> :Git<space>

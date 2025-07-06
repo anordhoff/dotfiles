@@ -16,6 +16,7 @@ local treesitter_text_objects = {
   'if', 'af', "ic", "ac", "iC", "aC", "iL", "aL",
 }
 
+
 -- restore cursor position (except after change operation)
 vim.api.nvim_create_autocmd('User', {
   group = vim.api.nvim_create_augroup('spooky_config', { clear = true }),

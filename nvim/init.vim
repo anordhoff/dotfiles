@@ -9,13 +9,13 @@
 
 " TODO(feat): automatically add the next ordered list value (1. 2. 3.) when hitting enter
 " TODO(feat): format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
-" TODO(feat): when toggling notes, use the name of the directory with `.git/`, rather than just the root of the dir
+" TODO(feat): when toggling notebook, use the name of the directory with `.git/`, rather than just the root of the dir
 " TODO(feat): dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
 " TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
-" TODO(feat): <m-s>, <m-v>, <m-w> should  toggle the term created by :Start (dispatch) if it exists
+" TODO(feat): <m-s>, <m-v>, <m-w> should toggle the term created by :Start (dispatch) if it exists
 " TODO(feat): :Start, :Spawn should create a horizonal split that uses the full width of the screen
 " TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
-" TODO(feat): should I update dirvish so that it follows tpop file opening conventions (<CR>: edit, o: split, gO: vsplit, O: tab)
+" TODO(feat): should I update dirvish so that it follows tpope file opening conventions (<CR>: edit, o: split, gO: vsplit, O: tab)
 " TODO(feat): conceal can now conceal multiple lines (for example, long links in markdown, code blocks, etc)
 " TODO(feat): look into built in snippets (default keymap is <tab>, which will conflict with completion)
 
@@ -222,7 +222,7 @@ nnoremap <silent> gzz :<c-u>call comment#DuplicateLines(v:count1)<cr>
 vnoremap <silent> gz :<c-u>call comment#DuplicateVisual("'<", "'>")<cr>
 
 " duplicate lines that a motion moves over
-nnoremap <silent> gz :set opfunc=comment#duplicateOperator<cr>g@
+nnoremap <silent> gz :set opfunc=comment#DuplicateOperator<cr>g@
 
 " duplicate a range of lines
 command! -range Duplicate call comment#DuplicateRange(<line1>, <line2>)

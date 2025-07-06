@@ -28,7 +28,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   end
 
   -- keymaps and commands
-  vim.keymap.set({'n', 'v'}, '<c-m>', function() load_copilot_chat(); copilot_chat.toggle() end, {})
+  vim.keymap.set({'n', 'v'}, '<m-c>', function() load_copilot_chat(); copilot_chat.toggle() end, {})
   vim.keymap.set({'n', 'v'}, '<leader>c', function() load_copilot_chat(); return ':CopilotChat' end, { expr = true })
 
 
@@ -67,7 +67,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   -- end
   --
   -- vim.api.nvim_create_autocmd({ 'BufWinEnter', }, {
-  --   group = vim.api.nvim_create_augroup('loaded_lint_config', { clear = true }),
+  --   group = vim.api.nvim_create_augroup('load_lint_config', { clear = true }),
   --   callback = function()
   --     load_lint()
   --   end,
