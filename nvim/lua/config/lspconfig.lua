@@ -334,8 +334,8 @@ local schemas = {
 
 local ok, jobfiles = pcall(require, 'jobfiles.lspconfig')
 if ok then
-  schemas[jobfiles.yamlls.job1.schema] = jobfiles.yamlls.job1.patterns
-  schemas[jobfiles.yamlls.job2.schema] = jobfiles.yamlls.job2.patterns
+  schemas[jobfiles.yamlls.job1.schema_file] = jobfiles.yamlls.job1.patterns
+  schemas[jobfiles.yamlls.job2.schema_file] = jobfiles.yamlls.job2.patterns
 
   -- read job specific schema patterns from jobfiles. Each schema should have a
   -- newline separated list of glob patterns in its own file, where the name of
