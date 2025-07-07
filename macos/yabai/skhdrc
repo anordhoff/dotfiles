@@ -1,5 +1,5 @@
 # open terminal
-shift + ctrl + alt - return : kitty
+shift + ctrl + alt + cmd - return : kitty
 
 # minimize current window
 shift + ctrl + alt - q : yabai -m window --minimize
@@ -37,15 +37,6 @@ shift + ctrl + alt + cmd - l : yabai -m window --stack east && yabai -m window -
 # focus the most recently focued window in the stack
 shift + ctrl + alt - a : yabai -m window --focus stack.recent
 
-# switch between windows in the stack
-# shift + ctrl + alt - r : yabai -m window --focus stack.1
-# shift + ctrl + alt - s : yabai -m window --focus stack.2
-# shift + ctrl + alt - t : yabai -m window --focus stack.3
-
-# swap windows within the stack
-# yabai -m window --swap stack.next
-# yabai -m window --swap stack.prev
-
 # break the focused window from stack
 shift + ctrl + alt + cmd - a : yabai -m window --toggle float && yabai -m window --toggle float
 
@@ -77,11 +68,3 @@ shift + ctrl + alt - h : yabai -m window --resize left:100:0; yabai -m window --
 shift + ctrl + alt - j : yabai -m window --resize top:0:-100; yabai -m window --resize bottom:0:100
 shift + ctrl + alt - k : yabai -m window --resize top:0:100; yabai -m window --resize bottom:0:-100
 shift + ctrl + alt - l : yabai -m window --resize left:-100:0; yabai -m window --resize right:100:0
-
-# TODO: mouse button remappings
-f16 : yabai -m window --space prev
-f17 : yabai -m window --space next
-
-# TODO: mouse button remappings
-f18 : skhd -k "cmd - left"
-f19 : skhd -k "cmd - right"

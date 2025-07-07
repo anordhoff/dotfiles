@@ -1,6 +1,0 @@
-# /usr/share/wayland-sessions/sway.desktop
-
-[Desktop Entry]
-Name=Sway
-Exec=env WLR_DRM_DEVICES=/dev/dri/card0 sway --unsupported-gpu
-Type=Application
