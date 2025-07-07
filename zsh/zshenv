@@ -1,9 +1,9 @@
-# alternative to the slower `eval "$(/opt/homebrew/bin/brew shellenv)'
+# alternative to the slower `eval "$(/opt/homebrew/bin/brew shellenv)`
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  export HOMEBREW_PREFIX='/opt/homebrew'
+  export HOMEBREW_PREFIX="/opt/homebrew"
   export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
   export HOMEBREW_REPOSITORY="/opt/homebrew"
-  export HOMEBREW_NO_AUTO_UPDATE=true
+  export HOMEBREW_NO_AUTO_UPDATE="true"
 fi
 
 # set help directory for zsh built-ins

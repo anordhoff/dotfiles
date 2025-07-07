@@ -4,7 +4,7 @@ Disable the default "Minimize" keyboard (cmd-m)
 
 ### tools:
 
-- [AeroSpace](https://github.com/nikitabobko/Aerospace)
+- [AeroSpace](https://github.com/nikitabobko/AeroSpace)
 - [Ice](https://github.com/jordanbaird/Ice)
 - [HazeOver](https://hazeover.com/)
 - [AppearanceNotifier](https://github.com/jesse-c/AppearanceNotifier)
@@ -72,6 +72,6 @@ see [kmonad issue #334](https://github.com/kmonad/kmonad/issues/334#issuecomment
 | 4 Finger Swipe Down | `/opt/homebrew/bin/aerospace workspace next` |
 | 4 Finger Swipe Left | `/opt/homebrew/bin/aerospace focus-monitor prev` |
 | 4 Finger Swipe Right | `/opt/homebrew/bin/aerospace focus-monitor next` |
-| Hyber-M | `osascript ~/dotfiles/macos/gestures/toggle-appearance.scpt` |
+| Hyper-M | `osascript ~/dotfiles/macos/gestures/toggle-appearance.scpt` |
 
 Four finger swiping up and down was also scrolling the page. I somehow fixed this by setting Mission Control and App Expose to four finger swipe, then setting them to three finger swipe, and finally setting them to off.
