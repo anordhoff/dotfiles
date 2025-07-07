@@ -7,5 +7,5 @@ if [ $# -eq 0 ]; then
 fi
 
 # https://stackoverflow.com/a/2705678
-ESCAPED_REPLACE=$(printf '%s\n' "$@" | sed -e 's/[\/$]/\\&/g')
-sed -i '' "1,/^$/- [ ] $ESCAPED_REPLACE\n/" ~/notebook/todo.md
+ESCAPED_REPLACE=$(printf '%s\n' "$@" | sed -e 's/[\/&]/\\&/g')
+sed -i '' "1,/^$/ s/^$/- [ ] $ESCAPED_REPLACE\n/" ~/notebook/todo.md

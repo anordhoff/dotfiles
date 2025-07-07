@@ -17,7 +17,7 @@ fi
 path=(~/.local/bin $path)
 
 # git contributions
-path=(~/.config/bit/bin $path)
+path=(~/.config/git/bin $path)
 
 # kubectl plugins
 path=(~/.krew/bin $path)

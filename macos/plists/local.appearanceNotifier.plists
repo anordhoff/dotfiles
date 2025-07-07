@@ -8,7 +8,7 @@
     <key>Label</key>
     <string>local.appearanceNotifier</string>
     <key>Program</key>
-    <string>/user/local/bin/appearanceNotifier</string>
+    <string>/usr/local/bin/appearanceNotifier</string>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>

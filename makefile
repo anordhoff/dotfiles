@@ -17,15 +17,15 @@ endif
 .PHONY: init
 init:
 	git submodule update --init
-	make -C nvim/package/start/telescop-fzf-native
-	npm install --no-package-lock --prefix nvim/package/opt/markdown-preview nvim/package/opt/markdown
+	make -C nvim/package/start/telescope-fzf-native
+	npm install --no-package-lock --prefix nvim/package/opt/markdown-preview nvim/package/opt/markdown-preview
 
 # make update
 .PHONY: update
 update:
 	git submodule update --remote --merge
-	make -C nvim/package/start/telescop-fzf-native
-	npm install --no-package-lock --prefix nvim/package/opt/markdown-preview nvim/package/opt/markdown
+	make -C nvim/package/start/telescope-fzf-native
+	npm install --no-package-lock --prefix nvim/package/opt/markdown-preview nvim/package/opt/markdown-preview
 
 # make add submodule=https://github.com/tpope/vim-repeat.git path=nvim/package/start/repeat
 .PHONY: add

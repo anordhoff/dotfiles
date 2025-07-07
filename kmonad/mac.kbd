@@ -594,7 +594,7 @@
   @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
   XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  @tbspc XX     XX
-  @ttab     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  @t:    @tret
+  @ttab     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  XX     @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX            XX
   XX        XX   XX   lmet           @ttspc    @ttesc lalt             XX   XX   XX
 )
@@ -603,7 +603,7 @@
   @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @tBSPC
   XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  @t:   XX     XX
-  @tTAB     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  @t:   @tRET
+  @tTAB     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  XX    @tRET
   XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX           XX
   XX        XX   XX   S-lmet         @ttSPC    _    S-lalt            XX   XX   XX
 )
@@ -612,7 +612,7 @@
   @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
   XX        XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  @cbspc XX     XX
-  @ctab     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  @c:    @cret
+  @ctab     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  XX     @cret
   XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX            XX
   XX        XX   XX   lmet           _         @tcesc lalt             XX   XX   XX
 )
@@ -621,7 +621,7 @@
   @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @cBSPC
   XX        XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  @c:   XX     XX
-  @cTAB     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  @c:   @cRET
+  @cTAB     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  XX    @cRET
   XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX           XX
   XX        XX   XX   S-lmet         _         _    S-lalt            XX   XX   XX
 )

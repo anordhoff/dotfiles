@@ -10,7 +10,7 @@
 	templatedir = ~/.config/git/template
 [commit]
 	gpgsign = true
-  verbose = true
+	verbose = true
 [pull]
 	ff = only
 [merge]
