@@ -176,8 +176,8 @@ lspconfig.lua_ls.setup {
 -- yamlls
 ----------------------------------------
 
--- schemas
-local schemas = {
+-- schema files
+local schema_files = {
   cloudformation = 'https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/main/server/schema/base.schema.json',
   kustomize = 'http://json.schemastore.org/kustomization',
   argocd_application = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
@@ -325,34 +325,35 @@ local custom_tags = {
   '!Sub sequence',
 }
 
-local jobfiles = require('jobfiles.lspconfig')
+local schemas = {
+  [schema_files.cloudformation] = patterns['cloudformation'],
+  [schema_files.kustomize] = patterns['kustomize'],
+  [schema_files.argocd_application] = patterns['argocd_application'],
+  [schema_files.kubernetes] = patterns['kubernetes'],
+}
 
--- read job specific schema patterns from jobfiles. Each schema should have a
--- newline separated list of glob patterns in its own file, where the name of
--- the file matches the name of the schema (.txt). Patterns are appended to the
--- nested table of the same under the 'patterns' table
-for schema, _ in pairs(patterns) do
-  local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
-  if file ~= nil then
-    while true do
-      local line = file:read()
-      if line == nil then
-        break
+local ok, jobfiles = pcall(require, 'jobfiles.lspconfig')
+if ok then
+  schemas[jobfiles.yamlls.job1.schema] = jobfiles.yamlls.job1.patterns
+  schemas[jobfiles.yamlls.job2.schema] = jobfiles.yamlls.job2.patterns
+
+  -- read job specific schema patterns from jobfiles. Each schema should have a
+  -- newline separated list of glob patterns in its own file, where the name of
+  -- the file matches the name of the schema (.txt). Patterns are appended to the
+  -- nested table of the same under the 'patterns' table
+  for schema, _ in pairs(patterns) do
+    local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
+    if file ~= nil then
+      while true do
+        local line = file:read()
+        if line == nil then
+          break
+        end
+        table.insert(patterns[schema], line)
       end
-      table.insert(patterns[schema], line)
+      io.close(file)
     end
-    io.close(file)
   end
-end
-
--- filter out the 'matches multiple schemas' error
-function show_yamlls_diagnostic(diagnostic)
-  local message = 'Matches multiple schemas when only one must validate.'
-  local source = 'yaml-schema: https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json'
-  if diagnostic.message == message and diagnostic.source == source then
-    return false
-  end
-  return true
 end
 
 -- setup configuration
@@ -368,16 +369,18 @@ lspconfig.yamlls.setup {
       validate = true,
       hover = true,
       completion = true,
-      schemas = {
-        [schemas.cloudformation] = patterns['cloudformation'],
-        [schemas.kustomize] = patterns['kustomize'],
-        [schemas.argocd_application] = patterns['argocd_application'],
-        [schemas.kubernetes] = patterns['kubernetes'],
-        -- [jobfiles.yamlls.job1.schema] = jobfiles.yamlls.job1.patterns,
-        -- [jobfiles.yamlls.job2.schema] = jobfiles.yamlls.job2.patterns,
-        -- [jobfiles.yamlls.job3.schema] = jobfiles.yamlls.job3.patterns,
-      },
+      schemas = schemas,
       customTags = custom_tags,
     },
   },
 }
+
+-- filter out the 'matches multiple schemas' error
+function show_yamlls_diagnostic(diagnostic)
+  local message = 'Matches multiple schemas when only one must validate.'
+  local source = 'yaml-schema: https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json'
+  if diagnostic.message == message and diagnostic.source == source then
+    return false
+  end
+  return true
+end
