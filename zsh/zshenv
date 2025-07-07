@@ -1,60 +1,53 @@
-# faster than $(brew --prefix)
+# alternative to the slower `eval "$(/opt/homebrew/bin/brew shellenv)'
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  export BREW_PREFIX='/opt/homebrew'
-  export ROSETTA_BREW_PREFIX='/usr/local'
-fi
-
-# do not auto-update homebrew
-if [[ $OSTYPE =~ "darwin"* ]]; then
+  export HOMEBREW_PREFIX='/opt/homebrew'
+  export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+  export HOMEBREW_REPOSITORY="/opt/homebrew"
   export HOMEBREW_NO_AUTO_UPDATE=true
 fi
 
 # set help directory for zsh built-ins
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  export HELPDIR="$BREW_PREFIX/share/zsh/help"
+  export HELPDIR="$HOMEBREW_PREFIX/share/zsh/help"
 else
   export HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
 fi
 
 # set the preferred editor to neovim if not already set
-[ -z $EDITOR ] && export EDITOR='nvim'
-[ -z $VISUAL ] && export VISUAL='nvim'
+[ -z $EDITOR ] && export EDITOR="nvim"
+[ -z $VISUAL ] && export VISUAL="nvim"
 
 # set to the path of the tty device for gpg
 export GPG_TTY=$(tty)
 
 # less options
-export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5'
+export LESS="--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5"
 
 # ls colors (gnu)
-export LS_COLORS="rs=0:di=34:ln=36:mh=00:pi=40;33:so=35:do=35:bd=40;33:cd=40;\
-33:or=40;31:mi=00:su=30;41:sg=30;43:ca=30;41:tw=30;42:ow=30;42:st=30;44:ex=32"
+export LS_COLORS="rs=0:di=34:ln=36:mh=00:pi=40;33:so=35:do=35:bd=40;33:cd=40;33:or=40;31:mi=00:su=30;41:sg=30;43:ca=30;41:tw=30;42:ow=30;42:st=30;44:ex=32"
 
 # grep colors (gnu, bsd)
-# export GREP_COLORS='ms=0;35'
+# export GREP_COLORS="ms=0;35"
 # TODO: linux error says to use mt
-export GREP_COLORS='mt=0;35'
+export GREP_COLORS="mt=0;35"
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  export GREP_COLOR='0;35'
+  export GREP_COLOR="0;35"
 fi
 
-# set GOPATH
-export GOPATH="$HOME/go"
-
 # do not paginate awscli responses
-export AWS_PAGER=''
+export AWS_PAGER=""
 
 # jq colors (update field color: https://github.com/stedolan/jq/pull/1791)
-export JQ_COLORS='0;37:0;37:0;37:0;37:0;37:0;37:0;37'
+export JQ_COLORS="0;37:0;37:0;37:0;37:0;37:0;37:0;37"
 
 # kubectx / kubens colors
 export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
 export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
 
 # fzf flags and colors
-export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude bin --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
-export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude bin --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
-export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude bin --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
+export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
+export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
+export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ \
 --border=horizontal \
 --color border:15 \

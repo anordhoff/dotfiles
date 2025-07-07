@@ -1,0 +1,9 @@
+# vim: ft=zsh
+# run git status if git is called with no args
+# TODO: completion doesn't work with `g <anything>`
+
+if [ $# -eq 0 ]; then
+  git status
+else
+  __git_complete git __git_main
+fi

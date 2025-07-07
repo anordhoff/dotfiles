@@ -1,5 +1,26 @@
 # macos
 
+Disable the default "Minimize" keyboard (cmd-m)
+
+### tools:
+
+- [AeroSpace](https://github.com/nikitabobko/Aerospace)
+- [Ice](https://github.com/jordanbaird/Ice)
+- [HazeOver](https://hazeover.com/)
+- [AppearanceNotifier](https://github.com/jesse-c/AppearanceNotifier)
+- [MultiTouch](https://multitouch.app/)
+- [Maccy](https://maccy.app/)
+
+#### not currently used at work machine
+
+- [SpotMenu v1.8](https://github.com/kmikiy/SpotMenu)
+
+#### less distracting wallpaper
+
+- [ChangeMenuBarColor](https://github.com/igorkulman/ChangeMenuBarColor)
+- [Wallpapper](https://github.com/mczachurski/wallpapper)
+
+
 ### skhd
 
 To improve skhd perfomance, run `skhd --install-service` and add the following
@@ -28,11 +49,13 @@ brew install llvm@12 llvm ghc@8.10 ghc@9.4 ghc haskell-stack # llvm@12, ghc@8.10
 ```
 
 [install dext](https://github.com/kmonad/kmonad/blob/master/doc/installation.md#installing-the-dext), and then install kmonad using (can now use basic installation command):
+
 ```
 stack --system-ghc --compiler ghc-8.10.7 install --flag kmonad:dext --extra-include-dirs=c_src/mac/Karabiner-DriverKit-VirtualHIDDevice/include/pqrs/karabiner/driverkit:c_src/mac/Karabiner-DriverKit-VirtualHIDDevice/src/Client/vendor/include
 ```
 
 give kmonad `Input Monitoring` permissions, create symlinks, and start kmonad:
+
 ```
 sudo ln -s ~/.local/bin/kmonad /usr/local/bin/kmonad
 sudo ln -s ~/dotfiles/kmonad/mac.kbd /usr/local/share/kmonad/mac.kbd
@@ -42,35 +65,13 @@ sudo launchctl load -w /Library/LaunchDaemons/local.kmonad.plist
 
 see [kmonad issue #334](https://github.com/kmonad/kmonad/issues/334#issuecomment-1000106276) for more info
 
-### tools:
+### gestures
 
-- [Bartender](https://www.macbartender.com)
-- [Linear Mouse](https://linearmouse.org/)
-- [SpotMenu v1.8](https://github.com/kmikiy/SpotMenu)
-- [Space ID](https://github.com/dshnkao/SpaceId)
-- [BetterTouchTool](https://folivora.ai/)
-- [HazeOver](https://hazeover.com/)
+| --- | --- |
+| 4 Finger Swipe Up | `/opt/homebrew/bin/aerospace workspace prev` |
+| 4 Finger Swipe Down | `/opt/homebrew/bin/aerospace workspace next` |
+| 4 Finger Swipe Left | `/opt/homebrew/bin/aerospace focus-monitor prev` |
+| 4 Finger Swipe Right | `/opt/homebrew/bin/aerospace focus-monitor next` |
+| Hyber-M | `osascript ~/dotfiles/macos/gestures/toggle-appearance.scpt` |
 
-### less distracting wallpaper
-
-- [ChangeMenuBarColor](https://github.com/igorkulman/ChangeMenuBarColor)
-- [Wallpapper](https://github.com/mczachurski/wallpapper)
-
-### shortcuts
-
-| category | shortcut | keybinding |
-| -- | -- | -- |
-| Mission Control | Move left a space | meh-[ |
-| Mission Control | Move right a space | meh-] |
-| Mission Control | Switch to Desktop 1 | meh-x |
-| Mission Control | Switch to Desktop 2 | meh-c |
-| Mission Control | ... | ... |
-| Mission Control | Switch to Desktop 9 | meh-p |
-| Mission Control | Switch to Desktop 10 | meh-a |
-| Screenshots | Save a picture of screen as a file | opt-cmd-F13 |
-| Screenshots | Copy picture of screen to the clipboard | opt-F13 |
-| Screenshots | Save picture of selected area as a file | cmd-F13 |
-| Screenshots | Copy picture of selected area to the clipboard | F13 |
-| Screenshots | Screenshot and recording options | ctrl-F13 |
-| Spotlight | Show Spotlight search | meh-minus |
-| App Shortcuts | All Applications > Lock Screen | meh-/ |
+Four finger swiping up and down was also scrolling the page. I somehow fixed this by setting Mission Control and App Expose to four finger swipe, then setting them to three finger swipe, and finally setting them to off.
