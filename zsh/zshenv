@@ -1,3 +1,5 @@
+# TODO: zshenv might be sourced twice (by tmux?).. Not exactly sure since zsh -x" prints `echo hi` twice but everything else once
+
 # alternative to the slower `eval "$(/opt/homebrew/bin/brew shellenv)`
 if [[ $OSTYPE =~ "darwin"* ]]; then
   export HOMEBREW_PREFIX="/opt/homebrew"
