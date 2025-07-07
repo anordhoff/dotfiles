@@ -10,15 +10,32 @@
 	templatedir = ~/.config/git/template
 [commit]
 	gpgsign = true
+  verbose = true
 [pull]
 	ff = only
 [merge]
-	tool = nvimdiff2
+	tool = vim-fugitive
 [mergetool]
 	keepBackup = false
+[mergetool "vim-fugitive"]
+	cmd = nvim -c \"Gvdiffsplit!\" \"$MERGED\"
+[branch]
+	sort = -committerdate
+	sort = -HEAD
 [submodule]
 	recurse = true
 [alias]
+	br = branch -vv
+	bl = blame
+	cm = commit
+	ca = commit --amend
+	cl = clone
+	co = checkout
+	re = reset
+	rb = rebase
+	st = status
 	ctags = !.git/hooks/ctags
+[grep]
+	lineNumber = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/

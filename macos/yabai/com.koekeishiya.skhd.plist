@@ -1,0 +1,31 @@
+<!-- /Library/LaunchDaemons/local.skhd.plist -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.skhd</string>
+    <key>Program</key>
+    <string>/opt/homebrew/bin/skhd</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>TODO: REPLACE WITH OUTPUT OF "echo $PATH"</string>
+        <key>SHELL</key>
+        <ing>/bin/dash</ing>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>Nice</key>
+    <integer>-20</integer>
+    <key>StandardOutPath</key>
+    <string>/tmp/skhd.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/skhd.err</string>
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+    <key>ProcessType</key>
+    <string>Interactive</string>
+</dict>
+</plist>

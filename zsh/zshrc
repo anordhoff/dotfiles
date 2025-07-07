@@ -34,8 +34,15 @@ function gitbranch() {
   fi
 }
 
-# print current working directory, git branch, and exit code in the prompt
-PS1='%F{blue}%60<...<%~%F{default}$(gitbranch)%(?.. [%?%\]) $ '
+function awsprofile() {
+  if [ -v AWS_PROFILE ]; then
+    # remove unnecessary, work specific prefix
+    echo " (${AWS_PROFILE:14})"
+  fi
+}
+
+# print current working directory, git branch, AWS profile, and exit code in the prompt
+PS1='%F{blue}%60<...<%~%F{default}$(gitbranch)$(awsprofile)%(?.. [%?%\]) $ '
 
 # use emacs mode for zle
 bindkey -e
@@ -51,12 +58,8 @@ bindkey "^[[3~" delete-char
 bindkey '^U' backward-kill-line
 
 # delete the word behind cursor up to the next whitespace (like bash)
-# https://unix.stackexchange.com/questions/572439/make-ctrl-w-and-ctrl-alt-h-in-zsh-behave-the-same-as-in-bash
-zle -N backward-kill-space-word
-backward-kill-space-word() {
-  zle -f kill
-  WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle .backward-kill-word
-}
+zle -N backward-kill-space-word backward-kill-word-match
+zstyle :zle:backward-kill-space-word word-style whitespace
 bindkey '^W' backward-kill-space-word
 
 # ctrl-x_ctrl-e opens the current command in the editor (like bash)
@@ -132,11 +135,11 @@ zmodload zsh/complist
 autoload -U +X bashcompinit && bashcompinit
 
 # add completion directory to fpath
-# fpath=(~/dotfiles/zsh/completions $fpath)
+fpath=(~/dotfiles/zsh/completions $fpath)
 
 # add completion for brew packages
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  fpath=($BREW_PREFIX/share/zsh/site-functions $fpath)
+  fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 fi
 
 # run compinit if ~/jobfiles/zsh does not exist
@@ -173,7 +176,7 @@ zstyle ':completion:*:warnings' format '-- no matches found --'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # enable improved git-completion (required by completions/_git)
-# zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.bash
+zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.bash
 
 
 # --------------------------------------
@@ -190,15 +193,18 @@ alias watch='watch -n 1 '
 # disable colors in tldr
 alias tldr='NO_COLOR=true tldr'
 
-# open the notes dir
-alias notes='nvim ~/notes/ -c "cd ~/notes"'
-alias todo='nvim ~/notes/todo.md -c "cd ~/notes"'
+# open the notebook dir
+alias notes='nvim ~/notebook/inbox.md -c "cd ~/notebook"'
+alias todo='nvim ~/notebook/todo.md -c "cd ~/notebook"'
 
 # directory stack
 alias dirs='dirs -v'
 for i in {0..9}; do
   alias d${i}="cd +${i}"
 done
+
+# don't use colors with github cli
+alias gh='NO_COLOR=true gh'
 
 # grep colors
 alias grep='grep --color=auto'
@@ -218,41 +224,23 @@ fi
 
 # python3
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  alias python="$BREW_PREFIX/bin/python3"
-  alias pip="$BREW_PREFIX/bin/pip3"
+  alias python="$HOMEBREW_PREFIX/bin/python3"
+  alias pip="$HOMEBREW_PREFIX/bin/pip3"
 fi
 
 # git
-alias    g='git'
-alias   ga='git add'
-alias   gb='git branch'
-alias  gbl='git blame'
-alias   gc='git commit'
-alias  gcl='git clone'
-alias  gco='git checkout'
-alias   gd='git diff'
-alias   gf='git fetch'
-alias   gl='git log'
-alias   gm='git merge'
-alias  gmt='git mergetool'
-alias   gp='git pull'
-alias   gr='git reset'
-alias  grb='git rebase'
-alias  grm='git remote'
-alias   gs='git status'
-alias  gst='git stash'
-alias  gsh='git show'
+alias g='git'
 
 # kubernetes
 alias  k='kubectl'
 alias kd='kubectl describe'
 alias ke='kubectl events --for'
 alias kg='kubectl get'
-alias kl='kubectl stern'
 
 # krew plugins
 alias kctx='kubectl ctx'
 alias  kns='kubectl ns'
+alias   kl='kubectl stern'
 
 
 # --------------------------------------
@@ -271,12 +259,8 @@ alias  kns='kubectl ns'
 if command -v fzf &>/dev/null; then
   # prevent "can't change option: zle" errors in neovim when running shell commands
   source <(fzf --zsh) 2>/dev/null
-
-  # fzf keybindings (^r, ^t, and ^[c are overwritten by fzf)
-  bindkey '^t' transpose-chars
-  # bindkey '^[c' capitalize-word
-  bindkey '^[s' fzf-file-widget
 fi
+
 
 # --------------------------------------
 # misc
