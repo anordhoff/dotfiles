@@ -325,25 +325,25 @@ local custom_tags = {
   '!Sub sequence',
 }
 
--- local jobfiles = require('jobfiles.lspconfig')
---
--- -- read job specific schema patterns from jobfiles. Each schema should have a
--- -- newline separated list of glob patterns in its own file, where the name of
--- -- the file matches the name of the schema (.txt). Patterns are appended to the
--- -- nested table of the same under the 'patterns' table
--- for schema, _ in pairs(patterns) do
---   local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
---   if file ~= nil then
---     while true do
---       local line = file:read()
---       if line == nil then
---         break
---       end
---       table.insert(patterns[schema], line)
---     end
---     io.close(file)
---   end
--- end
+local jobfiles = require('jobfiles.lspconfig')
+
+-- read job specific schema patterns from jobfiles. Each schema should have a
+-- newline separated list of glob patterns in its own file, where the name of
+-- the file matches the name of the schema (.txt). Patterns are appended to the
+-- nested table of the same under the 'patterns' table
+for schema, _ in pairs(patterns) do
+  local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
+  if file ~= nil then
+    while true do
+      local line = file:read()
+      if line == nil then
+        break
+      end
+      table.insert(patterns[schema], line)
+    end
+    io.close(file)
+  end
+end
 
 -- filter out the 'matches multiple schemas' error
 function show_yamlls_diagnostic(diagnostic)
