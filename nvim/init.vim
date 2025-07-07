@@ -455,11 +455,3 @@ augroup END
 
 " source lua config
 lua require('config.init')
-
-
-" --------------------------------------
-" jobfiles
-" --------------------------------------
-
-" source init file from jobfiles
-runtime job.vim

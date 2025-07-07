@@ -176,8 +176,6 @@ lspconfig.lua_ls.setup {
 -- yamlls
 ----------------------------------------
 
-local jobfiles = require('jobfiles.lspconfig')
-
 -- schemas
 local schemas = {
   cloudformation = 'https://raw.githubusercontent.com/aws-cloudformation/cfn-lint-visual-studio-code/main/server/schema/base.schema.json',
@@ -327,23 +325,25 @@ local custom_tags = {
   '!Sub sequence',
 }
 
--- read job specific schema patterns from jobfiles. Each schema should have a
--- newline separated list of glob patterns in its own file, where the name of
--- the file matches the name of the schema (.txt). Patterns are appended to the
--- nested table of the same under the 'patterns' table
-for schema, _ in pairs(patterns) do
-  local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
-  if file ~= nil then
-    while true do
-      local line = file:read()
-      if line == nil then
-        break
-      end
-      table.insert(patterns[schema], line)
-    end
-    io.close(file)
-  end
-end
+-- local jobfiles = require('jobfiles.lspconfig')
+--
+-- -- read job specific schema patterns from jobfiles. Each schema should have a
+-- -- newline separated list of glob patterns in its own file, where the name of
+-- -- the file matches the name of the schema (.txt). Patterns are appended to the
+-- -- nested table of the same under the 'patterns' table
+-- for schema, _ in pairs(patterns) do
+--   local file = io.open(jobfiles.yamlls.path_to_schemas .. schema .. '.txt', 'r')
+--   if file ~= nil then
+--     while true do
+--       local line = file:read()
+--       if line == nil then
+--         break
+--       end
+--       table.insert(patterns[schema], line)
+--     end
+--     io.close(file)
+--   end
+-- end
 
 -- filter out the 'matches multiple schemas' error
 function show_yamlls_diagnostic(diagnostic)
@@ -358,10 +358,6 @@ end
 -- setup configuration
 lspconfig.yamlls.setup {
   settings = {
-    -- http = {
-    --   proxy = jobfiles.yamlls.proxy,
-    --   proxyStrictSSL = false
-    -- },
     redhat = {
       telemetry = { enabled = false }
     },
@@ -377,9 +373,9 @@ lspconfig.yamlls.setup {
         [schemas.kustomize] = patterns['kustomize'],
         [schemas.argocd_application] = patterns['argocd_application'],
         [schemas.kubernetes] = patterns['kubernetes'],
-        [jobfiles.yamlls.job1.schema] = jobfiles.yamlls.job1.patterns,
-        [jobfiles.yamlls.job2.schema] = jobfiles.yamlls.job2.patterns,
-        [jobfiles.yamlls.job3.schema] = jobfiles.yamlls.job3.patterns,
+        -- [jobfiles.yamlls.job1.schema] = jobfiles.yamlls.job1.patterns,
+        -- [jobfiles.yamlls.job2.schema] = jobfiles.yamlls.job2.patterns,
+        -- [jobfiles.yamlls.job3.schema] = jobfiles.yamlls.job3.patterns,
       },
       customTags = custom_tags,
     },

@@ -25,5 +25,7 @@ let g:projectionist_heuristics = {
   \   }
   \ }}
 
-source ~/jobfiles/nvim/plugin/projectionist.vim
-let g:projectionist_heuristics['*'][g:projectionist_cicd_key] = g:projectionist_cicd_value
+if filereadable("~/jobfiles/nvim/plugin/projectionist.vim")
+  source ~/jobfiles/nvim/plugin/projectionist.vim
+  let g:projectionist_heuristics['*'][g:projectionist_cicd_key] = g:projectionist_cicd_value
+endif

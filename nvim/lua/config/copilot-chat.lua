@@ -1,9 +1,7 @@
 local chat = require('CopilotChat')
-local jobfiles = require('jobfiles.copilot-chat')
 
 chat.setup {
   model = "gpt-4o",
-  -- proxy = jobfiles.proxy,
   prompts = {
     -- prompts
     Comments = {
