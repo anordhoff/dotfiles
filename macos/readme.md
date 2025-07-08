@@ -76,7 +76,7 @@ Disable the default `Minimize` keyboard shortcut (cmd-m) in settings.
 
 | Keyboard Shortcut | Action |
 | --- | --- |
-| hyper-m | `osascript ~/dotfiles/macos/gestures/toggle-appearance.scpt` |
+| hyper-m | `osascript ~/dotfiles/macos/multitouch/toggle-appearance.scpt` |
 
 Four finger swiping up and down was also scrolling the page. I fixed this by:
 1. setting `Mission Control` and `App Expose` to four finger swipe in settings
