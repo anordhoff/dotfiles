@@ -22,7 +22,7 @@ path=(~/.config/git/bin $path)
 # kubectl plugins
 path=(~/.krew/bin $path)
 
-# use go v1.24
+# use go v1.24 on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($HOMEBREW_PREFIX/opt/go@1.24/bin $path)
 fi
@@ -37,19 +37,19 @@ path=(~/.cargo/bin $path)
 # npm global packages
 path=(~/.npm/global/bin $path)
 
-# python packages
+# python packages on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=(~/Library/Python/3.13/bin $path)
 fi
 
-# ruby gems
+# ruby gems on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($HOMEBREW_PREFIX/opt/ruby/bin $path)
   path=($HOMEBREW_PREFIX/lib/ruby/gems/3.4.0/bin $path)
   path=(~/.gem/ruby/3.4.0/bin $path)
 fi
 
-# lua packages
+# lua packages on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=(~/.luarocks/bin $path)
 
@@ -62,12 +62,12 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
   export LUA_CPATH="$LUA_CPATH;$HOME/.luarocks/lib/lua/5.1/?.so"
 fi
 
-# prefer the latest version of curl installed by homebrew
+# prefer the latest version of curl installed by homebrew on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($HOMEBREW_PREFIX/opt/curl/bin $path)
 fi
 
-# prefer openssl over libressl on macos
+# prefer openssl over libressl on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
   path=($HOMEBREW_PREFIX/opt/openssl@3/bin $path)
 fi

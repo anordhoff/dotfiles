@@ -49,8 +49,7 @@ export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
 export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
-export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ \
---border=horizontal \
+export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal \
 --color border:15 \
 --color bg+:22 \
 --color fg+:7:regular \
