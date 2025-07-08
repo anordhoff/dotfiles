@@ -73,4 +73,6 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
 fi
 
 # source work zprofile
-[ -r ~/jobfiles/zsh/zprofile ] && source ~/jobfiles/zsh/zprofile
+if [ -r ~/jobfiles/zsh/zprofile ]; then
+  source ~/jobfiles/zsh/zprofile
+fi

@@ -1,16 +1,6 @@
 # vim: ft=zsh
 # nvim alias with support for nested nvim sessions
 
-# if [[ $OSTYPE =~ "darwin"* ]]; then
-  # if [ -n "$NVIM" ]; then
-    # nvim --server $NVIM --remote $@
-  # else
-    # nvim $@
-  # fi
-# else
-  # nvim --noplugin $@
-# fi
-
 if [ -n "$NVIM" ]; then
   nvim --server $NVIM --remote $@
 else

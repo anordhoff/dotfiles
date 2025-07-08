@@ -3,7 +3,9 @@
 # --------------------------------------
 
 # start tmux on launch, attaching to an existing (or creating a new) session
-[ -z $TMUX ] && (tmux attach || tmux new-session -A -s default)
+if [ -z $TMUX ]; then
+  tmux attach || tmux new-session -A -s default
+fi
 
 # options
 setopt   prompt_subst # enable prompt substitution
@@ -143,7 +145,9 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
 fi
 
 # run compinit if ~/jobfiles/zsh does not exist
-[ ! -d ~/jobfiles/zsh ] && compinit
+if [ ! -d ~/jobfiles/zsh ]; then
+  compinit
+fi
 
 # go backwards in completion menu using shift-tab
 bindkey -M menuselect '^[[Z' reverse-menu-complete
@@ -184,7 +188,9 @@ zstyle ':completion:*:*:git:*' script ~/dotfiles/zsh/extensions/git-completion.b
 # --------------------------------------
 
 # unalias default run-help alias to man; alias help to run-help (for builtins)
-(( ${+aliases[run-help]} )) && unalias run-help
+if (( ${+aliases[run-help]} )); then
+  unalias run-help
+fi
 alias help=run-help
 
 # refresh watch every second; work with aliases
@@ -248,15 +254,17 @@ alias   kl='kubectl stern'
 # --------------------------------------
 
 # enable expand-multiple-dots.zsh
-[ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ] \
-  && source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
+if [ -r ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh ]; then
+  source ~/dotfiles/zsh/extensions/expand-multiple-dots.zsh
+fi
 
 # enable expand-or-complete-or-list-files.zsh
-[ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ] \
-  && source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
+if [ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ]; then
+  source ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh
+fi
 
 # enable fzf shell integration
-if command -v fzf &>/dev/null; then
+if [ command -v fzf &>/dev/null ]; then
   # prevent "can't change option: zle" errors in neovim when running shell commands
   source <(fzf --zsh) 2>/dev/null
 fi
@@ -267,4 +275,6 @@ fi
 # --------------------------------------
 
 # source work zshrc
-[ -r ~/jobfiles/zsh/zshrc ] && source ~/jobfiles/zsh/zshrc
+if [ -r ~/jobfiles/zsh/zshrc ]; then
+  source ~/jobfiles/zsh/zshrc
+fi

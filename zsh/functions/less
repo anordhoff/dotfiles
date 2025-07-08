@@ -1,4 +1,5 @@
 # vim: ft=zsh
+# improve less syntax highlighting
 
 LESS_TERMCAP_mb=$(printf '\e[0;32m') \
   LESS_TERMCAP_md=$(printf '\e[0;34m') \

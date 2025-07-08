@@ -1,4 +1,5 @@
 # vim: ft=zsh
+# expand a command and ask for confirmation
 
 local answer
 echo -ne "zsh: sure you want to run '$*' [yn]? "

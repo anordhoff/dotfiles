@@ -16,8 +16,12 @@ else
 fi
 
 # set the preferred editor to neovim if not already set
-[ -z $EDITOR ] && export EDITOR="nvim"
-[ -z $VISUAL ] && export VISUAL="nvim"
+if [ -z $EDITOR ]; then
+  export EDITOR="nvim"
+fi
+if [ -z $VISUAL ]; then
+  export VISUAL="nvim"
+fi
 
 # set to the path of the tty device for gpg
 export GPG_TTY=$(tty)
@@ -67,4 +71,6 @@ export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ \
 --color query:7:regular"
 
 # source work zshenv
-[ -r ~/jobfiles/zsh/zshenv ] && source ~/jobfiles/zsh/zshenv
+if [ -r ~/jobfiles/zsh/zshenv ]; then
+  source ~/jobfiles/zsh/zshenv
+fi
