@@ -38,8 +38,8 @@ fi
 # do not paginate awscli responses
 export AWS_PAGER=""
 
-# jq colors (update field color: https://github.com/stedolan/jq/pull/1791)
-export JQ_COLORS="0;37:0;37:0;37:0;37:0;37:0;37:0;37"
+# use cyan for json keys with jq
+export JQ_COLORS="0;37:0;37:0;37:0;37:0;37:0;37:0;37:0;36"
 
 # kubectx / kubens colors
 export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
