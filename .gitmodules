@@ -49,6 +49,9 @@
 [submodule "nvim/package/start/sleuth"]
 	path = nvim/package/start/sleuth
 	url = https://github.com/tpope/vim-sleuth.git
+[submodule "nvim/package/start/speeddating"]
+	path = nvim/package/start/speeddating
+	url = https://github.com/tpope/vim-speeddating.git
 [submodule "nvim/package/start/subversive"]
 	path = nvim/package/start/subversive
 	url = https://github.com/svermeulen/vim-subversive.git
@@ -99,6 +102,9 @@
 [submodule "nvim/package/start/telescope-fzf-native"]
 	path = nvim/package/start/telescope-fzf-native
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
+[submodule "nvim/package/start/telescope-undo"]
+	path = nvim/package/start/telescope-undo
+	url = https://github.com/debugloop/telescope-undo.nvim.git
 [submodule "nvim/package/start/treesitter"]
 	path = nvim/package/start/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
@@ -115,9 +121,3 @@
 [submodule "nvim/package/opt/indent-blankline"]
 	path = nvim/package/opt/indent-blankline
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
-[submodule "nvim/package/start/speeddating"]
-	path = nvim/package/start/speeddating
-	url = https://github.com/tpope/vim-speeddating.git
-[submodule "nvim/package/start/telescope-undo"]
-	path = nvim/package/start/telescope-undo
-	url = https://github.com/debugloop/telescope-undo.nvim.git
