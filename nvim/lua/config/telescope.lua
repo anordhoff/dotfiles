@@ -7,16 +7,15 @@ telescope.load_extension('undo')
 
 telescope.setup {
   defaults = {
-    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    border = false,
     layout_strategy = 'flex',
     layout_config = {
       flex = {
-        flip_columns = 160,
+        -- flip_columns = 160,
       },
     },
     preview = {
-      -- treesitter = false,
-      treesitter = true,
+      treesitter = false,
     },
     color_devicons = false,
     mappings = {
