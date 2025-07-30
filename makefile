@@ -27,6 +27,13 @@ update:
 	make -C nvim/package/start/telescope-fzf-native
 	npm install --no-package-lock --prefix nvim/package/opt/markdown-preview nvim/package/opt/markdown-preview
 
+# make pull
+.PHONY: pull
+pull:
+	git pull
+	make -C nvim/package/start/telescope-fzf-native
+	npm install --no-package-lock --prefix nvim/package/opt/markdown-preview nvim/package/opt/markdown-preview
+
 # make add submodule=https://github.com/tpope/vim-repeat.git path=nvim/package/start/repeat
 .PHONY: add
 add: validate-submodule validate-path
