@@ -264,7 +264,7 @@ if [ -r ~/dotfiles/zsh/extensions/expand-or-complete-or-list-files.zsh ]; then
 fi
 
 # enable fzf shell integration
-if [ command -v fzf &>/dev/null ]; then
+if command -v fzf &>/dev/null; then
   # prevent "can't change option: zle" errors in neovim when running shell commands
   source <(fzf --zsh) 2>/dev/null
 fi
