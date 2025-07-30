@@ -1,7 +1,7 @@
 local chat = require('CopilotChat')
 
 chat.setup {
-  model = "gpt-4o",
+  model = "gpt-4.1",
   prompts = {
     -- prompts
     Comments = {

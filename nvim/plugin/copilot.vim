@@ -1,12 +1,14 @@
 " disable copilot for certain filetypes
-" let g:copilot_filetypes = {
-"   \ 'xml': v:false,
-"   \ }
+let g:copilot_filetypes = {
+  \ 'go': v:false,
+  \ }
 
-" accept the current suggestion with ctrl-h
+" accept the current suggestion with ctrl-y
 let g:copilot_no_tab_map = v:true
-inoremap <silent><script><expr> <c-h> copilot#Accept("")
+inoremap <silent><expr> <c-y> pumvisible() ? "\<c-y>" : copilot#Accept()
 
-" use ctrl-n and ctrl-p to cycle through copilot suggestions
-inoremap <c-n> <plug>(copilot-next)
-inoremap <c-p> <plug>(copilot-previous)
+" other keymaps
+inoremap <c-x><c-a> <plug>(copilot-suggest)
+inoremap <silent><expr> <c-e> pumvisible() ? "\<c-e>" : copilot#Dismiss()
+inoremap <silent><expr> <c-n> pumvisible() ? "\<c-n>" : copilot#Next()
+inoremap <silent><expr> <c-p> pumvisible() ? "\<c-p>" : copilot#Previous()

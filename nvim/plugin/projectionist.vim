@@ -1,31 +1,30 @@
 let g:projectionist_heuristics = {
   \ '*': {
-  \   'Dockerfile': {
+  \   'dockerfile': {
   \     'type': 'dockerfile'
   \   },
-  \   'Makefile': {
+  \   'makefile': {
   \     'type': 'makefile'
   \   },
   \   'readme.md': {
   \     'type': 'readme'
   \   },
   \ },
-  \ '*.go': {
+  \ 'go.mod': {
   \   '*.go': {
   \     'alternate': '{}_test.go',
-  \     'console': 'dlv debug {}.go',
-  \     'dispatch': 'go build',
+  \     'dispatch': 'go build ./{dirname}',
   \     'type': 'source'
   \   },
   \   '*_test.go': {
   \     'alternate': '{}.go',
-  \     'console': 'dlv test {}.go {}_test.go',
-  \     'dispatch': 'go test',
+  \     'dispatch': 'go test -fullpath -coverprofile=coverage.out ./{dirname}/...',
+  \     'start': 'dlv test ./{dirname}',
   \     'type': 'test'
   \   }
   \ }}
 
-if filereadable("~/jobfiles/nvim/plugin/projectionist.vim")
+if filereadable(expand("~/jobfiles/nvim/plugin/projectionist.vim"))
   source ~/jobfiles/nvim/plugin/projectionist.vim
   let g:projectionist_heuristics['*'][g:projectionist_cicd_key] = g:projectionist_cicd_value
 endif

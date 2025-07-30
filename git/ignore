@@ -1,5 +1,7 @@
 tags
 *.tags
+coverage.out
+coverage.html
 debug.test*
 __debug*
 Session.vim

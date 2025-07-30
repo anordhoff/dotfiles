@@ -13,6 +13,11 @@ accordion-padding = 40
     outer.top =        0
     outer.right =      0
 
+# force zoom to use tiling layout
+[[on-window-detected]]
+    if.app-id = 'us.zoom.xos'
+    run = 'layout tiling'
+
 # keybindings
 [mode.main.binding]
 
@@ -51,7 +56,7 @@ accordion-padding = 40
     shift-ctrl-alt-k = 'resize height -100'
     shift-ctrl-alt-l = 'resize width +100'
 
-    # focus adjacent workspacec
+    # focus adjacent workspace
     shift-ctrl-alt-leftSquareBracket = 'workspace prev'
     shift-ctrl-alt-rightSquareBracket = 'workspace next'
 

@@ -191,6 +191,9 @@ nnoremap <silent> <m-l> :call quickfix#ToggleLocationlist()<cr>
 nnoremap gh <cmd>set diffopt-=linematch:40<bar>diffget //2<bar>set diffopt+=linematch:40<bar>diffupdate<cr>
 nnoremap gl <cmd>set diffopt-=linematch:40<bar>diffget //3<bar>set diffopt+=linematch:40<bar>diffupdate<cr>
 
+" copy the absolute path of the current file to the unnamed register
+nnoremap <silent> <leader>y :let @" = expand("%:p")<cr>
+
 " trigger tag/omni completion using <tab>
 inoremap <expr> <tab> completion#TabComplete(0)
 inoremap <expr> <s-tab> completion#TabComplete(1)

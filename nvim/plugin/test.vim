@@ -1,6 +1,6 @@
 let test#strategy = "dispatch"
 let test#go#runner = 'gotest'
-let test#go#gotest#options = '-fullpath'
+let test#go#gotest#options = '-fullpath -coverprofile=coverage.out'
 let g:test#runner_commands = ['GoTest', 'Delve']
 
 " keymaps
@@ -30,3 +30,6 @@ function! DebugNearest(runner)
   TestNearest -strategy=spawn
   unlet g:test#go#runner
 endfunction
+
+command! Cover :silent !go tool cover -html=coverage.out
+command! Coverfunc :!go tool cover -func=coverage.out
