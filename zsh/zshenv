@@ -29,16 +29,10 @@ export GPG_TTY=$(tty)
 # less options
 export LESS="--RAW-CONTROL-CHARS --LONG-PROMPT --ignore-case --jump-target=5"
 
-# change grep match color to purple (gnu, bsd)
-export GREP_COLORS="ms=01;35"
-if [[ $OSTYPE =~ "darwin"* ]]; then
-  export GREP_COLOR="1;35"
-fi
-
 # do not paginate awscli responses
 export AWS_PAGER=""
 
-# use cyan for json keys with jq
+# match jq colors to vim
 export JQ_COLORS="0;37:0;37:0;37:0;37:0;37:0;37:0;37:0;36"
 
 # kubectx / kubens colors
