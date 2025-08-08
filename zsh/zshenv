@@ -45,8 +45,8 @@ export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=
 --color fg+:7:regular \
 --color gutter:-1 \
 --color header:15 \
---color hl:1:regular \
---color hl+:1:regular \
+--color hl:1:bold \
+--color hl+:1:bold \
 --color info:15 \
 --color marker:7:regular \
 --color spinner:7 \
