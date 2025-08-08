@@ -35,10 +35,6 @@ export AWS_PAGER=""
 # match jq colors to vim
 export JQ_COLORS="0;37:0;37:0;37:0;37:0;37:0;37:0;37:0;36"
 
-# kubectx / kubens colors
-export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 4)
-export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 4)
-
 # fzf flags and colors
 export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
