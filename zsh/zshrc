@@ -156,14 +156,12 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 zstyle ':completion:*' max-errors 1
 
 # smart case completion; complete partial words
-zstyle ':completion:*:complete-extended:*' \
-  matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:complete-extended:*' matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 bindkey "^Xb" _alias_expand_line
 
 # complete *. with extensions; standard; one error; case insensitive completion
-zstyle ':completion:*' completer \
-  _expand_alias _extensions _complete _approximate _complete:-extended
+zstyle ':completion:*' completer _expand_alias _extensions _complete _approximate _complete:-extended
 
 # cache completions
 zstyle ':completion:*' use-cache true
