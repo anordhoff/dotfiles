@@ -127,29 +127,29 @@ const key_override_t layer_e_backspace_key_override = ko_make_with_layers(MOD_MA
 const key_override_t layer_i_backspace_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_BSPC, KC_COLN, 1 << _LAYER_I);
 
 // globally define all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
+const key_override_t *key_overrides[] = {
 
-  // base layers
+	// base layers
 	&colemak_comma_key_override,
-  &colemak_backspace_key_override,
+	&colemak_backspace_key_override,
 	&game_comma_key_override,
 	&game_backspace_key_override,
 
-  // layer_r
-  &layer_r_backspace_key_override,
+	// layer_r
+	&layer_r_backspace_key_override,
 
 	// layer_s
 	&layer_s_left_bracket_key_override,
 	&layer_s_right_bracket_key_override,
 	&layer_s_backslash_key_override,
-  &layer_s_backspace_key_override,
+	&layer_s_backspace_key_override,
 
 	// layer_t
 	&layer_t_grave_key_override,
 	&layer_t_slash_key_override,
 	&layer_t_semicolon_key_override,
 	&layer_t_equal_key_override,
-  &layer_t_backspace_key_override,
+	&layer_t_backspace_key_override,
 
 	// layer_n
 	&layer_n_zero_key_override,
@@ -165,13 +165,11 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 	&layer_n_comma_key_override,
 	&layer_n_dot_key_override,
 	&layer_n_slash_key_override,
-  &layer_n_backspace_key_override,
+	&layer_n_backspace_key_override,
 
-  // layer_e
-  &layer_e_backspace_key_override,
+	// layer_e
+	&layer_e_backspace_key_override,
 
-  // layer_i
-  &layer_i_backspace_key_override,
-
-	NULL
+	// layer_i
+	&layer_i_backspace_key_override
 };
