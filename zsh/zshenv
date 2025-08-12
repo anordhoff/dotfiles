@@ -52,7 +52,7 @@ export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=
 --color hl:1:bold \
 --color hl+:1:bold \
 --color info:15 \
---color marker:7:regular \
+--color marker:2:regular \
 --color spinner:7 \
 --color pointer:7:regular \
 --color prompt:7:regular \

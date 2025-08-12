@@ -308,7 +308,7 @@ hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp
 " --------------------------------------
 " telescope
 " --------------------------------------
-hi TelescopeMatching             cterm=none        ctermfg=5        ctermbg=none
+hi TelescopeMatching             cterm=none        ctermfg=1        ctermbg=none
 hi TelescopeBorder               cterm=none        ctermfg=15       ctermbg=none
 hi TelescopePromptCounter        cterm=none        ctermfg=15       ctermbg=none
-hi TelescopeMultiIcon            cterm=none        ctermfg=4        ctermbg=none
+hi TelescopeMultiIcon            cterm=none        ctermfg=2        ctermbg=none
