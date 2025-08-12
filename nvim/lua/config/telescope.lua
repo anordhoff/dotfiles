@@ -23,6 +23,8 @@ telescope.setup {
         ['<esc>'] = actions.close,
         ['<c-x>'] = false,
         ['<c-s>'] = actions.select_horizontal,
+        ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
+        ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
       },
       n = {},
     },
