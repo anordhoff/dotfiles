@@ -67,6 +67,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- enable autocompletion
+    -- TODO: backspace closes the autocompletion pmenu (backspace does not close manually trigger completion)
     if client ~= nil and client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end

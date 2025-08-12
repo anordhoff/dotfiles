@@ -22,7 +22,6 @@
 
 set notermguicolors   " disable 24-bit colors
 set number            " enable line numbers
-" set relativenumber    " use relative line numbers for all but the current line
 set noshowmode        " hide the mode from the bottom row
 set noincsearch       " do not immediately jump to first search hit
 set ignorecase        " case-insensitive searching...
@@ -192,7 +191,7 @@ nnoremap gh <cmd>set diffopt-=linematch:40<bar>diffget //2<bar>set diffopt+=line
 nnoremap gl <cmd>set diffopt-=linematch:40<bar>diffget //3<bar>set diffopt+=linematch:40<bar>diffupdate<cr>
 
 " copy the absolute path of the current file to the unnamed register
-nnoremap <silent> <leader>y :let @" = expand("%:p")<cr>
+nnoremap <leader>y :let @" = expand("%:p")<cr>
 
 " trigger tag/omni completion using <tab>
 inoremap <expr> <tab> completion#TabComplete(0)

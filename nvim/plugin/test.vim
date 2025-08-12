@@ -18,16 +18,17 @@ augroup test_config
   autocmd Filetype go nnoremap <silent> Z<cr> :call DebugFile('delve')<cr>
 augroup END
 
-" spawn a debugging terminal session
-function! DebugFile(runner)
-  let g:test#go#runner = a:runner
-  TestFile -strategy=spawn
-  unlet g:test#go#runner
-endfunction
-
+" spawn a debugging terminal session on the nearest test
 function! DebugNearest(runner)
   let g:test#go#runner = a:runner
   TestNearest -strategy=spawn
+  unlet g:test#go#runner
+endfunction
+
+" spawn a debugging terminal session on the current test file/package
+function! DebugFile(runner)
+  let g:test#go#runner = a:runner
+  TestFile -strategy=spawn
   unlet g:test#go#runner
 endfunction
 

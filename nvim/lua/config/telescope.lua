@@ -7,7 +7,7 @@ telescope.load_extension('undo')
 
 telescope.setup {
   defaults = {
-    border = false,
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     layout_strategy = 'flex',
     layout_config = {
       flex = {

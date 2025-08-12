@@ -19,7 +19,6 @@ let g:projectionist_heuristics = {
   \   '*_test.go': {
   \     'alternate': '{}.go',
   \     'dispatch': 'go test -fullpath -coverprofile=coverage.out ./{dirname}/...',
-  \     'start': 'dlv test ./{dirname}',
   \     'type': 'test'
   \   }
   \ }}
