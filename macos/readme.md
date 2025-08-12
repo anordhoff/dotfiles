@@ -16,6 +16,20 @@
 - [Wallpapper](https://github.com/mczachurski/wallpapper)
 - [ChangeMenuBarColor](https://github.com/igorkulman/ChangeMenuBarColor)
 
+```wallpapper.json
+[
+  {
+    "fileName": "sepia.png",
+    "isPrimary": true,
+    "isForLight": true
+  },
+  {
+    "fileName": "gray.png",
+    "isForDark": true
+  }
+]
+```
+
 
 ## tmux-256color
 
