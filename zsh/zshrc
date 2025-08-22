@@ -122,6 +122,7 @@ zle_highlight=(isearch:fg=black,bg=white)
 # --------------------------------------
 
 # TODO: touch hello-app.yaml; touch hello-app-service.yaml; kubectl apply -f
+# TODO: completion is current case sensitive. For example, vi re<tab> will autocomplete templates/ before README.md
 # helo<tab>   should result in 'hello-app', rather than resulting in 'hell' and
 # selecting first option in menu
 
@@ -243,7 +244,7 @@ alias kg='kubectl get'
 # krew plugins
 alias kctx='kubectl ctx'
 alias  kns='kubectl ns'
-alias   kl='kubectl stern'
+alias   kl='kubectl stern --pod-colors="31,32,33,34,35,36,37"'
 
 
 # --------------------------------------

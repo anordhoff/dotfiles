@@ -178,7 +178,7 @@ nnoremap gb :lvimgrep  %<left><left>
 nnoremap gp :vimgrep  **/*<left><left><left><left><left>
 
 " maximize the current window
-nnoremap <silent> <leader>z :tabnew %<cr>
+nnoremap <silent> <leader>z :tabnew %<cr><c-o>
 
 " toggle the quickfix list window and maximize window to the width of vim
 nnoremap <silent> <m-q> :call quickfix#ToggleQuickfixlist()<cr>
@@ -243,7 +243,7 @@ function Statusline(winid)
   let statusline  = ' ' .. Background(a:winid) " left padding; set status line background color
   let statusline .= ' [%n]  '                  " buffer number
   let statusline .= '%f'                       " filepath
-  let statusline .= '%{GitBranch()}  '         " git branch
+  " let statusline .= '%{GitBranch()}  '         " git branch
   let statusline .= '%{NopluginFlag()}'        " plugin flag
   let statusline .= '%H%W%R%M'                 " help/preview/read-only/modified flags
   let statusline .= '%=   %c%V  :  %2l/%L'     " byte index, virtual column number; line number

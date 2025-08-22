@@ -8,11 +8,7 @@ telescope.load_extension('undo')
 telescope.setup {
   defaults = {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-    layout_strategy = 'flex',
-    layout_config = {
-      flex = {
-        -- flip_columns = 160,
-      },
+    layout_strategy = 'vertical',
     },
     preview = {
       treesitter = false,
@@ -103,8 +99,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 vim.keymap.set('n', '<leader>fq', builtin.quickfix, opts)
 vim.keymap.set('n', '<leader>fl', builtin.loclist, opts)
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, opts)
-vim.keymap.set('n', '<leader>fr', builtin.lsp_references, opts)
-vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, opts)
+vim.keymap.set('n', '<leader>fr', function() builtin.lsp_references({ jump_type = "never" }) end, opts)
+vim.keymap.set('n', '<leader>fi', function() builtin.lsp_implementations({ jump_type = "never" }) end, opts)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
 vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)

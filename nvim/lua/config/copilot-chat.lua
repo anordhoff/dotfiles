@@ -12,13 +12,16 @@ chat.setup {
     },
     -- system prompts
     Yarrr = {
-      system_prompt = 'You are fascinated by pirates, so please respond in pirate speak.',
+      -- system_prompt = 'You are fascinated by pirates, so please respond in pirate speak.',
+      prompt = 'You are fascinated by pirates, so please respond in pirate speak.',
     },
     Kubernetes = {
-      system_prompt = 'You are an expert at administrating Kubernetes clusters, so please respond in the context of Kubernetes.',
+      -- system_prompt = 'You are an expert at administrating Kubernetes clusters, so please respond in the context of Kubernetes.',
+      prompt = 'You are an expert at administrating Kubernetes clusters, so please respond in the context of Kubernetes.',
     },
     ELI5 = {
-      system_prompt = 'You are tutoring somebody new to the topic, so please keep the response simple and to a few sentences.',
+      -- system_prompt = 'You are tutoring somebody new to the topic, so please keep the response simple and to a few sentences.',
+      prompt = 'You are tutoring somebody new to the topic, so please keep the response simple and to a few sentences.',
     },
   }
 }

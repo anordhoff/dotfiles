@@ -3,7 +3,11 @@ function quickfix#ToggleQuickfixlist()
     let g:quickfix_height = winheight(getqflist({'winid' : 1}).winid)
     cclose
   else
-    execute 'botright copen ' .. g:quickfix_height
+    if exists('g:quickfix_height')
+      execute 'botright copen ' .. g:quickfix_height
+    else
+      botright copen
+    endif
     wincmd p
   endif
 endfunction
@@ -11,10 +15,15 @@ endfunction
 function quickfix#ToggleLocationlist()
   try
     if getloclist(0, {'winid': 0}).winid
-      let b:locationlist_height = winheight(getloclist(0, {'winid' : 1}).winid)
+      let height = winheight(getloclist(0, {'winid' : 1}).winid)
       lclose
+      let b:locationlist_height = height
     else
-      execute 'lopen ' .. b:locationlist_height
+      if exists('b:locatiolist_height')
+        execute 'lopen ' .. b:locationlist_height
+      else
+        lopen
+      endif
       wincmd p
     endif
   catch 'E776'

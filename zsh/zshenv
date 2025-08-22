@@ -44,17 +44,17 @@ export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude ta
 export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal \
---color border:15 \
---color bg+:22 \
+--color border:8 \
+--color bg+:13 \
 --color fg+:7:regular \
 --color gutter:-1 \
---color header:15 \
+--color header:8 \
 --color hl:1:bold \
 --color hl+:1:bold \
---color info:15 \
+--color info:8 \
 --color marker:2:regular \
 --color spinner:7 \
---color pointer:7:regular \
+--color pointer:4:regular \
 --color prompt:7:regular \
 --color query:7:regular"
 

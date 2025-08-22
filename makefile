@@ -45,12 +45,6 @@ rm: validate-path
 	git rm $(path) -f
 	rm -rf .git/modules/$(path)
 
-# make tar files="nvim zsh tmux/tmux.conf"
-# TODO: ignore macos ._* files
-.PHONY: tar
-tar:
-	tar --exclude '**/._*' --exclude-vcs --exclude nvim/package --exclude tmux/plugins -czvf $(filename) $(files)
-
 # make diff dir1=dotfiles dir2=dotfiles.backup
 .PHONY: diff
 diff:

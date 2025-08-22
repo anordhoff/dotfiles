@@ -11,7 +11,7 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>TODO: REPLACE WITH OUTPUT OF "echo $PATH"</string>
+    <string>NOTE: REPLACE WITH OUTPUT OF "echo $PATH"</string>
   </dict>
   <key>RunAtLoad</key>
   <true/>
