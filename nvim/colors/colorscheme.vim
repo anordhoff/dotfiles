@@ -63,10 +63,9 @@ hi! link ColorColumn             CursorLine
 " --------------------------------------
 " number column
 " --------------------------------------
-hi LineNr                        cterm=none        ctermfg=11      ctermbg=none
+hi LineNr                        cterm=none        ctermfg=11       ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
-" hi Folded                        cterm=none        ctermfg=11      ctermbg=none
 hi Folded                        cterm=none        ctermfg=6        ctermbg=none
 
 " --------------------------------------
@@ -85,7 +84,6 @@ hi StatusLine                    cterm=none        ctermfg=7        ctermbg=none
 hi StatusLineNC                  cterm=none        ctermfg=7        ctermbg=none
 hi StatusLineActive              cterm=none        ctermfg=7        ctermbg=13
 hi StatusLineInactive            cterm=none        ctermfg=7        ctermbg=10
-" hi WildMenu                      cterm=none        ctermfg=none     ctermbg=none
 hi WildMenu                      cterm=none        ctermfg=5        ctermbg=13
 hi Question                      cterm=none        ctermfg=2        ctermbg=none
 hi Title                         cterm=none        ctermfg=3        ctermbg=none
@@ -125,7 +123,7 @@ hi Visual                        cterm=none        ctermfg=none     ctermbg=13
 hi VisualNOS                     cterm=none        ctermfg=none     ctermbg=13
 hi NonText                       cterm=none        ctermfg=3        ctermbg=none
 hi Whitespace                    cterm=none        ctermfg=3        ctermbg=none
-hi EndOfBuffer                   cterm=none        ctermfg=11      ctermbg=none
+hi EndOfBuffer                   cterm=none        ctermfg=11       ctermbg=none
 hi Conceal                       cterm=none        ctermfg=2        ctermbg=none
 hi SpecialKey                    cterm=none        ctermfg=2        ctermbg=none
 
@@ -272,7 +270,7 @@ hi DiffRemoved                   cterm=none        ctermfg=1        ctermbg=none
 " --------------------------------------
 " indent-blankline
 " --------------------------------------
-hi IblIndent                     cterm=none        ctermfg=11      ctermbg=none
+hi IblIndent                     cterm=none        ctermfg=11       ctermbg=none
 
 " --------------------------------------
 " leap
