@@ -19,7 +19,7 @@ function quickfix#ToggleLocationlist()
       lclose
       let b:locationlist_height = height
     else
-      if exists('b:locatiolist_height')
+      if exists('b:locationlist_height')
         execute 'lopen ' .. b:locationlist_height
       else
         lopen

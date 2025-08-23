@@ -9,7 +9,6 @@ telescope.setup {
   defaults = {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     layout_strategy = 'vertical',
-    },
     preview = {
       treesitter = false,
     },

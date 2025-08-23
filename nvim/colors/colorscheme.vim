@@ -63,10 +63,10 @@ hi! link ColorColumn             CursorLine
 " --------------------------------------
 " number column
 " --------------------------------------
-hi LineNr                        cterm=none        ctermfg=11       ctermbg=none
+hi LineNr                        cterm=none        ctermfg=11      ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
-" hi Folded                        cterm=none        ctermfg=11       ctermbg=none
+" hi Folded                        cterm=none        ctermfg=11      ctermbg=none
 hi Folded                        cterm=none        ctermfg=6        ctermbg=none
 
 " --------------------------------------

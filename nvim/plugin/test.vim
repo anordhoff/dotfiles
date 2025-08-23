@@ -12,7 +12,7 @@ let g:test#custom_transformations = {'delve': function('DelveTransformVerbose')}
 nnoremap <silent> <leader>t :TestNearest<cr>
 nnoremap <silent> <leader>T :call TestNearestVerbose()<cr>
 nnoremap <silent> <leader>l :TestLast<cr>
-nnoremap <silent> <leader>p  :TestFile<cr>
+nnoremap <silent> <leader>p :TestFile<cr>
 
 augroup test_config
   autocmd!
@@ -22,6 +22,7 @@ augroup END
 
 command! Cover :silent !go tool cover -html=coverage.out
 command! Coverfunc :tabedit /tmp/coverage.func | setlocal noreadonly | :%d | execute 'read !go tool cover -func=coverage.out' | :1d | :silent write | setlocal readonly
+
 
 " run the nearest test in verbose mode
 function! TestNearestVerbose()
