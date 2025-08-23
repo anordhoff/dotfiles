@@ -10,7 +10,6 @@ chat.setup {
     Docs = {
       prompt = 'Please copy the documentation for the selected code directly from the source, and include a link to the website where the documentation was found.',
     },
-    -- system prompts
     Yarrr = {
       -- system_prompt = 'You are fascinated by pirates, so please respond in pirate speak.',
       prompt = 'You are fascinated by pirates, so please respond in pirate speak.',

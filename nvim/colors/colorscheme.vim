@@ -113,9 +113,9 @@ hi PmenuMatchSel                 cterm=none        ctermfg=5        ctermbg=13
 " --------------------------------------
 " quickfix
 " --------------------------------------
-hi QuickFixLine                  cterm=none        ctermfg=none     ctermbg=23
+hi QuickFixLine                  cterm=none        ctermfg=none     ctermbg=14
 hi qfFileName                    cterm=none        ctermfg=7        ctermbg=none
-hi qfLineNr                      cterm=none        ctermfg=15       ctermbg=none
+hi qfLineNr                      cterm=none        ctermfg=8        ctermbg=none
 
 " --------------------------------------
 " visual aid
@@ -125,7 +125,7 @@ hi Visual                        cterm=none        ctermfg=none     ctermbg=13
 hi VisualNOS                     cterm=none        ctermfg=none     ctermbg=13
 hi NonText                       cterm=none        ctermfg=3        ctermbg=none
 hi Whitespace                    cterm=none        ctermfg=3        ctermbg=none
-hi EndOfBuffer                   cterm=none        ctermfg=11       ctermbg=none
+hi EndOfBuffer                   cterm=none        ctermfg=11      ctermbg=none
 hi Conceal                       cterm=none        ctermfg=2        ctermbg=none
 hi SpecialKey                    cterm=none        ctermfg=2        ctermbg=none
 
@@ -272,7 +272,7 @@ hi DiffRemoved                   cterm=none        ctermfg=1        ctermbg=none
 " --------------------------------------
 " indent-blankline
 " --------------------------------------
-hi IblIndent                     cterm=none        ctermfg=11       ctermbg=none
+hi IblIndent                     cterm=none        ctermfg=11      ctermbg=none
 
 " --------------------------------------
 " leap
