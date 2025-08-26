@@ -269,5 +269,5 @@ fi
 
 # start tmux on launch, attaching to an existing (or creating a new) session
 if [ -z $TMUX ]; then
-  tmux attach || tmux new-session -A -s default
+  tmux attach -t default || tmux new-session -A -s default
 fi
