@@ -26,13 +26,10 @@
 	recurse = true
 [alias]
 	br = branch -vv
-	bl = blame
-	cm = commit
+	cm = commit -m
 	ca = commit --amend
-	cl = clone
 	co = checkout
-	re = reset
-	rb = rebase
+	rs = reset
 	st = status
 	ctags = !.git/hooks/ctags
 [grep]
