@@ -1,5 +1,5 @@
-# from http://stackoverflow.com/a/41420448/4757
 # https://github.com/parkercoates/dotfiles/blob/master/.zsh/expand-multiple-dots.zsh
+# from http://stackoverflow.com/a/41420448/4757
 
 function expand-multiple-dots() {
   local MATCH
@@ -22,6 +22,6 @@ zle -N expand-multiple-dots
 zle -N expand-multiple-dots-then-expand-or-complete
 zle -N expand-multiple-dots-then-accept-line
 
-# NOTE: overridden by expand-or-complete-or-list-files.zsh
+# overridden by expand-or-complete-or-list-files.zsh
 # bindkey '^I' expand-multiple-dots-then-expand-or-complete
 bindkey '^M' expand-multiple-dots-then-accept-line
