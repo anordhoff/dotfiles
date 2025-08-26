@@ -2,11 +2,6 @@
 # general
 # --------------------------------------
 
-# start tmux on launch, attaching to an existing (or creating a new) session
-if [ -z $TMUX ]; then
-  tmux attach || tmux new-session -A -s default
-fi
-
 # options
 setopt   prompt_subst # enable prompt substitution
 setopt   dotglob      # include hidden files in expansion and completion
@@ -121,11 +116,6 @@ zle_highlight=(isearch:fg=black,bg=white)
 # completion
 # --------------------------------------
 
-# TODO: touch hello-app.yaml; touch hello-app-service.yaml; kubectl apply -f
-# TODO: completion is current case sensitive. For example, vi re<tab> will autocomplete templates/ before README.md
-# helo<tab>   should result in 'hello-app', rather than resulting in 'hell' and
-# selecting first option in menu
-
 setopt   alwaystoend    # completion in a word will move cursor to end of word
 setopt   completeinword # completion takes place at the cursor position in word
 unsetopt listtypes      # don't show filetypes in completion menu
@@ -156,13 +146,14 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 # allow one error
 zstyle ':completion:*' max-errors 1
 
-# smart case completion; complete partial words
-zstyle ':completion:*:complete-extended:*' matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# smart case completion
+zstyle ':completion:*' matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-bindkey "^Xb" _alias_expand_line
+# complete to the longest unambiguous prefix when multiple matches exist
+zstyle ':completion:*' insert-unambiguous true
 
 # complete *. with extensions; standard; one error; case insensitive completion
-zstyle ':completion:*' completer _expand_alias _extensions _complete _approximate _complete:-extended
+zstyle ':completion:*' completer _expand_alias _extensions _complete _approximate
 
 # cache completions
 zstyle ':completion:*' use-cache true
@@ -175,7 +166,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:messages' format '-- %d --'
 zstyle ':completion:*:warnings' format '-- no matches found --'
 
-# use colors in completion menu (LS_COLORS is only exported by default on linux)
+# use colors in completion menu
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # enable improved git-completion (required by completions/_git)
@@ -274,4 +265,9 @@ fi
 # source work zshrc
 if [ -r ~/jobfiles/zsh/zshrc ]; then
   source ~/jobfiles/zsh/zshrc
+fi
+
+# start tmux on launch, attaching to an existing (or creating a new) session
+if [ -z $TMUX ]; then
+  tmux attach || tmux new-session -A -s default
 fi
