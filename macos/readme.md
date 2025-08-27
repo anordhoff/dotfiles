@@ -7,7 +7,6 @@
 - [HazeOver](https://hazeover.com/)
 - [Ice](https://github.com/jordanbaird/Ice)
 - [Maccy](https://maccy.app/)
-- [AppearanceNotifier](https://github.com/jesse-c/AppearanceNotifier)
 - [SpotMenu v1.8](https://github.com/kmikiy/SpotMenu)
 
 
