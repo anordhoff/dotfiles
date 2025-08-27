@@ -237,10 +237,10 @@ alias  kns='kubectl ns'
 alias   kl='kubectl stern --pod-colors="31,32,33,34,35,36,37"'
 
 # themes
-alias gruvbox-dark='kitty +kitten themes --reload-in=all --config-file-name themes/theme.conf --cache-age -1 gruvbox-dark'
-alias gruvbox-light='kitty +kitten themes --reload-in=all --config-file-name themes/theme.conf --cache-age -1 gruvbox-light'
-alias solarized-dark='kitty +kitten themes --reload-in=all --config-file-name themes/theme.conf --cache-age -1 solarized-dark'
-alias solarized-light='kitty +kitten themes --reload-in=all --config-file-name themes/theme.conf --cache-age -1 solarized-light'
+alias gruvbox-dark="kitten @ --to $KITTY_LISTEN_ON set-colors --all ~/.config/kitty/themes/gruvbox-dark.conf"
+alias gruvbox-light="kitten @ --to $KITTY_LISTEN_ON set-colors --all ~/.config/kitty/themes/gruvbox-light.conf"
+alias solarized-dark="kitten @ --to $KITTY_LISTEN_ON set-colors --all ~/.config/kitty/themes/solarized-dark.conf"
+alias solarized-light="kitten @ --to $KITTY_LISTEN_ON set-colors --all ~/.config/kitty/themes/solarized-light.conf"
 
 
 # --------------------------------------
