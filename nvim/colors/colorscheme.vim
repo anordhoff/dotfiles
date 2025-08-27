@@ -205,8 +205,8 @@ hi markdownURL                   cterm=none        ctermfg=8        ctermbg=none
 hi markdownLinkDelimiter         cterm=none        ctermfg=8        ctermbg=none
 hi markdownLinkText              cterm=underline   ctermfg=4        ctermbg=none
 hi markdownLinkTextDelimiter     cterm=none        ctermfg=8        ctermbg=none
-hi markdownListMarker            cterm=none        ctermfg=5        ctermbg=none
-hi markdownOrderedListMarker     cterm=none        ctermfg=5        ctermbg=none
+hi markdownListMarker            cterm=none        ctermfg=8        ctermbg=none
+hi markdownOrderedListMarker     cterm=none        ctermfg=8        ctermbg=none
 hi markdownH1                    cterm=none        ctermfg=3        ctermbg=none
 hi markdownH2                    cterm=none        ctermfg=4        ctermbg=none
 hi markdownH3                    cterm=none        ctermfg=5        ctermbg=none

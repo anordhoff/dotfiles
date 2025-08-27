@@ -236,6 +236,12 @@ alias kctx='kubectl ctx'
 alias  kns='kubectl ns'
 alias   kl='kubectl stern --pod-colors="31,32,33,34,35,36,37"'
 
+# themes
+alias solarized-light='kitty +kitten themes --config-file-name themes/theme.conf --cache-age -1 solarized-light'
+alias solarized-dark='kitty +kitten themes --config-file-name themes/theme.conf --cache-age -1 solarized-dark'
+alias gruvbox-light='kitty +kitten themes --config-file-name themes/theme.conf --cache-age -1 gruvbox-light'
+alias gruvbox-dark='kitty +kitten themes --config-file-name themes/theme.conf --cache-age -1 gruvbox-dark'
+
 
 # --------------------------------------
 # extensions

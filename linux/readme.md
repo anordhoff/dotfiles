@@ -67,6 +67,14 @@ Use the following launch option to force a game to launch on the secondary monit
 ```
 
 
+## runelite
+
+This command fixes the RuneLite resolution issue when an external display is scaled to 125%
+```
+sudo flatpak override --env=GDK_SCALE=2 net.runelite.RuneLite
+```
+
+
 ## fonts
 
 San Francisco fonts can be cloned and installed from the following URLs:
@@ -86,5 +94,7 @@ To prevent Wayland from dropping unfocused windows to 1 fps, launch google chrom
 ## nvidia
 
 Install [proprietary Nvidia open source drivers](https://rpmfusion.org/Howto/NVIDIA) and follow [optimus setup instructions](https://rpmfusion.org/Howto/Optimus). Check that processes are using the Nvidia card with `nvidia-smi`.
+
+[This page](https://rpmfusion.org/Howto/Optimus) documents how to configure Optimus for better battery life. Adding these [udev rules](https://wiki.archlinux.org/title/PRIME#NVIDIA) should help, too.
 
 NOTE: As of 6/4/25, both `akmod-nivida` and `akmod-nvidia-open` were required. This might be a bug, as only `akmod-nvidia-open` should be needed.
