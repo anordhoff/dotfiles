@@ -71,7 +71,7 @@ hi Folded                        cterm=none        ctermfg=6        ctermbg=none
 " --------------------------------------
 " window/tab delimiters
 " --------------------------------------
-hi WinSeparator                  cterm=none        ctermfg=8        ctermbg=none
+hi WinSeparator                  cterm=none        ctermfg=11       ctermbg=none
 hi TabLine                       cterm=none        ctermfg=7        ctermbg=10
 hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=10
 hi TabLineSel                    cterm=none        ctermfg=6        ctermbg=10
