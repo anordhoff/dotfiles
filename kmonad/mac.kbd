@@ -39,29 +39,33 @@
   qrs (layer-toggle qwerty-right-shift)
 
   ;; mod taps
-  mta   (tap-hold 250 a (layer-toggle colemak-meh))
+  mta   (tap-hold 250 a (layer-toggle layer-a))
   mtr   (tap-hold 250 r (layer-toggle layer-r))
   mts   (tap-hold 150 s (layer-toggle layer-s))
-  mtt   (tap-hold 150 t (layer-toggle layer-t))
-  mtn   (tap-hold 150 n (layer-toggle layer-n))
+  mtt   (tap-hold 150 t (layer-toggle colemak-meh))
+  mtn   (tap-hold 150 n (layer-toggle colemak-meh))
   mte   (tap-hold 150 e (layer-toggle layer-e))
   mti   (tap-hold 250 i (layer-toggle layer-i))
-  mto   (tap-hold 250 o (layer-toggle colemak-meh))
+  mto   (tap-hold 250 o (layer-toggle layer-o))
 
-  mtA   (tap-hold 250 A (around lsft (layer-toggle colemak-meh)))
+  mtA   (tap-hold 250 A (layer-toggle layer-a-shift))
   mtR   (tap-hold 250 R (layer-toggle layer-r-shift))
   mtS   (tap-hold 150 S (layer-toggle layer-s-shift))
-  mtT   (tap-hold 150 T (layer-toggle layer-t-shift))
-  mtN   (tap-hold 150 N (layer-toggle layer-n-shift))
+  mtT   (tap-hold 150 T (around lsft (layer-toggle colemak-meh)))
+  mtN   (tap-hold 150 N (around lsft (layer-toggle colemak-meh)))
   mtE   (tap-hold 150 E (layer-toggle layer-e-shift))
   mtI   (tap-hold 250 I (layer-toggle layer-i-shift))
-  mtO   (tap-hold 250 O (around lsft (layer-toggle colemak-meh)))
+  mtO   (tap-hold 250 O (layer-toggle layer-o-shift))
 
   mtspc (tap-hold 170 spc (layer-toggle colemak-control))
   mtSPC (tap-hold 170 (around lsft spc) (around lsft (layer-toggle colemak-control)))
   mtesc (tap-hold-next 170 esc @sft)
 
   ;; mod taps on home row layers
+  atspc (tap-hold 170 spc lctl)
+  atSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
+  atesc (tap-hold-next 170 esc (layer-toggle layer-a-shift))
+
   rtspc (tap-hold 170 spc lctl)
   rtSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
   rtesc (tap-hold-next 170 esc (layer-toggle layer-r-shift))
@@ -69,14 +73,6 @@
   stspc (tap-hold 170 spc lctl)
   stSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
   stesc (tap-hold-next 170 esc (layer-toggle layer-s-shift))
-
-  ttspc (tap-hold 170 spc lctl)
-  ttSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
-  ttesc (tap-hold-next 170 esc (layer-toggle layer-t-shift))
-
-  ntspc (tap-hold 170 spc lctl)
-  ntSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
-  ntesc (tap-hold-next 170 esc (layer-toggle layer-n-shift))
 
   etspc (tap-hold 170 spc lctl)
   etSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
@@ -86,35 +82,38 @@
   itSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
   itesc (tap-hold-next 170 esc (layer-toggle layer-i-shift))
 
+  otspc (tap-hold 170 spc lctl)
+  otSPC (tap-hold 170 (around lsft spc) (around lsft lctl))
+  otesc (tap-hold-next 170 esc (layer-toggle layer-o-shift))
+
   ;; control mod taps
+  cta   (tap-hold 250 (around lctl a) (layer-toggle layer-a-control))
   ctr   (tap-hold 250 (around lctl r) (layer-toggle layer-r-control))
   cts   (tap-hold 150 (around lctl s) (layer-toggle layer-s-control))
-  ctt   (tap-hold 150 (around lctl t) (layer-toggle layer-t-control))
-  ctn   (tap-hold 150 (around lctl n) (layer-toggle layer-n-control))
   cte   (tap-hold 150 (around lctl e) (layer-toggle layer-e-control))
   cti   (tap-hold 250 (around lctl i) (layer-toggle layer-i-control))
+  cto   (tap-hold 250 (around lctl o) (layer-toggle layer-o-control))
 
+  ctA   (tap-hold 250 (around lctl A) (layer-toggle layer-a-control-shift))
   ctR   (tap-hold 250 (around lctl R) (layer-toggle layer-r-control-shift))
   ctS   (tap-hold 150 (around lctl S) (layer-toggle layer-s-control-shift))
-  ctT   (tap-hold 150 (around lctl T) (layer-toggle layer-t-control-shift))
-  ctN   (tap-hold 150 (around lctl N) (layer-toggle layer-n-control-shift))
   ctE   (tap-hold 150 (around lctl E) (layer-toggle layer-e-control-shift))
   ctI   (tap-hold 250 (around lctl I) (layer-toggle layer-i-control-shift))
+  ctO   (tap-hold 250 (around lctl O) (layer-toggle layer-o-control-shift))
 
   ctesc (tap-hold-next 170 (around lctl esc) (layer-toggle colemak-control-shift))
 
   ;; control mod taps on home row layers
+  acesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-a-control-shift))
   rcesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-r-control-shift))
   scesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-s-control-shift))
-  tcesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-t-control-shift))
-  ncesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-n-control-shift))
   ecesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-e-control-shift))
   icesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-i-control-shift))
+  ocesc (tap-hold-next 170 (around lctl esc) (layer-toggle layer-o-control-shift))
 
   ;; game layer mod taps
   mtz   (tap-hold 250 z lsft)
   mtZ   (tap-hold 250 Z lsft)
-
   gmesc (tap-hold-next 170 esc @gms)
 
   ;; function keys (using 'around' ensures fn keypress actually gets emitted)
@@ -482,12 +481,12 @@
 )
 
 (deflayer colemak-shift
-  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
-  XX        Q    W    F    P    B    {    J    L    U    Y    :    XX     XX
-  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
-  Z         X    C    D    V    :    |    K    H    \_   .    "           S-up
-  @FN       XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
+  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
+  XX        Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO   S-ret
+  Z         X    C    D    V    :    |    K    H    \_   .    "             S-up
+  @FN       XX   XX   lmet           @mtSPC    _    lalt             S-left S-down S-rght
 )
 
 (deflayer colemak-control
@@ -500,12 +499,12 @@
 )
 
 (deflayer colemak-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  @cGRV     @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_   @c+    @cBSPC
-  XX        @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @c:   XX     XX
-  @cTAB     @cA  @ctR @ctS @ctT @cG  @c}  @cM  @ctN @ctE @ctI @cO   @cRET
-  @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c_  @c.  @cqu         @cUP
-  @cFN      XX   XX   lmet           _         _    lalt            @cLEFT @cDOWN @cRGHT
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  @cGRV     @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_    @c+    @cBSPC
+  XX        @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @cBSPC XX     XX
+  @cTAB     @cA  @ctR @ctS @ctT @cG  @c}  @cM  @ctN @ctE @ctI @cO    @cRET
+  @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c_  @c.  @cqu          @cUP
+  @cFN      XX   XX   lmet           _         _    lalt             @cLEFT @cDOWN @cRGHT
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
@@ -518,220 +517,220 @@
   @mfn      XX   XX   @adj           @lhp      @rhp @adj             @mleft @mdown @mrght
 )
 
-(deflayer layer-r
+(deflayer layer-a
   @tesc     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tbspc
   XX        XX   XX   XX   XX   XX   XX   XX   @tins  @thome @tpgup @tbspc XX     XX
-  @ttab     XX   _    XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
+  @ttab     _    XX   XX   XX   XX   XX   XX   @tleft @tdown @tup   @trght @tret
   XX        XX   XX   XX   XX   XX   XX   XX   @tdel  @tend  @tpgdn XX            XX
-  XX        XX   XX   lmet           @rtspc    @rtesc lalt                   XX   XX   XX
+  XX        XX   XX   lmet           @atspc    @atesc lalt                   XX   XX   XX
 )
 
-(deflayer layer-r-shift
+(deflayer layer-a-shift
   @tESC     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @tBSPC
-  XX        XX   XX   XX   XX   XX   XX   XX   @tINS  @tHOME @tPGUP @t:    XX     XX
-  @tTAB     XX   _    XX   XX   XX   XX   XX   @tLEFT @tDOWN @tUP   @tRGHT @tRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @tINS  @tHOME @tPGUP @tBSPC XX     XX
+  @tTAB     _    XX   XX   XX   XX   XX   XX   @tLEFT @tDOWN @tUP   @tRGHT @tRET
   XX        XX   XX   XX   XX   XX   XX   XX   @tDEL  @tEND  @tPGDN XX            XX
-  XX        XX   XX   S-lmet         @rtSPC    _      S-lalt                 XX   XX   XX
+  XX        XX   XX   S-lmet         @atSPC    _      S-lalt                 XX   XX   XX
 )
 
-(deflayer layer-r-control
+(deflayer layer-a-control
   @cesc     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @cbspc
   XX        XX   XX   XX   XX   XX   XX   XX   @cins  @chome @cpgup @cbspc XX     XX
-  @ctab     XX   _    XX   XX   XX   XX   XX   @cleft @cdown @cup   @crght @cret
+  @ctab     _    XX   XX   XX   XX   XX   XX   @cleft @cdown @cup   @crght @cret
   XX        XX   XX   XX   XX   XX   XX   XX   @cdel  @cend  @cpgdn XX            XX
-  XX        XX   XX   lmet           _         @rcesc lalt                   XX   XX   XX
+  XX        XX   XX   lmet           _         @acesc lalt                   XX   XX   XX
 )
 
-(deflayer layer-r-control-shift
+(deflayer layer-a-control-shift
   @cESC     XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX     XX     XX     XX     XX     @cBSPC
-  XX        XX   XX   XX   XX   XX   XX   XX   @cINS  @cHOME @cPGUP @c:    XX     XX
-  @cTAB     XX   _    XX   XX   XX   XX   XX   @cLEFT @cDOWN @cUP   @cRGHT @cRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @cINS  @cHOME @cPGUP @cBSPC XX     XX
+  @cTAB     _    XX   XX   XX   XX   XX   XX   @cLEFT @cDOWN @cUP   @cRGHT @cRET
   XX        XX   XX   XX   XX   XX   XX   XX   @cDEL  @cEND  @cPGDN XX            XX
   XX        XX   XX   S-lmet         _         _      S-lalt                 XX   XX   XX
 )
 
-(deflayer layer-s
+(deflayer layer-r
   @tesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @tbspc
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  @tbspc XX     XX
-  @ttab     XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|    @tret
-  XX        XX   XX   XX   XX   XX   XX   XX   @t<   @t{  @t}  @t>           XX
-  XX        XX   XX   lmet           @stspc    @stesc lalt              XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t^  @t&  @tbspc XX     XX
+  @ttab     XX   _    XX   XX   XX   XX   XX   @t|   @t\  @t`  @tdel  @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   @t@   @t#  @t%  XX            XX
+  XX        XX   XX   lmet           @rtspc    @rtesc lalt              XX   XX   XX
+)
+
+(deflayer layer-r-shift
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @tBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t^  @t&  @tBSPC XX     XX
+  @tTAB     XX   _    XX   XX   XX   XX   XX   @t|   @t\  @t`  @tDEL  @tRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @t@   @t#  @t%  XX            XX
+  XX        XX   XX   S-lmet         @rtSPC    _     S-lalt             XX   XX   XX
+)
+
+(deflayer layer-r-control
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @cbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c^  @c&  @cbspc XX     XX
+  @ctab     XX   _    XX   XX   XX   XX   XX   @c|   @c\  @c`  @cdel  @cret
+  XX        XX   XX   XX   XX   XX   XX   XX   @c@   @c#  @c%  XX            XX
+  XX        XX   XX   lmet           _         @rcesc lalt              XX   XX   XX
+)
+
+(deflayer layer-r-control-shift
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @cBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c^  @c&  @cBSPC XX     XX
+  @cTAB     XX   _    XX   XX   XX   XX   XX   @c|   @c\  @c`  @cdel  @cRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @c@   @c#  @c%  XX            XX
+  XX        XX   XX   S-lmet         _         _     S-lalt             XX   XX   XX
+)
+
+(deflayer layer-s
+  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t*  @t+  @tbspc XX     XX
+  @ttab     XX   XX   _    XX   XX   XX   XX   @t=  @t!  @t/  @t?    @tret
+  XX        XX   XX   XX   XX   XX   XX   XX   @t~  @t<  @t>  XX            XX
+  XX        XX   XX   lmet           @stspc    @stesc lalt             XX   XX   XX
 )
 
 (deflayer layer-s-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX    XX     @tBSPC
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @t[  @t]  @t:   XX     XX
-  @tTAB     XX   XX   _    XX   XX   XX   XX   @t\   @t(  @tpa @t|   @tRET
-  XX        XX   XX   XX   XX   XX   XX   XX   @t<   @t{  @t}  @t>          XX
-  XX        XX   XX   S-lmet         @stSPC    _     S-lalt            XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t*  @t+  @tBSPC XX     XX
+  @tTAB     XX   XX   _    XX   XX   XX   XX   @t=  @t!  @t/  @t?    @tRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @t~  @t<  @t>  XX            XX
+  XX        XX   XX   S-lmet         @stSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-s-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX     XX     @cbspc
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c[  @c]  @cbspc XX     XX
-  @ctab     XX   XX   _    XX   XX   XX   XX   @c\   @c(  @cpa @c|    @cret
-  XX        XX   XX   XX   XX   XX   XX   XX   @c<   @c{  @c}  @c>           XX
-  XX        XX   XX   lmet           _         @scesc lalt              XX   XX   XX
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @c*  @c+  @cbspc XX     XX
+  @ctab     XX   XX   _    XX   XX   XX   XX   @c=  @c!  @c/  @c?    @cret
+  XX        XX   XX   XX   XX   XX   XX   XX   @c~  @c<  @c>  XX            XX
+  XX        XX   XX   lmet           _         @scesc lalt             XX   XX   XX
 )
 
 (deflayer layer-s-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    XX   XX   XX    XX     @cBSPC
-  XX        XX   XX   XX   XX   XX   XX   XX   XX    @c[  @c]  @c:   XX     XX
-  @cTAB     XX   XX   _    XX   XX   XX   XX   @c\   @c(  @cpa @c|   @cRET
-  XX        XX   XX   XX   XX   XX   XX   XX   @c<   @c{  @c}  @c>          XX
-  XX        XX   XX   S-lmet         _         _     S-lalt            XX   XX   XX
-)
-
-(deflayer layer-t
-  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  @tbspc XX     XX
-  @ttab     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  XX     @tret
-  XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX            XX
-  XX        XX   XX   lmet           @ttspc    @ttesc lalt             XX   XX   XX
-)
-
-(deflayer layer-t-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @tBSPC
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   @t`  @t~  @t:   XX     XX
-  @tTAB     XX   XX   XX   _    XX   XX   XX   @t/  @t?  @t;  XX    @tRET
-  XX        XX   XX   XX   XX   XX   XX   XX   @t=  @t+  @t!  XX           XX
-  XX        XX   XX   S-lmet         @ttSPC    _    S-lalt            XX   XX   XX
-)
-
-(deflayer layer-t-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  @cbspc XX     XX
-  @ctab     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  XX     @cret
-  XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX            XX
-  XX        XX   XX   lmet           _         @tcesc lalt             XX   XX   XX
-)
-
-(deflayer layer-t-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @cBSPC
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   @c`  @c~  @c:   XX     XX
-  @cTAB     XX   XX   XX   _    XX   XX   XX   @c/  @c?  @c;  XX    @cRET
-  XX        XX   XX   XX   XX   XX   XX   XX   @c=  @c+  @c!  XX           XX
-  XX        XX   XX   S-lmet         _         _    S-lalt            XX   XX   XX
-)
-
-(deflayer layer-n
-  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
-  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   @tbspc XX     XX
-  @ttab     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:    @tret
-  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/           XX
-  XX        XX   XX   lmet           @ntspc    @ntesc lalt             XX   XX   XX
-)
-
-(deflayer layer-n-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @tBSPC
-  XX        XX   @t7  @t8  @t9  XX   XX   XX   XX   XX   XX   @t:   XX     XX
-  @tTAB     @t0  @t4  @t5  @t6  XX   XX   XX   _    @t*  @t+  @t:   @tRET
-  XX        @t1  @t2  @t3  XX   XX   XX   XX   XX   @t,  @t.  @t/          XX
-  XX        XX   XX   S-lmet         @ntSPC    _    S-lalt            XX   XX   XX
-)
-
-(deflayer layer-n-control
-  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
-  XX        XX   @c7  @c8  @c9  XX   XX   XX   XX   XX   XX   @cbspc XX     XX
-  @ctab     @c0  @c4  @c5  @c6  XX   XX   XX   _    @c*  @c+  @c:    @cret
-  XX        @c1  @c2  @c3  XX   XX   XX   XX   XX   @c,  @c.  @c/           XX
-  XX        XX   XX   lmet           _         @ncesc lalt             XX   XX   XX
-)
-
-(deflayer layer-n-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @cBSPC
-  XX        XX   @c7  @c8  @c9  XX   XX   XX   XX   XX   XX   @c:   XX     XX
-  @cTAB     @c0  @c4  @c5  @c6  XX   XX   XX   _    @c*  @c+  @c:   @cRET
-  XX        @c1  @c2  @c3  XX   XX   XX   XX   XX   @c,  @c.  @c/          XX
-  XX        XX   XX   S-lmet         _         _    S-lalt            XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   @c*  @c+  @cBSPC XX     XX
+  @cTAB     XX   XX   _    XX   XX   XX   XX   @c=  @c!  @c/  @c?    @cRET
+  XX        XX   XX   XX   XX   XX   XX   XX   @c~  @c<  @c>  XX            XX
+  XX        XX   XX   S-lmet         _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-e
   @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
-  XX        XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   @tbspc XX     XX
-  @ttab     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX     @tret
-  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   @t4  @t5  @t6  XX   XX   XX   XX   XX   XX   @tbspc XX     XX
+  @ttab     @t0  @t1  @t2  @t3  XX   XX   XX   XX   _    XX   XX     @tret
+  XX        @t7  @t8  @t9  XX   XX   XX   XX   XX   @t,  @t.  @t/           XX
   XX        XX   XX   lmet           @etspc    @etesc lalt             XX   XX   XX
 )
 
 (deflayer layer-e-shift
-  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @tBSPC
-  XX        XX   @t&  @t*  @t(  XX   XX   XX   XX   XX   XX   @t:   XX     XX
-  @tTAB     @tpa @t$  @t%  @t^  XX   XX   XX   XX   _    XX   XX    @tRET
-  XX        @t!  @t@  @t#  XX   XX   XX   XX   XX   XX   XX   XX           XX
-  XX        XX   XX   S-lmet         @etSPC    _    S-lalt            XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        XX   @t4  @t5  @t6  XX   XX   XX   XX   XX   XX   @tBSPC XX     XX
+  @tTAB     @t0  @t1  @t2  @t3  XX   XX   XX   XX   _    XX   XX     @tRET
+  XX        @t7  @t8  @t9  XX   XX   XX   XX   XX   @t,  @t.  @t/           XX
+  XX        XX   XX   S-lmet         @etSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-e-control
   @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
-  XX        XX   @c&  @c*  @c(  XX   XX   XX   XX   XX   XX   @cbspc XX     XX
-  @ctab     @cpa @c$  @c%  @c^  XX   XX   XX   XX   _    XX   XX     @cret
-  XX        @c!  @c@  @c#  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   @c4  @c5  @c6  XX   XX   XX   XX   XX   XX   @cbspc XX     XX
+  @ctab     @c0  @c1  @c2  @c3  XX   XX   XX   XX   _    XX   XX     @cret
+  XX        @c7  @c8  @c9  XX   XX   XX   XX   XX   @c,  @c.  @c/           XX
   XX        XX   XX   lmet           _         @ecesc lalt             XX   XX   XX
 )
 
 (deflayer layer-e-control-shift
-  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX
-  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX     @cBSPC
-  XX        XX   @c&  @c*  @c(  XX   XX   XX   XX   XX   XX   @c:   XX     XX
-  @cTAB     @cpa @c$  @c%  @c^  XX   XX   XX   XX   _    XX   XX    @cRET
-  XX        @c!  @c@  @c#  XX   XX   XX   XX   XX   XX   XX   XX           XX
-  XX        XX   XX   S-lmet         _         _    S-lalt            XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        XX   @c4  @c5  @c6  XX   XX   XX   XX   XX   XX   @cBSPC XX     XX
+  @cTAB     @c0  @c1  @c2  @c3  XX   XX   XX   XX   _    XX   XX     @cRET
+  XX        @c7  @c8  @c9  XX   XX   XX   XX   XX   @c,  @c.  @c/           XX
+  XX        XX   XX   S-lmet         _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-i
-  @tesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @tbspc
-  XX        @tf11 @tf7 @tf8 @tf9 @tf12 XX   XX   XX   XX   XX   @tbspc XX     XX
-  @ttab     @tf10 @tf4 @tf5 @tf6 XX    XX   XX   XX   XX   _    XX     @tret
-  XX        @tf1  @tf2 @tf3 XX   XX    XX   XX   XX   XX   XX   XX            XX
-  XX        XX    XX   lmet            @itspc    @itesc lalt             XX   XX   XX
+  @tesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        XX   @t[  @t]  XX   XX   XX   XX   XX   XX   XX   @tbspc XX     XX
+  @ttab     @t$  @t(  @tpa @t;  XX   XX   XX   XX   XX   _    XX     @tret
+  XX        XX   @t{  @t}  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   XX   lmet           @itspc    @itesc lalt             XX   XX   XX
 )
 
 (deflayer layer-i-shift
-  @tESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX    XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX    XX     @tBSPC
-  XX        @tF11 @tF7 @tF8 @tF9 @tF12 XX   XX   XX   XX   XX   @t:   XX     XX
-  @tTAB     @tF10 @tF4 @tF5 @tF6 XX    XX   XX   XX   XX   _    XX    @tRET
-  XX        @tF1  @tF2 @tF3 XX   XX    XX   XX   XX   XX   XX   XX           XX
-  XX        XX    XX   S-lmet          @itSPC    _    S-lalt            XX   XX   XX
+  @tESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        XX   @t[  @t]  XX   XX   XX   XX   XX   XX   XX   @tBSPC XX     XX
+  @tTAB     @t$  @t(  @tpa @t;  XX   XX   XX   XX   XX   _    XX     @tRET
+  XX        XX   @t{  @t}  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   XX   S-lmet         @itSPC    _    S-lalt             XX   XX   XX
 )
 
 (deflayer layer-i-control
-  @cesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @cbspc
-  XX        @cf11 @cf7 @cf8 @cf9 @cf12 XX   XX   XX   XX   XX   @cbspc XX     XX
-  @ctab     @cf10 @cf4 @cf5 @cf6 XX    XX   XX   XX   XX   _    XX     @cret
-  XX        @cf1  @cf2 @cf3 XX   XX    XX   XX   XX   XX   XX   XX            XX
-  XX        XX    XX   lmet            _         @icesc lalt             XX   XX   XX
+  @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        XX   @c[  @c]  XX   XX   XX   XX   XX   XX   XX   @cbspc XX     XX
+  @ctab     @c$  @c(  @cpa @c;  XX   XX   XX   XX   XX   _    XX     @cret
+  XX        XX   @c{  @c}  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   XX   lmet           _         @icesc lalt             XX   XX   XX
 )
 
 (deflayer layer-i-control-shift
-  @cESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX    XX
-  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX    XX     @cBSPC
-  XX        @cF11 @cF7 @cF8 @cF9 @cF12 XX   XX   XX   XX   XX   @c:   XX     XX
-  @cTAB     @cF10 @cF4 @cF5 @cF6 XX    XX   XX   XX   XX   _    XX    @cRET
-  XX        @cF1  @cF2 @cF3 XX   XX    XX   XX   XX   XX   XX   XX           XX
-  XX        XX    XX   S-lmet          _         _    S-lalt            XX   XX   XX
+  @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        XX   @c[  @c]  XX   XX   XX   XX   XX   XX   XX   @cBSPC XX     XX
+  @cTAB     @c$  @c(  @cpa @c;  XX   XX   XX   XX   XX   _    XX     @cRET
+  XX        XX   @c{  @c}  XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        XX   XX   S-lmet         _         _    S-lalt             XX   XX   XX
+)
+
+(deflayer layer-o
+  @tesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @tbspc
+  XX        @tf11 @tf4 @tf5 @tf6 @tf12 XX   XX   XX   XX   XX   @tbspc XX     XX
+  @ttab     @tf10 @tf1 @tf2 @tf3 XX    XX   XX   XX   XX   XX   _      @tret
+  XX        @tf7  @tf8 @tf9 XX   XX    XX   XX   XX   XX   XX   XX            XX
+  XX        XX    XX   lmet            @otspc    @otesc lalt             XX   XX   XX
+)
+
+(deflayer layer-o-shift
+  @tESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @tBSPC
+  XX        @tF11 @tF4 @tF5 @tF6 @tF12 XX   XX   XX   XX   XX   @tBSPC XX     XX
+  @tTAB     @tF10 @tF1 @tF2 @tF3 XX    XX   XX   XX   XX   XX   _      @tRET
+  XX        @tF7  @tF8 @tF9 XX   XX    XX   XX   XX   XX   XX   XX            XX
+  XX        XX    XX   S-lmet          @otSPC    _    S-lalt             XX   XX   XX
+)
+
+(deflayer layer-o-control
+  @cesc     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @cbspc
+  XX        @cf11 @cf4 @cf5 @cf6 @cf12 XX   XX   XX   XX   XX   @cbspc XX     XX
+  @ctab     @cf10 @cf1 @cf2 @cf3 XX    XX   XX   XX   XX   XX   _      @cret
+  XX        @cf7  @cf8 @cf9 XX   XX    XX   XX   XX   XX   XX   XX            XX
+  XX        XX    XX   lmet            _         @ocesc lalt             XX   XX   XX
+)
+
+(deflayer layer-o-control-shift
+  @cESC     XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX
+  XX        XX    XX   XX   XX   XX    XX   XX   XX   XX   XX   XX     XX     @cBSPC
+  XX        @cF11 @cF4 @cF5 @cF6 @cF12 XX   XX   XX   XX   XX   @cBSPC XX     XX
+  @cTAB     @cF10 @cF1 @cF2 @cF3 XX    XX   XX   XX   XX   XX   _      @cRET
+  XX        @cF7  @cF8 @cF9 XX   XX    XX   XX   XX   XX   XX   XX            XX
+  XX        XX    XX   S-lmet          _         _    S-lalt             XX   XX   XX
 )
 
 (deflayer game
@@ -765,9 +764,9 @@
 (deflayer game-extend
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  XX        f11  f7   f8   f9   f12  XX   XX   ins  home pgup XX   XX     XX
-  XX        f10  f4   f5   f6   XX   XX   XX   left down up   rght XX
-  XX        f1   f2   f3   XX   XX   XX   XX   del  end  pgdn XX          XX
+  XX        f11  f4   f5   f6   f12  XX   XX   ins  home pgup XX   XX     XX
+  XX        f10  f1   f2   f3   XX   XX   XX   left down up   rght XX
+  XX        f7   f8   f9   XX   XX   XX   XX   del  end  pgdn XX          XX
   XX        XX   XX   _              XX        XX   _                XX   XX   XX
 )
 

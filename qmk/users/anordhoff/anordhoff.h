@@ -8,12 +8,12 @@ enum custom_keycodes {
 enum layers {
 	_COLEMAK,
 	_COLEMAK_MEH,
+	_LAYER_A,
 	_LAYER_R,
 	_LAYER_S,
-	_LAYER_T,
-	_LAYER_N,
 	_LAYER_E,
 	_LAYER_I,
+	_LAYER_O,
 	_GAME,
 	_GAME_MEH,
 	_GAME_EXTEND,
@@ -46,14 +46,14 @@ enum layers {
 #define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
 
 // mod taps
-#define MT_A    LT(_COLEMAK_MEH, KC_A)
+#define MT_A    LT(_LAYER_A, KC_A)
 #define MT_R    LT(_LAYER_R, KC_R)
 #define MT_S    LT(_LAYER_S, KC_S)
-#define MT_T    LT(_LAYER_T, KC_T)
-#define MT_N    LT(_LAYER_N, KC_N)
+#define MT_T    LT(_COLEMAK_MEH, KC_T)
+#define MT_N    LT(_COLEMAK_MEH, KC_N)
 #define MT_E    LT(_LAYER_E, KC_E)
 #define MT_I    LT(_LAYER_I, KC_I)
-#define MT_O    LT(_COLEMAK_MEH, KC_O)
+#define MT_O    LT(_LAYER_O, KC_O)
 
 #define MT_SPC  MT(MOD_LCTL, KC_SPC)
 #define MT_ESC  MT(MOD_LSFT, KC_ESC)
