@@ -493,7 +493,7 @@
   @cesc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   @cgrv     @c1  @c2  @c3  @c4  @c5  @c6  @c7  @c8  @c9  @c0  @c-    @c=    @cbspc
   XX        @cq  @cw  @cf  @cp  @cb  @c[  @cj  @cl  @cu  @cy  @cbspc XX     XX
-  @ctab     @ca  @ctr @cts @ctt @cg  @c]  @cm  @ctn @cte @cti @co    @cret
+  @ctab     @cta @ctr @cts @ct  @cg  @c]  @cm  @cn  @cte @cti @cto   @cret
   @cz       @cx  @cc  @cd  @cv  @c;  @c\  @ck  @ch  @c-  @c,  @c'           @cup
   @cfn      XX   XX   lmet           _         @ctesc lalt           @cleft @cdown @crght
 )
@@ -502,7 +502,7 @@
   @cESC     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
   @cGRV     @c!  @c@  @c#  @c$  @c%  @c^  @c&  @c*  @c(  @cpa @c_    @c+    @cBSPC
   XX        @cQ  @cW  @cF  @cP  @cB  @c{  @cJ  @cL  @cU  @cY  @cBSPC XX     XX
-  @cTAB     @cA  @ctR @ctS @ctT @cG  @c}  @cM  @ctN @ctE @ctI @cO    @cRET
+  @cTAB     @ctA @ctR @ctS @cT  @cG  @c}  @cM  @cN  @ctE @ctI @ctO   @cRET
   @cZ       @cX  @cC  @cD  @cV  @c:  @c|  @cK  @cH  @c_  @c.  @cqu          @cUP
   @cFN      XX   XX   lmet           _         _    lalt             @cLEFT @cDOWN @cRGHT
 )
