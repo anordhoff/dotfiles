@@ -260,7 +260,7 @@
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     bspc
   XX        XX   [    ]    XX   XX   XX   XX   XX   XX   XX   bspc XX     XX
   tab       $    \(   \)   ;    XX   XX   XX   XX   XX   _    XX   ret
-  XX        XX   {    }    XX   XX   XX   XX   XX   XX   XX   XX          XX
+  XX        {    }    XX   XX   XX   XX   XX   XX   XX   XX   XX          XX
             XX   XX   lmet           @itspc    @itesc lalt           XX   XX   XX
 )
 
@@ -268,7 +268,7 @@
   XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX     S-bspc
   XX        XX   [    ]    \(   XX   XX   XX   XX   XX   XX   S-bspc XX     XX
   S-tab     $    \(   \)   ;    XX   XX   XX   XX   XX   _    XX     S-ret
-  XX        XX   {    }    XX   XX   XX   XX   XX   XX   XX   XX            XX
+  XX        {    }    XX   XX   XX   XX   XX   XX   XX   XX   XX            XX
             XX   XX   S-lmet         @itSPC    _    S-lalt             XX   XX   XX
 )
 
