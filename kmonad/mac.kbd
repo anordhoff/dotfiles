@@ -481,12 +481,12 @@
 )
 
 (deflayer colemak-shift
-  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX     XX
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
-  XX        Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
-  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO   S-ret
-  Z         X    C    D    V    :    |    K    H    \_   .    "             S-up
-  @FN       XX   XX   lmet           @mtSPC    _    lalt             S-left S-down S-rght
+  S-esc     XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
+  XX        Q    W    F    P    B    {    J    L    U    Y    :    XX     XX
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
+  Z         X    C    D    V    :    |    K    H    \_   .    "           S-up
+  @FN       XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
 )
 
 (deflayer colemak-control
