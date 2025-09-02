@@ -41,10 +41,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case MT_A:
-		case MT_R:
-		case MT_I:
+		case MT_T:
+		case MT_N:
 		case MT_O:
-		case MT_Z:
 			return 250;
 		case MT_SPC:
 		case MT_ESC:
