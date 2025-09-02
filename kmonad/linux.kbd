@@ -176,11 +176,11 @@
 )
 
 (deflayer colemak-shift
-  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_     +      S-bspc
-  XX        Q    W    F    P    B    {    J    L    U    Y    S-bspc XX     XX
-  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO   S-ret
-  Z         X    C    D    V    :    |    K    H    \_   .    "             S-up
-            XX   XX   lmet           @mtSPC    _    lalt             S-left S-down S-rght
+  S-grv     !    @    #    $    %    ^    &    *    \(   \)   \_   +      S-bspc
+  XX        Q    W    F    P    B    {    J    L    U    Y    :    XX     XX
+  S-tab     @mtA @mtR @mtS @mtT G    }    M    @mtN @mtE @mtI @mtO S-ret
+  Z         X    C    D    V    :    |    K    H    \_   .    "           S-up
+            XX   XX   lmet           @mtSPC    _    lalt           S-left S-down S-rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
