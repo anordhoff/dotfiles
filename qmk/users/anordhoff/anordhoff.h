@@ -58,9 +58,6 @@ enum layers {
 #define MT_SPC  MT(MOD_LCTL, KC_SPC)
 #define MT_ESC  MT(MOD_LSFT, KC_ESC)
 
-// game layer mod taps
-#define MT_Z    MT(MOD_LSFT, KC_Z)
-
 // meh layer keys
 #define LM_A    LCTL(LSFT(LALT(KC_A)))
 #define LM_B    LCTL(LSFT(LALT(KC_B)))

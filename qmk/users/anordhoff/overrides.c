@@ -1,8 +1,9 @@
 // base layer overrides
-const key_override_t colemak_comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_DOT, 1 << _COLEMAK);
 const key_override_t colemak_backspace_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_BSPC, KC_COLN, 1 << _COLEMAK);
-const key_override_t game_comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_DOT, 1 << _GAME);
+const key_override_t colemak_comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_DOT, 1 << _COLEMAK);
 const key_override_t game_backspace_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_BSPC, KC_COLN, 1 << _GAME);
+const key_override_t game_comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_DOT, 1 << _GAME);
+const key_override_t game_lessthan_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_LT, KC_GT, 1 << _GAME);
 
 // layer_r overrides
 const key_override_t layer_r_backslash_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_BSLS, KC_BSLS, 1 << _LAYER_R);
@@ -36,10 +37,11 @@ const key_override_t layer_i_semicolon_key_override = ko_make_with_layers(MOD_MA
 const key_override_t *key_overrides[] = {
 
 	// base layers
-	&colemak_comma_key_override,
 	&colemak_backspace_key_override,
-	&game_comma_key_override,
+	&colemak_comma_key_override,
 	&game_backspace_key_override,
+	&game_comma_key_override,
+	&game_lessthan_key_override,
 
 	// layer_r
 	&layer_r_backslash_key_override,
