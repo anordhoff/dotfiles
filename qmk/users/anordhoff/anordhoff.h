@@ -1,19 +1,17 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-	TOG_QUP = SAFE_RANGE,
-	QUOT_UP
+	TOG_SUP = SAFE_RANGE,
+	SLSH_UP
 };
 
 enum layers {
 	_COLEMAK,
 	_COLEMAK_MEH,
-	_LAYER_A,
-	_LAYER_R,
-	_LAYER_S,
-	_LAYER_E,
-	_LAYER_I,
-	_LAYER_O,
+	_SYMBOL,
+	_NUMPAD,
+	_NAVIGATION,
+	_FUNCTION,
 	_GAME,
 	_GAME_MEH,
 	_GAME_EXTEND,
@@ -29,7 +27,10 @@ enum layers {
 #define GAME    DF(_GAME)
 
 // colemak layers
-#define LMEH    MO(_COLEMAK_MEH)
+#define SYM     MO(_SYMBOL)
+#define NUM     MO(_NUMPAD)
+#define NAV     MO(_NAVIGATION)
+#define FUNC    MO(_FUNCTION)
 #define LHYPER  KC_LGUI
 #define RHYPER  KC_RGUI
 
@@ -41,22 +42,31 @@ enum layers {
 // additional layers
 #define ADJUST  MO(_ADJUST)
 
+// layer mod taps
+#define MT_SPC  LT(_SYMBOL,  KC_SPC)
+#define MT_ESC  MT(MOD_LSFT, KC_ESC)
+
 // switch out of qwerty using shifts
 #define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
 #define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
 
-// mod taps
-#define MT_A    LT(_LAYER_A, KC_A)
-#define MT_R    LT(_LAYER_R, KC_R)
-#define MT_S    LT(_LAYER_S, KC_S)
-#define MT_T    LT(_COLEMAK_MEH, KC_T)
-#define MT_N    LT(_COLEMAK_MEH, KC_N)
-#define MT_E    LT(_LAYER_E, KC_E)
-#define MT_I    LT(_LAYER_I, KC_I)
-#define MT_O    LT(_LAYER_O, KC_O)
+// home row mods
+#define MT_A    LT(_COLEMAK_MEH, KC_A)
+#define MT_R    MT(MOD_LGUI,     KC_R)
+#define MT_S    MT(MOD_LALT,     KC_S)
+#define MT_T    MT(MOD_LCTL,     KC_T)
+#define MT_N    MT(MOD_RCTL,     KC_N)
+#define MT_E    MT(MOD_RALT,     KC_E)
+#define MT_I    MT(MOD_RGUI,     KC_I)
+#define MT_O    LT(_COLEMAK_MEH, KC_O)
 
-#define MT_SPC  MT(MOD_LCTL, KC_SPC)
-#define MT_ESC  MT(MOD_LSFT, KC_ESC)
+#define MT_EXLM MT(MOD_LGUI,     KC_EXLM)
+#define MT_AT   MT(MOD_LALT,     KC_AT)
+#define MT_HASH MT(MOD_LCTL,     KC_HASH)
+#define MT_EQL  MT(MOD_RCTL,     KC_EQL)
+#define MT_LBRC MT(MOD_RALT,     KC_LBRC)
+#define MT_RBRC MT(MOD_RGUI,     KC_RBRC)
+
 
 // meh layer keys
 #define LM_A    LCTL(LSFT(LALT(KC_A)))

@@ -2,3 +2,5 @@ SRC += anordhoff.c
 
 KEY_OVERRIDE_ENABLE = yes
 INTROSPECTION_KEYMAP_C = overrides.c
+
+DYNAMIC_TAPPING_TERM_ENABLE = yes
