@@ -69,7 +69,7 @@ Use the following launch option to force a game to launch on the secondary monit
 
 ## runelite
 
-This command fixes the RuneLite resolution issue when an external display is scaled to 125%
+This command fixes the RuneLite resolution issue when an external display is scaled to 125%. It also forces RuneLite to use the GPU.
 ```
 sudo flatpak override --env=GDK_SCALE=2 --env=__NV_PRIME_RENDER_OFFLOAD=1 --env=__GLX_VENDOR_LIBRARY_NAME=nvidia net.runelite.RuneLite
 ```
