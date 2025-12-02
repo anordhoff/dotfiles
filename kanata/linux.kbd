@@ -5,13 +5,16 @@
   linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
 
   ;; TODO: this might be needed to run cmd's
-  ;; danger-enable-cmd yes
+  danger-enable-cmd true
 
   ;; TODO: I think this is needed to mimic QMK?
-  concurrent-tap-hold yes
+  concurrent-tap-hold true
 
   ;; wayland handles key repeat
   allow-hardware-repeat false
+
+  ;; TODO: figure out whether this should be true or false for function keys
+  process-unmapped-keys true
 )
 
 (defvar
@@ -25,8 +28,12 @@
 (defalias
 
   ;; colemak layers
-  sft (layer-while-held colemak-shift)
+  ;; sft (layer-while-held colemak-shift)
   meh (layer-while-held colemak-meh)
+  sym (layer-while-held symbol)
+  num (layer-while-held numpad)
+  nav (layer-while-held navigation)
+  fnc (layer-while-held function)
   lhp lmet
   rhp rmet
 
@@ -35,24 +42,25 @@
 
   ;; layer mod taps
   mtspc (tap-hold 100 170 spc lctl)
-  mtesc (tap-hold-press $tt 170 esc @sft)
+  ;; mtesc (tap-hold-press $tt 170 esc @sft)
+  mtesc (tap-hold-press $tt 170 esc lsft)
 
   ;; home row mods
-  mta   (tap-hold-release $tt 250 a (layer-while-held colemak-meh))
-  mtr   (tap-hold $tt $ht r lmet)
-  mts   (tap-hold $tt $ht s lalt)
-  mtt   (tap-hold $tt $ht t lctl)
-  mtn   (tap-hold $tt $ht n rctl)
-  mte   (tap-hold $tt $ht e ralt)
-  mti   (tap-hold $tt $ht i rmet)
-  mto   (tap-hold-release $tt 250 o (layer-while-held colemak-meh))
+  mta (tap-hold-release $tt 250 a (layer-while-held colemak-meh))
+  mtr (tap-hold $tt $ht r lmet)
+  mts (tap-hold $tt $ht s lalt)
+  mtt (tap-hold $tt $ht t lctl)
+  mtn (tap-hold $tt $ht n rctl)
+  mte (tap-hold $tt $ht e ralt)
+  mti (tap-hold $tt $ht i rmet)
+  mto (tap-hold-release $tt 250 o (layer-while-held colemak-meh))
 
-  mt!   (tap-hold $tt $ht ! lmet)
-  mt@   (tap-hold $tt $ht @ lalt)
-  mt#   (tap-hold $tt $ht # lctl)
-  mt=   (tap-hold $tt $ht = rctl)
-  mt[   (tap-hold $tt $ht [ ralt)
-  mt]   (tap-hold $tt $ht ] rmet)
+  mt! (tap-hold $tt $ht S-1 lmet)
+  mt@ (tap-hold $tt $ht S-2 lalt)
+  mt# (tap-hold $tt $ht S-3 lctl)
+  mt= (tap-hold $tt $ht = rctl)
+  mt[ (tap-hold $tt $ht [ ralt)
+  mt] (tap-hold $tt $ht ] rmet)
 
   ;; media keys
   bdn (cmd "exec light -U 5")
@@ -67,63 +75,63 @@
   vup (cmd "[ $(pactl get-sink-volume @DEFAULT_SINK@ | grep 'Volume:' | sed 's/.*\\ \\([0-9]*\\)%\\ .*/\\1/') -lt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ +5%")
 
   ;; meh layer keys
-  ma    (around lctl (around lsft (around lalt a    )))
-  mb    (around lctl (around lsft (around lalt b    )))
-  mc    (around lctl (around lsft (around lalt c    )))
-  md    (around lctl (around lsft (around lalt d    )))
-  me    (around lctl (around lsft (around lalt e    )))
-  mf    (around lctl (around lsft (around lalt f    )))
-  mg    (around lctl (around lsft (around lalt g    )))
-  mh    (around lctl (around lsft (around lalt h    )))
-  mi    (around lctl (around lsft (around lalt i    )))
-  mj    (around lctl (around lsft (around lalt j    )))
-  mk    (around lctl (around lsft (around lalt k    )))
-  ml    (around lctl (around lsft (around lalt l    )))
-  mm    (around lctl (around lsft (around lalt m    )))
-  mn    (around lctl (around lsft (around lalt n    )))
-  mo    (around lctl (around lsft (around lalt o    )))
-  mp    (around lctl (around lsft (around lalt p    )))
-  mq    (around lctl (around lsft (around lalt q    )))
-  mr    (around lctl (around lsft (around lalt r    )))
-  ms    (around lctl (around lsft (around lalt s    )))
-  mt    (around lctl (around lsft (around lalt t    )))
-  mu    (around lctl (around lsft (around lalt u    )))
-  mv    (around lctl (around lsft (around lalt v    )))
-  mw    (around lctl (around lsft (around lalt w    )))
-  mx    (around lctl (around lsft (around lalt x    )))
-  my    (around lctl (around lsft (around lalt y    )))
-  mz    (around lctl (around lsft (around lalt z    )))
-  m1    (around lctl (around lsft (around lalt 1    )))
-  m2    (around lctl (around lsft (around lalt 2    )))
-  m3    (around lctl (around lsft (around lalt 3    )))
-  m4    (around lctl (around lsft (around lalt 4    )))
-  m5    (around lctl (around lsft (around lalt 5    )))
-  m6    (around lctl (around lsft (around lalt 6    )))
-  m7    (around lctl (around lsft (around lalt 7    )))
-  m8    (around lctl (around lsft (around lalt 8    )))
-  m9    (around lctl (around lsft (around lalt 9    )))
-  m0    (around lctl (around lsft (around lalt 0    )))
-  m-    (around lctl (around lsft (around lalt -    )))
-  m=    (around lctl (around lsft (around lalt =    )))
-  m[    (around lctl (around lsft (around lalt [    )))
-  m]    (around lctl (around lsft (around lalt ]    )))
-  m\    (around lctl (around lsft (around lalt \    )))
-  m;    (around lctl (around lsft (around lalt ;    )))
-  m'    (around lctl (around lsft (around lalt '    )))
-  mgrv  (around lctl (around lsft (around lalt `    )))
-  m,    (around lctl (around lsft (around lalt ,    )))
-  m.    (around lctl (around lsft (around lalt .    )))
-  m/    (around lctl (around lsft (around lalt /    )))
-  mesc  (around lctl (around lsft (around lalt esc  )))
-  mtab  (around lctl (around lsft (around lalt tab  )))
-  mbspc (around lctl (around lsft (around lalt bspc )))
-  mret  (around lctl (around lsft (around lalt ret  )))
-  mspc  (around lctl (around lsft (around lalt spc  )))
-  mup   (around lctl (around lsft (around lalt up   )))
-  mleft (around lctl (around lsft (around lalt left )))
-  mdown (around lctl (around lsft (around lalt down )))
-  mrght (around lctl (around lsft (around lalt rght )))
-  mdel  (around lctl (around lsft (around lalt del  )))
+  ma    C-S-A-a
+  mb    C-S-A-b
+  mc    C-S-A-c
+  md    C-S-A-d
+  me    C-S-A-e
+  mf    C-S-A-f
+  mg    C-S-A-g
+  mh    C-S-A-h
+  mi    C-S-A-i
+  mj    C-S-A-j
+  mk    C-S-A-k
+  ml    C-S-A-l
+  mm    C-S-A-m
+  mn    C-S-A-n
+  mo    C-S-A-o
+  mp    C-S-A-p
+  mq    C-S-A-q
+  mr    C-S-A-r
+  ms    C-S-A-s
+  mt    C-S-A-t
+  mu    C-S-A-u
+  mv    C-S-A-v
+  mw    C-S-A-w
+  mx    C-S-A-x
+  my    C-S-A-y
+  mz    C-S-A-z
+  m1    C-S-A-1
+  m2    C-S-A-2
+  m3    C-S-A-3
+  m4    C-S-A-4
+  m5    C-S-A-5
+  m6    C-S-A-6
+  m7    C-S-A-7
+  m8    C-S-A-8
+  m9    C-S-A-9
+  m0    C-S-A-0
+  m-    C-S-A--
+  m=    C-S-A-=
+  m[    C-S-A-[
+  m]    C-S-A-]
+  m\    C-S-A-\
+  m;    C-S-A-;
+  m'    C-S-A-'
+  mgrv  C-S-A-`
+  m,    C-S-A-,
+  m.    C-S-A-.
+  m/    C-S-A-/
+  mesc  C-S-A-e
+  mtab  C-S-A-t
+  mbspc C-S-A-b
+  mret  C-S-A-r
+  mspc  C-S-A-s
+  mup   C-S-A-u
+  mleft C-S-A-l
+  mdown C-S-A-d
+  mrght C-S-A-r
+  mdel  C-S-A-d
 )
 
 (defsrc
@@ -139,16 +147,16 @@
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   z       x    c    d    v    XX   XX   k    h    ,    -    /         up
-  XX           XX   lmet      @mtspc         @mtesc lalt         left down rght
+  XX           XX   @nav      @mtspc         @mtesc @num         left down rght
 )
 
-(deflayer colemak-shift
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  S-tab   Q    W    F    P    B    XX   J    L    U    Y    :    "    XX
-  S-bspc  @mtA @mtR @mtS @mtT G    XX   M    @mtN @mtE @mtI @mtO S-ret
-  Z       X    C    D    V    XX   XX   K    H    .    _    ?         S-up
-  XX           XX   @nav      @mtSPC         _    @num         S-left S-down S-rght
-)
+;; (deflayer colemak-shift
+;;   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+;;   S-tab   Q    W    F    P    B    XX   J    L    U    Y    :    S-'  XX
+;;   S-bspc  @mtA @mtR @mtS @mtT G    XX   M    @mtN @mtE @mtI @mtO S-ret
+;;   Z       X    C    D    V    XX   XX   K    H    .    _    ?         S-up
+;;   XX           XX   @nav      @mtSPC         _    @num         S-left S-down S-rght
+;; )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 ;; TODO: update to reflect base layer changes
@@ -162,18 +170,18 @@
 
 (deflayer symbol
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab     XX   $    %    ^    XX   XX   XX   `    {    }    XX   XX   XX
-  bspc    )    @mt! @mt@ @mt# XX   XX   XX   @mt= @mt[ @mt] \    ret
-  ~       &    *    (    XX   XX   XX   XX   |    <    >    XX        XX
-  XX           XX   lmet      _              esc  lalt           XX   XX   XX
+  tab     XX   S-4  S-5  S-6  XX   XX   XX   `    {    }    XX   XX   XX
+  bspc    S-0  @mt! @mt@ @mt# XX   XX   XX   @mt= @mt[ @mt] \    ret
+  S-`     S-7  S-8  S-9  XX   XX   XX   XX   S-\  S-,  S-.  XX        XX
+  XX           XX   XX        _              spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   4    5    6    XX   XX   XX   XX   XX   XX   XX   XX   XX
-  bspc    0    1    2    3    XX   XX   XX   rctl rgui ralt XX   ret
+  bspc    0    1    2    3    XX   XX   XX   rctl rmet ralt XX   ret
   XX      7    8    9    XX   XX   XX   XX   XX   ,    .    /         XX
-  XX           XX   lmet      spc            esc  _              XX   XX   XX
+  XX           XX   @fnc      spc            XX   _              XX   XX   XX
 )
 
 (deflayer navigation
@@ -181,17 +189,21 @@
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
   bspc    XX   lalt lmet lctl XX   XX   XX   left down up   rght ret
   C-z     C-x  C-c  XX   C-v  XX   XX   XX   del  end  pgdn XX        XX
-  XX           XX   lmet      spc            esc  _              XX   XX   XX
+  XX           XX   _         XX             spc  @fnc           XX   XX   XX
 )
 
 (deflayer function
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     f12  f4   f5   f6   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  bspc    f10  f1   f2   f3   XX   XX   XX   rctl rgui ralt XX   ret
+  bspc    f10  f1   f2   f3   XX   XX   XX   rctl rmet ralt XX   ret
   f11     f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   XX        XX
-  XX           XX   lmet      spc            esc  _              XX   XX   XX
+  XX           XX   _         XX             XX   _              XX   XX   XX
 )
 
 (deflayer adjust
-
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  tab     f12  f4   f5   f6   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  bspc    f10  f1   f2   f3   XX   XX   XX   rctl rmet ralt XX   ret
+  f11     f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   XX        XX
+  XX           XX   _         XX             XX   _              XX   XX   XX
 )
