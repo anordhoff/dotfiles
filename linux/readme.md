@@ -17,7 +17,7 @@ Useful references:
 
 ### gestures
 
-Change `GESTURE_FINGER_COUNT` from 3 to 5 in `/usr/lib64/gnome-shell/libshell-16.so` per [this issue](https://www.reddit.com/r/gnome/comments/qrhu0e/guide_to_customize_gnome_40_touchpad_gestures_on).
+Change `GESTURE_FINGER_COUNT` from 3 to 5 in `/usr/lib64/gnome-shell/libshell-17.so` per [this issue](https://www.reddit.com/r/gnome/comments/qrhu0e/guide_to_customize_gnome_40_touchpad_gestures_on).
 
 
 ### keybindings
@@ -71,7 +71,7 @@ Use the following launch option to force a game to launch on the secondary monit
 
 This command fixes the RuneLite resolution issue when an external display is scaled to 125%
 ```
-sudo flatpak override --env=GDK_SCALE=2 net.runelite.RuneLite
+sudo flatpak override --env=GDK_SCALE=2 --env=__NV_PRIME_RENDER_OFFLOAD=1 --env=__GLX_VENDOR_LIBRARY_NAME=nvidia net.runelite.RuneLite
 ```
 
 

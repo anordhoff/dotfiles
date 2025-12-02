@@ -14,6 +14,12 @@ case $@ in
 'flash fourier')
   command qmk flash -kb keebio/fourier -km anordhoff
   ;;
+'compile hillside')
+  command qmk compile -kb hillside/46 -km default
+  ;;
+'flash hillside')
+  command qmk flash -kb hillside/46 -km default
+  ;;
 'compile yd60')
   command qmk compile -kb ymdk/yd60mq/16led -km anordhoff
   ;;
