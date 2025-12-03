@@ -190,7 +190,7 @@
 (deflayer function
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab     f11  f4   f5   f6   f12  XX   XX   prnt slck brk  nlck XX   XX
+  tab     f11  f4   f5   f6   f12  XX   XX   f13  f14  f15  nlck XX   XX
   bspc    f10  f1   f2   f3   XX   XX   XX   rctl rmet ralt XX   ret
   XX      f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   XX        XX
   XX      XX   XX   _         XX             XX   _              XX   XX   XX

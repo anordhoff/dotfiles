@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┼───────┤   ├─────────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴─────────┬───────┼───────┤
 	   XXXXXXX,XXXXXXX,    KC_UNDO          ,KC_CUT ,KC_COPY,XXXXXXX,KC_PSTE,XXXXXXX,        XXXXXXX,XXXXXXX,KC_DEL ,KC_END ,KC_PGDN,   XXXXXXX   ,XXXXXXX,XXXXXXX,
 	//├───────┼───────┤   ├─────────┬───────┴─┬─────┴───┬───┴─────┬─┴───────┴───────┤       ├───────┴───────┴─┬─────┴───┬───┴─────┬─┴─────┬───────┼───────┼───────┤
-	   XXXXXXX,XXXXXXX,    XXXXXXX  , XXXXXXX , XXXXXXX , _______ ,     XXXXXXX     ,             KC_SPC      ,  FUNC   , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
+	   XXXXXXX,XXXXXXX,    XXXXXXX  , XXXXXXX , XXXXXXX , _______ ,     XXXXXXX     ,             KC_RSFT     ,  FUNC   , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
 	),
 
@@ -78,11 +78,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//┌───────┬───────┐   ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────────────┬───────┐
 	   XXXXXXX,XXXXXXX,    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,       XXXXXXX ,XXXXXXX,
 	//├───────┼───────┤   ├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┘   ┌───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───────────┼───────┤
-	   XXXXXXX,XXXXXXX,    KC_TAB     ,KC_F11 , KC_F4 , KC_F5 , KC_F6 ,XXXXXXX,        XXXXXXX,XXXXXXX,KC_PSCR,KC_SCRL,KC_PAUS,KC_NUM ,XXXXXXX,   XXXXXXX ,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    KC_TAB     ,KC_F11 , KC_F4 , KC_F5 , KC_F6 ,KC_F12 ,        XXXXXXX,XXXXXXX,KC_PSCR,KC_SCRL,KC_PAUS,KC_NUM ,XXXXXXX,   XXXXXXX ,XXXXXXX,
 	//├───────┼───────┤   ├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────────┼───────┤
 	   XXXXXXX,XXXXXXX,    KC_BSPC      ,KC_F10 , KC_F1 , KC_F2 , KC_F3 ,XXXXXXX,        XXXXXXX,XXXXXXX,KC_RCTL,KC_RGUI,KC_RALT,XXXXXXX,          KC_ENT ,XXXXXXX,
 	//├───────┼───────┤   ├─────────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴─────────┬───────┼───────┤
-	   XXXXXXX,XXXXXXX,    KC_F12           , KC_F7 , KC_F8 , KC_F9 ,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX   ,XXXXXXX,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    XXXXXXX          , KC_F7 , KC_F8 , KC_F9 ,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX   ,XXXXXXX,XXXXXXX,
 	//├───────┼───────┤   ├─────────┬───────┴─┬─────┴───┬───┴─────┬─┴───────┴───────┤       ├───────┴───────┴─┬─────┴───┬───┴─────┬─┴─────┬───────┼───────┼───────┤
 	   XXXXXXX,XXXXXXX,    XXXXXXX  , XXXXXXX , XXXXXXX , _______ ,     XXXXXXX     ,             XXXXXXX     , _______ , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘

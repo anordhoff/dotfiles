@@ -44,7 +44,7 @@ enum layers {
 
 // layer mod taps
 #define MT_SPC  LT(_SYMBOL,  KC_SPC)
-#define MT_ESC  MT(MOD_LSFT, KC_ESC)
+#define MT_ESC  MT(MOD_RSFT, KC_ESC)
 
 // switch out of qwerty using shifts
 #define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
@@ -66,7 +66,6 @@ enum layers {
 #define MT_EQL  MT(MOD_RCTL,     KC_EQL)
 #define MT_LBRC MT(MOD_RALT,     KC_LBRC)
 #define MT_RBRC MT(MOD_RGUI,     KC_RBRC)
-
 
 // meh layer keys
 #define LM_A    LCTL(LSFT(LALT(KC_A)))
