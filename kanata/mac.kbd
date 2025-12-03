@@ -1,5 +1,7 @@
 (defcfg
-  linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+  )
 
   ;; unmapped keys should be ignored by kanata
   process-unmapped-keys false
@@ -7,9 +9,14 @@
   ;; start timeout as soon as the tap-hold action is pressed even if a previous tap-hold action is still held
   concurrent-tap-hold true
 
-  ;; wayland handles key repeat
-  allow-hardware-repeat false
+  ;; TODO: not sure if this is needed on mac
+  ;; allow-hardware-repeat false
 )
+
+;; TODO:
+;; - setup additional mod-taps to enable ctrl-space, cmd-space, shift-esc, and option-esc
+;; - setup hotkey and gestures so that music play/pause/skip/etc only interact with spotify and not the most recent window
+;; - hold shift, then ctrl, then release shift, and hit tab. C-S-Tab is sent when it should be C-Tab
 
 (defvar
   hold-timeout 200
@@ -125,67 +132,75 @@
 )
 
 (defsrc
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps    a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft    z    x    c    v    b    n    m    ,    .    /    rsft      up
-  lctl         lmet lalt      spc            ralt rctl           left down rght
+  fn      lctl lalt lmet      spc            rmet ralt           left down rght
 )
 
 (deflayer colemak
+  XX      brdn brup mctl sls  dtn  dnd  prev pp   next mute vold volu
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   z       x    c    d    v    XX   XX   k    h    ,    -    /         up
-  XX           XX   @nav      @mtspc         @mtesc @num         left down rght
+  fn      XX   XX   @nav      @mtspc         @mtesc @num         left down rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 ;; TODO: update to reflect base layer changes
 (deflayer colemak-meh
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      @mq  @mw  @mf  @mp  @mb  XX   @mj  @ml  @mu  @my  @mbspc XX     XX
   @mtab   @ma  @mr  @ms  @mt  @mg  XX   @mm  @mn  @me  @mi  @mo  @mret
   @mz     @mx  @mc  @md  @mv  XX   XX   @mk  @mh  @m[  @m]  @m'       XX
-  XX           XX   @adj           @lhp      @rhp @adj           XX   XX   XX
+  XX      XX   XX   @adj           @lhp      @rhp @adj           XX   XX   XX
 )
 
 (deflayer symbol
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   S-4  S-5  S-6  XX   XX   XX   `    S-[  S-]  XX   XX   XX
   bspc    S-0  @mt! @mt@ @mt# XX   XX   XX   @mt= @mt[ @mt] \    ret
   S-`     S-7  S-8  S-9  XX   XX   XX   XX   S-\  S-,  S-.  XX        XX
-  XX           XX   XX        _              spc  XX             XX   XX   XX
+  XX      XX   XX   XX        _              spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   4    5    6    XX   XX   XX   XX   XX   XX   XX   XX   XX
   bspc    0    1    2    3    XX   XX   XX   rctl rmet ralt XX   ret
   XX      7    8    9    XX   XX   XX   XX   XX   ,    .    /         XX
-  XX           XX   @fnc      spc            XX   _              XX   XX   XX
+  XX      XX   XX   @fnc      spc            XX   _              XX   XX   XX
 )
 
 (deflayer navigation
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
   bspc    XX   lalt lmet lctl XX   XX   XX   left down up   rght ret
   XX      XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        XX
-  XX           XX   _         XX             rsft @fnc           XX   XX   XX
+  XX      XX   XX   _         XX             rsft @fnc           XX   XX   XX
 )
 
 (deflayer function
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     f11  f4   f5   f6   f12  XX   XX   prnt slck brk  nlck XX   XX
   bspc    f10  f1   f2   f3   XX   XX   XX   rctl rmet ralt XX   ret
   XX      f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   XX        XX
-  XX           XX   _         XX             XX   _              XX   XX   XX
+  XX      XX   XX   _         XX             XX   _              XX   XX   XX
 )
 
 (deflayer adjust
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   lrld    @qwe @col @gme XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps    bldn brdn brup blup XX   XX   XX   prev vold volu next XX
   XX      XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX        XX
-  XX           XX   XX        XX             XX   XX             XX   XX   XX
+  XX      XX   XX   XX        XX             XX   XX             XX   XX   XX
 )
