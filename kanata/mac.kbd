@@ -64,9 +64,9 @@
   mti (tap-hold $tt $ht i rmet)
   mto (tap-hold-release $tt 250 o (layer-while-held colemak-meh))
 
-  mt! (tap-hold $tt $ht S-1 lmet)
-  mt@ (tap-hold $tt $ht S-2 lalt)
-  mt# (tap-hold $tt $ht S-3 lctl)
+  mt$ (tap-hold $tt $ht S-4 lmet)
+  mt% (tap-hold $tt $ht S-5 lalt)
+  mt^ (tap-hold $tt $ht S-6 lctl)
   mt= (tap-hold $tt $ht = rctl)
   mt[ (tap-hold $tt $ht [ ralt)
   mt] (tap-hold $tt $ht ] rmet)
@@ -141,8 +141,8 @@
 )
 
 (deflayer colemak
-  XX      brdn brup mctl sls  dtn  dnd  prev pp   next mute vold volu
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  esc     brdn brup mctl sls  dtn  dnd  prev pp   next mute vold volu
+  esc     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   z       x    c    d    v    XX   XX   k    h    ,    -    /         up
@@ -163,18 +163,18 @@
 (deflayer symbol
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab     XX   S-4  S-5  S-6  XX   XX   XX   `    S-[  S-]  XX   XX   XX
-  bspc    S-0  @mt! @mt@ @mt# XX   XX   XX   @mt= @mt[ @mt] \    ret
-  S-`     S-7  S-8  S-9  XX   XX   XX   XX   S-\  S-,  S-.  XX        XX
+  tab     XX   S-7  S-8  S-9  XX   XX   XX   `    S-[  S-]  XX   XX   XX
+  bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
+  S-`     S-1  S-2  S-3  XX   XX   XX   XX   S-\  S-,  S-.  XX        XX
   XX      XX   XX   XX        _              spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab     XX   4    5    6    XX   XX   XX   XX   XX   XX   XX   XX   XX
-  bspc    0    1    2    3    XX   XX   XX   rctl rmet ralt XX   ret
-  XX      7    8    9    XX   XX   XX   XX   XX   ,    .    /         XX
+  tab     XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   XX   XX
+  bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet XX   ret
+  XX      1    2    3    XX   XX   XX   XX   XX   ,    .    /         XX
   XX      XX   XX   @fnc      spc            XX   _              XX   XX   XX
 )
 
@@ -182,7 +182,7 @@
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
-  bspc    XX   lalt lmet lctl XX   XX   XX   left down up   rght ret
+  bspc    XX   lmet lalt lctl XX   XX   XX   left down up   rght ret
   XX      XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        XX
   XX      XX   XX   _         XX             rsft @fnc           XX   XX   XX
 )
@@ -190,9 +190,9 @@
 (deflayer function
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab     f11  f4   f5   f6   f12  XX   XX   f13  f14  f15  nlck XX   XX
-  bspc    f10  f1   f2   f3   XX   XX   XX   rctl rmet ralt XX   ret
-  XX      f7   f8   f9   XX   XX   XX   XX   XX   XX   XX   XX        XX
+  tab     f11  f7   f8   f9   f12  XX   XX   f13  f14  f15  XX   XX   XX
+  bspc    f10  f4   f5   f6   XX   XX   XX   rctl ralt rmet XX   ret
+  XX      f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        XX
   XX      XX   XX   _         XX             XX   _              XX   XX   XX
 )
 

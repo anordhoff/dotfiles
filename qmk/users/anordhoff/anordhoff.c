@@ -36,24 +36,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 		// correctly handle mod taps with non-basic keycodes
 		// https://docs.qmk.fm/mod_tap#intercepting-mod-taps
-		case MT_EXLM:
+		case MT_DLR:
 			if (record->tap.count && record->event.pressed) {
-				tap_code16(KC_EXLM);
+				tap_code16(KC_DLR);
 				return false;
 			}
 			break;
-		case MT_AT:
+		case MT_PERC:
 			if (record->tap.count && record->event.pressed) {
-				tap_code16(KC_AT);
+				tap_code16(KC_PERC);
 				return false;
 			}
 			break;
-		case MT_HASH:
+		case MT_CIRC:
 			if (record->tap.count && record->event.pressed) {
-				tap_code16(KC_HASH);
+				tap_code16(KC_CIRC);
 				return false;
 			}
 			break;
+
 	}
 	return true;
 };

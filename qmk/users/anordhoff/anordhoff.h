@@ -60,9 +60,9 @@ enum layers {
 #define MT_I    MT(MOD_RGUI,     KC_I)
 #define MT_O    LT(_COLEMAK_MEH, KC_O)
 
-#define MT_EXLM MT(MOD_LGUI,     KC_EXLM)
-#define MT_AT   MT(MOD_LALT,     KC_AT)
-#define MT_HASH MT(MOD_LCTL,     KC_HASH)
+#define MT_DLR  MT(MOD_LGUI,     KC_DLR)
+#define MT_PERC MT(MOD_LALT,     KC_PERC)
+#define MT_CIRC MT(MOD_LCTL,     KC_CIRC)
 #define MT_EQL  MT(MOD_RCTL,     KC_EQL)
 #define MT_LBRC MT(MOD_RALT,     KC_LBRC)
 #define MT_RBRC MT(MOD_RGUI,     KC_RBRC)
