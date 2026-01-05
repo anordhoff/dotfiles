@@ -112,16 +112,16 @@
   m,    C-S-A-,
   m.    C-S-A-.
   m/    C-S-A-/
-  mesc  C-S-A-e
-  mtab  C-S-A-t
-  mbspc C-S-A-b
-  mret  C-S-A-r
-  mspc  C-S-A-s
-  mup   C-S-A-u
-  mleft C-S-A-l
-  mdown C-S-A-d
-  mrght C-S-A-r
-  mdel  C-S-A-d
+  mesc  C-S-A-esc
+  mtab  C-S-A-tab
+  mbspc C-S-A-bspc
+  mret  C-S-A-ret
+  mspc  C-S-A-spc
+  mup   C-S-A-up
+  mleft C-S-A-left
+  mdown C-S-A-down
+  mrght C-S-A-rght
+  mdel  C-S-A-del
 )
 
 (defsrc
