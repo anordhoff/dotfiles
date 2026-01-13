@@ -19,7 +19,7 @@
 ;; - hold shift, then ctrl, then release shift, and hit tab. C-S-Tab is sent when it should be C-Tab
 
 (defvar
-  hold-timeout 200
+  hold-timeout 190
   ht $hold-timeout
 
   tap-repress-timeout 0
@@ -55,14 +55,14 @@
   mtesc (tap-hold-press $tt 170 esc rsft)
 
   ;; home row mods
-  mta (tap-hold-release $tt 250 a (layer-while-held colemak-meh))
+  mta (tap-hold $tt 250 a (layer-while-held colemak-meh))
   mtr (tap-hold $tt $ht r lmet)
   mts (tap-hold $tt $ht s lalt)
   mtt (tap-hold $tt $ht t lctl)
   mtn (tap-hold $tt $ht n rctl)
   mte (tap-hold $tt $ht e ralt)
   mti (tap-hold $tt $ht i rmet)
-  mto (tap-hold-release $tt 250 o (layer-while-held colemak-meh))
+  mto (tap-hold $tt 250 o (layer-while-held colemak-meh))
 
   mt$ (tap-hold $tt $ht S-4 lmet)
   mt% (tap-hold $tt $ht S-5 lalt)

@@ -4,7 +4,7 @@
 #define QUICK_TAP_TERM_PER_KEY
 
 // TODO: remove once tapping term is determined
-#define TAPPING_TERM 200
+#define TAPPING_TERM 190
 
 // research flow taps
 // https://docs.qmk.fm/tap_hold#flow-tap
