@@ -108,7 +108,6 @@
 [submodule "nvim/pack/plugins/start/treesitter"]
 	path = nvim/pack/plugins/start/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
-	branch = main
 [submodule "nvim/pack/plugins/start/treesitter-textobjects"]
 	path = nvim/pack/plugins/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
