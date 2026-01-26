@@ -48,4 +48,4 @@ rm: validate-path
 # make diff dir1=dotfiles dir2=dotfiles.backup
 .PHONY: diff
 diff:
-	diff -r --exclude .git --exclude pack/plugins --exclude plugins $(dir1) $(dir2)
+	diff -r --exclude .git --exclude nvim/pack/plugins --exclude tmux/plugins $(dir1) $(dir2)

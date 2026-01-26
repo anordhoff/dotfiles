@@ -35,9 +35,6 @@ if [ -z $VISUAL ]; then
   export VISUAL="nvim"
 fi
 
-# set to the path of the tty device for gpg
-export GPG_TTY=$(tty)
-
 # git contributions
 path=(~/.config/git/bin $path)
 
@@ -61,7 +58,7 @@ path=(~/.npm/global/bin $path)
 
 # python packages on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=(~/Library/Python/3.13/bin $path)
+  path=(~/Library/Python/3.14/bin $path)
 fi
 
 # ruby gems on macOS
@@ -72,17 +69,17 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
 fi
 
 # lua packages on macOS
-if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=(~/.luarocks/bin $path)
-
-  # eval $(luarocks --local path)
-  LUA_PATH="$HOMEBREW_PREFIX/Cellar/luarocks/3.11.0/share/lua/5.4/?.lua;$HOMEBREW_PREFIX/share/lua/5.4/?.lua;$HOMEBREW_PREFIX/share/lua/5.4/?/init.lua;$HOMEBREW_PREFIX/lib/lua/5.4/?.lua;$HOMEBREW_PREFIX/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;$HOME/.luarocks/share/lua/5.4/?.lua;$HOME/.luarocks/share/lua/5.4/?/init.lua"
-  LUA_CPATH="$HOMEBREW_PREFIX/lib/lua/5.4/?.so;$HOMEBREW_PREFIX/lib/lua/5.4/loadall.so;./?.so;$HOME/.luarocks/lib/lua/5.4/?.so"
-
-  # append v5.1 to lua paths
-  export LUA_PATH="$LUA_PATH;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua"
-  export LUA_CPATH="$LUA_CPATH;$HOME/.luarocks/lib/lua/5.1/?.so"
-fi
+# if [[ $OSTYPE =~ "darwin"* ]]; then
+#   path=(~/.luarocks/bin $path)
+#
+#   # eval $(luarocks --local path)
+#   LUA_PATH="$HOMEBREW_PREFIX/Cellar/luarocks/3.11.0/share/lua/5.4/?.lua;$HOMEBREW_PREFIX/share/lua/5.4/?.lua;$HOMEBREW_PREFIX/share/lua/5.4/?/init.lua;$HOMEBREW_PREFIX/lib/lua/5.4/?.lua;$HOMEBREW_PREFIX/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;$HOME/.luarocks/share/lua/5.4/?.lua;$HOME/.luarocks/share/lua/5.4/?/init.lua"
+#   LUA_CPATH="$HOMEBREW_PREFIX/lib/lua/5.4/?.so;$HOMEBREW_PREFIX/lib/lua/5.4/loadall.so;./?.so;$HOME/.luarocks/lib/lua/5.4/?.so"
+#
+#   # append v5.1 to lua paths
+#   export LUA_PATH="$LUA_PATH;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua"
+#   export LUA_CPATH="$LUA_CPATH;$HOME/.luarocks/lib/lua/5.1/?.so"
+# fi
 
 # prefer the latest version of curl installed by homebrew on macOS
 if [[ $OSTYPE =~ "darwin"* ]]; then
@@ -113,9 +110,9 @@ export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 5)
 export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 5)
 
 # fzf flags and colors
-export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
-export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
-export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude package/opt --exclude package/start --exclude tmux/plugins"
+export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude pack/plugins/opt --exclude pack/plugins/start --exclude tmux/plugins"
+export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude pack/plugins/opt --exclude pack/plugins/start --exclude tmux/plugins"
+export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude pack/plugins/opt --exclude pack/plugins/start --exclude tmux/plugins"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal --color border:8 --color bg+:13 --color fg+:7:regular --color gutter:-1 --color header:8 --color hl:1:bold --color hl+:1:bold --color info:8 --color marker:2:regular --color spinner:7 --color pointer:4:regular --color prompt:7:regular --color query:7:regular"
 
 # source work zprofile

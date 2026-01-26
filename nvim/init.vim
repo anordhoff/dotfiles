@@ -62,7 +62,7 @@ set wildmode=longest:full,full
 set wildignorecase
 
 " list of file patterns to ignore
-set wildignore+=tags,*.tags,.git/**,**/bin/**,**/vendor/**,**/node_modules/**,**/package/opt/**,**/package/start/**,**/tmux/plugins/**
+set wildignore+=tags,*.tags,.git/**,**/bin/**,**/vendor/**,**/node_modules/**,**/pack/plugins/opt/**,**/pack/plugins/start/**,**/tmux/plugins/**
 
 " ignore files and directories listed in .gitignore
 let &wildignore .= gitignore#WildignoreList('.gitignore')
@@ -454,4 +454,4 @@ augroup END
 " --------------------------------------
 
 " source lua config
-lua require('config.init')
+lua require('plugin.init')
