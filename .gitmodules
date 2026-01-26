@@ -7,117 +7,117 @@
 	url = https://github.com/tmux-plugins/tmux-resurrect.git
 
 # vim
-[submodule "nvim/package/start/abolish"]
-	path = nvim/package/start/abolish
+[submodule "nvim/pack/plugins/start/abolish"]
+	path = nvim/pack/plugins/start/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "nvim/package/start/apathy"]
-	path = nvim/package/start/apathy
+[submodule "nvim/pack/plugins/start/apathy"]
+	path = nvim/pack/plugins/start/apathy
 	url = https://github.com/tpope/vim-apathy.git
-[submodule "nvim/package/start/copilot"]
-	path = nvim/package/start/copilot
+[submodule "nvim/pack/plugins/start/copilot"]
+	path = nvim/pack/plugins/start/copilot
 	url = https://github.com/github/copilot.vim.git
-[submodule "nvim/package/start/dirvish"]
-	path = nvim/package/start/dirvish
+[submodule "nvim/pack/plugins/start/dirvish"]
+	path = nvim/pack/plugins/start/dirvish
 	url = https://github.com/justinmk/vim-dirvish.git
-[submodule "nvim/package/start/dispatch"]
-	path = nvim/package/start/dispatch
+[submodule "nvim/pack/plugins/start/dispatch"]
+	path = nvim/pack/plugins/start/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "nvim/package/start/eunuch"]
-	path = nvim/package/start/eunuch
+[submodule "nvim/pack/plugins/start/eunuch"]
+	path = nvim/pack/plugins/start/eunuch
 	url = https://github.com/tpope/vim-eunuch.git
-[submodule "nvim/package/start/fugitive"]
-	path = nvim/package/start/fugitive
+[submodule "nvim/pack/plugins/start/fugitive"]
+	path = nvim/pack/plugins/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "nvim/package/start/git"]
-	path = nvim/package/start/git
+[submodule "nvim/pack/plugins/start/git"]
+	path = nvim/pack/plugins/start/git
 	url = https://github.com/tpope/vim-git.git
-[submodule "nvim/package/start/husk"]
-	path = nvim/package/start/husk
+[submodule "nvim/pack/plugins/start/husk"]
+	path = nvim/pack/plugins/start/husk
 	url = https://github.com/vim-utils/vim-husk.git
-[submodule "nvim/package/start/projectionist"]
-	path = nvim/package/start/projectionist
+[submodule "nvim/pack/plugins/start/projectionist"]
+	path = nvim/pack/plugins/start/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
-[submodule "nvim/package/start/qf"]
-	path = nvim/package/start/qf
+[submodule "nvim/pack/plugins/start/qf"]
+	path = nvim/pack/plugins/start/qf
 	url = https://github.com/romainl/vim-qf.git
-[submodule "nvim/package/start/repeat"]
-	path = nvim/package/start/repeat
+[submodule "nvim/pack/plugins/start/repeat"]
+	path = nvim/pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "nvim/package/start/rhubarb"]
-	path = nvim/package/start/rhubarb
+[submodule "nvim/pack/plugins/start/rhubarb"]
+	path = nvim/pack/plugins/start/rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
-[submodule "nvim/package/start/sleuth"]
-	path = nvim/package/start/sleuth
+[submodule "nvim/pack/plugins/start/sleuth"]
+	path = nvim/pack/plugins/start/sleuth
 	url = https://github.com/tpope/vim-sleuth.git
-[submodule "nvim/package/start/speeddating"]
-	path = nvim/package/start/speeddating
+[submodule "nvim/pack/plugins/start/speeddating"]
+	path = nvim/pack/plugins/start/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
-[submodule "nvim/package/start/subversive"]
-	path = nvim/package/start/subversive
+[submodule "nvim/pack/plugins/start/subversive"]
+	path = nvim/pack/plugins/start/subversive
 	url = https://github.com/svermeulen/vim-subversive.git
-[submodule "nvim/package/start/surround"]
-	path = nvim/package/start/surround
+[submodule "nvim/pack/plugins/start/surround"]
+	path = nvim/pack/plugins/start/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "nvim/package/start/targets"]
-	path = nvim/package/start/targets
+[submodule "nvim/pack/plugins/start/targets"]
+	path = nvim/pack/plugins/start/targets
 	url = https://github.com/wellle/targets.vim.git
-[submodule "nvim/package/start/test"]
-	path = nvim/package/start/test
+[submodule "nvim/pack/plugins/start/test"]
+	path = nvim/pack/plugins/start/test
 	url = https://github.com/vim-test/vim-test.git
-[submodule "nvim/package/start/unimpaired"]
-	path = nvim/package/start/unimpaired
+[submodule "nvim/pack/plugins/start/unimpaired"]
+	path = nvim/pack/plugins/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 
 # vim (opt)
-[submodule "nvim/package/opt/markdown-preview"]
-	path = nvim/package/opt/markdown-preview
+[submodule "nvim/pack/plugins/opt/markdown-preview"]
+	path = nvim/pack/plugins/opt/markdown-preview
 	url = https://github.com/iamcco/markdown-preview.nvim.git
-[submodule "nvim/package/opt/startuptime"]
-	path = nvim/package/opt/startuptime
+[submodule "nvim/pack/plugins/opt/startuptime"]
+	path = nvim/pack/plugins/opt/startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
 
 # neovim
-[submodule "nvim/package/start/harpoon"]
-	path = nvim/package/start/harpoon
+[submodule "nvim/pack/plugins/start/harpoon"]
+	path = nvim/pack/plugins/start/harpoon
 	url = https://github.com/ThePrimeagen/harpoon.git
 	branch = harpoon2
-[submodule "nvim/package/start/leap"]
-	path = nvim/package/start/leap
+[submodule "nvim/pack/plugins/start/leap"]
+	path = nvim/pack/plugins/start/leap
 	url = https://github.com/ggandor/leap.nvim.git
-[submodule "nvim/package/start/lint"]
-	path = nvim/package/start/lint
+[submodule "nvim/pack/plugins/start/lint"]
+	path = nvim/pack/plugins/start/lint
 	url = https://github.com/mfussenegger/nvim-lint.git
-[submodule "nvim/package/start/lspconfig"]
-	path = nvim/package/start/lspconfig
+[submodule "nvim/pack/plugins/start/lspconfig"]
+	path = nvim/pack/plugins/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
-[submodule "nvim/package/start/plenary"]
-	path = nvim/package/start/plenary
+[submodule "nvim/pack/plugins/start/plenary"]
+	path = nvim/pack/plugins/start/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
-[submodule "nvim/package/start/spooky"]
-	path = nvim/package/start/spooky
+[submodule "nvim/pack/plugins/start/spooky"]
+	path = nvim/pack/plugins/start/spooky
 	url = https://github.com/ggandor/spooky.nvim.git
-[submodule "nvim/package/start/telescope"]
-	path = nvim/package/start/telescope
+[submodule "nvim/pack/plugins/start/telescope"]
+	path = nvim/pack/plugins/start/telescope
 	url = https://github.com/nvim-telescope/telescope.nvim.git
-[submodule "nvim/package/start/telescope-fzf-native"]
-	path = nvim/package/start/telescope-fzf-native
+[submodule "nvim/pack/plugins/start/telescope-fzf-native"]
+	path = nvim/pack/plugins/start/telescope-fzf-native
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
-[submodule "nvim/package/start/telescope-undo"]
-	path = nvim/package/start/telescope-undo
+[submodule "nvim/pack/plugins/start/telescope-undo"]
+	path = nvim/pack/plugins/start/telescope-undo
 	url = https://github.com/debugloop/telescope-undo.nvim.git
-[submodule "nvim/package/start/treesitter"]
-	path = nvim/package/start/treesitter
+[submodule "nvim/pack/plugins/start/treesitter"]
+	path = nvim/pack/plugins/start/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 	branch = main
-[submodule "nvim/package/start/treesitter-textobjects"]
-	path = nvim/package/start/treesitter-textobjects
+[submodule "nvim/pack/plugins/start/treesitter-textobjects"]
+	path = nvim/pack/plugins/start/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
 	branch = main
 
 # neovim (opt)
-[submodule "nvim/package/opt/copilot-chat"]
-	path = nvim/package/opt/copilot-chat
+[submodule "nvim/pack/plugins/opt/copilot-chat"]
+	path = nvim/pack/plugins/opt/copilot-chat
 	url = https://github.com/CopilotC-Nvim/CopilotChat.nvim.git
-[submodule "nvim/package/opt/indent-blankline"]
-	path = nvim/package/opt/indent-blankline
+[submodule "nvim/pack/plugins/opt/indent-blankline"]
+	path = nvim/pack/plugins/opt/indent-blankline
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
