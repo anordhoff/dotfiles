@@ -1,0 +1,20 @@
+<!-- /Library/LaunchDaemons/org.pqrs.karabiner.virtualhiddevice.plist -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>org.pqrs.karabiner.virtualhiddevice</string>
+    <key>Program</key>
+    <string>/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>Nice</key>
+    <integer>-20</integer>
+    <key>StandardOutPath</key>
+    <string>/tmp/karabiner.virtualhiddevice.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/karabiner.virtualhiddevice.err</string>
+  </dict>
+</plist>

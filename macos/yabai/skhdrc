@@ -56,12 +56,12 @@ shift + ctrl + alt + cmd - f : yabai -m window --space 8
 shift + ctrl + alt + cmd - p : yabai -m window --space 9
 
 # move focus to adjacent monitor
-shift + ctrl + alt - u : yabai -m display --focus next
-shift + ctrl + alt - y : yabai -m display --focus prev
+shift + ctrl + alt - u : yabai -m display --focus prev
+shift + ctrl + alt - y : yabai -m display --focus next
 
 # move window to adjacent monitor
-shift + ctrl + alt + cmd - u : yabai -m window --display next
-shift + ctrl + alt + cmd - y : yabai -m window --display prev
+shift + ctrl + alt + cmd - u : yabai -m window --display prev
+shift + ctrl + alt + cmd - y : yabai -m window --display next
 
 # change window size (shrink width; grow height; shrink height; grow width)
 shift + ctrl + alt - h : yabai -m window --resize left:100:0; yabai -m window --resize right:-100:0

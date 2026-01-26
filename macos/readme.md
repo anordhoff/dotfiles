@@ -111,3 +111,13 @@ to the plist
   <string>/bin/dash</string>
 </dict>
 ```
+
+
+## new install
+
+Show hidden files in finder
+```
+defaults write -g AppleShowAllFiles -boolean true; killall Finder
+```
+
+Disable text replacements in `Settings > Keyboard > Text Replacements`

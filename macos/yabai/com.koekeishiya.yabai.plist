@@ -1,4 +1,5 @@
 <!-- /Library/LaunchDaemons/local.yabai.plist -->
+TODO: IS THIS FILE STILL NEEDED? CURRENTLY USING DEFAULT PLIST SHIPPED WITH YABAI
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

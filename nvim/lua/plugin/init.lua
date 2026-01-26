@@ -1,16 +1,19 @@
 vim.loader.enable()
 
 if vim.api.nvim_get_option_value('loadplugins', {}) then
-  require('config.harpoon')
-  require('config.leap')
-  require('config.lspconfig')
-  require('config.lint')
-  require('config.spooky')
-  require('config.telescope')
-  require('config.textobjects')
-  require('config.treesitter')
 
-  vim.lsp.enable({ 'bashls', 'jsonls', 'marksman', 'pyright', 'vimls' })
+  -- enable lua plugins
+  require('plugin.harpoon')
+  require('plugin.leap')
+  require('plugin.lspconfig')
+  require('plugin.lint')
+  require('plugin.spooky')
+  require('plugin.telescope')
+  require('plugin.textobjects')
+  require('plugin.treesitter')
+
+  -- enable lsp servers
+  vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lua_ls', 'marksman', 'pyright', 'vimls', 'yamlls' })
 
 
   ----------------------------------------
@@ -23,7 +26,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   local function load_copilot_chat()
     if not loaded_copilot_chat then
       vim.cmd('packadd copilot-chat')
-      copilot_chat = require('config.copilot-chat')
+      copilot_chat = require('plugin.copilot-chat')
       loaded_copilot_chat = true
     end
   end
@@ -44,7 +47,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   local function load_indent_blankline()
     if not loaded_indent_blankline then
       vim.cmd('packadd indent-blankline')
-      indent_blankline = require('config.indent-blankline')
+      indent_blankline = require('plugin.indent-blankline')
       indent_blankline_conf = require('ibl.config')
       loaded_indent_blankline = true
     end
@@ -65,7 +68,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   -- local function load_lint()
   --   if not loaded_lint then
   --     vim.cmd('packadd lint')
-  --     require('config.lint')
+  --     require('plugin.lint')
   --     loaded_lint = true
   --   end
   -- end

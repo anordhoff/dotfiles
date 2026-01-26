@@ -47,6 +47,8 @@ gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
 
 # unset conflicting key bindings
 gsettings set org.gnome.shell.keybindings show-screen-recording-ui '[]'
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-up '[]'
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-down '[]'
 
 # disable default launcher key
 gsettings set org.gnome.mutter overlay-key ''

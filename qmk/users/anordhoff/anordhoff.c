@@ -3,21 +3,22 @@
 // TODO: holding comma, then hold shift, then release shift, and it breaks
 // this might have useful info: https://getreuer.info/posts/keyboards/custom-shift-keys/index.html
 
-// toggle right shift between KC_QUOT and KC_UP
 bool kc_up_toggled = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
+
+		// toggle right shift between KC_SLSH and KC_UP
 		case QWERTY: case COLEMAK: case GAME:
 			if (record->event.pressed) {
 				kc_up_toggled = false;
 			}
-			return true;
-		case TOG_QUP:
+			break;
+		case TOG_SUP:
 			if (record->event.pressed) {
 				kc_up_toggled = !kc_up_toggled;
 			}
-			return true;
-		case QUOT_UP:
+			break;
+		case SLSH_UP:
 			if (kc_up_toggled) {
 				if (record->event.pressed) {
 					register_code(KC_UP);
@@ -26,30 +27,50 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				}
 			} else {
 				if (record->event.pressed) {
-					register_code(KC_QUOT);
+					register_code(KC_SLSH);
 				} else {
-					unregister_code(KC_QUOT);
+					unregister_code(KC_SLSH);
 				}
 			}
-			return true;
-		default:
-			return true;
+			break;
+
+		// correctly handle mod taps with non-basic keycodes
+		// https://docs.qmk.fm/mod_tap#intercepting-mod-taps
+		case MT_DLR:
+			if (record->tap.count && record->event.pressed) {
+				tap_code16(KC_DLR);
+				return false;
+			}
+			break;
+		case MT_PERC:
+			if (record->tap.count && record->event.pressed) {
+				tap_code16(KC_PERC);
+				return false;
+			}
+			break;
+		case MT_CIRC:
+			if (record->tap.count && record->event.pressed) {
+				tap_code16(KC_CIRC);
+				return false;
+			}
+			break;
+
 	}
+	return true;
 };
 
 // per key tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case MT_A:
-		case MT_R:
-		case MT_I:
 		case MT_O:
-		case MT_Z:
 			return 250;
 		case MT_SPC:
 		case MT_ESC:
 			return 170;
 		default:
+			// TODO: after removing DYNAMIC_TAPPING_TERM_ENABLE, 
+			// replace this with 200 and remove from config.h
 			return TAPPING_TERM;
 	}
 };
@@ -78,6 +99,6 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_SPC:
 			return 100;
 		default:
-			return QUICK_TAP_TERM;
+			return 0;
 	}
 };
