@@ -1,6 +1,8 @@
 vim.loader.enable()
 
 if vim.api.nvim_get_option_value('loadplugins', {}) then
+
+  -- enable lua plugins
   require('config.harpoon')
   require('config.leap')
   require('config.lspconfig')
@@ -10,7 +12,8 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   require('config.textobjects')
   require('config.treesitter')
 
-  vim.lsp.enable({ 'bashls', 'jsonls', 'marksman', 'pyright', 'vimls' })
+  -- enable lsp servers
+  vim.lsp.enable({ 'bashls', 'gopls', 'jsonls', 'lua_ls', 'marksman', 'pyright', 'vimls', 'yamlls' })
 
 
   ----------------------------------------

@@ -7,9 +7,7 @@
 " TODO(bug): copilot autosuggestions do not wrap correctly
 " TODO(bug): use ctrl-i to insert tab character (not supported by tmux - https://github.com/tmux/tmux/issues/2705)
 
-" TODO(feat): automatically add the next ordered list value (1. 2. 3.) when hitting enter
 " TODO(feat): format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
-" TODO(feat): when toggling notebook, use the name of the directory with `.git/`, rather than just the root of the dir
 " TODO(feat): dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
 " TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
 " TODO(feat): <m-s>, <m-v>, <m-w> should toggle the term created by :Start (dispatch) if it exists

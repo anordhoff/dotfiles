@@ -20,9 +20,6 @@ vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter_config', { clear = true }),
   pattern = parsers,
   callback = function()
-    -- enable treesitter syntax highlighting
-    -- vim.treesitter.start()
-
     -- enable treesitter folding
     vim.opt_local.foldmethod = 'expr'
     vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
