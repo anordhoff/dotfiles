@@ -268,7 +268,7 @@ fi
 # misc
 # --------------------------------------
 
-# set to the path of the tty device for gpg
+# set to the path of the tty device for gpg (cannot be exported in zprofile)
 export GPG_TTY=$(tty)
 
 # source work zshrc
