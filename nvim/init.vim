@@ -19,6 +19,7 @@
 
 
 set notermguicolors   " disable 24-bit colors
+set t_Co=16           " use the 16 color palette
 set number            " enable line numbers
 set noshowmode        " hide the mode from the bottom row
 set noincsearch       " do not immediately jump to first search hit
@@ -116,18 +117,18 @@ set mouse=nvi
 set mousescroll=ver:1,hor:0
 
 " prevent basic mouse clicks from doing anything but scrolling
-map <leftmouse>     <nop>
-map <middlemouse>   <nop>
-map <rightmouse>    <nop>
-map <2-leftmouse>   <nop>
-map <2-middlemouse> <nop>
-map <2-rightmouse>  <nop>
-map <3-leftmouse>   <nop>
-map <3-middlemouse> <nop>
-map <3-rightmouse>  <nop>
-map <4-leftmouse>   <nop>
-map <4-middlemouse> <nop>
-map <4-rightmouse>  <nop>
+" map <leftmouse>     <nop>
+" map <middlemouse>   <nop>
+" map <rightmouse>    <nop>
+" map <2-leftmouse>   <nop>
+" map <2-middlemouse> <nop>
+" map <2-rightmouse>  <nop>
+" map <3-leftmouse>   <nop>
+" map <3-middlemouse> <nop>
+" map <3-rightmouse>  <nop>
+" map <4-leftmouse>   <nop>
+" map <4-middlemouse> <nop>
+" map <4-rightmouse>  <nop>
 
 " disable optional providers
 let g:loaded_python3_provider = 0

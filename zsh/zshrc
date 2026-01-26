@@ -231,6 +231,9 @@ alias kd='kubectl describe'
 alias ke='kubectl events --for'
 alias kg='kubectl get'
 
+# list all resources in a namespace
+alias kgall="kubectl get --show-kind --show-labels \$(kubectl api-resources --namespaced=true -o name | grep -vE '^bindings$|^localsubjectaccessreviews.authorization.k8s.io' | paste -sd ',' -)"
+
 # krew plugins
 alias kctx='kubectl ctx'
 alias  kns='kubectl ns'
@@ -278,5 +281,5 @@ fi
 
 # start tmux on launch, attaching to an existing (or creating a new) session
 if [ -z $TMUX ]; then
-  tmux attach -t default || tmux new-session -A -s default
+  tmux new-session -A -s default
 fi

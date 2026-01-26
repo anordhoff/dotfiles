@@ -34,7 +34,7 @@ shift + ctrl + alt + cmd - j : yabai -m window --stack south && yabai -m window 
 shift + ctrl + alt + cmd - k : yabai -m window --stack north && yabai -m window --focus stack.next
 shift + ctrl + alt + cmd - l : yabai -m window --stack east && yabai -m window --focus stack.next
 
-# focus the most recently focued window in the stack
+# focus the most recently focused window in the stack
 shift + ctrl + alt - a : yabai -m window --focus stack.recent
 
 # break the focused window from stack
