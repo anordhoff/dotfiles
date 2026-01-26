@@ -81,9 +81,6 @@
 	path = nvim/pack/plugins/start/harpoon
 	url = https://github.com/ThePrimeagen/harpoon.git
 	branch = harpoon2
-[submodule "nvim/pack/plugins/start/leap"]
-	path = nvim/pack/plugins/start/leap
-	url = https://github.com/ggandor/leap.nvim.git
 [submodule "nvim/pack/plugins/start/lint"]
 	path = nvim/pack/plugins/start/lint
 	url = https://github.com/mfussenegger/nvim-lint.git
