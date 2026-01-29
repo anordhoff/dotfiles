@@ -16,26 +16,6 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
 
 
   ----------------------------------------
-  -- lazyload copilot-chat
-  ----------------------------------------
-
-  local copilot_chat
-  local loaded_copilot_chat
-
-  local function load_copilot_chat()
-    if not loaded_copilot_chat then
-      vim.cmd('packadd copilot-chat')
-      copilot_chat = require('plugin.copilot-chat')
-      loaded_copilot_chat = true
-    end
-  end
-
-  -- keymaps and commands
-  vim.keymap.set({'n', 'v'}, '<m-c>', function() load_copilot_chat(); copilot_chat.toggle() end, {})
-  vim.keymap.set({'n', 'v'}, '<leader>c', function() load_copilot_chat(); return ':CopilotChat' end, { expr = true })
-
-
-  ----------------------------------------
   -- lazyload indent-blankline
   ----------------------------------------
 
