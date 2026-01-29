@@ -27,9 +27,6 @@ enum layers {
 #define GAME    DF(_GAME)
 
 // colemak layers
-#define SYM     MO(_SYMBOL)
-#define NUM     MO(_NUMPAD)
-#define NAV     MO(_NAVIGATION)
 #define FUNC    MO(_FUNCTION)
 #define LHYPER  KC_LGUI
 #define RHYPER  KC_RGUI
@@ -43,8 +40,10 @@ enum layers {
 #define ADJUST  MO(_ADJUST)
 
 // layer mod taps
-#define MT_SPC  LT(_SYMBOL,  KC_SPC)
-#define MT_ESC  MT(MOD_RSFT, KC_ESC)
+#define MT_UNDS LT(_NAVIGATION, KC_UNDS)
+#define MT_SPC  LT(_SYMBOL,     KC_SPC)
+#define MT_ESC  MT(MOD_RSFT,    KC_ESC)
+#define MT_MINS LT(_NUMPAD,     KC_MINS)
 
 // switch out of qwerty using shifts
 #define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
