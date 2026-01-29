@@ -111,9 +111,6 @@
 	branch = main
 
 # neovim (opt)
-[submodule "nvim/pack/plugins/opt/copilot-chat"]
-	path = nvim/pack/plugins/opt/copilot-chat
-	url = https://github.com/CopilotC-Nvim/CopilotChat.nvim.git
 [submodule "nvim/pack/plugins/opt/indent-blankline"]
 	path = nvim/pack/plugins/opt/indent-blankline
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
