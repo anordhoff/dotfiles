@@ -36,6 +36,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 		// correctly handle mod taps with non-basic keycodes
 		// https://docs.qmk.fm/mod_tap#intercepting-mod-taps
+		case MT_UNDS:
+			if (record->tap.count && record->event.pressed) {
+				tap_code16(KC_UNDS);
+				return false;
+			}
+			break;
 		case MT_DLR:
 			if (record->tap.count && record->event.pressed) {
 				tap_code16(KC_DLR);
@@ -65,13 +71,17 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_A:
 		case MT_O:
 			return 250;
+
+		case MT_UNDS:
+		case MT_MINS:
+			return 200;
+
 		case MT_SPC:
 		case MT_ESC:
 			return 170;
+
 		default:
-			// TODO: after removing DYNAMIC_TAPPING_TERM_ENABLE, 
-			// replace this with 200 and remove from config.h
-			return TAPPING_TERM;
+			return 185;
 	}
 };
 
@@ -96,8 +106,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 // per key quick tap term
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		case MT_SPC:
-			return 100;
 		default:
 			return 0;
 	}
