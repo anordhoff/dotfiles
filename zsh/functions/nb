@@ -1,9 +1,0 @@
-# vim: ft=zsh
-# add a single line to the end of inbox.md
-
-if [ $# -eq 0 ]; then
-  echo "Note cannot be an empty line"
-  return 1
-fi
-
-echo -E "$@" >> ~/notebook/inbox.md

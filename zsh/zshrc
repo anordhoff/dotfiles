@@ -3,11 +3,10 @@
 # --------------------------------------
 
 # options
-setopt   prompt_subst # enable prompt substitution
-setopt   dotglob      # include hidden files in expansion and completion
-setopt   extendedglob # treat '#', '~', and '^' as part of patterns
-setopt   nomatch      # print an error if no filename matches pattern
-unsetopt flowcontrol  # disable suspending terminal with ctrl-s
+setopt prompt_subst # enable prompt substitution
+setopt dotglob      # include hidden files in expansion and completion
+setopt extendedglob # treat '#', '~', and '^' as part of patterns
+setopt nomatch      # print an error if no filename matches pattern
 
 # directory stack options
 setopt autopushd       # make cd push the old directory onto the dir stack
@@ -191,7 +190,7 @@ alias tldr='NO_COLOR=true tldr'
 
 # open the notebook dir
 alias notes='nvim ~/notebook/inbox.md -c "cd ~/notebook"'
-alias todo='nvim ~/notebook/todo.md -c "cd ~/notebook"'
+alias todos='nvim ~/notebook/todo.md -c "cd ~/notebook"'
 
 # directory stack
 alias dirs='dirs -v'

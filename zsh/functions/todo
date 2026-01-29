@@ -1,0 +1,9 @@
+# vim: ft=zsh
+# add a single line to the end of ~/notebook/todo.md
+
+if [ $# -eq 0 ]; then
+  echo "Item cannot be an empty string"
+  return 1
+fi
+
+echo -E "$@" >> ~/notebook/todo.md
