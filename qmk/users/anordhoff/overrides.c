@@ -1,8 +1,3 @@
-// base layer overrides
-const key_override_t colemak_comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_DOT, 1 << _COLEMAK);
-const key_override_t game_comma_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_DOT, 1 << _GAME);
-const key_override_t game_lessthan_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_LT, KC_GT, 1 << _GAME);
-
 // symbol layer overrides
 const key_override_t symbol_layer_grave_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_GRV, KC_GRV, 1 << _SYMBOL);
 const key_override_t symbol_layer_equal_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_EQL, KC_EQL, 1 << _SYMBOL);
@@ -27,11 +22,6 @@ const key_override_t numpad_layer_slash_key_override = ko_make_with_layers(MOD_M
 
 // globally define all key overrides
 const key_override_t *key_overrides[] = {
-
-	// base layers
-	&colemak_comma_key_override,
-	&game_comma_key_override,
-	&game_lessthan_key_override,
 
 	// symbol layer overrides
 	&symbol_layer_grave_key_override,
