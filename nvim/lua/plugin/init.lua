@@ -7,7 +7,6 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
   -- require('plugin.leap')
   require('plugin.lspconfig')
   require('plugin.lint')
-  -- require('plugin.spooky')
   require('plugin.telescope')
   require('plugin.textobjects')
   require('plugin.treesitter')
