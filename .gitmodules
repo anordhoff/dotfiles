@@ -81,9 +81,9 @@
 	path = nvim/pack/plugins/start/harpoon
 	url = https://github.com/ThePrimeagen/harpoon.git
 	branch = harpoon2
-# [submodule "nvim/pack/plugins/start/leap"]
-# 	path = nvim/pack/plugins/start/leap
-# 	url = https://codeberg.org/andyg/leap.nvim.git
+[submodule "nvim/pack/plugins/start/leap"]
+	path = nvim/pack/plugins/start/leap
+	url = https://codeberg.org/andyg/leap.nvim.git
 [submodule "nvim/pack/plugins/start/lspconfig"]
 	path = nvim/pack/plugins/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
