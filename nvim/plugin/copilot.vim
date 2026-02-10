@@ -1,7 +1,7 @@
 " disable copilot for certain filetypes
-" let g:copilot_filetypes = {
-"   \ 'go': v:false,
-"   \ }
+let g:copilot_filetypes = {
+  \ 'go': v:false,
+  \ }
 
 " accept the current suggestion with ctrl-y
 let g:copilot_no_tab_map = v:true

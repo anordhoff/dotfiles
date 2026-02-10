@@ -18,14 +18,12 @@ function term#Toggle(vsplit)
       else
         exec 'botright sbuffer ' .. t:termbuf
       endif
-      " startinsert!
     catch
       if a:vsplit
         exec 'botright vsplit +term'
       else
         exec 'botright split +term'
       endif
-      " startinsert!
     endtry
     let t:termwin = win_getid()
   endif
@@ -41,6 +39,5 @@ function term#Focus()
     wincmd p
   else
     call win_gotoid(t:termwin)
-    " startinsert!
   endif
 endfunction

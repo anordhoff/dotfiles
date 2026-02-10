@@ -7,7 +7,6 @@
 " TODO(bug): copilot autosuggestions do not wrap correctly
 " TODO(bug): use ctrl-i to insert tab character (not supported by tmux - https://github.com/tmux/tmux/issues/2705)
 
-" TODO(feat): format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
 " TODO(feat): dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
 " TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
 " TODO(feat): <m-s>, <m-v>, <m-w> should toggle the term created by :Start (dispatch) if it exists
@@ -93,7 +92,6 @@ augroup END
 " prevent filetypes from overwriting formatoptions
 augroup formatoptions_config
   autocmd!
-  " autocmd Filetype * if &ft != "markdown" | setlocal formatoptions=qjw | endif
   autocmd Filetype * if &ft != "markdown" && &ft != "gitcommit" | setlocal formatoptions=qjw | endif
 augroup END
 
@@ -115,20 +113,6 @@ augroup END
 " scrolling with the mouse or trackpad moves the screen instead of the cursor
 set mouse=nvi
 set mousescroll=ver:1,hor:0
-
-" prevent basic mouse clicks from doing anything but scrolling
-" map <leftmouse>     <nop>
-" map <middlemouse>   <nop>
-" map <rightmouse>    <nop>
-" map <2-leftmouse>   <nop>
-" map <2-middlemouse> <nop>
-" map <2-rightmouse>  <nop>
-" map <3-leftmouse>   <nop>
-" map <3-middlemouse> <nop>
-" map <3-rightmouse>  <nop>
-" map <4-leftmouse>   <nop>
-" map <4-middlemouse> <nop>
-" map <4-rightmouse>  <nop>
 
 " disable optional providers
 let g:loaded_python3_provider = 0
@@ -154,14 +138,6 @@ inoremap <c-r>* <c-r><c-r>*
 " ctrl-p and ctrl-n match the current command-line
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
-
-" extend vim-husk such that ctrl-y and ctrl-w mimic bash
-cnoremap <expr> <c-y> pumvisible() ? "\<c-y>" : "\<c-r>\""
-cnoremap <c-w> <cmd>let g:iskeyword=&iskeyword<bar>
-  \ set iskeyword=
-  \ <cr><c-w><cmd>
-  \ let &iskeyword=g:iskeyword<bar>
-  \ unlet g:iskeyword<cr>
 
 " file and buffer navigation
 nnoremap <leader>e :e **/*
@@ -242,7 +218,6 @@ function Statusline(winid)
   let statusline  = ' ' .. Background(a:winid) " left padding; set status line background color
   let statusline .= ' [%n]  '                  " buffer number
   let statusline .= '%f'                       " filepath
-  " let statusline .= '%{GitBranch()}  '         " git branch
   let statusline .= '%{NopluginFlag()}'        " plugin flag
   let statusline .= '%H%W%R%M'                 " help/preview/read-only/modified flags
   let statusline .= '%=   %c%V  :  %2l/%L'     " byte index, virtual column number; line number
@@ -259,19 +234,6 @@ endfunction
 " correct padding when there is no filetype
 function Filetype()
   return &filetype == '' ? ' ' : '  [' .. &filetype .. '] '
-endfunction
-
-" show the git branch if plugins are enabled
-function GitBranch()
-  if !&loadplugins || empty(FugitiveGitDir(bufnr('')))
-    return ''
-  endif
-  let branch = substitute(substitute(FugitiveStatusline(), '^[Git(', '', ''), ')]$', '', '')
-  if strlen(branch .. expand('%')) > 56
-    return '  (' .. strpart(branch, 0, 53 - strlen(expand('%'))) .. '...)'
-  else
-    return '  (' .. branch .. ')'
-  endif
 endfunction
 
 " noplugin flag if running with --noplugin set
@@ -328,6 +290,7 @@ endfunction
 " tabline
 " --------------------------------------
 
+" TODO(feat): format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
 " TODO(feat): use shortened dir names. For example,
 "   main.go  ~/a/w/.g//6/main.go
 " instead of
@@ -377,14 +340,9 @@ endfunction
 " --------------------------------------
 
 if &loadplugins
-  " set the absolute size of netrw windows
-  let g:netrw_winsize = -30
-
-  " hide the informational banner
-  let g:netrw_banner = 0
-
-  " tree style listing
-  let g:netrw_liststyle = 3
+  let g:netrw_winsize = -30 " set the absolute size of netrw windows
+  let g:netrw_banner = 0    " hide the informational banner
+  let g:netrw_liststyle = 3 " tree style listing
 
   " toggle netrw as a project drawer
   nnoremap <silent> <m--> <cmd>Lexplore<cr>
