@@ -24,6 +24,7 @@ set noshowmode        " hide the mode from the bottom row
 set noincsearch       " do not immediately jump to first search hit
 set ignorecase        " case-insensitive searching...
 set smartcase         " ...but not if the search contains a capital letter
+set nowrapscan        " do not wrap searches around the end of the file
 set splitright        " split vertical windows to the right of current window
 set splitbelow        " split horizontal windows below current window
 set splitkeep=screen  " keep text on the same line when splitting windows
