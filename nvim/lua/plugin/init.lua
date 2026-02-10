@@ -4,7 +4,7 @@ if vim.api.nvim_get_option_value('loadplugins', {}) then
 
   -- enable lua plugins
   require('plugin.harpoon')
-  -- require('plugin.leap')    -- TODO: codeberg is blocked at work
+  require('plugin.leap')
   require('plugin.lspconfig')
   require('plugin.telescope')
   require('plugin.textobjects')
