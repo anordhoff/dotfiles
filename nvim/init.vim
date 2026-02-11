@@ -218,8 +218,8 @@ set statusline=%!Statusline(g:statusline_winid)
 function Statusline(winid)
   let statusline  = ' ' .. Background(a:winid) " left padding; set status line background color
   let statusline .= ' [%n]  '                  " buffer number
-  let statusline .= '%f'                       " filepath
-  let statusline .= '%{NopluginFlag()}'        " plugin flag
+  let statusline .= '%f  '                     " filepath
+  let statusline .= '%{NopluginFlag()}'        " noplugin flag
   let statusline .= '%H%W%R%M'                 " help/preview/read-only/modified flags
   let statusline .= '%=   %c%V  :  %2l/%L'     " byte index, virtual column number; line number
   let statusline .= '%{Filetype()}'            " filetype
@@ -245,7 +245,6 @@ endfunction
 " quickfix and location list / netrw / terminal buffer status lines
 augroup statusline_config
   autocmd!
-
   autocmd Filetype qf setlocal statusline=%!QuickfixListStatusline(g:statusline_winid)
   autocmd Filetype netrw setlocal statusline=%!NetrwStatusline(g:statusline_winid)
   autocmd Filetype copilot-* setlocal statusline=%!CopilotStatusline(g:statusline_winid)
@@ -258,11 +257,8 @@ endfunction
 function NetrwStatusline(winid)
   return ' ' .. Background(a:winid) .. ' [%n]  %l/%L lines%=[netrw] %* '
 endfunction
-function CopilotStatusline(winid)
-  return ' ' .. Background(a:winid) .. ' [%n]  %{CopilotChatModel()}%=%{Filetype()}%* '
-endfunction
 function TermStatusline(winid)
-  return ' ' .. Background(a:winid) .. ' [%n]  %{TermShell()}%{TermMode()}  %{NopluginFlag()}%R%=[term] %* '
+  return ' ' .. Background(a:winid) .. ' [%n]  %{TermShell()}  %{NopluginFlag()}%R%=[term] %* '
 endfunction
 
 " return the title of the quickfix window
@@ -270,32 +266,15 @@ function QuickfixTitle()
   return exists('w:quickfix_title') ? w:quickfix_title .. '  ' : ''
 endfunction
 
-" return the model copilot-chat is using
-function CopilotChatModel()
-  return g:copilot_chat_model
-endfunction
-
 " return shell used by terminal
 function TermShell()
   return split(b:term_title, ':')[-1]
-endfunction
-
-" set 'insert' flag if terminal buffer is in 'terminal' mode
-function TermMode()
-  " return mode() == 't' ? '  (insert)' : ''
-  return mode() == 't' ? '   (insert)' : ''
 endfunction
 
 
 " --------------------------------------
 " tabline
 " --------------------------------------
-
-" TODO(feat): format TabLabel as #windows:buffer-name<dirty>, eg 2:init.vim+
-" TODO(feat): use shortened dir names. For example,
-"   main.go  ~/a/w/.g//6/main.go
-" instead of
-"   main.go  fugitive:///Users/.../.../webserver/.git//64bed7c379141ac196d8.../main.go
 
 set tabline=%!TabLine()
 
@@ -325,11 +304,17 @@ function TabLabel(n)
   elseif filetype == 'netrw'
     return 'netrw'
   elseif bufname =~ '^term://'
-    return 'terminal'
+    return 'term'
   elseif filetype == 'dirvish'
     return 'dirvish'
   elseif bufname =~ '^fugitive://'
-    return 'fugitive://' .. fnamemodify(bufname, ':t')
+    let filename = bufname
+    for dir in split(getcwd(), '/')
+      let filename = substitute(filename, dir .. '/', '', '')
+    endfor
+    let filename = substitute(filename, '/.git//', '', '')
+    let filename = substitute(filename, '\d\{1}/', '', '')
+    return trim(filename, '://', 2)
   else
     return bufname
   endif
