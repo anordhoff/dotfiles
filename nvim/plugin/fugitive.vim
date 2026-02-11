@@ -1,14 +1,4 @@
-" TODO(feat): change the following keymaps:
-"   - blame window: gq -> q
-"                    o -> ctrl-s
-"             unmapped -> ctrl-v
-"                    O -> ctrl-t
-"                 <CR> -> a (maybe)
-"   - navigation:    o -> ctrl-s
-"                   gO -> ctrl-v
-"                    O -> ctrl-t
-"                 <CR> -> a (maybe)
-
+" fugitive keymaps
 nnoremap g<space> :Git<space>
 nnoremap g<cr> <cmd>Git<cr>
 

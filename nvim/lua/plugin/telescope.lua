@@ -69,8 +69,8 @@ telescope.setup {
       override_file_sorter = true,
       case_mode = 'smart_case',
     },
-    -- TODO: look into https://github.com/dandavison/delta
     undo = {
+      -- NOTE: look into https://github.com/dandavison/delta
       -- side_by_side = true, 
       -- layout_strategy = "vertical",
       -- layout_config = {
@@ -105,7 +105,6 @@ vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
 vim.keymap.set('n', '<leader>fu', telescope.extensions.undo.undo, opts)
 
--- TODO(bug): telescope bug (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
   group = vim.api.nvim_create_augroup('telescope_bug', { clear = true }),
   callback = function()

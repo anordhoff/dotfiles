@@ -2,19 +2,43 @@
 " settings
 " --------------------------------------
 
-" TODO(bug): telescope preview window does not respect modeline (example: zprofile)
 " TODO(bug): using nnoremap in after/ftplugin/netrw.vim doesn't work, but nmap breaks ctrl_t to open a new tab
 " TODO(bug): copilot autosuggestions do not wrap correctly
 " TODO(bug): use ctrl-i to insert tab character (not supported by tmux - https://github.com/tmux/tmux/issues/2705)
-
-" TODO(feat): dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
-" TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
-" TODO(feat): <m-s>, <m-v>, <m-w> should toggle the term created by :Start (dispatch) if it exists
-" TODO(feat): :Start, :Spawn should create a horizonal split that uses the full width of the screen
-" TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
-" TODO(feat): should I update dirvish so that it follows tpope file opening conventions (<CR>: edit, o: split, gO: vsplit, O: tab)
 " TODO(feat): conceal can now conceal multiple lines (for example, long links in markdown, code blocks, etc)
 " TODO(feat): look into built in snippets (default keymap is <tab>, which will conflict with completion)
+
+" dispatch
+" TODO(feat): dispatch opening quickfix should not steal focus (can use :cc to move to highlighted error)
+" TODO(feat): <m-s>, <m-v>, <m-w> should toggle the term created by :Start (dispatch) if it exists
+" TODO(feat): :Start, :Spawn should create a horizonal split that uses the full width of the screen
+
+" fugitive
+" TODO(feat): should I update dirvish so that it follows tpope file opening conventions (<CR>: edit, o: split, gO: vsplit, O: tab)
+" TODO(feat): change the following keymaps:
+"   - blame window: gq -> q
+"                    o -> ctrl-s
+"             unmapped -> ctrl-v
+"                    O -> ctrl-t
+"                 <CR> -> a (maybe)
+"   - navigation:    o -> ctrl-s
+"                   gO -> ctrl-v
+"                    O -> ctrl-t
+"                 <CR> -> a (maybe)
+
+" leap
+" TODO: https://github.com/ggandor/leap.nvim/issues/243 / https://github.com/ggandor/leap.nvim/issues/272 / https://github.com/ggandor/leap.nvim/commit/1abca0d146feceeb73679a62271cdedd6a28a8ee
+
+" telescope
+" TODO(bug): telescope preview window does not respect modeline (example: zprofile)
+" TODO(bug): telescope bug (see telescope_bug autocmd) (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
+" TODO(feat): look into https://github.com/dandavison/delta
+
+" lspconfig
+" TODO(bug): auto save after gopls goimports (https://github.com/neovim/neovim/issues/24168)
+" TODO(feat): Modify yamlls to read job specific patterns from a lua file at ~/jobfiles/lsp/yamlls.lua
+" TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
+" TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
 
 
 set notermguicolors   " disable 24-bit colors
