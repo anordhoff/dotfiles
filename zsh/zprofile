@@ -100,7 +100,7 @@ export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 5)
 export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude pack/plugins/opt --exclude pack/plugins/start --exclude tmux/plugins"
 export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude pack/plugins/opt --exclude pack/plugins/start --exclude tmux/plugins"
 export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude pack/plugins/opt --exclude pack/plugins/start --exclude tmux/plugins"
-export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal --color border:8 --color bg+:13 --color fg+:7:regular --color gutter:-1 --color header:8 --color hl:1:bold --color hl+:1:bold --color info:8 --color marker:2:regular --color spinner:7 --color pointer:4:regular --color prompt:7:regular --color query:7:regular"
+export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal --color border:8 --color bg+:22 --color fg+:7:regular --color gutter:-1 --color header:8 --color hl:1:bold --color hl+:1:bold --color info:8 --color marker:2:regular --color spinner:7 --color pointer:4:regular --color prompt:7:regular --color query:7:regular"
 
 # source work zprofile
 if [ -r ~/jobfiles/zsh/zprofile ]; then

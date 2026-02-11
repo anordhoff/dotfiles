@@ -63,7 +63,7 @@ hi! link ColorColumn             CursorLine
 " --------------------------------------
 " number column
 " --------------------------------------
-hi LineNr                        cterm=none        ctermfg=11       ctermbg=none
+hi LineNr                        cterm=none        ctermfg=20       ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi Folded                        cterm=none        ctermfg=6        ctermbg=none
@@ -71,10 +71,10 @@ hi Folded                        cterm=none        ctermfg=6        ctermbg=none
 " --------------------------------------
 " window/tab delimiters
 " --------------------------------------
-hi WinSeparator                  cterm=none        ctermfg=11       ctermbg=none
-hi TabLine                       cterm=none        ctermfg=7        ctermbg=10
-hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=10
-hi TabLineSel                    cterm=none        ctermfg=6        ctermbg=10
+hi WinSeparator                  cterm=none        ctermfg=20       ctermbg=none
+hi TabLine                       cterm=none        ctermfg=7        ctermbg=19
+hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=19
+hi TabLineSel                    cterm=none        ctermfg=6        ctermbg=19
 
 " --------------------------------------
 " prompt / status
@@ -82,9 +82,9 @@ hi TabLineSel                    cterm=none        ctermfg=6        ctermbg=10
 " StatusLine and StatusLineNC are used for the bookends of the statusline
 hi StatusLine                    cterm=none        ctermfg=7        ctermbg=none
 hi StatusLineNC                  cterm=none        ctermfg=7        ctermbg=none
-hi StatusLineActive              cterm=none        ctermfg=7        ctermbg=13
-hi StatusLineInactive            cterm=none        ctermfg=7        ctermbg=10
-hi WildMenu                      cterm=none        ctermfg=5        ctermbg=13
+hi StatusLineActive              cterm=none        ctermfg=7        ctermbg=22
+hi StatusLineInactive            cterm=none        ctermfg=7        ctermbg=19
+hi WildMenu                      cterm=none        ctermfg=5        ctermbg=22
 hi Question                      cterm=none        ctermfg=2        ctermbg=none
 hi Title                         cterm=none        ctermfg=3        ctermbg=none
 hi ModeMsg                       cterm=none        ctermfg=7        ctermbg=none
@@ -101,17 +101,17 @@ hi CurSearch                     cterm=reverse     ctermfg=5        ctermbg=none
 " --------------------------------------
 " completion menu
 " --------------------------------------
-hi Pmenu                         cterm=none        ctermfg=none     ctermbg=10
-hi PmenuSel                      cterm=none        ctermfg=none     ctermbg=13
-hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=11
+hi Pmenu                         cterm=none        ctermfg=none     ctermbg=19
+hi PmenuSel                      cterm=none        ctermfg=none     ctermbg=22
+hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=20
 hi PmenuThumb                    cterm=none        ctermfg=none     ctermbg=8
-hi PmenuMatch                    cterm=none        ctermfg=5        ctermbg=10
-hi PmenuMatchSel                 cterm=none        ctermfg=5        ctermbg=13
+hi PmenuMatch                    cterm=none        ctermfg=6        ctermbg=19
+hi PmenuMatchSel                 cterm=none        ctermfg=5        ctermbg=22
 
 " --------------------------------------
 " quickfix
 " --------------------------------------
-hi QuickFixLine                  cterm=none        ctermfg=none     ctermbg=14
+hi QuickFixLine                  cterm=none        ctermfg=none     ctermbg=23
 hi qfFileName                    cterm=none        ctermfg=7        ctermbg=none
 hi qfLineNr                      cterm=none        ctermfg=8        ctermbg=none
 
@@ -119,11 +119,11 @@ hi qfLineNr                      cterm=none        ctermfg=8        ctermbg=none
 " visual aid
 " --------------------------------------
 hi MatchParen                    cterm=none        ctermfg=5        ctermbg=none
-hi Visual                        cterm=none        ctermfg=none     ctermbg=13
-hi VisualNOS                     cterm=none        ctermfg=none     ctermbg=13
+hi Visual                        cterm=none        ctermfg=none     ctermbg=22
+hi VisualNOS                     cterm=none        ctermfg=none     ctermbg=22
 hi NonText                       cterm=none        ctermfg=3        ctermbg=none
 hi Whitespace                    cterm=none        ctermfg=3        ctermbg=none
-hi EndOfBuffer                   cterm=none        ctermfg=11       ctermbg=none
+hi EndOfBuffer                   cterm=none        ctermfg=20       ctermbg=none
 hi Conceal                       cterm=none        ctermfg=2        ctermbg=none
 hi SpecialKey                    cterm=none        ctermfg=2        ctermbg=none
 
@@ -138,7 +138,7 @@ hi Todo                          cterm=none        ctermfg=8        ctermbg=none
 " diff
 " --------------------------------------
 hi DiffAdd                       cterm=reverse     ctermfg=2        ctermbg=none
-hi DiffChange                    cterm=none        ctermfg=none     ctermbg=9
+hi DiffChange                    cterm=none        ctermfg=none     ctermbg=18
 hi DiffDelete                    cterm=none        ctermfg=1        ctermbg=none
 hi DiffText                      cterm=reverse     ctermfg=3        ctermbg=none
 
@@ -249,8 +249,8 @@ hi yamlBlockMappingKey           cterm=none        ctermfg=6        ctermbg=none
 " --------------------------------------
 " copilot
 " --------------------------------------
-hi CopilotSuggestion             cterm=none        ctermfg=11       ctermbg=none
-hi CopilotChatSelection          cterm=none        ctermfg=none     ctermbg=14
+hi CopilotSuggestion             cterm=none        ctermfg=20       ctermbg=none
+hi CopilotChatSelection          cterm=none        ctermfg=none     ctermbg=23
 hi CopilotChatHeader             cterm=none        ctermfg=5        ctermbg=none
 hi CopilotChatSeparator          cterm=none        ctermfg=5        ctermbg=none
 hi CopilotChatHelp               cterm=none        ctermfg=8        ctermbg=none
@@ -270,7 +270,7 @@ hi DiffRemoved                   cterm=none        ctermfg=1        ctermbg=none
 " --------------------------------------
 " indent-blankline
 " --------------------------------------
-hi IblIndent                     cterm=none        ctermfg=11       ctermbg=none
+hi IblIndent                     cterm=none        ctermfg=20       ctermbg=none
 
 " --------------------------------------
 " leap
