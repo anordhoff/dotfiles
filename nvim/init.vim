@@ -41,30 +41,30 @@
 " TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
 
 
-set notermguicolors    " disable 24-bit colors
-set t_Co=16            " use the 16 color palette
-set number             " enable line numbers
-set noshowmode         " hide the mode from the bottom row
-set noincsearch        " do not immediately jump to first search hit
-set ignorecase         " case-insensitive searching...
-set smartcase          " ...but not if the search contains a capital letter
-set nowrapscan         " do not wrap searches around the end of the file
-set splitright         " split vertical windows to the right of current window
-set splitbelow         " split horizontal windows below current window
-set splitkeep=screen   " keep text on the same line when splitting windows
-set textwidth=120      " wrap lines at 120 characters
-set formatoptions=cqjw " don't auto-wrap text; format comments with gq
-set shortmess+=c       " don't give ins-completion-menu messages
-set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
-set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
-set smoothscroll       " scrolling works with screen lines
-set foldmethod=syntax  " fold based on syntax highlighting items
-set foldlevelstart=99  " don't automatically close folds
-set mmp=10000          " prevent memory errors when loading large buffers
-set timeoutlen=5000    " make complicated commands more forgiving to type
-set ttimeoutlen=1      " minimal delay for escape key presses
-set shellcmdflag=-ic   " interactive command mode shell (for aliases)
-set diffopt+=vertical  " start diff mode in vertical splits
+set notermguicolors     " disable 24-bit colors
+set t_Co=16             " use the 16 color palette
+set number              " enable line numbers
+set noshowmode          " hide the mode from the bottom row
+set noincsearch         " do not immediately jump to first search hit
+set ignorecase          " case-insensitive searching...
+set smartcase           " ...but not if the search contains a capital letter
+set nowrapscan          " do not wrap searches around the end of the file
+set splitright          " split vertical windows to the right of current window
+set splitbelow          " split horizontal windows below current window
+set splitkeep=screen    " keep text on the same line when splitting windows
+set textwidth=120       " wrap lines at 120 characters
+set formatoptions=jwcql " don't auto-wrap text; format comments with gq
+set shortmess+=c        " don't give ins-completion-menu messages
+set scrolloff=2         " keep a minimum of 2 lines above and below the cursor
+set sidescrolloff=8     " keep a minimum of 8 columns before & after the cursor
+set smoothscroll        " scrolling works with screen lines
+set foldmethod=syntax   " fold based on syntax highlighting items
+set foldlevelstart=99   " don't automatically close folds
+set mmp=10000           " prevent memory errors when loading large buffers
+set timeoutlen=5000     " make complicated commands more forgiving to type
+set ttimeoutlen=1       " minimal delay for escape key presses
+set shellcmdflag=-ic    " interactive command mode shell (for aliases)
+set diffopt+=vertical   " start diff mode in vertical splits
 
 " load internal packages
 if &loadplugins
@@ -116,7 +116,7 @@ augroup END
 " prevent filetypes from overwriting formatoptions
 " augroup formatoptions_config
 "   autocmd!
-"   autocmd Filetype * if &ft != "markdown" && &ft != "gitcommit" | setlocal formatoptions=qjw | endif
+"   autocmd Filetype * if &ft != "markdown" && &ft != "gitcommit" | setlocal formatoptions=jwcql | endif
 " augroup END
 
 " enable the cursorline on the active window
@@ -386,8 +386,8 @@ let $VISUAL="nvim --server " .. v:servername .. " --remote"
 let $EDITOR="nvim --server " .. v:servername .. " --remote"
 
 " exit to normal mode using ctrl-[ or escape
-tnoremap <c-[> <c-\><c-n>
-tnoremap <esc> <c-\><c-n>
+" tnoremap <c-[> <c-\><c-n>
+" tnoremap <esc> <c-\><c-n>
 
 " open terminal in a horizontal or vertical split
 nnoremap <silent> <m-s> <cmd>call term#Toggle(0)<cr>
@@ -412,8 +412,9 @@ augroup terminal_config
   autocmd TermOpen * setlocal nobuflisted
 
   " enable terminal toggling
-  autocmd TermOpen * let t:termbuf = bufnr('%')
-  autocmd TermOpen * let t:termwin = win_getid()
+  autocmd TermOpen * let g:termbuf = bufnr('%')
+  autocmd TermOpen * let g:termwin = win_getid()
+  autocmd TabNew term://* let g:termwin = win_getid()
 augroup END
 
 
