@@ -94,9 +94,9 @@ hi MoreMsg                       cterm=none        ctermfg=2        ctermbg=none
 " file navigation / searching
 " --------------------------------------
 hi Directory                     cterm=none        ctermfg=7        ctermbg=none
-hi Search                        cterm=reverse     ctermfg=4        ctermbg=none
-hi IncSearch                     cterm=reverse     ctermfg=5        ctermbg=none
-hi CurSearch                     cterm=reverse     ctermfg=5        ctermbg=none
+hi Search                        cterm=reverse     ctermfg=12       ctermbg=none
+hi IncSearch                     cterm=reverse     ctermfg=13       ctermbg=none
+hi CurSearch                     cterm=reverse     ctermfg=13       ctermbg=none
 
 " --------------------------------------
 " completion menu
@@ -275,8 +275,8 @@ hi IblIndent                     cterm=none        ctermfg=0        ctermbg=none
 " --------------------------------------
 " leap
 " --------------------------------------
-hi LeapMatch                     cterm=reverse     ctermfg=4        ctermbg=none
-hi LeapLabel                     cterm=reverse     ctermfg=5        ctermbg=none
+hi LeapMatch                     cterm=reverse     ctermfg=12       ctermbg=none
+hi LeapLabel                     cterm=reverse     ctermfg=13       ctermbg=none
 hi LeapLabelDimmed               cterm=none        ctermfg=7        ctermbg=7
 
 " --------------------------------------
