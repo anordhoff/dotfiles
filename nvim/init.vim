@@ -41,31 +41,30 @@
 " TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
 
 
-set notermguicolors   " disable 24-bit colors
-set t_Co=16           " use the 16 color palette
-set number            " enable line numbers
-set noshowmode        " hide the mode from the bottom row
-set noincsearch       " do not immediately jump to first search hit
-set ignorecase        " case-insensitive searching...
-set smartcase         " ...but not if the search contains a capital letter
-set nowrapscan        " do not wrap searches around the end of the file
-set splitright        " split vertical windows to the right of current window
-set splitbelow        " split horizontal windows below current window
-set splitkeep=screen  " keep text on the same line when splitting windows
-set textwidth=120     " wrap lines at 120 characters
-set formatoptions=qjw " don't auto-wrap text; format comments with gq
-set shortmess+=c      " don't give ins-completion-menu messages
-set scrolloff=2       " keep a minimum of 2 lines above and below the cursor
-set sidescrolloff=8   " keep a minimum of 8 columns before & after the cursor
-set smoothscroll      " scrolling works with screen lines
-set foldmethod=syntax " fold based on syntax highlighting items
-set foldnestmax=1     " limit to 1 nested fold
-set foldlevel=1       " don't automatically close folds
-set mmp=10000         " prevent memory errors when loading large buffers
-set timeoutlen=5000   " make complicated commands more forgiving to type
-set ttimeoutlen=1     " minimal delay for escape key presses
-set shellcmdflag=-ic  " interactive command mode shell (for aliases)
-set diffopt+=vertical " start diff mode in vertical splits
+set notermguicolors    " disable 24-bit colors
+set t_Co=16            " use the 16 color palette
+set number             " enable line numbers
+set noshowmode         " hide the mode from the bottom row
+set noincsearch        " do not immediately jump to first search hit
+set ignorecase         " case-insensitive searching...
+set smartcase          " ...but not if the search contains a capital letter
+set nowrapscan         " do not wrap searches around the end of the file
+set splitright         " split vertical windows to the right of current window
+set splitbelow         " split horizontal windows below current window
+set splitkeep=screen   " keep text on the same line when splitting windows
+set textwidth=120      " wrap lines at 120 characters
+set formatoptions=cqjw " don't auto-wrap text; format comments with gq
+set shortmess+=c       " don't give ins-completion-menu messages
+set scrolloff=2        " keep a minimum of 2 lines above and below the cursor
+set sidescrolloff=8    " keep a minimum of 8 columns before & after the cursor
+set smoothscroll       " scrolling works with screen lines
+set foldmethod=syntax  " fold based on syntax highlighting items
+set foldlevelstart=99  " don't automatically close folds
+set mmp=10000          " prevent memory errors when loading large buffers
+set timeoutlen=5000    " make complicated commands more forgiving to type
+set ttimeoutlen=1      " minimal delay for escape key presses
+set shellcmdflag=-ic   " interactive command mode shell (for aliases)
+set diffopt+=vertical  " start diff mode in vertical splits
 
 " load internal packages
 if &loadplugins
@@ -115,10 +114,10 @@ augroup completion_config
 augroup END
 
 " prevent filetypes from overwriting formatoptions
-augroup formatoptions_config
-  autocmd!
-  autocmd Filetype * if &ft != "markdown" && &ft != "gitcommit" | setlocal formatoptions=qjw | endif
-augroup END
+" augroup formatoptions_config
+"   autocmd!
+"   autocmd Filetype * if &ft != "markdown" && &ft != "gitcommit" | setlocal formatoptions=qjw | endif
+" augroup END
 
 " enable the cursorline on the active window
 augroup cursorline_config

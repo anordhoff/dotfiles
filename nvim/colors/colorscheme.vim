@@ -55,7 +55,7 @@ hi! link Debug                   Special
 " --------------------------------------
 hi Cursor                        cterm=reverse     ctermfg=8        ctermbg=none
 hi! link TermCursor              Cursor
-hi CursorLine                    cterm=none        ctermfg=none     ctermbg=0
+hi CursorLine                    cterm=none        ctermfg=none     ctermbg=17
 hi! link CursorLIneNr            LineNr
 hi! link CursorColumn            CursorLine
 hi! link ColorColumn             CursorLine
@@ -63,7 +63,7 @@ hi! link ColorColumn             CursorLine
 " --------------------------------------
 " number column
 " --------------------------------------
-hi LineNr                        cterm=none        ctermfg=20       ctermbg=none
+hi LineNr                        cterm=none        ctermfg=0        ctermbg=none
 hi SignColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi FoldColumn                    cterm=none        ctermfg=7        ctermbg=none
 hi Folded                        cterm=none        ctermfg=6        ctermbg=none
@@ -71,7 +71,7 @@ hi Folded                        cterm=none        ctermfg=6        ctermbg=none
 " --------------------------------------
 " window/tab delimiters
 " --------------------------------------
-hi WinSeparator                  cterm=none        ctermfg=20       ctermbg=none
+hi WinSeparator                  cterm=none        ctermfg=0        ctermbg=none
 hi TabLine                       cterm=none        ctermfg=7        ctermbg=19
 hi TabLineFill                   cterm=none        ctermfg=none     ctermbg=19
 hi TabLineSel                    cterm=none        ctermfg=6        ctermbg=19
@@ -103,7 +103,7 @@ hi CurSearch                     cterm=reverse     ctermfg=5        ctermbg=none
 " --------------------------------------
 hi Pmenu                         cterm=none        ctermfg=none     ctermbg=19
 hi PmenuSel                      cterm=none        ctermfg=none     ctermbg=22
-hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=20
+hi PmenuSbar                     cterm=none        ctermfg=none     ctermbg=0
 hi PmenuThumb                    cterm=none        ctermfg=none     ctermbg=8
 hi PmenuMatch                    cterm=none        ctermfg=6        ctermbg=19
 hi PmenuMatchSel                 cterm=none        ctermfg=5        ctermbg=22
@@ -123,7 +123,7 @@ hi Visual                        cterm=none        ctermfg=none     ctermbg=22
 hi VisualNOS                     cterm=none        ctermfg=none     ctermbg=22
 hi NonText                       cterm=none        ctermfg=3        ctermbg=none
 hi Whitespace                    cterm=none        ctermfg=3        ctermbg=none
-hi EndOfBuffer                   cterm=none        ctermfg=20       ctermbg=none
+hi EndOfBuffer                   cterm=none        ctermfg=0        ctermbg=none
 hi Conceal                       cterm=none        ctermfg=2        ctermbg=none
 hi SpecialKey                    cterm=none        ctermfg=2        ctermbg=none
 
@@ -249,7 +249,7 @@ hi yamlBlockMappingKey           cterm=none        ctermfg=6        ctermbg=none
 " --------------------------------------
 " copilot
 " --------------------------------------
-hi CopilotSuggestion             cterm=none        ctermfg=20       ctermbg=none
+hi CopilotSuggestion             cterm=none        ctermfg=0        ctermbg=none
 hi CopilotChatSelection          cterm=none        ctermfg=none     ctermbg=23
 hi CopilotChatHeader             cterm=none        ctermfg=5        ctermbg=none
 hi CopilotChatSeparator          cterm=none        ctermfg=5        ctermbg=none
@@ -270,7 +270,7 @@ hi DiffRemoved                   cterm=none        ctermfg=1        ctermbg=none
 " --------------------------------------
 " indent-blankline
 " --------------------------------------
-hi IblIndent                     cterm=none        ctermfg=20       ctermbg=none
+hi IblIndent                     cterm=none        ctermfg=0        ctermbg=none
 
 " --------------------------------------
 " leap
