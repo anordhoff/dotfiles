@@ -13,12 +13,14 @@
 	verbose = true
 [pull]
 	ff = only
+[diff]
+	algorithm = histogram
 [merge]
 	tool = vim-fugitive
 [mergetool]
 	keepBackup = false
 [mergetool "vim-fugitive"]
-	cmd = nvim -c \"Gvdiffsplit!\" \"$MERGED\"
+	cmd = nvim -c \"Gvdiffsplit!\" \"$MERGED\" -c \"Gdiffsplit :1\" -c \"wincmd p\" -c \"wincmd J\"
 [branch]
 	sort = -committerdate
 	sort = -HEAD

@@ -64,7 +64,6 @@ set mmp=10000           " prevent memory errors when loading large buffers
 set timeoutlen=5000     " make complicated commands more forgiving to type
 set ttimeoutlen=1       " minimal delay for escape key presses
 set shellcmdflag=-ic    " interactive command mode shell (for aliases)
-set diffopt+=vertical   " start diff mode in vertical splits
 set winborder=single    " border style for floating windows
 
 " load internal packages
@@ -76,6 +75,9 @@ endif
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" improve readability of diffs
+set diffopt+=vertical,hiddenoff,algorithm:histogram,indent-heuristic
 
 " show possible completions in a pmenu
 set completeopt=menuone,noselect,preview
