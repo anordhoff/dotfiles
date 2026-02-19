@@ -65,6 +65,7 @@ set timeoutlen=5000     " make complicated commands more forgiving to type
 set ttimeoutlen=1       " minimal delay for escape key presses
 set shellcmdflag=-ic    " interactive command mode shell (for aliases)
 set diffopt+=vertical   " start diff mode in vertical splits
+set winborder=single    " border style for floating windows
 
 " load internal packages
 if &loadplugins

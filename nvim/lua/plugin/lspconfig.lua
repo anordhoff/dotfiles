@@ -1,6 +1,3 @@
--- border style
-vim.o.winborder = 'single'
-
 -- customize how diagnostics are displayed
 vim.diagnostic.config({
   float = { source = true },
