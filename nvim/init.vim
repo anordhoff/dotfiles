@@ -102,7 +102,7 @@ let &showbreak=' .. '
 
 " add jobfiles and jobfiles/after to vim's runtimepath
 set runtimepath-=~/.config/nvim
-let &runtimepath='~/.config/nvim,~/jobfiles/nvim,' . &runtimepath . ',~/jobfiles/nvim/after'
+let &runtimepath='~/.config/nvim,~/jobfiles/nvim,' . &runtimepath . ',~/jobfiles/nvim/pack/*/start/*,~/jobfiles/nvim/pack/*/start/*/after,~/jobfiles/nvim/after'
 
 " wrap text in the preview window
 augroup preview_config

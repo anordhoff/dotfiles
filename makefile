@@ -1,5 +1,3 @@
-filename ?= dotfiles-$(shell date +"%m%d%y").tar.gz
-
 .PHONY: validate-submodule
 validate-submodule:
 ifndef submodule
