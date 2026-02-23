@@ -297,6 +297,12 @@ hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp
 hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
 
 " --------------------------------------
+" quick-scope
+" --------------------------------------
+hi QuickScopePrimary             cterm=underline,bold
+hi QuickScopeSecondary           cterm=underline,bold,italic
+
+" --------------------------------------
 " sneak
 " --------------------------------------
 hi Sneak                         cterm=reverse     ctermfg=12       ctermbg=none
@@ -312,9 +318,3 @@ hi TelescopeMatching             cterm=none        ctermfg=1        ctermbg=none
 hi TelescopeBorder               cterm=none        ctermfg=8        ctermbg=none
 hi TelescopePromptCounter        cterm=none        ctermfg=8        ctermbg=none
 hi TelescopeMultiIcon            cterm=none        ctermfg=2        ctermbg=none
-
-" --------------------------------------
-" quick-scope
-" --------------------------------------
-hi QuickScopePrimary             cterm=underline,bold
-hi QuickScopeSecondary           cterm=underline,bold,italic

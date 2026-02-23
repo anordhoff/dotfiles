@@ -37,6 +37,9 @@
 [submodule "nvim/pack/plugins/start/projectionist"]
 	path = nvim/pack/plugins/start/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
+[submodule "nvim/pack/plugins/start/quick-scope"]
+	path = nvim/pack/plugins/start/quick-scope
+	url = https://github.com/unblevable/quick-scope.git
 [submodule "nvim/pack/plugins/start/repeat"]
 	path = nvim/pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
@@ -108,6 +111,3 @@
 [submodule "nvim/pack/plugins/opt/indent-blankline"]
 	path = nvim/pack/plugins/opt/indent-blankline
 	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
-[submodule "nvim/pack/plugins/start/quick-scope"]
-	path = nvim/pack/plugins/start/quick-scope
-	url = https://github.com/unblevable/quick-scope.git
