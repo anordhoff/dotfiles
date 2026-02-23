@@ -1,14 +1,14 @@
 " map R to angle brackets
 let g:surround_82 = "<\r>"
-nmap dsR <Plug>Dsurround>
-nmap csR <Plug>Csurround>
+nmap dsR <plug>Dsurround>
+nmap csR <plug>Csurround>
 
 " map q to double quotes
 let g:surround_113 = "\"\r\""
-nmap dsq <Plug>Dsurround"
-nmap csq <Plug>Csurround"
+nmap dsq <plug>Dsurround"
+nmap csq <plug>Csurround"
 
 " map Q to backticks
 let g:surround_81 = "`\r`"
-nmap dsQ <Plug>Dsurround`
-nmap csQ <Plug>Csurround`
+nmap dsQ <plug>Dsurround`
+nmap csQ <plug>Csurround`
