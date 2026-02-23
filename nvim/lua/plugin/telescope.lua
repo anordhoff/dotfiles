@@ -80,15 +80,6 @@ telescope.setup {
   },
 }
 
--- add line numbers to telescope preview buffers
-vim.api.nvim_create_autocmd('User', {
-  group = vim.api.nvim_create_augroup('telescope_config', { clear = true }),
-  callback = function()
-    vim.opt_local.number = true
-  end,
-  pattern = 'TelescopePreviewerLoaded'
-})
-
 -- mappings
 local opts = { silent = true }
 vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
@@ -105,6 +96,7 @@ vim.keymap.set('n', '<leader>fc', builtin.commands, opts)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
 vim.keymap.set('n', '<leader>fu', telescope.extensions.undo.undo, opts)
 
+-- recompute folds (https://github.com/nvim-telescope/telescope.nvim/issues/1277)
 vim.api.nvim_create_autocmd('BufRead', {
   group = vim.api.nvim_create_augroup('telescope_bug', { clear = true }),
   callback = function()

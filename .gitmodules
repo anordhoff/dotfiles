@@ -37,9 +37,6 @@
 [submodule "nvim/pack/plugins/start/projectionist"]
 	path = nvim/pack/plugins/start/projectionist
 	url = https://github.com/tpope/vim-projectionist.git
-[submodule "nvim/pack/plugins/start/qf"]
-	path = nvim/pack/plugins/start/qf
-	url = https://github.com/romainl/vim-qf.git
 [submodule "nvim/pack/plugins/start/repeat"]
 	path = nvim/pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
@@ -49,6 +46,9 @@
 [submodule "nvim/pack/plugins/start/sleuth"]
 	path = nvim/pack/plugins/start/sleuth
 	url = https://github.com/tpope/vim-sleuth.git
+[submodule "nvim/pack/plugins/start/sneak"]
+	path = nvim/pack/plugins/start/sneak
+	url = https://github.com/justinmk/vim-sneak.git
 [submodule "nvim/pack/plugins/start/speeddating"]
 	path = nvim/pack/plugins/start/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
@@ -81,9 +81,6 @@
 	path = nvim/pack/plugins/start/harpoon
 	url = https://github.com/ThePrimeagen/harpoon.git
 	branch = harpoon2
-[submodule "nvim/pack/plugins/start/leap"]
-	path = nvim/pack/plugins/start/leap
-	url = https://github.com/anordhoff/leap.nvim.git
 [submodule "nvim/pack/plugins/start/lspconfig"]
 	path = nvim/pack/plugins/start/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git

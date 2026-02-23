@@ -273,13 +273,6 @@ hi DiffRemoved                   cterm=none        ctermfg=1        ctermbg=none
 hi IblIndent                     cterm=none        ctermfg=0        ctermbg=none
 
 " --------------------------------------
-" leap
-" --------------------------------------
-hi LeapMatch                     cterm=reverse     ctermfg=12       ctermbg=none
-hi LeapLabel                     cterm=reverse     ctermfg=13       ctermbg=none
-hi LeapLabelDimmed               cterm=none        ctermfg=7        ctermbg=7
-
-" --------------------------------------
 " lsp
 " --------------------------------------
 hi LspInfoTitle                  cterm=none        ctermfg=7        ctermbg=none
@@ -294,7 +287,7 @@ hi DiagnosticInfo                cterm=none        ctermfg=2        ctermbg=none
 hi DiagnosticHint                cterm=none        ctermfg=4        ctermbg=none
 hi DiagnosticOK                  cterm=none        ctermfg=6        ctermbg=none
 
-" NOTE: ctermsp doesn't exist: https://github.com/neovim/neovim/issues/9270#issuecomment-442648178
+" NOTE: ctermsp doesn't exist (https://github.com/neovim/neovim/issues/9270#issuecomment-442648178)
 hi DiagnosticUnderlineError      cterm=undercurl ctermfg=none ctermbg=none guisp=#cc241d
 hi DiagnosticUnderlineWarn       cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
 hi DiagnosticUnderlineInfo       cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
@@ -302,6 +295,14 @@ hi DiagnosticUnderlineHint       cterm=undercurl ctermfg=none ctermbg=none guisp
 hi DiagnosticUnderlineOk         cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
 hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
 hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
+
+" --------------------------------------
+" sneak
+" --------------------------------------
+hi Sneak                         cterm=reverse     ctermfg=12       ctermbg=none
+hi SneakCurrent                  cterm=reverse     ctermfg=13       ctermbg=none
+hi SneakScope                    cterm=reverse     ctermfg=8        ctermbg=none
+hi SneakLabel                    cterm=reverse     ctermfg=13       ctermbg=none
 
 " --------------------------------------
 " telescope

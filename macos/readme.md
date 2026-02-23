@@ -121,3 +121,7 @@ defaults write -g AppleShowAllFiles -boolean true; killall Finder
 ```
 
 Disable text replacements in `Settings > Keyboard > Text Replacements`
+
+### Add a shortcut to the lock screen
+
+System Settings > Keyboard > Keyboard Shortcuts... > App Shortcuts > All Applications. Manually enter `Lock Scree` as the menu title.
