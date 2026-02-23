@@ -19,12 +19,8 @@
   tt $tap-repress-timeout
 )
 
-(defoverrides
-  (rsft ,) (.)
-)
-
 (defalias
-  ;; base layers
+  ;; base layers TODO: qwerty and game layers
   ;; qwe (layer-switch qwerty)
   ;; col (layer-switch colemak)
   ;; gme (layer-switch game)
@@ -33,9 +29,6 @@
   gme (layer-switch colemak)
 
   ;; colemak layers
-  sym (layer-while-held symbol)
-  num (layer-while-held numpad)
-  nav (layer-while-held navigation)
   fnc (layer-while-held function)
   lhp lmet
   rhp rmet
@@ -44,8 +37,10 @@
   adj (layer-while-held adjust)
 
   ;; layer mod taps
-  mtspc (tap-hold 100 170 spc @sym)
+  mt_   (tap-hold       $tt 200 S-- (layer-while-held navigation))
+  mtspc (tap-hold       $tt 170 spc (layer-while-held symbol))
   mtesc (tap-hold-press $tt 170 esc rsft)
+  mt-   (tap-hold       $tt 200 -   (layer-while-held numpad))
 
   ;; home row mods
   mta (tap-hold $tt 250 a (layer-while-held colemak-meh))
@@ -60,9 +55,9 @@
   mt$ (tap-hold $tt $ht S-4 lmet)
   mt% (tap-hold $tt $ht S-5 lalt)
   mt^ (tap-hold $tt $ht S-6 lctl)
-  mt= (tap-hold $tt $ht = rctl)
-  mt[ (tap-hold $tt $ht [ ralt)
-  mt] (tap-hold $tt $ht ] rmet)
+  mt= (tap-hold $tt $ht =   rctl)
+  mt[ (tap-hold $tt $ht [   ralt)
+  mt] (tap-hold $tt $ht ]   rmet)
 
   ;; meh layer keys
   ma    C-S-A-a
@@ -136,8 +131,8 @@
   esc     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
-  z       x    c    d    v    XX   XX   k    h    ,    -    /         up
-  XX           XX   @nav      @mtspc         @mtesc @num         left down rght
+  z       x    c    d    v    XX   XX   k    h    ,    .    /         up
+  XX           XX   @mt_      @mtspc         @mtesc @mt-         left down rght
 )
 
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
