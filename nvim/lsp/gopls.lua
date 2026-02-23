@@ -1,4 +1,5 @@
 -- organize imports on save
+-- NOTE: changes to imports are not saved (https://github.com/neovim/neovim/issues/24168)
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup('lspconfig_golang_config', { clear = true }),
   callback = function()

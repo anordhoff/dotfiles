@@ -302,7 +302,8 @@ hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp
 hi Sneak                         cterm=reverse     ctermfg=12       ctermbg=none
 hi SneakCurrent                  cterm=reverse     ctermfg=13       ctermbg=none
 hi SneakScope                    cterm=reverse     ctermfg=8        ctermbg=none
-hi SneakLabel                    cterm=reverse     ctermfg=13       ctermbg=none
+hi SneakLabel                    cterm=reverse     ctermfg=12       ctermbg=none
+hi SneakLabelMask                cterm=reverse     ctermfg=12       ctermbg=12
 
 " --------------------------------------
 " telescope

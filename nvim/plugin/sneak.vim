@@ -1,4 +1,5 @@
-" let g:sneak#label = 1
+let g:sneak#label = 1
+let g:sneak#target_labels = "ntsuf/NTSRHUFLMGZ"
 
 " 2-character Sneak (default)
 nnoremap x <Plug>Sneak_s

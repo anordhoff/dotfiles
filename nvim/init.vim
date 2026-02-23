@@ -1,17 +1,10 @@
-" --------------------------------------
-" settings
-" --------------------------------------
+" vim: foldmethod=marker foldlevel=0
 
-" TODO(bug): copilot autosuggestions do not wrap correctly
-" TODO(feat): conceal can now conceal multiple lines (for example, long links in markdown, code blocks, etc)
 " TODO(feat): look into built in snippets (default keymap is <tab>, which will conflict with completion)
-
-" lspconfig
-" TODO(bug): auto save after gopls goimports (https://github.com/neovim/neovim/issues/24168)
 " TODO(feat): Modify yamlls to read job specific patterns from a lua file at ~/jobfiles/lsp/yamlls.lua
-" TODO(feat): keymap/codeaction to implement an interface (creates a skeleton of all the required methods/fields of the interface)
 " TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
 
+" --- settings --- {{{
 
 set notermguicolors     " disable 24-bit colors
 set t_Co=16             " use the 16 color palette
@@ -104,13 +97,10 @@ augroup END
 " restore cursor to previous location when opening a file
 augroup cursor_config
   autocmd!
-  autocmd BufRead * autocmd FileType <buffer> ++once
-    \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 &&
-    \ line("'\"") <= line("$") | exec 'normal! g`"zz' | endif
+  autocmd BufRead * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exec 'normal! g`"zz' | endif
 augroup END
 
 " scrolling with the mouse or trackpad moves the screen instead of the cursor
-set mouse=nvi
 set mousescroll=ver:1,hor:0
 
 " disable optional providers
@@ -122,10 +112,8 @@ let g:loaded_node_provider = 0
 " load custom colorscheme
 colorscheme colorscheme
 
-
-" --------------------------------------
-" keymaps and commands
-" --------------------------------------
+" }}}
+" --- keymaps and commands --- {{{
 
 " leader key
 let mapleader = "\<space>"
@@ -147,12 +135,19 @@ nnoremap <leader>b :b **/*
 " jump to the definition in the tag file
 nnoremap gd <c-]>
 
-" grep current buffer or all files in current directory
-nnoremap gb :lvimgrep  %<left><left>
-nnoremap gp :vimgrep  **/*<left><left><left><left><left>
-
 " maximize the current window
 nnoremap <silent> <leader>z :tabnew %<cr><c-o>
+
+" grep current buffer or all files in current directory
+nnoremap gb :lvimgrep  //j %<left><left><left><left>
+nnoremap gp :vimgrep  //j **/*<left><left><left><left><left><left><left>
+
+" open the quickfix and location list automatically, but don't steal focus
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow | wincmd p
+    autocmd QuickFixCmdPost l*    lwindow | wincmd p
+augroup END
 
 " toggle the quickfix list window and maximize window to the width of vim
 nnoremap <silent> <m-q> :call quickfix#ToggleQuickfixlist()<cr>
@@ -174,7 +169,7 @@ inoremap <expr> <s-tab> completion#TabComplete(1)
 " reset completeopt option after manual completion
 augroup completion_config
   autocmd!
-  autocmd CompleteDone * :pclose
+  autocmd CompleteDone * pclose
   autocmd CompleteDone * setlocal completeopt=menuone,noselect,preview
 augroup END
 
@@ -184,10 +179,8 @@ command! -nargs=1 Clear call registers#Clear(<q-args>)
 " source init.vim and reload the current file
 command! Source :source ~/.config/nvim/init.vim | :edit
 
-
-" --------------------------------------
-" comment and duplicate lines of code
-" --------------------------------------
+" }}}
+" --- comments --- {{{
 
 " comment a range of lines
 command! -range Comment call comment#CommentRange(<line1>, <line2>)
@@ -204,10 +197,8 @@ nnoremap <silent> gz :set opfunc=comment#DuplicateOperator<cr>g@
 " duplicate a range of lines
 command! -range Duplicate call comment#DuplicateRange(<line1>, <line2>)
 
-
-" --------------------------------------
-" statusline
-" --------------------------------------
+" }}}
+" --- statusline --- {{{
 
 " custom statusline (requires additional StatusLineActive and StatusLineInactive highlight groups)
 set statusline=%!Statusline(g:statusline_winid)
@@ -269,10 +260,8 @@ function TermShell()
   return split(b:term_title, ':')[-1]
 endfunction
 
-
-" --------------------------------------
-" tabline
-" --------------------------------------
+" }}}
+" --- tabline --- {{{
 
 set tabline=%!TabLine()
 
@@ -318,10 +307,8 @@ function TabLabel(n)
   endif
 endfunction
 
-
-" --------------------------------------
-" netrw
-" --------------------------------------
+" }}}
+" --- netrw --- {{{
 
 if &loadplugins
   let g:netrw_winsize = -30 " set the absolute size of netrw windows
@@ -332,10 +319,8 @@ if &loadplugins
   nnoremap <silent> <m--> <cmd>Lexplore<cr>
 endif
 
-
-" --------------------------------------
-" notebook
-" --------------------------------------
+" }}}
+" --- notes --- {{{
 
 " notebook directory
 let g:projectsdir = '~/notebook/projects/'
@@ -351,10 +336,8 @@ augroup notebook_config
   autocmd BufNewFile,BufRead ~/notebook/*.txt,~/notebook/*.md setlocal nobuflisted
 augroup END
 
-
-" --------------------------------------
-" terminal
-" --------------------------------------
+" }}}
+" --- terminal --- {{{
 
 " set the preferred editor to use the current session's RPC server
 let $VISUAL="nvim --server " .. v:servername .. " --remote"
@@ -392,10 +375,10 @@ augroup terminal_config
   autocmd TabNew term://* let g:termwin = win_getid()
 augroup END
 
-
-" --------------------------------------
-" neovim
-" --------------------------------------
+" }}}
+" --- lua --- {{{
 
 " source lua config
 lua require('plugin.init')
+
+" }}}
