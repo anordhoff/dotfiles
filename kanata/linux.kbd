@@ -149,14 +149,14 @@
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   S-7  S-8  S-9  XX   XX   XX   `    S-[  S-]  XX   XX   XX
   bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
-  S-`     S-1  S-2  S-3  XX   XX   XX   XX   S-\  S-,  S-.  S-=       XX
+  S-`     S-1  S-2  S-3  XX   XX   XX   XX   S-\  XX   XX   S-=       XX
   XX           XX   XX        _              spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   7    8    9    XX   XX   XX   XX   XX   XX   XX   XX   XX
-  bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet XX   ret
+  bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet -    ret
   XX      1    2    3    XX   XX   XX   XX   XX   ,    .    /         XX
   XX           XX   @fnc      spc            XX   _              XX   XX   XX
 )

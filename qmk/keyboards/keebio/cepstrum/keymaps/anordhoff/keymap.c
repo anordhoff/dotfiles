@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┼───────┤   ├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────────┼───────┤
 	   XXXXXXX,XXXXXXX,    KC_BSPC      ,KC_RPRN,MT_DLR ,MT_PERC,MT_CIRC,XXXXXXX,        XXXXXXX,XXXXXXX,MT_EQL ,MT_LBRC,MT_RBRC,KC_BSLS,          KC_ENT ,XXXXXXX,
 	//├───────┼───────┤   ├─────────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴─────────┬───────┼───────┤
-	   XXXXXXX,XXXXXXX,    KC_TILD          ,KC_EXLM, KC_AT ,KC_HASH,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,KC_PIPE, KC_LT , KC_GT ,   KC_PLUS   ,XXXXXXX,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    KC_TILD          ,KC_EXLM, KC_AT ,KC_HASH,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,KC_PIPE,XXXXXXX,XXXXXXX,   KC_PLUS   ,XXXXXXX,XXXXXXX,
 	//├───────┼───────┤   ├─────────┬───────┴─┬─────┴───┬───┴─────┬─┴───────┴───────┤       ├───────┴───────┴─┬─────┴───┬───┴─────┬─┴─────┬───────┼───────┼───────┤
 	   XXXXXXX,XXXXXXX,    XXXXXXX  , XXXXXXX , XXXXXXX , XXXXXXX ,     _______     ,             KC_SPC      , XXXXXXX , XXXXXXX ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX
 	//└───────┴───────┘   └─────────┴─────────┴─────────┴─────────┴─────────────────┘       └─────────────────┴─────────┴─────────┴───────┴───────┴───────┴───────┘
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	//├───────┼───────┤   ├───────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┘   ┌───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───────────┼───────┤
 	   XXXXXXX,XXXXXXX,    KC_TAB     ,XXXXXXX, KC_7  , KC_8  , KC_9  ,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX ,XXXXXXX,
 	//├───────┼───────┤   ├───────────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┐     └─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴─┬─────┴───────────┼───────┤
-	   XXXXXXX,XXXXXXX,    KC_BSPC      , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,        XXXXXXX,XXXXXXX,KC_RCTL,KC_RALT,KC_RGUI,XXXXXXX,          KC_ENT ,XXXXXXX,
+	   XXXXXXX,XXXXXXX,    KC_BSPC      , KC_0  , KC_4  , KC_5  , KC_6  ,XXXXXXX,        XXXXXXX,XXXXXXX,KC_RCTL,KC_RALT,KC_RGUI,KC_MINS,          KC_ENT ,XXXXXXX,
 	//├───────┼───────┤   ├─────────────┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┐   └───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴───┬───┴─────────┬───────┼───────┤
 	   XXXXXXX,XXXXXXX,    XXXXXXX          , KC_1  , KC_2  , KC_3  ,XXXXXXX,XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,KC_COMM,KC_DOT ,   KC_SLSH   ,XXXXXXX,XXXXXXX,
 	//├───────┼───────┤   ├─────────┬───────┴─┬─────┴───┬───┴─────┬─┴───────┴───────┤       ├───────┴───────┴─┬─────┴───┬───┴─────┬─┴─────┬───────┼───────┼───────┤
