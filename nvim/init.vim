@@ -113,7 +113,7 @@ let g:loaded_node_provider = 0
 colorscheme colorscheme
 
 " }}}
-" --- keymaps and commands --- {{{
+" --- mappings --- {{{
 
 " leader key
 let mapleader = "\<space>"
