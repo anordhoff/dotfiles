@@ -290,17 +290,17 @@ hi DiagnosticOK                  cterm=none        ctermfg=6        ctermbg=none
 " NOTE: ctermsp doesn't exist (https://github.com/neovim/neovim/issues/9270#issuecomment-442648178)
 hi DiagnosticUnderlineError      cterm=undercurl ctermfg=none ctermbg=none guisp=#cc241d
 hi DiagnosticUnderlineWarn       cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
-hi DiagnosticUnderlineInfo       cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
+hi DiagnosticUnderlineInfo       cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
 hi DiagnosticUnderlineHint       cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
-hi DiagnosticUnderlineOk         cterm=undercurl ctermfg=none ctermbg=none guisp=#928374
-hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#98971a
-hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#d79921
+hi DiagnosticUnderlineOk         cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
+hi DiagnosticUnnecessary         cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
+hi DiagnosticDeprecated          cterm=undercurl ctermfg=none ctermbg=none guisp=#458588
 
 " --------------------------------------
 " quick-scope
 " --------------------------------------
-hi QuickScopePrimary             cterm=underline,bold
-hi QuickScopeSecondary           cterm=underline,bold,italic
+hi QuickScopePrimary             cterm=bold
+hi QuickScopeSecondary           cterm=bold,italic
 
 " --------------------------------------
 " sneak

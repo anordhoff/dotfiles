@@ -173,14 +173,11 @@ augroup completion_config
   autocmd CompleteDone * setlocal completeopt=menuone,noselect,preview
 augroup END
 
+" }}}
+" --- commands --- {{{
+
 " clear the specified register
 command! -nargs=1 Clear call registers#Clear(<q-args>)
-
-" source init.vim and reload the current file
-command! Source :source ~/.config/nvim/init.vim | :edit
-
-" }}}
-" --- comments --- {{{
 
 " comment a range of lines
 command! -range Comment call comment#CommentRange(<line1>, <line2>)
