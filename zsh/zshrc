@@ -204,6 +204,9 @@ alias gh='NO_COLOR=true gh'
 # enabled colors in grep
 alias grep='grep --color=auto'
 
+# disable colors in beads
+alias bd='NO_COLOR=true bd'
+
 # use gnu ls on bsd (bsd ls does not have --group-directories-first)
 if [[ $OSTYPE =~ "darwin"* ]]; then
   alias l='gls -lhA --color=auto --group-directories-first'

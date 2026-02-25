@@ -3,6 +3,8 @@
 " TODO(feat): look into built in snippets (default keymap is <tab>, which will conflict with completion)
 " TODO(feat): Modify yamlls to read job specific patterns from a lua file at ~/jobfiles/lsp/yamlls.lua
 " TODO(feat): signature help shown with `K` keymap should handle backslashes (escape chars)
+" TODO(feat): in markdown filetypes, automatically increment numbered list when hitting enter
+" TODO(feat): in markdown filetypes, correct numbered list numbers using `gq`
 
 " --- settings --- {{{
 
