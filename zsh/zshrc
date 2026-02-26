@@ -184,7 +184,7 @@ alias help=run-help
 
 # use vim with clipboard support on fedora
 if [[ $OSTYPE =~ "linux"* ]]; then
-  alias vim='vimx'
+  alias vim='vimx --cmd "let g:extraplugins = 1"'
 fi
 
 # refresh watch every second; work with aliases
