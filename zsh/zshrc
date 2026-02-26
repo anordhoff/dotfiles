@@ -182,6 +182,11 @@ if (( ${+aliases[run-help]} )); then
 fi
 alias help=run-help
 
+# use vim with clipboard support on fedora
+if [[ $OSTYPE =~ "linux"* ]]; then
+  alias vim='vimx'
+fi
+
 # refresh watch every second; work with aliases
 alias watch='watch -n 1 '
 
