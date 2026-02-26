@@ -182,9 +182,11 @@ if (( ${+aliases[run-help]} )); then
 fi
 alias help=run-help
 
-# use vim with clipboard support on fedora
+# set workstation flag to true when running vim from a GUI
 if [[ $OSTYPE =~ "linux"* ]]; then
-  alias vim='vimx --cmd "let g:extraplugins = 1"'
+  alias vim='vimx --cmd "let g:workstation = 1"'
+elif [[ $OSTYPE =~ "darwin"* ]]; then
+  alias vim='vim --cmd "let g:workstation = 1"'
 fi
 
 # refresh watch every second; work with aliases
@@ -194,8 +196,8 @@ alias watch='watch -n 1 '
 alias tldr='NO_COLOR=true tldr'
 
 # open the notebook dir
-alias notes='nvim ~/notebook/inbox.md -c "cd ~/notebook"'
-alias todos='nvim ~/notebook/todo.md -c "cd ~/notebook"'
+alias notes='vim ~/notebook/inbox.md -c "cd ~/notebook"'
+alias todos='vim ~/notebook/todo.md -c "cd ~/notebook"'
 
 # directory stack
 alias dirs='dirs -v'
