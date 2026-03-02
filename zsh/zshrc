@@ -182,7 +182,7 @@ if (( ${+aliases[run-help]} )); then
 fi
 alias help=run-help
 
-# set workstation flag to true when running vim from a GUI
+# set vim's workstation variable to true
 if [[ $OSTYPE =~ "linux"* ]]; then
   alias vim='vimx --cmd "let g:workstation = 1"'
 elif [[ $OSTYPE =~ "darwin"* ]]; then

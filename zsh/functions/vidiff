@@ -1,7 +1,0 @@
-# vim: ft=zsh
-# create two temporary files and diff them with neovim
-
-tmp1=$(mktemp /tmp/nvim.XXXXX)
-tmp2=$(mktemp /tmp/nvim.XXXXX)
-
-nvim -d $tmp1 $tmp2
