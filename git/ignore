@@ -6,7 +6,6 @@ coverage.html
 debug.test*
 __debug*
 Session.vim
-.idea
 .DS_Store
-
+.idea
 **/.claude/settings.local.json

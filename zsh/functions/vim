@@ -1,0 +1,16 @@
+# vim: ft=zsh
+# vim alias with support for nested vim sessions
+
+if [[ -n $VIM_SERVERNAME ]]; then
+  if [[ $OSTYPE =~ "linux"* ]]; then
+    vimx --cmd "let g:workstation = 1" --servername $VIM_SERVERNAME --remote-wait $@
+  else
+    command vim --cmd "let g:workstation = 1" --servername $VIM_SERVERNAME --remote-wait $@
+  fi
+else
+  if [[ $OSTYPE =~ "linux"* ]]; then
+    vimx $@
+  else
+    command vim $@
+  fi
+fi

@@ -182,13 +182,6 @@ if (( ${+aliases[run-help]} )); then
 fi
 alias help=run-help
 
-# set vim's workstation variable to true
-if [[ $OSTYPE =~ "linux"* ]]; then
-  alias vim='vimx --cmd "let g:workstation = 1"'
-elif [[ $OSTYPE =~ "darwin"* ]]; then
-  alias vim='vim --cmd "let g:workstation = 1"'
-fi
-
 # refresh watch every second; work with aliases
 alias watch='watch -n 1 '
 
@@ -271,8 +264,10 @@ fi
 
 # enable fzf shell integration
 if command -v fzf &>/dev/null; then
+  # TODO: is this still needed?
   # prevent "can't change option: zle" errors in neovim when running shell commands
-  source <(fzf --zsh) 2>/dev/null
+  # source <(fzf --zsh) 2>/dev/null
+  source <(fzf --zsh)
 fi
 
 
