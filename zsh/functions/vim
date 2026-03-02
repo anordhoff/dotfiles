@@ -3,14 +3,14 @@
 
 if [[ -n $VIM_SERVERNAME ]]; then
   if [[ $OSTYPE =~ "linux"* ]]; then
-    vimx --cmd "let g:workstation = 1" --servername $VIM_SERVERNAME --remote-wait $@
+    gvim -v --servername $VIM_SERVERNAME --remote-wait $@
   else
-    command vim --cmd "let g:workstation = 1" --servername $VIM_SERVERNAME --remote-wait $@
+    command vim --servername $VIM_SERVERNAME --remote-wait $@
   fi
 else
   if [[ $OSTYPE =~ "linux"* ]]; then
-    vimx $@
+    gvim -v --cmd "let g:workstation = 1" $@
   else
-    command vim $@
+    command vim --cmd "let g:workstation = 1" $@
   fi
 fi
