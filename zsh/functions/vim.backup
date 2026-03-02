@@ -9,8 +9,8 @@ if [[ -n $VIM_SERVERNAME ]]; then
   fi
 else
   if [[ $OSTYPE =~ "linux"* ]]; then
-    gvim -v --cmd "let g:workstation = 1" $@
+    gvim -v $@
   else
-    command vim --cmd "let g:workstation = 1" $@
+    command vim $@
   fi
 fi

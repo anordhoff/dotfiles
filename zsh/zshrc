@@ -182,6 +182,12 @@ if (( ${+aliases[run-help]} )); then
 fi
 alias help=run-help
 
+# use gvim on fedora
+if [[ $OSTYPE =~ "linux"* ]]; then
+  export vim='gvim -v'
+  export vimdiff='gvimdiff -v'
+fi
+
 # refresh watch every second; work with aliases
 alias watch='watch -n 1 '
 
@@ -189,8 +195,13 @@ alias watch='watch -n 1 '
 alias tldr='NO_COLOR=true tldr'
 
 # open the notebook dir
-alias notes='vim ~/notebook/inbox.md -c "cd ~/notebook"'
-alias todos='vim ~/notebook/todo.md -c "cd ~/notebook"'
+if [[ $OSTYPE =~ "linux"* ]]; then
+  alias notes='gvim -v ~/notebook/inbox.md -c "cd ~/notebook"'
+  alias todos='gvim -v ~/notebook/todo.md -c "cd ~/notebook"'
+else
+  alias notes='vim ~/notebook/inbox.md -c "cd ~/notebook"'
+  alias todos='vim ~/notebook/todo.md -c "cd ~/notebook"'
+fi
 
 # directory stack
 alias dirs='dirs -v'

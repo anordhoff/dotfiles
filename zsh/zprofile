@@ -29,9 +29,9 @@ fi
 
 # set the preferred visual editor to vim
 if [[ $OSTYPE =~ "linux"* ]]; then
-  export VISUAL='gvim -v --cmd "let g:workstation = 1"'
+  export VISUAL='gvim -v'
 else
-  export VISUAL='vim --cmd "let g:workstation = 1"'
+  export VISUAL='vim'
 fi
 
 # git contributions
