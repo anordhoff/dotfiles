@@ -184,8 +184,8 @@ alias help=run-help
 
 # use gvim on fedora
 if [[ $OSTYPE =~ "linux"* ]]; then
-  export vim='gvim -v'
-  export vimdiff='gvimdiff -v'
+  alias vim='gvim -v'
+  alias vimdiff='gvimdiff -v'
 fi
 
 # refresh watch every second; work with aliases
