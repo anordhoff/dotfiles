@@ -188,12 +188,6 @@ if [[ $OSTYPE =~ "linux"* ]]; then
   alias vimdiff='gvimdiff -v'
 fi
 
-# refresh watch every second; work with aliases
-alias watch='watch -n 1 '
-
-# disable colors in tldr
-alias tldr='NO_COLOR=true tldr'
-
 # open the notebook dir
 if [[ $OSTYPE =~ "linux"* ]]; then
   alias notes='gvim -v ~/notebook/inbox.md -c "cd ~/notebook"'
@@ -203,11 +197,17 @@ else
   alias todos='vim ~/notebook/todo.md -c "cd ~/notebook"'
 fi
 
+# refresh watch every second; work with aliases
+alias watch='watch -n 1 '
+
 # directory stack
 alias dirs='dirs -v'
 for i in {0..9}; do
   alias d${i}="cd +${i}"
 done
+
+# disable colors in tldr
+alias tldr='NO_COLOR=true tldr'
 
 # disable colors in github cli
 alias gh='NO_COLOR=true gh'
@@ -218,7 +218,7 @@ alias grep='grep --color=auto'
 # disable colors in beads
 alias bd='NO_COLOR=true bd'
 
-# use gnu ls on bsd (bsd ls does not have --group-directories-first)
+# use gnu ls on macOS (bsd ls does not have --group-directories-first)
 if [[ $OSTYPE =~ "darwin"* ]]; then
   alias l='gls -lhA --color=auto --group-directories-first'
   alias ll='gls -lh --color=auto --group-directories-first'
@@ -240,9 +240,8 @@ alias g='git'
 
 # kubernetes
 alias  k='kubectl'
-alias kd='kubectl describe'
-alias ke='kubectl events --for'
 alias kg='kubectl get'
+alias kd='kubectl describe'
 
 # list all resources in a namespace
 alias kgall="kubectl get --show-kind --show-labels \$(kubectl api-resources --namespaced=true -o name | grep -vE '^bindings$|^localsubjectaccessreviews.authorization.k8s.io' | paste -sd ',' -)"
