@@ -274,9 +274,6 @@ fi
 
 # enable fzf shell integration
 if command -v fzf &>/dev/null; then
-  # TODO: is this still needed?
-  # prevent "can't change option: zle" errors in neovim when running shell commands
-  # source <(fzf --zsh) 2>/dev/null
   source <(fzf --zsh)
 fi
 
