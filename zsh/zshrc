@@ -235,6 +235,9 @@ if [[ $OSTYPE =~ "darwin"* ]]; then
   alias pip="$HOMEBREW_PREFIX/bin/pip3"
 fi
 
+# ripgrep
+alias rg='rg -g="!tags" -g="!*.tags" -g="!.git/**" -g="!**/bin/**" -g="!**/vendor/**" -g="!**/node_modules/**" -g="!**/pack/*/opt/**" -g="!**/pack/*/start/**" -g="!**/tmux/plugins/**"'
+
 # git
 alias g='git'
 
