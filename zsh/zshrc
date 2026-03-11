@@ -185,17 +185,11 @@ alias help=run-help
 # use gvim on fedora
 if [[ $OSTYPE =~ "linux"* ]]; then
   alias vim='gvim -v'
-  alias vimdiff='gvimdiff -v'
 fi
 
 # open the notebook dir
-if [[ $OSTYPE =~ "linux"* ]]; then
-  alias notes='gvim -v ~/notebook/inbox.md -c "cd ~/notebook"'
-  alias todos='gvim -v ~/notebook/todo.md -c "cd ~/notebook"'
-else
-  alias notes='vim ~/notebook/inbox.md -c "cd ~/notebook"'
-  alias todos='vim ~/notebook/todo.md -c "cd ~/notebook"'
-fi
+alias notes="$VISUAL ~/notebook/inbox.md -c 'cd ~/notebook'"
+alias todos="$VISUAL ~/notebook/todo.md -c 'cd ~/notebook'"
 
 # refresh watch every second; work with aliases
 alias watch='watch -n 1 '

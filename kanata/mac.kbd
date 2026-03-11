@@ -137,7 +137,7 @@
 
 (deflayer colemak
   esc     brdn brup mctl sls  dtn  dnd  prev pp   next mute vold volu
-  esc     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  esc     1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   z       x    c    d    v    XX   XX   k    h    ,    .    /         up
