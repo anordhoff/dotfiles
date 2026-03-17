@@ -15,6 +15,7 @@
 	ff = only
 [diff]
 	algorithm = histogram
+	indentHeuristic = true
 	tool = vimdiff
 [merge]
 	tool = vim-fugitive

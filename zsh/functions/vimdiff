@@ -1,11 +1,14 @@
 # vim: ft=zsh
-# create two temporary files and diff them with vim
+# if no arguments are passed, create two temporary files and diff them with vim
 
-tmp1=$(mktemp /tmp/vim.XXXXX)
-tmp2=$(mktemp /tmp/vim.XXXXX)
+if [ $# -eq 0 ]; then
+  tmp1=$(mktemp /tmp/vim.XXXXX)
+  tmp2=$(mktemp /tmp/vim.XXXXX)
+  set -- $tmp1 $tmp2
+fi
 
 if [[ $OSTYPE =~ "linux"* ]]; then
-  gvimdiff -v $tmp1 $tmp2
+  gvimdiff -v $@
 else
-  command vimdiff $tmp1 $tmp2
+  command vimdiff $@
 fi
