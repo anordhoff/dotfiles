@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify-permission.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send -a \"Claude Code\" -i ~/dotfiles/claude/claude-code-icon.png --hint=string:sound-name:bell \"Response Finished\" \"Claude code has finished responding\""
+          }
+        ]
+      }
+    ]
+  },
+  "model": "opus"
+}

@@ -18,6 +18,12 @@ unsetopt beep
 unsetopt histbeep
 unsetopt listbeep
 
+# TODO: do I want this?
+# alert when a command finishes
+precmd() {
+  echo -n -e '\a'
+}
+
 # print the current git branch
 function gitbranch() {
   branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)

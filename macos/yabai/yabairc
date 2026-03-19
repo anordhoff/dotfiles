@@ -11,12 +11,4 @@ yabai -m config window_gap 16
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
 yabai -m signal --add event=window_minimized active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
 
-# applications to ignore
-yabai -m rule --add app="Finder"             manage=off
-yabai -m rule --add app="Docker Desktop"     manage=off
-yabai -m rule --add app="System Preferences" manage=off
-
-# source work config
-[ -r ~/jobfiles/macos/yabai/yabairc ] && source ~/jobfiles/macos/yabai/yabairc
-
 echo "yabai configuration loaded.."
