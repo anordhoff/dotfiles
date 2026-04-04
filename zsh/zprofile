@@ -92,6 +92,7 @@ fi
 export JQ_COLORS="0;37:0;37:0;37:0;37:0;37:0;37:0;37:0;36"
 
 # kubectx / kubens colors
+# TODO: deprecated?
 export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 5)
 export KUBECTX_CURRENT_BGCOLOR=$(tput setaf 5)
 
@@ -100,6 +101,9 @@ export FZF_DEFAULT_COMMAND="fd -H -I --strip-cwd-prefix --type file --exclude ta
 export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude 'pack/*/opt' --exclude 'pack/*/start' --exclude tmux/plugins"
 export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude 'pack/*/opt' --exclude 'pack/*/start' --exclude tmux/plugins"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal --color border:20 --color bg+:22 --color fg+:7:regular --color header:2 --color hl:1:bold --color hl+:1:bold --color info:7 --color marker:2:regular --color spinner:7 --pointer '' --color prompt:7:regular --color query:7:regular"
+
+# claude code
+export CLAUDE_THEME=ansi-dark
 
 # source work zprofile
 if [ -r ~/jobfiles/zsh/zprofile ]; then

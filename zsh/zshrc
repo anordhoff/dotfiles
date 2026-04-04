@@ -215,8 +215,8 @@ alias gh='NO_COLOR=true gh'
 # enabled colors in grep
 alias grep='grep --color=auto'
 
-# disable colors in beads
-alias bd='NO_COLOR=true bd'
+# disable colors in yq
+alias yq='yq --no-colors'
 
 # use gnu ls on macOS (bsd ls does not have --group-directories-first)
 if [[ $OSTYPE =~ "darwin"* ]]; then
