@@ -50,6 +50,7 @@ enum layers {
 #define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
 
 // home row mods
+#define MT_Z    MT(MOD_LSFT,     KC_Z)
 #define MT_A    LT(_COLEMAK_MEH, KC_A)
 #define MT_R    MT(MOD_LGUI,     KC_R)
 #define MT_S    MT(MOD_LALT,     KC_S)

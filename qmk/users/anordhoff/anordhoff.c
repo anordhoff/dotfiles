@@ -68,6 +68,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // per key tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
+		case MT_Z:
 		case MT_A:
 		case MT_O:
 			return 250;

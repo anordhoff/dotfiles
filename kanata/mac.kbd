@@ -50,6 +50,7 @@
   mt-   (tap-hold       $tt 200 -   (layer-while-held numpad))
 
   ;; home row mods
+  mtz (tap-hold $tt 250 z lsft)
   mta (tap-hold $tt 250 a (layer-while-held colemak-meh))
   mtr (tap-hold $tt $ht r lmet)
   mts (tap-hold $tt $ht s lalt)
@@ -140,7 +141,7 @@
   esc     1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
-  z       x    c    d    v    XX   XX   k    h    ,    .    /         up
+  @mtz    x    c    d    v    XX   XX   k    h    ,    .    /         up
   fn      XX   XX   @mt_      @mtspc         @mtesc @mt-         left down rght
 )
 
