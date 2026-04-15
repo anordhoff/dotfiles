@@ -19,7 +19,7 @@
 ;; - hold shift, then ctrl, then release shift, and hit tab. C-S-Tab is sent when it should be C-Tab
 
 (defvar
-  hold-timeout 190
+  hold-timeout 180
   ht $hold-timeout
 
   tap-repress-timeout 0

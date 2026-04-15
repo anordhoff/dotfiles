@@ -12,7 +12,7 @@
 )
 
 (defvar
-  hold-timeout 190
+  hold-timeout 180
   ht $hold-timeout
 
   tap-repress-timeout 0
