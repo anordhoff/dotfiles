@@ -39,6 +39,7 @@ gsettings set org.gnome.desktop.peripherals.mouse double-click 300
 # keyboard settings
 gsettings set org.gnome.desktop.peripherals.keyboard delay 250
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
+gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing false
 
 
 # --------------------------------------
