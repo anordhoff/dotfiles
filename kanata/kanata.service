@@ -1,8 +1,7 @@
 [Service]
 Restart=always
-RestartSec=3
-ExecStart=/home/aaron/.local/bin/kanata --cfg /home/aaron/dotfiles/kanata/linux.kbd
-Nice=-20
+RestartSec=60
+ExecStart=/home/aaron/.local/bin/kanata --quiet --cfg /home/aaron/dotfiles/kanata/linux.kbd
 
 [Install]
 WantedBy=default.target
