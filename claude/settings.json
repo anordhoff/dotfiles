@@ -21,5 +21,6 @@
       }
     ]
   },
-  "model": "opus"
+  "model": "sonnet",
+  "theme": "dark-ansi"
 }
