@@ -33,7 +33,7 @@
 	cm = commit -m
 	ca = commit --amend
 	co = checkout
-	dt = "!f() { vim -c \"set showtabline=0\" -c \"set showtabpanel=1\" -c \"Git difftool -y $@\" -c \"bd 1\"; }; f"
+	dt = "!f() { gvim -v -c \"set showtabline=0\" -c \"set showtabpanel=1\" -c \"Git difftool -y $@\" -c \"bd 1\"; }; f"
 	rs = reset
 	st = status
 	ctags = !.git/hooks/ctags
