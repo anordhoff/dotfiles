@@ -33,8 +33,8 @@
 	cm = commit -m
 	ca = commit --amend
 	co = checkout
-	dt = "!f() { vim -c \"set showtabline=0 showtabpanel=1 lazyredraw\" -c \"Git difftool -y $*\" -c \"bd 1\" -c \"silent! tabdo wincmd J | normal! 1G]c\" -c \"set nolazyredraw\" -c \"tabfirst\"; }; f"
-	mt = "!f() { vim -c \"set lazyredraw\" -c \"Git mergetool -y $*\" -c \"bd 1\" -c \"tabdo Gdiffsplit :1\" -c \"silent! tabdo wincmd p | wincmd J | normal! 1G]c\" -c \"set nolazyredraw\" -c \"tabfirst\"; }; f"
+	dt = "!f() { gvim -v -c \"set showtabline=0 showtabpanel=1 lazyredraw\" -c \"Git difftool -y $*\" -c \"bd 1\" -c \"silent! tabdo wincmd J | normal! 1G]c\" -c \"set nolazyredraw\" -c \"tabfirst\"; }; f"
+	mt = "!f() { gvim -v -c \"set lazyredraw\" -c \"Git mergetool -y $*\" -c \"bd 1\" -c \"tabdo Gdiffsplit :1\" -c \"silent! tabdo wincmd p | wincmd J | normal! 1G]c\" -c \"set nolazyredraw\" -c \"tabfirst\"; }; f"
 	rs = reset
 	st = status
 	ctags = !.git/hooks/ctags
