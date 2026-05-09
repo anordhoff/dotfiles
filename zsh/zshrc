@@ -39,7 +39,7 @@ function gitbranch() {
 function awsprofile() {
   if [ -v AWS_PROFILE ]; then
     # remove unnecessary, work specific prefix
-    echo " (${AWS_PROFILE:14})"
+    echo " {${AWS_PROFILE:14}}"
   fi
 }
 
@@ -239,7 +239,8 @@ fi
 alias rg='rg -g="!tags" -g="!*.tags" -g="!.git/**" -g="!**/bin/**" -g="!**/vendor/**" -g="!**/node_modules/**" -g="!**/pack/*/opt/**" -g="!**/pack/*/start/**" -g="!**/tmux/plugins/**"'
 
 # git
-alias g='git'
+alias g='noglob git'
+alias git='noglob git'
 
 # kubernetes
 alias  k='kubectl'
