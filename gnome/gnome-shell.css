@@ -1,5 +1,5 @@
 /* ~/.local/share/themes/mytheme/gnome-shell/gnome-shell.css */
-/* Make the menu bar (panel bar) background black, even when using light mode */
+/* make the menu bar (panel bar) background black, even when using light mode */
 
 #panel {
   background-color: #000000;
