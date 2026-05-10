@@ -1,2 +1,1 @@
-default.target.wants
-graphical-session.target.wants
+*.target.wants
