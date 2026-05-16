@@ -18,7 +18,6 @@ unsetopt beep
 unsetopt histbeep
 unsetopt listbeep
 
-# TODO: do I want this?
 # alert when a command finishes
 precmd() {
   echo -n -e '\a'
@@ -38,7 +37,7 @@ function gitbranch() {
 
 function awsprofile() {
   if [ -v AWS_PROFILE ]; then
-    # remove unnecessary, work specific prefix
+    # remove unnecessary prefix added to AWS profile
     echo " {${AWS_PROFILE:14}}"
   fi
 }
@@ -288,7 +287,7 @@ fi
 # set to the path of the tty device for gpg (cannot be exported in zprofile)
 export GPG_TTY=$(tty)
 
-# source work zshrc
+# source job zshrc
 if [ -r ~/jobfiles/zsh/zshrc ]; then
   source ~/jobfiles/zsh/zshrc
 fi

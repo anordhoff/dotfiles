@@ -40,11 +40,6 @@ path=(~/.config/git/bin $path)
 # kubectl plugins
 path=(~/.krew/bin $path)
 
-# use go v1.24 on macOS
-if [[ $OSTYPE =~ "darwin"* ]]; then
-  path=($HOMEBREW_PREFIX/opt/go@1.24/bin $path)
-fi
-
 # go packages
 export GOPATH="$HOME/go"
 path=($GOPATH/bin $path)
@@ -102,10 +97,7 @@ export FZF_ALT_C_COMMAND="fd -H -I --strip-cwd-prefix --type directory --exclude
 export FZF_CTRL_T_COMMAND="fd -H -I --strip-cwd-prefix --exclude tags --exclude '*.tags' --exclude .git --exclude vendor --exclude node_modules --exclude 'pack/*/opt' --exclude 'pack/*/start' --exclude tmux/plugins"
 export FZF_DEFAULT_OPTS="--multi --inline-info --height=60% --marker=+ --border=horizontal --color border:20 --color bg+:22 --color fg+:7:regular --color header:2 --color hl:1:bold --color hl+:1:bold --color info:7 --color marker:2:regular --color spinner:7 --pointer '' --color prompt:7:regular --color query:7:regular"
 
-# claude code
-export CLAUDE_THEME=ansi-dark
-
-# source work zprofile
+# source job zprofile
 if [ -r ~/jobfiles/zsh/zprofile ]; then
   source ~/jobfiles/zsh/zprofile
 fi
