@@ -20,13 +20,10 @@
 )
 
 (defalias
-  ;; base layers TODO: qwerty and game layers
-  ;; qwe (layer-switch qwerty)
-  ;; col (layer-switch colemak)
-  ;; gme (layer-switch game)
-  qwe (layer-switch colemak)
+  ;; base layers
+  qwe (layer-switch qwerty)
   col (layer-switch colemak)
-  gme (layer-switch colemak)
+  ;; gme (layer-switch game)
 
   ;; colemak layers
   fnc (layer-while-held function)
@@ -35,6 +32,10 @@
 
   ;; additional layers
   adj (layer-while-held adjust)
+
+  ;; switch out of qwerty using shifts
+  qls (layer-toggle qwerty-left-shift)
+  qrs (layer-toggle qwerty-right-shift)
 
   ;; layer mod taps
   mt_   (tap-hold       $tt 200 S-- (layer-while-held navigation))
@@ -143,7 +144,7 @@
   XX      @mq  @mw  @mf  @mp  @mb  XX   @mj  @ml  @mu  @my  @mbspc XX     XX
   @mtab   @ma  @mr  @ms  @mt  @mg  XX   @mm  @mn  @me  @mi  @mo  @mret
   @mz     @mx  @mc  @md  @mv  XX   XX   @mk  @mh  @m[  @m]  @m'       XX
-  XX           XX   @adj           @lhp      @rhp @adj           XX   XX   XX
+  XX           XX   @adj      @lhp           @rhp @adj           XX   XX   XX
 )
 
 (deflayer symbol
@@ -180,8 +181,32 @@
 
 (deflayer adjust
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  lrld    @qwe @col @gme XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  lrld    @qwe @col XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps    bldn brdn brup blup XX   XX   XX   prev vold volu next XX
   XX      XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX        XX
   XX           XX   XX        XX             XX   XX             XX   XX   XX
+)
+
+(deflayer qwerty
+  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+  @qls    z    x    c    v    b    n    m    ,    .    /    @qrs      up
+  lctl         lmet lalt      spc            ralt rctl           left down rght
+)
+
+(deflayer qwerty-left-shift
+  S-grv   S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  S--  S-=  S-bspc
+  S-tab   S-q  S-w  S-e  S-r  S-t  S-y  S-u  S-i  S-o  S-p  S-[  S-]  S-\
+  S-caps  S-a  S-s  S-d  S-f  S-g  S-h  S-j  S-k  S-l  S-;  S-'  S-ret
+  _       S-z  S-x  S-c  S-v  S-b  S-n  S-m  S-,  S-.  S-/  @col      S-up
+  S-lctl       S-lmet S-lalt  S-spc          S-ralt S-rctl     S-left S-down S-rght
+)
+
+(deflayer qwerty-right-shift
+  RS-grv  RS-1 RS-2 RS-3 RS-4 RS-5 RS-6 RS-7 RS-8 RS-9 RS-0 RS-- RS-= RS-bspc
+  RS-tab  RS-q RS-w RS-e RS-r RS-t RS-y RS-u RS-i RS-o RS-p RS-[ RS-] RS-\
+  RS-caps RS-a RS-s RS-d RS-f RS-g RS-h RS-j RS-k RS-l RS-; RS-' RS-ret
+  @col    RS-z RS-x RS-c RS-v RS-b RS-n RS-m RS-, RS-. RS-/ _         RS-up
+  RS-lctl      RS-lmet RS-lalt RS-spc        RS-ralt RS-rctl  RS-left RS-down RS-rght
 )
