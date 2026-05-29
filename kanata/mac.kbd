@@ -8,13 +8,7 @@
 
   ;; start timeout as soon as the tap-hold action is pressed even if a previous tap-hold action is still held
   concurrent-tap-hold true
-
-  ;; TODO: not sure if this is needed on mac
-  ;; allow-hardware-repeat false
 )
-
-;; TODO:
-;; - hold shift, then ctrl, then release shift, and hit tab. C-S-Tab is sent when it should be C-Tab
 
 (defvar
   hold-timeout 180
@@ -25,20 +19,15 @@
 )
 
 (defalias
-  ;; base layers
-  qwe (layer-switch qwerty)
-  col (layer-switch colemak)
-  ;; gme (layer-switch game)
-
-  ;; colemak layers
+  ;; layers
+  lmeh (multi lctl lsft lalt (layer-while-held meh))
+  rmeh (multi rctl rsft ralt (layer-while-held meh))
+  adj (layer-while-held adjust)
   fnc (layer-while-held function)
   lhp lmet
   rhp rmet
 
-  ;; additional layers
-  adj (layer-while-held adjust)
-
-  ;; layer mod taps
+  ;; mod taps
   mt_   (tap-hold       $tt 200 S-- (layer-while-held navigation))
   mtspc (tap-hold       $tt 170 spc (layer-while-held symbol))
   mtesc (tap-hold-press $tt 170 esc rsft)
@@ -46,84 +35,36 @@
 
   ;; home row mods
   mtz (tap-hold $tt 250 z lsft)
-  mta (tap-hold $tt 250 a (layer-while-held colemak-meh))
+  mta (tap-hold $tt 250 a @lmeh)
   mtr (tap-hold $tt $ht r lmet)
   mts (tap-hold $tt $ht s lalt)
   mtt (tap-hold $tt $ht t lctl)
+
   mtn (tap-hold $tt $ht n rctl)
   mte (tap-hold $tt $ht e ralt)
   mti (tap-hold $tt $ht i rmet)
-  mto (tap-hold $tt 250 o (layer-while-held colemak-meh))
+  mto (tap-hold $tt 250 o @rmeh)
 
   mt$ (tap-hold $tt $ht S-4 lmet)
   mt% (tap-hold $tt $ht S-5 lalt)
   mt^ (tap-hold $tt $ht S-6 lctl)
-  mt= (tap-hold $tt $ht =   rctl)
-  mt[ (tap-hold $tt $ht [   ralt)
-  mt] (tap-hold $tt $ht ]   rmet)
 
-  ;; meh layer keys
-  ma    C-S-A-a
-  mb    C-S-A-b
-  mc    C-S-A-c
-  md    C-S-A-d
-  me    C-S-A-e
-  mf    C-S-A-f
-  mg    C-S-A-g
-  mh    C-S-A-h
-  mi    C-S-A-i
-  mj    C-S-A-j
-  mk    C-S-A-k
-  ml    C-S-A-l
-  mm    C-S-A-m
-  mn    C-S-A-n
-  mo    C-S-A-o
-  mp    C-S-A-p
-  mq    C-S-A-q
-  mr    C-S-A-r
-  ms    C-S-A-s
-  mt    C-S-A-t
-  mu    C-S-A-u
-  mv    C-S-A-v
-  mw    C-S-A-w
-  mx    C-S-A-x
-  my    C-S-A-y
-  mz    C-S-A-z
-  m1    C-S-A-1
-  m2    C-S-A-2
-  m3    C-S-A-3
-  m4    C-S-A-4
-  m5    C-S-A-5
-  m6    C-S-A-6
-  m7    C-S-A-7
-  m8    C-S-A-8
-  m9    C-S-A-9
-  m0    C-S-A-0
-  m-    C-S-A--
-  m=    C-S-A-=
-  m[    C-S-A-[
-  m]    C-S-A-]
-  m\    C-S-A-\
-  m;    C-S-A-;
-  m'    C-S-A-'
-  mgrv  C-S-A-`
-  m,    C-S-A-,
-  m.    C-S-A-.
-  m/    C-S-A-/
-  mesc  C-S-A-esc
-  mtab  C-S-A-tab
-  mbspc C-S-A-bspc
-  mret  C-S-A-ret
-  mspc  C-S-A-spc
-  mup   C-S-A-up
-  mleft C-S-A-left
-  mdown C-S-A-down
-  mrght C-S-A-rght
-  mdel  C-S-A-del
+  mt= (tap-hold $tt $ht = rctl)
+  mt[ (tap-hold $tt $ht [ ralt)
+  mt] (tap-hold $tt $ht ] rmet)
+)
+
+(defchordsv2
+  ;; switch between colemak and qwerty base layer using lctl-esc-rght
+  (lctl esc rght) (switch
+    ((layer colemak)) (layer-switch qwerty)  break
+    ((layer qwerty))  (layer-switch colemak) break
+    ()                XX                     break
+  ) 500 all-released ()
 )
 
 (defsrc
-  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  esc
   grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps    a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -132,93 +73,73 @@
 )
 
 (deflayer colemak
-  esc     brdn brup mctl sls  dtn  dnd  prev pp   next mute vold volu
-  esc     1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
+  esc
+  XX      1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   @mtz    x    c    d    v    XX   XX   k    h    ,    .    /         up
-  fn      XX   XX   @mt_      @mtspc         @mtesc @mt-         left down rght
+  fn      lctl XX   @mt_      @mtspc         @mtesc @mt-         left down rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
-;; TODO: update to reflect base layer changes
-(deflayer colemak-meh
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+(deflayer meh
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX      @mq  @mw  @mf  @mp  @mb  XX   @mj  @ml  @mu  @my  @mbspc XX     XX
-  @mtab   @ma  @mr  @ms  @mt  @mg  XX   @mm  @mn  @me  @mi  @mo  @mret
-  @mz     @mx  @mc  @md  @mv  XX   XX   @mk  @mh  @m[  @m]  @m'       XX
-  XX      XX   XX   @adj           @lhp      @rhp @adj           XX   XX   XX
+  tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
+  bspc    a    r    s    t    g    XX   m    n    e    i    o    ret
+  z       x    c    d    v    XX   XX   k    h    ,    .    /         XX
+  XX           XX   @adj      @lhp           @rhp @adj           XX   XX   XX
 )
 
 (deflayer symbol
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   S-7  S-8  S-9  XX   XX   XX   S-`  `    S-=  XX   XX   XX
   bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
   XX      S-1  S-2  S-3  XX   XX   XX   XX   S-\  S-[  S-]  XX        XX
-  XX      XX   XX   XX        _              spc  XX             XX   XX   XX
+  XX      XX   XX   XX        XX             spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   7    8    9    XX   XX   XX   XX   S-8  S-=  XX   XX   XX
   bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet XX   ret
   XX      1    2    3    XX   XX   XX   XX   -    ,    .    /         XX
-  XX      XX   XX   @fnc      spc            XX   _              XX   XX   XX
+  XX      XX   XX   @fnc      spc            XX   XX             XX   XX   XX
 )
 
 (deflayer navigation
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
   bspc    XX   lmet lalt lctl XX   XX   XX   left down up   rght ret
   XX      XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        XX
-  XX      XX   XX   _         XX             rsft @fnc           XX   XX   XX
+  XX      XX   XX   XX        XX             rsft @fnc           XX   XX   XX
 )
 
 (deflayer function
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     f11  f7   f8   f9   f12  XX   XX   f13  f14  f15  XX   XX   XX
   bspc    f10  f4   f5   f6   XX   XX   XX   rctl ralt rmet XX   ret
   XX      f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        XX
-  XX      XX   XX   _         XX             XX   _              XX   XX   XX
+  XX      XX   XX   XX        XX             XX   XX             XX   XX   XX
 )
 
 (deflayer adjust
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  lrld    @qwe @col XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps    bldn brdn brup blup XX   XX   XX   prev vold volu next XX
   XX      XX   XX   XX   XX   XX   XX   XX   pp   mute XX   XX        XX
   XX      XX   XX   XX        XX             XX   XX             XX   XX   XX
 )
 
 (deflayer qwerty
-  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-  @qls    z    x    c    v    b    n    m    ,    .    /    @qrs      up
-  fn      lctl lalt lmet      spc            rmet ralt           left down rght
-)
-
-(deflayer qwerty-left-shift
-  S-esc   S-f1 S-f2 S-f3 S-f4 S-f5 S-f6 S-f7 S-f8 S-f9 S-f10 S-f11 S-f12
-  S-grv   S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  S--  S-=  S-bspc
-  S-tab   S-q  S-w  S-e  S-r  S-t  S-y  S-u  S-i  S-o  S-p  S-[  S-]  S-\
-  S-caps  S-a  S-s  S-d  S-f  S-g  S-h  S-j  S-k  S-l  S-;  S-'  S-ret
-  _       S-z  S-x  S-c  S-v  S-b  S-n  S-m  S-,  S-.  S-/  @col      S-up
-  S-fn    S-lctl S-lalt S-lmet S-spc         S-rmet S-ralt     S-left S-down S-rght
-)
-
-(deflayer qwerty-right-shift
-  RS-esc  RS-f1 RS-f2 RS-f3 RS-f4 RS-f5 RS-f6 RS-f7 RS-f8 RS-f9 RS-f10 RS-f11 RS-f12
-  RS-grv  RS-1 RS-2 RS-3 RS-4 RS-5 RS-6 RS-7 RS-8 RS-9 RS-0 RS-- RS-= RS-bspc
-  RS-tab  RS-q RS-w RS-e RS-r RS-t RS-y RS-u RS-i RS-o RS-p RS-[ RS-] RS-\
-  RS-caps RS-a RS-s RS-d RS-f RS-g RS-h RS-j RS-k RS-l RS-; RS-' RS-ret
-  @col    RS-z RS-x RS-c RS-v RS-b RS-n RS-m RS-, RS-. RS-/ _         RS-up
-  RS-fn   RS-lctl RS-lalt RS-lmet RS-spc     RS-rmet RS-ralt  RS-left RS-down RS-rght
+  _
+  _       _    _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _         _
+  _       _    _    _         _              _    _              _    _    _
 )

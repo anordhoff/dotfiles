@@ -6,9 +6,6 @@
 
   ;; start timeout as soon as the tap-hold action is pressed even if a previous tap-hold action is still held
   concurrent-tap-hold true
-
-  ;; wayland handles key repeat
-  allow-hardware-repeat false
 )
 
 (defvar
@@ -21,6 +18,8 @@
 
 (defalias
   ;; layers
+  lmeh (multi lctl lsft lalt (layer-while-held meh))
+  rmeh (multi rctl rsft ralt (layer-while-held meh))
   adj (layer-while-held adjust)
   fnc (layer-while-held function)
   lhp lmet
@@ -34,110 +33,40 @@
 
   ;; home row mods
   mtz (tap-hold $tt 250 z lsft)
-  mta (tap-hold $tt 250 a (layer-while-held colemak-meh))
+  mta (tap-hold $tt 250 a @lmeh)
   mtr (tap-hold $tt $ht r lmet)
   mts (tap-hold $tt $ht s lalt)
   mtt (tap-hold $tt $ht t lctl)
+
   mtn (tap-hold $tt $ht n rctl)
   mte (tap-hold $tt $ht e ralt)
   mti (tap-hold $tt $ht i rmet)
-  mto (tap-hold $tt 250 o (layer-while-held colemak-meh))
+  mto (tap-hold $tt 250 o @rmeh)
 
   mt$ (tap-hold $tt $ht S-4 lmet)
   mt% (tap-hold $tt $ht S-5 lalt)
   mt^ (tap-hold $tt $ht S-6 lctl)
-  mt= (tap-hold $tt $ht =   rctl)
-  mt[ (tap-hold $tt $ht [   ralt)
-  mt] (tap-hold $tt $ht ]   rmet)
 
-  ;; meh layer keys
-  ma    C-S-A-a
-  mb    C-S-A-b
-  mc    C-S-A-c
-  md    C-S-A-d
-  me    C-S-A-e
-  mf    C-S-A-f
-  mg    C-S-A-g
-  mh    C-S-A-h
-  mi    C-S-A-i
-  mj    C-S-A-j
-  mk    C-S-A-k
-  ml    C-S-A-l
-  mm    C-S-A-m
-  mn    C-S-A-n
-  mo    C-S-A-o
-  mp    C-S-A-p
-  mq    C-S-A-q
-  mr    C-S-A-r
-  ms    C-S-A-s
-  mt    C-S-A-t
-  mu    C-S-A-u
-  mv    C-S-A-v
-  mw    C-S-A-w
-  mx    C-S-A-x
-  my    C-S-A-y
-  mz    C-S-A-z
-  m1    C-S-A-1
-  m2    C-S-A-2
-  m3    C-S-A-3
-  m4    C-S-A-4
-  m5    C-S-A-5
-  m6    C-S-A-6
-  m7    C-S-A-7
-  m8    C-S-A-8
-  m9    C-S-A-9
-  m0    C-S-A-0
-  m-    C-S-A--
-  m=    C-S-A-=
-  m[    C-S-A-[
-  m]    C-S-A-]
-  m\    C-S-A-\
-  m;    C-S-A-;
-  m'    C-S-A-'
-  mgrv  C-S-A-`
-  m,    C-S-A-,
-  m.    C-S-A-.
-  m/    C-S-A-/
-  mesc  C-S-A-esc
-  mtab  C-S-A-tab
-  mbspc C-S-A-bspc
-  mret  C-S-A-ret
-  mspc  C-S-A-spc
-  mup   C-S-A-up
-  mleft C-S-A-left
-  mdown C-S-A-down
-  mrght C-S-A-rght
-  mdel  C-S-A-del
-
-  ;; qctl  (chord qwerty qctl)
-  ;; qesc  (chord qwerty qesc)
-  ;; qrght (chord qwerty qrght)
+  mt= (tap-hold $tt $ht = rctl)
+  mt[ (tap-hold $tt $ht [ ralt)
+  mt] (tap-hold $tt $ht ] rmet)
 )
 
-;; chord lctl-esc-rght switches the base layer from qwerty to colemak
-;; (defchords qwerty 200
-;;   (qctl           ) lctl
-;;   (     qesc      ) esc
-;;   (          qrght) rght
-;;   (qctl qesc qrght) (layer-switch colemak)
-;; )
-
 (defchordsv2
-  ;; remap the copilot key (this chord overrides the respective deflayer key)
-  (lsft lmet f23) (switch
-    ((layer colemak))     @mt- break
-    ((layer colemak-meh)) @adj break
-    ((layer navigation))  @fnc break
-    ((layer qwerty))      rctl break
-    ()                    XX   break
-  ) 10 all-released ()
-
   ;; switch between colemak and qwerty base layer using lctl-esc-rght
   (lctl esc rght) (switch
     ((layer colemak)) (layer-switch qwerty)  break
     ((layer qwerty))  (layer-switch colemak) break
     ()                XX                     break
   ) 500 all-released ()
+
+  ;; remap the copilot key (this chord overrides the respective deflayer key)
+  (lsft lmet f23) (switch
+    ((layer colemak))    @mt- break
+    ((layer meh))        @adj break
+    ((layer navigation)) @fnc break
+    ()                   XX   break
+  ) 10 all-released ()
 )
 
 (defsrc
@@ -151,21 +80,19 @@
 
 (deflayer colemak
   esc
-  grv     1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
+  XX      1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   @mtz    x    c    d    v    XX   XX   k    h    ,    .    /         up
-  XX           XX   @mt_      @mtspc         @mtesc @mt-         left down rght
+  lctl         XX   @mt_      @mtspc         @mtesc @mt-         left down rght
 )
 
-;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
-;; TODO: update to reflect base layer changes
-(deflayer colemak-meh
+(deflayer meh
   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX      @mq  @mw  @mf  @mp  @mb  XX   @mj  @ml  @mu  @my  @mbspc XX     XX
-  @mtab   @ma  @mr  @ms  @mt  @mg  XX   @mm  @mn  @me  @mi  @mo  @mret
-  @mz     @mx  @mc  @md  @mv  XX   XX   @mk  @mh  @m[  @m]  @m'       XX
+  tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
+  bspc    a    r    s    t    g    XX   m    n    e    i    o    ret
+  z       x    c    d    v    XX   XX   k    h    ,    .    /         XX
   XX           XX   @adj      @lhp           @rhp @adj           XX   XX   XX
 )
 
@@ -215,10 +142,10 @@
 )
 
 (deflayer qwerty
-  esc
-  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft    z    x    c    v    b    n    m    ,    .    /    rsft      up
-  lctl         lmet lalt      spc            ralt rctl           left down rght
+  _
+  _       _    _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _         _
+  _            _    _         _              _    _              _    _    _
 )
