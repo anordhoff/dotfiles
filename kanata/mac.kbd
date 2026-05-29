@@ -91,7 +91,7 @@
   tab     XX   S-7  S-8  S-9  XX   XX   XX   S-`  `    S-=  XX   XX   XX
   bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
   XX      S-1  S-2  S-3  XX   XX   XX   XX   S-\  S-[  S-]  XX        XX
-  XX      XX   XX   XX        _              spc  XX             XX   XX   XX
+  XX      XX   XX   XX        _              XX   XX             XX   XX   XX
 )
 
 (deflayer numpad
