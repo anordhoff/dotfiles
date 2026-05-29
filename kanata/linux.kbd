@@ -123,7 +123,7 @@
 (deflayer function
   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab     f11  f7   f8   f9   f12  XX   XX   prnt slck pause XX  XX   XX
+  tab     f11  f7   f8   f9   f12  XX   XX   prnt slck brk  XX   XX   XX
   bspc    f10  f4   f5   f6   XX   XX   XX   rctl ralt rmet XX   ret
   XX      f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        XX
   XX           XX   _         XX             XX   _              XX   XX   XX
