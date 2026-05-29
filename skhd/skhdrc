@@ -28,22 +28,6 @@ shift + ctrl + alt + cmd - e : yabai -m window --swap south
 shift + ctrl + alt + cmd - i : yabai -m window --swap north
 shift + ctrl + alt + cmd - o : yabai -m window --swap east
 
-# stack the focused window (stack.next allows stack.recent to work)
-shift + ctrl + alt + cmd - h : yabai -m window --stack west && yabai -m window --focus stack.next
-shift + ctrl + alt + cmd - j : yabai -m window --stack south && yabai -m window --focus stack.next
-shift + ctrl + alt + cmd - k : yabai -m window --stack north && yabai -m window --focus stack.next
-shift + ctrl + alt + cmd - l : yabai -m window --stack east && yabai -m window --focus stack.next
-
-# focus the most recently focused window in the stack
-shift + ctrl + alt - a : yabai -m window --focus stack.recent
-
-# break the focused window from stack
-shift + ctrl + alt + cmd - a : yabai -m window --toggle float && yabai -m window --toggle float
-
-# move window to adjacent space ( 0x21 = [ , 0x1E = ] )
-shift + ctrl + alt + cmd - 0x21 : yabai -m window --space prev
-shift + ctrl + alt + cmd - 0x1E : yabai -m window --space next
-
 # move window to specific space
 shift + ctrl + alt + cmd - x : yabai -m window --space 1
 shift + ctrl + alt + cmd - c : yabai -m window --space 2
