@@ -33,10 +33,6 @@
   ;; additional layers
   adj (layer-while-held adjust)
 
-  ;; switch out of qwerty using shifts
-  qls (layer-toggle qwerty-left-shift)
-  qrs (layer-toggle qwerty-right-shift)
-
   ;; layer mod taps
   mt_   (tap-hold       $tt 200 S-- (layer-while-held navigation))
   mtspc (tap-hold       $tt 170 spc (layer-while-held symbol))
@@ -119,18 +115,43 @@
   mdown C-S-A-down
   mrght C-S-A-rght
   mdel  C-S-A-del
+
+  qctl  (chord qwerty qctl)
+  qesc  (chord qwerty qesc)
+  qrght (chord qwerty qrght)
+)
+
+;; chord lctl-esc-rght switches the base layer from qwerty to colemak
+(defchords qwerty 200
+  (qctl           ) lctl
+  (     qesc      ) esc
+  (          qrght) rght
+  (qctl qesc qrght) (layer-switch colemak)
+)
+
+;; remap the copilot key (this chord overrides the respective deflayer key)
+(defchordsv2
+  (lsft lmet f23) (switch
+    ((layer colemak))     @mt-    break
+    ((layer colemak-meh)) @adj    break
+    ((layer navigation))  @fnc    break
+    ((layer qwerty))      rctl    break
+    ()                    XX      break
+  ) 5 all-released ()
 )
 
 (defsrc
+  esc
   grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps    a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft    z    x    c    v    b    n    m    ,    .    /    rsft      up
-  lctl         lmet lalt      spc            ralt rctl           left down rght
+  lctl         lmet lalt      spc            ralt f23            left down rght
 )
 
 (deflayer colemak
-  esc     1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
+  esc
+  grv     1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
   @mtz    x    c    d    v    XX   XX   k    h    ,    .    /         up
@@ -140,6 +161,7 @@
 ;; macos reserves `hyper + ,` and `hyper + .` for sysdiagnose ( @m, -> @m[ , @m. -> @m] )
 ;; TODO: update to reflect base layer changes
 (deflayer colemak-meh
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      @mq  @mw  @mf  @mp  @mb  XX   @mj  @ml  @mu  @my  @mbspc XX     XX
   @mtab   @ma  @mr  @ms  @mt  @mg  XX   @mm  @mn  @me  @mi  @mo  @mret
@@ -148,6 +170,7 @@
 )
 
 (deflayer symbol
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   S-7  S-8  S-9  XX   XX   XX   S-`  `    S-=  XX   XX   XX
   bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
@@ -156,6 +179,7 @@
 )
 
 (deflayer numpad
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   7    8    9    XX   XX   XX   XX   S-8  S-=  XX   XX   XX
   bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet XX   ret
@@ -164,6 +188,7 @@
 )
 
 (deflayer navigation
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
   bspc    XX   lmet lalt lctl XX   XX   XX   left down up   rght ret
@@ -172,6 +197,7 @@
 )
 
 (deflayer function
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     f11  f7   f8   f9   f12  XX   XX   prnt slck pause XX  XX   XX
   bspc    f10  f4   f5   f6   XX   XX   XX   rctl ralt rmet XX   ret
@@ -180,6 +206,7 @@
 )
 
 (deflayer adjust
+  XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   lrld    @qwe @col XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps    bldn brdn brup blup XX   XX   XX   prev vold volu next XX
@@ -188,25 +215,10 @@
 )
 
 (deflayer qwerty
+  @qesc
   grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-  @qls    z    x    c    v    b    n    m    ,    .    /    @qrs      up
-  lctl         lmet lalt      spc            ralt rctl           left down rght
-)
-
-(deflayer qwerty-left-shift
-  S-grv   S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  S--  S-=  S-bspc
-  S-tab   S-q  S-w  S-e  S-r  S-t  S-y  S-u  S-i  S-o  S-p  S-[  S-]  S-\
-  S-caps  S-a  S-s  S-d  S-f  S-g  S-h  S-j  S-k  S-l  S-;  S-'  S-ret
-  _       S-z  S-x  S-c  S-v  S-b  S-n  S-m  S-,  S-.  S-/  @col      S-up
-  S-lctl       S-lmet S-lalt  S-spc          S-ralt S-rctl     S-left S-down S-rght
-)
-
-(deflayer qwerty-right-shift
-  RS-grv  RS-1 RS-2 RS-3 RS-4 RS-5 RS-6 RS-7 RS-8 RS-9 RS-0 RS-- RS-= RS-bspc
-  RS-tab  RS-q RS-w RS-e RS-r RS-t RS-y RS-u RS-i RS-o RS-p RS-[ RS-] RS-\
-  RS-caps RS-a RS-s RS-d RS-f RS-g RS-h RS-j RS-k RS-l RS-; RS-' RS-ret
-  @col    RS-z RS-x RS-c RS-v RS-b RS-n RS-m RS-, RS-. RS-/ _         RS-up
-  RS-lctl      RS-lmet RS-lalt RS-spc        RS-ralt RS-rctl  RS-left RS-down RS-rght
+  lsft    z    x    c    v    b    n    m    ,    .    /    rsft      up
+  @qctl         lmet lalt      spc            ralt rctl          left down @qrght
 )
