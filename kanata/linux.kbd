@@ -1,9 +1,6 @@
 (defcfg
   linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
 
-  ;; unmapped keys should be ignored by kanata
-  process-unmapped-keys false
-
   ;; start timeout as soon as the tap-hold action is pressed even if a previous tap-hold action is still held
   concurrent-tap-hold true
 )
@@ -102,7 +99,7 @@
   tab     XX   S-7  S-8  S-9  XX   XX   XX   S-`  `    S-=  XX   XX   XX
   bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
   XX      S-1  S-2  S-3  XX   XX   XX   XX   S-\  S-[  S-]  XX        XX
-  XX           XX   XX        XX             spc  XX             XX   XX   XX
+  XX           XX   XX        _              spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
@@ -111,7 +108,7 @@
   tab     XX   7    8    9    XX   XX   XX   XX   S-8  S-=  XX   XX   XX
   bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet XX   ret
   XX      1    2    3    XX   XX   XX   XX   -    ,    .    /         XX
-  XX           XX   @fnc      spc            XX   XX             XX   XX   XX
+  XX           XX   @fnc      spc            XX   _              XX   XX   XX
 )
 
 (deflayer navigation
@@ -120,7 +117,7 @@
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
   bspc    XX   lmet lalt lctl XX   XX   XX   left down up   rght ret
   XX      XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        XX
-  XX           XX   XX        XX             rsft @fnc           XX   XX   XX
+  XX           XX   _         XX             rsft @fnc           XX   XX   XX
 )
 
 (deflayer function
@@ -129,7 +126,7 @@
   tab     f11  f7   f8   f9   f12  XX   XX   prnt slck pause XX  XX   XX
   bspc    f10  f4   f5   f6   XX   XX   XX   rctl ralt rmet XX   ret
   XX      f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        XX
-  XX           XX   XX        XX             XX   XX             XX   XX   XX
+  XX           XX   _         XX             XX   _              XX   XX   XX
 )
 
 (deflayer adjust

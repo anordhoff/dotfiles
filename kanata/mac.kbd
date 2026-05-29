@@ -1,10 +1,5 @@
 (defcfg
-  macos-dev-names-include (
-    "Apple Internal Keyboard / Trackpad"
-  )
-
-  ;; unmapped keys should be ignored by kanata
-  process-unmapped-keys false
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
 
   ;; start timeout as soon as the tap-hold action is pressed even if a previous tap-hold action is still held
   concurrent-tap-hold true
@@ -64,7 +59,7 @@
 )
 
 (defsrc
-  esc
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps    a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -73,7 +68,7 @@
 )
 
 (deflayer colemak
-  esc
+  esc     brdn brup mctl sls  dtn  dnd  prev pp   next mute vold volu
   XX      1    2    3    4    5    6    7    8    9    0    XX   XX   bspc
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    @mta @mtr @mts @mtt g    XX   m    @mtn @mte @mti @mto ret
@@ -82,52 +77,52 @@
 )
 
 (deflayer meh
-  XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    a    r    s    t    g    XX   m    n    e    i    o    ret
   z       x    c    d    v    XX   XX   k    h    ,    .    /         XX
-  XX           XX   @adj      @lhp           @rhp @adj           XX   XX   XX
+  XX      XX   XX   @adj      @lhp           @rhp @adj           XX   XX   XX
 )
 
 (deflayer symbol
-  XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   S-7  S-8  S-9  XX   XX   XX   S-`  `    S-=  XX   XX   XX
   bspc    S-0  @mt$ @mt% @mt^ XX   XX   XX   @mt= @mt[ @mt] \    ret
   XX      S-1  S-2  S-3  XX   XX   XX   XX   S-\  S-[  S-]  XX        XX
-  XX      XX   XX   XX        XX             spc  XX             XX   XX   XX
+  XX      XX   XX   XX        _              spc  XX             XX   XX   XX
 )
 
 (deflayer numpad
-  XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   7    8    9    XX   XX   XX   XX   S-8  S-=  XX   XX   XX
   bspc    0    4    5    6    XX   XX   XX   rctl ralt rmet XX   ret
   XX      1    2    3    XX   XX   XX   XX   -    ,    .    /         XX
-  XX      XX   XX   @fnc      spc            XX   XX             XX   XX   XX
+  XX      XX   XX   @fnc      spc            XX   _              XX   XX   XX
 )
 
 (deflayer navigation
-  XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     XX   XX   XX   XX   XX   XX   XX   ins  home pgup XX   XX   XX
   bspc    XX   lmet lalt lctl XX   XX   XX   left down up   rght ret
   XX      XX   XX   XX   XX   XX   XX   XX   del  end  pgdn XX        XX
-  XX      XX   XX   XX        XX             rsft @fnc           XX   XX   XX
+  XX      XX   XX   _         XX             rsft @fnc           XX   XX   XX
 )
 
 (deflayer function
-  XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   tab     f11  f7   f8   f9   f12  XX   XX   f13  f14  f15  XX   XX   XX
   bspc    f10  f4   f5   f6   XX   XX   XX   rctl ralt rmet XX   ret
   XX      f1   f2   f3   XX   XX   XX   XX   XX   XX   XX   XX        XX
-  XX      XX   XX   XX        XX             XX   XX             XX   XX   XX
+  XX      XX   XX   _         XX             XX   _              XX   XX   XX
 )
 
 (deflayer adjust
-  XX
+  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps    bldn brdn brup blup XX   XX   XX   prev vold volu next XX
@@ -136,7 +131,7 @@
 )
 
 (deflayer qwerty
-  _
+  _       _    _    _    _    _    _    _    _    _    _    _    _
   _       _    _    _    _    _    _    _    _    _    _    _    _    _
   _       _    _    _    _    _    _    _    _    _    _    _    _    _
   _       _    _    _    _    _    _    _    _    _    _    _    _
