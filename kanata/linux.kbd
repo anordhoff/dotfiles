@@ -54,7 +54,7 @@
     ((layer colemak)) (layer-switch qwerty)  break
     ((layer qwerty))  (layer-switch colemak) break
     ()                XX                     break
-  ) 500 all-released ()
+  ) 100 all-released ()
 
   ;; remap the copilot key (this chord overrides the respective deflayer key)
   (lsft lmet f23) (switch
