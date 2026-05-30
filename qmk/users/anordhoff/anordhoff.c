@@ -3,12 +3,10 @@
 // TODO: holding comma, then hold shift, then release shift, and it breaks
 // this might have useful info: https://getreuer.info/posts/keyboards/custom-shift-keys/index.html
 
-bool kc_up_toggled = false;
+// correctly handle mod taps with non-basic keycodes
+// https://docs.qmk.fm/mod_tap#intercepting-mod-taps
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-
-		// correctly handle mod taps with non-basic keycodes
-		// https://docs.qmk.fm/mod_tap#intercepting-mod-taps
 		case MT_UNDS:
 			if (record->tap.count && record->event.pressed) {
 				tap_code16(KC_UNDS);
@@ -33,34 +31,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				return false;
 			}
 			break;
-
-		// toggle right shift between KC_SLSH and KC_UP
-		case QWERTY: case COLEMAK:
-			if (record->event.pressed) {
-				kc_up_toggled = false;
-			}
-			break;
-		case TOG_SUP:
-			if (record->event.pressed) {
-				kc_up_toggled = !kc_up_toggled;
-			}
-			break;
-		case SLSH_UP:
-			if (kc_up_toggled) {
-				if (record->event.pressed) {
-					register_code(KC_UP);
-				} else {
-					unregister_code(KC_UP);
-				}
-			} else {
-				if (record->event.pressed) {
-					register_code(KC_SLSH);
-				} else {
-					unregister_code(KC_SLSH);
-				}
-			}
-			break;
-
 	}
 	return true;
 };

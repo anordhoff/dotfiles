@@ -1,10 +1,5 @@
 #include QMK_KEYBOARD_H
 
-enum custom_keycodes {
-	TOG_SUP = SAFE_RANGE,
-	SLSH_UP
-};
-
 enum layers {
 	_COLEMAK,
 	_MEH,
