@@ -1,3 +1,11 @@
+// switch between colemak and qwerty base layer using KC_ESC/KC_GRV + KC_RGHT
+const uint16_t PROGMEM to_qwerty[] = {KC_ESC, KC_RGHT, COMBO_END};
+const uint16_t PROGMEM to_colemak[] = {KC_GRV, KC_RGHT, COMBO_END};
+combo_t key_combos[] = {
+	COMBO(to_qwerty, DF(_QWERTY)),
+	COMBO(to_colemak, DF(_COLEMAK)),
+};
+
 // symbol layer overrides
 const key_override_t symbol_layer_grave_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_GRV, KC_GRV, 1 << _SYMBOL);
 const key_override_t symbol_layer_equal_key_override = ko_make_with_layers(MOD_MASK_SHIFT, KC_EQL, KC_EQL, 1 << _SYMBOL);

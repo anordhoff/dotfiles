@@ -43,15 +43,14 @@
   mt$ (tap-hold $tt $ht S-4 lmet)
   mt% (tap-hold $tt $ht S-5 lalt)
   mt^ (tap-hold $tt $ht S-6 lctl)
-
-  mt= (tap-hold $tt $ht = rctl)
-  mt[ (tap-hold $tt $ht [ ralt)
-  mt] (tap-hold $tt $ht ] rmet)
+  mt= (tap-hold $tt $ht =   rctl)
+  mt[ (tap-hold $tt $ht [   ralt)
+  mt] (tap-hold $tt $ht ]   rmet)
 )
 
 (defchordsv2
-  ;; switch between colemak and qwerty base layer using lctl-esc-rght
-  (lctl esc rght) (switch
+  ;; switch between colemak and qwerty base layer using esc + rght
+  (esc rght) (switch
     ((layer colemak)) (layer-switch qwerty)  break
     ((layer qwerty))  (layer-switch colemak) break
     ()                XX                     break

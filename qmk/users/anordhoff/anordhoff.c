@@ -7,33 +7,6 @@ bool kc_up_toggled = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 
-		// toggle right shift between KC_SLSH and KC_UP
-		case QWERTY: case COLEMAK: case GAME:
-			if (record->event.pressed) {
-				kc_up_toggled = false;
-			}
-			break;
-		case TOG_SUP:
-			if (record->event.pressed) {
-				kc_up_toggled = !kc_up_toggled;
-			}
-			break;
-		case SLSH_UP:
-			if (kc_up_toggled) {
-				if (record->event.pressed) {
-					register_code(KC_UP);
-				} else {
-					unregister_code(KC_UP);
-				}
-			} else {
-				if (record->event.pressed) {
-					register_code(KC_SLSH);
-				} else {
-					unregister_code(KC_SLSH);
-				}
-			}
-			break;
-
 		// correctly handle mod taps with non-basic keycodes
 		// https://docs.qmk.fm/mod_tap#intercepting-mod-taps
 		case MT_UNDS:
@@ -61,11 +34,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			}
 			break;
 
+		// toggle right shift between KC_SLSH and KC_UP
+		case QWERTY: case COLEMAK:
+			if (record->event.pressed) {
+				kc_up_toggled = false;
+			}
+			break;
+		case TOG_SUP:
+			if (record->event.pressed) {
+				kc_up_toggled = !kc_up_toggled;
+			}
+			break;
+		case SLSH_UP:
+			if (kc_up_toggled) {
+				if (record->event.pressed) {
+					register_code(KC_UP);
+				} else {
+					unregister_code(KC_UP);
+				}
+			} else {
+				if (record->event.pressed) {
+					register_code(KC_SLSH);
+				} else {
+					unregister_code(KC_SLSH);
+				}
+			}
+			break;
+
 	}
 	return true;
 };
 
-// per key tapping term
+// per-key tapping term
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case MT_Z:
@@ -86,15 +86,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	}
 };
 
-// per key permissive hold
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		default:
-			return false;
-	}
-};
-
-// per key hold on other key press
+// per-key hold on other key press
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case MT_ESC:
@@ -103,11 +95,3 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 			return false;
 	}
 }
-
-// per key quick tap term
-uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		default:
-			return 0;
-	}
-};

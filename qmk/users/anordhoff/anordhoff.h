@@ -7,37 +7,24 @@ enum custom_keycodes {
 
 enum layers {
 	_COLEMAK,
-	_COLEMAK_MEH,
+	_MEH,
 	_SYMBOL,
 	_NUMPAD,
 	_NAVIGATION,
 	_FUNCTION,
-	_GAME,
-	_GAME_MEH,
-	_GAME_EXTEND,
 	_ADJUST,
 	_QWERTY,
-	_QWERTY_LEFT_SHIFT,
-	_QWERTY_RIGHT_SHIFT,
 };
 
 // base layers
-#define QWERTY  DF(_QWERTY)
 #define COLEMAK DF(_COLEMAK)
-#define GAME    DF(_GAME)
+#define QWERTY  DF(_QWERTY)
 
 // colemak layers
+#define ADJUST  MO(_ADJUST)
 #define FUNC    MO(_FUNCTION)
 #define LHYPER  KC_LGUI
 #define RHYPER  KC_RGUI
-
-// gaming layers
-#define GME_MEH MO(_GAME_MEH)
-#define GME_HYP KC_LGUI
-#define GME_EXT MO(_GAME_EXTEND)
-
-// additional layers
-#define ADJUST  MO(_ADJUST)
 
 // layer mod taps
 #define MT_UNDS LT(_NAVIGATION, KC_UNDS)
@@ -45,27 +32,24 @@ enum layers {
 #define MT_ESC  MT(MOD_RSFT,    KC_ESC)
 #define MT_MINS LT(_NUMPAD,     KC_MINS)
 
-// switch out of qwerty using shifts
-#define QWRT_LS LM(_QWERTY_LEFT_SHIFT, MOD_LSFT)
-#define QWRT_RS LM(_QWERTY_RIGHT_SHIFT, MOD_RSFT)
-
 // home row mods
-#define MT_Z    MT(MOD_LSFT,     KC_Z)
-#define MT_A    LT(_COLEMAK_MEH, KC_A)
-#define MT_R    MT(MOD_LGUI,     KC_R)
-#define MT_S    MT(MOD_LALT,     KC_S)
-#define MT_T    MT(MOD_LCTL,     KC_T)
-#define MT_N    MT(MOD_RCTL,     KC_N)
-#define MT_E    MT(MOD_RALT,     KC_E)
-#define MT_I    MT(MOD_RGUI,     KC_I)
-#define MT_O    LT(_COLEMAK_MEH, KC_O)
+#define MT_Z    MT(MOD_LSFT, KC_Z)
+#define MT_A    LT(_MEH,     KC_A)
+#define MT_R    MT(MOD_LGUI, KC_R)
+#define MT_S    MT(MOD_LALT, KC_S)
+#define MT_T    MT(MOD_LCTL, KC_T)
 
-#define MT_DLR  MT(MOD_LGUI,     KC_DLR)
-#define MT_PERC MT(MOD_LALT,     KC_PERC)
-#define MT_CIRC MT(MOD_LCTL,     KC_CIRC)
-#define MT_EQL  MT(MOD_RCTL,     KC_EQL)
-#define MT_LBRC MT(MOD_RALT,     KC_LBRC)
-#define MT_RBRC MT(MOD_RGUI,     KC_RBRC)
+#define MT_N    MT(MOD_RCTL, KC_N)
+#define MT_E    MT(MOD_RALT, KC_E)
+#define MT_I    MT(MOD_RGUI, KC_I)
+#define MT_O    LT(_MEH,     KC_O)
+
+#define MT_DLR  MT(MOD_LGUI, KC_DLR)
+#define MT_PERC MT(MOD_LALT, KC_PERC)
+#define MT_CIRC MT(MOD_LCTL, KC_CIRC)
+#define MT_EQL  MT(MOD_RCTL, KC_EQL)
+#define MT_LBRC MT(MOD_RALT, KC_LBRC)
+#define MT_RBRC MT(MOD_RGUI, KC_RBRC)
 
 // meh layer keys
 #define LM_A    LCTL(LSFT(LALT(KC_A)))

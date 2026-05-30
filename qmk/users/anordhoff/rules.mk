@@ -1,4 +1,4 @@
 SRC += anordhoff.c
-
-KEY_OVERRIDE_ENABLE = yes
 INTROSPECTION_KEYMAP_C = overrides.c
+KEY_OVERRIDE_ENABLE = yes
+COMBO_ENABLE = yes
