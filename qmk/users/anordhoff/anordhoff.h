@@ -15,11 +15,11 @@ enum layers {
 #define COLEMAK DF(_COLEMAK)
 #define QWERTY  DF(_QWERTY)
 
-// colemak layers
-#define ADJUST  MO(_ADJUST)
-#define FUNC    MO(_FUNCTION)
+// layers
 #define LHYPER  KC_LGUI
 #define RHYPER  KC_RGUI
+#define FUNC    MO(_FUNCTION)
+#define ADJUST  MO(_ADJUST)
 
 // layer mod taps
 #define MT_UNDS LT(_NAVIGATION, KC_UNDS)
@@ -42,6 +42,7 @@ enum layers {
 #define MT_DLR  MT(MOD_LGUI, KC_DLR)
 #define MT_PERC MT(MOD_LALT, KC_PERC)
 #define MT_CIRC MT(MOD_LCTL, KC_CIRC)
+
 #define MT_EQL  MT(MOD_RCTL, KC_EQL)
 #define MT_LBRC MT(MOD_RALT, KC_LBRC)
 #define MT_RBRC MT(MOD_RGUI, KC_RBRC)

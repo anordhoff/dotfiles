@@ -1,8 +1,5 @@
 #include "anordhoff.h"
 
-// TODO: holding comma, then hold shift, then release shift, and it breaks
-// this might have useful info: https://getreuer.info/posts/keyboards/custom-shift-keys/index.html
-
 // correctly handle mod taps with non-basic keycodes
 // https://docs.qmk.fm/mod_tap#intercepting-mod-taps
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -42,15 +39,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case MT_A:
 		case MT_O:
 			return 250;
-
 		case MT_UNDS:
 		case MT_MINS:
 			return 200;
-
 		case MT_SPC:
 		case MT_ESC:
 			return 170;
-
 		default:
 			return 180;
 	}

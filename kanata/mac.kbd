@@ -9,18 +9,18 @@
   hold-timeout 180
   ht $hold-timeout
 
-  tap-repress-timeout 0
+  tap-repress-timeout 120
   tt $tap-repress-timeout
 )
 
 (defalias
   ;; layers
-  lmeh (multi lctl lsft lalt (layer-while-held meh))
-  rmeh (multi rctl rsft ralt (layer-while-held meh))
-  adj (layer-while-held adjust)
-  fnc (layer-while-held function)
   lhp lmet
   rhp rmet
+  lmeh (multi lctl lsft lalt (layer-while-held meh))
+  rmeh (multi rctl rsft ralt (layer-while-held meh))
+  fnc (layer-while-held function)
+  adj (layer-while-held adjust)
 
   ;; mod taps
   mt_   (tap-hold       $tt 200 S-- (layer-while-held navigation))
@@ -43,9 +43,10 @@
   mt$ (tap-hold $tt $ht S-4 lmet)
   mt% (tap-hold $tt $ht S-5 lalt)
   mt^ (tap-hold $tt $ht S-6 lctl)
-  mt= (tap-hold $tt $ht =   rctl)
-  mt[ (tap-hold $tt $ht [   ralt)
-  mt] (tap-hold $tt $ht ]   rmet)
+
+  mt= (tap-hold $tt $ht = rctl)
+  mt[ (tap-hold $tt $ht [ ralt)
+  mt] (tap-hold $tt $ht ] rmet)
 )
 
 (defchordsv2
