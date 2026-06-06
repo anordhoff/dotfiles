@@ -20,7 +20,12 @@
   lmeh (multi lctl lsft lalt (layer-while-held meh))
   rmeh (multi rctl rsft ralt (layer-while-held meh))
   fnc (layer-while-held function)
-  adj (layer-while-held adjust)
+  ladj (multi
+    (release-key lctl) (release-key lsft) (release-key lalt)
+    (layer-while-held adjust))
+  radj (multi
+    (release-key rctl) (release-key rsft) (release-key ralt)
+    (layer-while-held adjust))
 
   ;; mod taps
   mt_   (tap-hold       $tt 200 S-- (layer-while-held navigation))
@@ -82,7 +87,7 @@
   tab     q    w    f    p    b    XX   j    l    u    y    ;    '    XX
   bspc    a    r    s    t    g    XX   m    n    e    i    o    ret
   z       x    c    d    v    XX   XX   k    h    ,    .    /         XX
-  XX      XX   XX   @adj      @lhp           @rhp @adj           XX   XX   XX
+  XX      XX   XX   @ladj     @lhp           @rhp @radj          XX   XX   XX
 )
 
 (deflayer symbol
@@ -122,7 +127,7 @@
 )
 
 (deflayer adjust
-  XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  lrld    XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   XX      XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps    bldn brdn brup blup XX   XX   XX   prev vold volu next XX
