@@ -6,11 +6,6 @@
     <string>local.aerospace</string>
     <key>Program</key>
     <string>/Applications/AeroSpace.app/Contents/MacOS/AeroSpace</string>
-    <key>ProgramArguments</key>
-    <array>
-      <string>/Applications/AeroSpace.app/Contents/MacOS/AeroSpace</string>
-      <string>--started-at-login</string>
-    </array>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
