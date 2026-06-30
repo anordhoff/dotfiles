@@ -36,13 +36,17 @@ accordion-padding = 40
     # balance size of windows
     shift-ctrl-alt-b = 'balance-sizes'
 
-    # move focus to adjacent monitor
-    shift-ctrl-alt-u = 'focus-monitor prev'
-    shift-ctrl-alt-y = 'focus-monitor next'
+    # focus window
+    shift-ctrl-alt-n = 'focus left'
+    shift-ctrl-alt-e = 'focus down'
+    shift-ctrl-alt-i = 'focus up'
+    shift-ctrl-alt-o = 'focus right'
 
-    # move window to adjacent monitor
-    shift-ctrl-alt-cmd-u = 'move-node-to-monitor prev'
-    shift-ctrl-alt-cmd-y = 'move-node-to-monitor next'
+    # swap windows
+    shift-ctrl-alt-cmd-n = 'move left'
+    shift-ctrl-alt-cmd-e = 'move down'
+    shift-ctrl-alt-cmd-i = 'move up'
+    shift-ctrl-alt-cmd-o = 'move right'
 
     # resize window
     shift-ctrl-alt-h = 'resize width -100'
@@ -51,20 +55,16 @@ accordion-padding = 40
     shift-ctrl-alt-l = 'resize width +100'
 
     # focus adjacent workspace
-    shift-ctrl-alt-leftSquareBracket = 'workspace prev'
-    shift-ctrl-alt-rightSquareBracket = 'workspace next'
+    shift-ctrl-alt-comma = 'workspace prev'
+    shift-ctrl-alt-period = 'workspace next'
 
-    # focus an adjacent window
-    shift-ctrl-alt-n = 'focus left'
-    shift-ctrl-alt-e = 'focus down'
-    shift-ctrl-alt-i = 'focus up'
-    shift-ctrl-alt-o = 'focus right'
+    # focus adjacent monitor
+    shift-ctrl-alt-u = 'focus-monitor prev'
+    shift-ctrl-alt-y = 'focus-monitor next'
 
-    # swap a window
-    shift-ctrl-alt-cmd-n = 'move left'
-    shift-ctrl-alt-cmd-e = 'move down'
-    shift-ctrl-alt-cmd-i = 'move up'
-    shift-ctrl-alt-cmd-o = 'move right'
+    # move window to adjacent monitor
+    shift-ctrl-alt-cmd-u = 'move-node-to-monitor prev'
+    shift-ctrl-alt-cmd-y = 'move-node-to-monitor next'
 
     # focus a specific workspace
     shift-ctrl-alt-x = 'workspace 1'
